@@ -84,14 +84,16 @@ export default function Home() {
         </a>
       </div>
 
+      <div className="burn-corner">
+        <a href="https://burn.museumofbased.art" className="burn-corner-btn">BURN</a>
+      </div>
+
       <main className="scene">
         <h1 className="title">MUSEUM OF BASED</h1>
         <button className="btn-art" onClick={() => window.location.href = '/art'}>
           ART
         </button>
-        <button className="btn-burn" onClick={() => window.location.href = '/burn'}>
-          BURN
-        </button>
+
         <div className="colosseum-wrap">
           <ColosseumSVG />
         </div>

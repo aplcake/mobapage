@@ -1,18 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async rewrites() {
-    // Set BURN_SITE_URL in Vercel env vars e.g. https://your-burn-site.vercel.app
+  async redirects() {
     const burnSiteUrl = process.env.BURN_SITE_URL;
     if (!burnSiteUrl) return [];
 
     return [
       {
-        source: '/burn',
+        source:      '/burn',
         destination: burnSiteUrl,
+        permanent:   false,
       },
       {
-        source: '/burn/:path*',
+        source:      '/burn/:path*',
         destination: `${burnSiteUrl}/:path*`,
+        permanent:   false,
       },
     ];
   },
