@@ -232,3 +232,51 @@ html, body {
   z-index: 1;
   pointer-events: none;
 }
+
+/* BURN button — matches ART but in orange/red */
+.btn-burn {
+  margin-top: 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(16px, 2.6vw, 32px);
+  color: var(--bg);
+  background: #ff4400;
+  border: none;
+  cursor: pointer;
+  padding: 18px 72px;
+  position: relative;
+  letter-spacing: 0.15em;
+  box-shadow:
+    5px 0 0 0 #cc3300,
+    0 5px 0 0 #cc3300,
+    5px 5px 0 0 var(--shadow),
+    9px 5px 0 0 var(--shadow),
+    5px 9px 0 0 var(--shadow),
+    -2px -2px 0 0 #ff6633;
+  transition: transform 0.08s, box-shadow 0.08s, filter 0.08s;
+  animation: burnIdle 3s ease-in-out 1.5s infinite;
+}
+
+.btn-burn:hover {
+  filter: brightness(1.15) saturate(1.2);
+  transform: translate(-2px, -2px);
+  box-shadow:
+    7px 0 0 0 #cc3300,
+    0 7px 0 0 #cc3300,
+    7px 7px 0 0 var(--shadow),
+    11px 7px 0 0 var(--shadow),
+    7px 11px 0 0 var(--shadow),
+    -2px -2px 0 0 #ff6633;
+}
+
+.btn-burn:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    2px 0 0 0 #cc3300,
+    0 2px 0 0 #cc3300,
+    2px 2px 0 0 var(--shadow);
+}
+
+@keyframes burnIdle {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.15) saturate(1.1); }
+}

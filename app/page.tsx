@@ -89,6 +89,9 @@ export default function Home() {
         <button className="btn-art" onClick={() => window.location.href = '/art'}>
           ART
         </button>
+        <button className="btn-burn" onClick={() => window.location.href = '/burn'}>
+          BURN
+        </button>
         <div className="colosseum-wrap">
           <ColosseumSVG />
         </div>
