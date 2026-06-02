@@ -233,9 +233,6 @@ html, body {
   pointer-events: none;
 }
 
-  50% { filter: brightness(1.15) saturate(1.1); }
-}
-
 /* Burn corner button — top right, small */
 .burn-corner {
   position: fixed;
