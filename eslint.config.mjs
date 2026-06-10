@@ -1,0 +1,24 @@
+import { defineConfig, globalIgnores } from 'eslint/config'
+import nextVitals from 'eslint-config-next/core-web-vitals'
+import nextTs from 'eslint-config-next/typescript'
+
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  {
+    rules: {
+      'react-hooks/immutability': 'off',
+      'react-hooks/purity': 'off',
+    },
+  },
+  globalIgnores([
+    '.next/**',
+    '.vercel/**',
+    'out/**',
+    'build/**',
+    'dist/**',
+    '**/dist/**',
+    'coverage/**',
+    'next-env.d.ts',
+  ]),
+])

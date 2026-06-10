@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacuum Head Pogo Orb Control Room</title>
+    <style>
+      :root {
+        color: #17121f;
+        background: #cfe2c7;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      #root {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .control-room {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #cfe2c7;
+        user-select: none;
+      }
+
+      .control-room canvas {
+        touch-action: none;
+      }
+
+      .room-hud {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: calc(100vw - 190px);
+        pointer-events: none;
+      }
+
+      .room-hud span {
+        min-width: 66px;
+        border: 3px solid #17121f;
+        background: rgba(255, 248, 205, 0.94);
+        box-shadow: 3px 3px 0 #2c2336;
+        color: #17121f;
+        font-size: 11px;
+        font-weight: 900;
+        line-height: 1;
+        padding: 8px 9px;
+        text-align: center;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .room-mark {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: block;
+        border: 3px solid #17121f;
+        background: rgba(120, 255, 226, 0.92);
+        box-shadow: 3px 3px 0 #2c2336;
+        color: #17121f;
+        cursor: pointer;
+        font: inherit;
+        font-size: 11px;
+        font-weight: 900;
+        line-height: 1;
+        padding: 8px 10px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .room-mark:hover {
+        background: #fff8cd;
+      }
+
+      .camera-pad {
+        position: absolute;
+        top: 54px;
+        right: 12px;
+        display: grid;
+        grid-template-columns: repeat(3, 34px);
+        gap: 6px;
+      }
+
+      .camera-pad button {
+        width: 34px;
+        height: 32px;
+        border: 3px solid #17121f;
+        background: rgba(255, 248, 205, 0.94);
+        box-shadow: 3px 3px 0 #2c2336;
+        color: #17121f;
+        cursor: pointer;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1;
+        padding: 0;
+      }
+
+      .camera-pad button:hover {
+        background: #78ffe2;
+      }
+
+      .camera-pad button.is-active {
+        background: #78ffe2;
+      }
+
+      .camera-pad button:nth-child(4) {
+        grid-column: 1;
+      }
+
+      .camera-pad button:nth-child(5) {
+        grid-column: 2;
+      }
+
+      @media (max-width: 760px) {
+        .room-hud {
+          left: 8px;
+          right: 8px;
+          bottom: 8px;
+          gap: 5px;
+          max-width: calc(100vw - 16px);
+        }
+
+        .room-hud span {
+          min-width: 54px;
+          border-width: 2px;
+          box-shadow: 2px 2px 0 #2c2336;
+          font-size: 10px;
+          padding: 6px 7px;
+        }
+
+        .room-mark {
+          top: 8px;
+          right: 8px;
+        }
+
+        .camera-pad {
+          top: 50px;
+          right: 8px;
+          transform: scale(0.9);
+          transform-origin: top right;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/control.tsx"></script>
+  </body>
+</html>
