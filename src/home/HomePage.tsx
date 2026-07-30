@@ -1203,22 +1203,6 @@ function DoorDestinationPlaque({
   )
 }
 
-function createWayfindingArrowTipGeometry(direction: 'left' | 'right') {
-  const sign = direction === 'left' ? -1 : 1
-  const points = [
-    [sign * 1.14, 0, 0],
-    [sign * 0.42, 0.46, 0],
-    [sign * 0.42, -0.46, 0],
-  ]
-  const geometry = new THREE.BufferGeometry()
-
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(points.flat(), 3))
-  geometry.setIndex([0, 1, 2])
-  geometry.computeVertexNormals()
-  geometry.computeBoundingSphere()
-  return geometry
-}
-
 function createRoundedWayfindingArrowShape(direction: 'left' | 'right', inset = 0) {
   const sign = direction === 'left' ? -1 : 1
   const widthScale = Math.max(0.48, 1 - inset * 0.52)
@@ -1377,32 +1361,37 @@ function WayfindingArrowPlaque({
 }) {
   const groupRef = useRef<THREE.Group>(null)
   const pulseHaloRef = useRef<THREE.Mesh>(null)
-  const shineSweepRef = useRef<THREE.Mesh>(null)
   const premiumRimGlowRef = useRef<THREE.Mesh>(null)
   const premiumFaceGlowRef = useRef<THREE.Mesh>(null)
-  const premiumTipGlintRef = useRef<THREE.Mesh>(null)
-  const premiumBottomLipRef = useRef<THREE.Mesh>(null)
   const transitionProgressRef = useRef(0)
   const clickPulseRef = useRef(0)
   const [hovered, setHovered] = useState(false)
   const [pressed, setPressed] = useState(false)
-  const arrowTipGeometry = useMemo(() => createWayfindingArrowTipGeometry(direction), [direction])
   const arrowOuterShape = useMemo(() => createRoundedWayfindingArrowShape(direction, 0), [direction])
+  const arrowBodyGeometry = useMemo(() => {
+    const geometry = new THREE.ExtrudeGeometry(createRoundedWayfindingArrowShape(direction, 0), {
+      depth: 0.16,
+      bevelEnabled: true,
+      bevelThickness: 0.03,
+      bevelSize: 0.035,
+      bevelSegments: 3,
+      curveSegments: 20,
+    })
+    geometry.computeBoundingSphere()
+    return geometry
+  }, [direction])
   const arrowRimShape = useMemo(() => createRoundedWayfindingArrowShape(direction, 0.08), [direction])
   const arrowFaceShape = useMemo(() => createRoundedWayfindingArrowShape(direction, 0.16), [direction])
   const arrowInsetShape = useMemo(() => createRoundedWayfindingArrowShape(direction, 0.34), [direction])
   const arrowHighlightShape = useMemo(() => createRoundedWayfindingArrowShape(direction, 0.24), [direction])
   const sign = direction === 'left' ? -1 : 1
-  const bodyCenterX = direction === 'left' ? 0.34 : -0.34
   const isBurn = choice === 'burn'
   const accent = isBurn ? '#ff4f36' : '#85d75c'
   const faceColor = active || hovered ? (isBurn ? '#ff916f' : '#c4f06d') : isBurn ? '#e85032' : '#80c845'
-  const insetColor = active || hovered ? (isBurn ? '#ffc89f' : '#ddff8e') : isBurn ? '#ff9b62' : '#b8e660'
   const bellyColor = isBurn ? '#ff6845' : '#9ee36a'
   const rimColor = isBurn ? '#ffb348' : '#f3e66d'
   const gleamColor = isBurn ? '#fff0bc' : '#f5ffb8'
   const deepEdgeColor = isBurn ? '#6d1d17' : '#28501e'
-  const sideEdgeColor = isBurn ? '#9b2d22' : '#3e7827'
   const readablePanelColor = isBurn ? '#ffb56e' : '#c8ec62'
   const labelLines = label === 'EXPLORE COURTYARD'
     ? [
@@ -1463,15 +1452,6 @@ function WayfindingArrowPlaque({
       material.opacity = 0.075 + pulse * 0.035 + hoverStrength * 0.08
     }
 
-    if (shineSweepRef.current) {
-      const sweepPhase = (time * (hovered ? 0.7 : 0.42) + idlePhase * 0.13) % 1
-      shineSweepRef.current.position.x = bodyCenterX - sign * 0.66 + sign * sweepPhase * 1.3
-      shineSweepRef.current.rotation.z = -sign * 0.32
-      shineSweepRef.current.scale.set(0.06 + hoverStrength * 0.018, 0.48, 1)
-      const material = shineSweepRef.current.material as THREE.MeshBasicMaterial
-      material.opacity = (0.035 + hoverStrength * 0.05) * Math.sin(sweepPhase * Math.PI)
-    }
-
     if (premiumRimGlowRef.current) {
       const rimBeat = 0.5 + Math.sin(time * 2.1 + idlePhase * 0.8) * 0.5
       premiumRimGlowRef.current.scale.set(1 + hoverStrength * 0.026 + rimBeat * 0.008, 1 + hoverStrength * 0.018 + rimBeat * 0.006, 1)
@@ -1484,19 +1464,6 @@ function WayfindingArrowPlaque({
       premiumFaceGlowRef.current.scale.set(1 + hoverStrength * 0.018, 0.96 + faceBreath * 0.018 + hoverStrength * 0.018, 1)
       const material = premiumFaceGlowRef.current.material as THREE.MeshBasicMaterial
       material.opacity = 0.08 + hoverStrength * 0.12 + faceBreath * 0.025
-    }
-
-    if (premiumTipGlintRef.current) {
-      const tipBeat = 0.5 + Math.sin(time * 3.4 + idlePhase * 1.4) * 0.5
-      premiumTipGlintRef.current.scale.set(0.12 + tipBeat * 0.024 + hoverStrength * 0.024, 0.32 + tipBeat * 0.045 + hoverStrength * 0.045, 1)
-      const material = premiumTipGlintRef.current.material as THREE.MeshBasicMaterial
-      material.opacity = 0.1 + tipBeat * 0.08 + hoverStrength * 0.12
-    }
-
-    if (premiumBottomLipRef.current) {
-      premiumBottomLipRef.current.position.y = -0.365 + (pressed ? 0.038 : hovered ? -0.018 : 0)
-      const material = premiumBottomLipRef.current.material as THREE.MeshBasicMaterial
-      material.opacity = 0.44 + hoverStrength * 0.16
     }
   })
 
@@ -1553,83 +1520,9 @@ function WayfindingArrowPlaque({
         <circleGeometry args={[1, 72]} />
         <meshBasicMaterial color={SOFT_INK} transparent opacity={0.36} depthWrite={false} depthTest={false} />
       </mesh>
-      <group position={[0.035, -0.045, 0.12]} scale={[1.09, 1.16, 1]}>
-        <mesh position={[bodyCenterX, 0, 0.015]} scale={[1.64, 0.76, 0.15]} renderOrder={8}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshBasicMaterial color={INK} transparent opacity={0.86} />
-        </mesh>
-        {[-0.72, 0.72].map((offset) => (
-          <mesh key={`wayfinding-button-shadow-cap-${offset}`} position={[bodyCenterX + offset, 0, 0.03]} scale={[0.4, 0.38, 1]} renderOrder={8}>
-            <circleGeometry args={[1, 44]} />
-            <meshBasicMaterial color={INK} transparent opacity={0.86} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
-        <mesh geometry={arrowTipGeometry} position={[0, 0, 0.04]} scale={[1.12, 1.18, 1]} renderOrder={8}>
-          <meshBasicMaterial color={INK} transparent opacity={0.86} side={THREE.DoubleSide} />
-        </mesh>
-      </group>
-      <group position={[0.05 * -sign, -0.035, 0.095]} scale={[1.08, 1.13, 1]}>
-        <mesh position={[bodyCenterX, 0, 0.02]} scale={[1.6, 0.72, 0.16]} renderOrder={9}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={deepEdgeColor} emissive={deepEdgeColor} emissiveIntensity={0.06} roughness={0.5} metalness={0.04} />
-        </mesh>
-        {[-0.72, 0.72].map((offset) => (
-          <mesh key={`wayfinding-button-deep-cap-${offset}`} position={[bodyCenterX + offset, 0, 0.04]} scale={[0.38, 0.36, 1]} renderOrder={9}>
-            <circleGeometry args={[1, 48]} />
-            <meshStandardMaterial color={deepEdgeColor} emissive={deepEdgeColor} emissiveIntensity={0.06} roughness={0.5} metalness={0.04} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
-        <mesh geometry={arrowTipGeometry} position={[0, 0, 0.045]} scale={[1.12, 1.14, 1]} renderOrder={9}>
-          <meshStandardMaterial color={deepEdgeColor} emissive={deepEdgeColor} emissiveIntensity={0.06} roughness={0.5} metalness={0.04} side={THREE.DoubleSide} />
-        </mesh>
-      </group>
-      <group position={[0.018 * sign, 0.018, 0.02]} scale={[1.12, 1.17, 1]}>
-        <mesh position={[bodyCenterX, 0, 0.005]} scale={[1.6, 0.7, 0.12]} renderOrder={9}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={rimColor} emissive={accent} emissiveIntensity={0.1} roughness={0.34} metalness={0.06} />
-        </mesh>
-        {[-0.72, 0.72].map((offset) => (
-          <mesh key={`wayfinding-button-rim-cap-${offset}`} position={[bodyCenterX + offset, 0, 0.025]} scale={[0.37, 0.35, 1]} renderOrder={9}>
-            <circleGeometry args={[1, 48]} />
-            <meshStandardMaterial color={rimColor} emissive={accent} emissiveIntensity={0.1} roughness={0.34} metalness={0.06} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
-        <mesh geometry={arrowTipGeometry} position={[0, 0, 0.03]} scale={[1.1, 1.1, 1]} renderOrder={9}>
-          <meshStandardMaterial color={rimColor} emissive={accent} emissiveIntensity={0.1} roughness={0.34} metalness={0.06} side={THREE.DoubleSide} />
-        </mesh>
-      </group>
-      <group position={[0, 0, 0.04]} scale={[1.08, 1.14, 1]}>
-        <mesh position={[bodyCenterX, 0, 0.01]} scale={[1.52, 0.66, 0.16]} renderOrder={10}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={ROASTED_TEAK} emissive="#2f1406" emissiveIntensity={0.08} roughness={0.48} metalness={0.04} />
-        </mesh>
-        <mesh position={[bodyCenterX, 0, -0.02]} scale={[1.48, 0.62, 0.12]} renderOrder={11}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={faceColor} emissive={accent} emissiveIntensity={active || hovered ? 0.24 : 0.11} roughness={0.36} metalness={0.03} />
-        </mesh>
-        {[-0.72, 0.72].map((offset) => (
-          <mesh key={`wayfinding-button-face-cap-${offset}`} position={[bodyCenterX + offset, 0, 0.03]} scale={[0.34, 0.33, 1]} renderOrder={11}>
-            <circleGeometry args={[1, 48]} />
-            <meshStandardMaterial color={faceColor} emissive={accent} emissiveIntensity={active || hovered ? 0.24 : 0.11} roughness={0.36} metalness={0.03} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
-        <mesh geometry={arrowTipGeometry} position={[0, 0, 0.035]} scale={[1.02, 1.04, 1]} renderOrder={11}>
-          <meshStandardMaterial color={faceColor} emissive={accent} emissiveIntensity={active || hovered ? 0.24 : 0.11} roughness={0.36} metalness={0.03} side={THREE.DoubleSide} />
-        </mesh>
-      </group>
-      <group position={[0, 0.015, -0.06]} scale={[0.9, 0.78, 1]}>
-        <mesh position={[bodyCenterX, 0, 0]} scale={[1.34, 0.44, 0.08]} renderOrder={15}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial color={insetColor} emissive={accent} emissiveIntensity={active || hovered ? 0.16 : 0.075} roughness={0.42} metalness={0.02} />
-        </mesh>
-        {[-0.62, 0.62].map((offset) => (
-          <mesh key={`wayfinding-button-inset-cap-${offset}`} position={[bodyCenterX + offset, 0, 0.045]} scale={[0.24, 0.22, 1]} renderOrder={15}>
-            <circleGeometry args={[1, 42]} />
-            <meshStandardMaterial color={insetColor} emissive={accent} emissiveIntensity={active || hovered ? 0.16 : 0.075} roughness={0.42} metalness={0.02} side={THREE.DoubleSide} />
-          </mesh>
-        ))}
-        <mesh geometry={arrowTipGeometry} position={[sign * 0.015, 0, 0.05]} scale={[0.78, 0.7, 1]} renderOrder={15}>
-          <meshStandardMaterial color={insetColor} emissive={accent} emissiveIntensity={active || hovered ? 0.16 : 0.075} roughness={0.42} metalness={0.02} side={THREE.DoubleSide} />
+      <group position={[0.02 * sign, 0.025, -0.16]} scale={[1.18, 1.2, 1]}>
+        <mesh geometry={arrowBodyGeometry} renderOrder={10}>
+          <meshStandardMaterial color={deepEdgeColor} emissive={accent} emissiveIntensity={0.05} roughness={0.46} metalness={0.05} transparent opacity={1} />
         </mesh>
       </group>
       <group position={[0.02 * sign, 0.025, -0.18]} scale={[1.18, 1.2, 1]}>
@@ -1665,38 +1558,10 @@ function WayfindingArrowPlaque({
           <shapeGeometry args={[arrowHighlightShape]} />
           <meshBasicMaterial color={gleamColor} transparent opacity={hovered || active ? 0.22 : 0.14} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} side={THREE.DoubleSide} />
         </mesh>
-        <mesh ref={premiumTipGlintRef} position={[0.94 * sign, 0.015, -0.06]} rotation={[0, 0, -sign * 0.08]} scale={[0.12, 0.32, 1]} renderOrder={26}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial color={isBurn ? '#fff2b8' : '#faffba'} transparent opacity={0.12} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} toneMapped={false} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh position={[0.58 * sign, 0.005, -0.032]} rotation={[0, 0, -sign * 0.02]} scale={[0.075, 0.46, 1]} renderOrder={25}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial color={isBurn ? '#ffd093' : '#f8ffad'} transparent opacity={hovered || active ? 0.26 : 0.14} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh ref={premiumBottomLipRef} position={[-0.02 * sign, -0.365, -0.018]} scale={[1.26, 0.085, 1]} renderOrder={27}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial color={isBurn ? '#6b1b16' : '#21491c'} transparent opacity={0.44} depthWrite={false} depthTest={false} toneMapped={false} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh position={[-0.8 * sign, -0.21, -0.026]} scale={[0.4, 0.045, 1]} renderOrder={25}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial color={sideEdgeColor} transparent opacity={0.5} depthWrite={false} depthTest={false} side={THREE.DoubleSide} />
-        </mesh>
       </group>
-      <mesh position={[bodyCenterX - sign * 0.1, 0.12, -0.115]} scale={[1.08, 0.16, 1]} renderOrder={18}>
-        <circleGeometry args={[1, 48]} />
-        <meshBasicMaterial color="#fff6d7" transparent opacity={hovered || active ? 0.22 : 0.13} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
-      </mesh>
       <mesh position={[0, 0, -0.16]} scale={[1.48, 0.7, 1]} renderOrder={6}>
         <circleGeometry args={[1, 64]} />
         <meshBasicMaterial color={bellyColor} transparent opacity={active ? 0.22 : hovered ? 0.18 : 0.08} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
-      </mesh>
-      <mesh position={[bodyCenterX - sign * 0.06, 0.2, -0.145]} scale={[1.22, 0.035, 0.025]} renderOrder={22}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={gleamColor} emissive={gleamColor} emissiveIntensity={0.12} roughness={0.24} metalness={0.04} transparent opacity={0.84} />
-      </mesh>
-      <mesh ref={shineSweepRef} position={[bodyCenterX, 0.02, -0.19]} rotation={[0, 0, -sign * 0.32]} scale={[0.06, 0.48, 1]} renderOrder={23}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#fffbe5" transparent opacity={0.04} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} side={THREE.DoubleSide} />
       </mesh>
       <WayfindingTextPlane
         width={1.95}
