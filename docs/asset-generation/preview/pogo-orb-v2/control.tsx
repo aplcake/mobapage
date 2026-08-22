@@ -1567,12 +1567,14 @@ function MobileControls({ inputRef }: { inputRef: MutableRefObject<InputState> }
     <div className="mobile-controls" aria-label="Mobile movement controls">
       <div
         className={`mobile-stick ${stickState.active ? 'is-active' : ''}`}
+        role="application"
+        aria-label="Move character"
         onPointerDown={handleStickDown}
         onPointerMove={handleStickMove}
         onPointerUp={handleStickUp}
         onPointerCancel={handleStickUp}
       >
-        <div className="mobile-stick-ring" />
+        <div className="mobile-stick-ring" aria-hidden="true" />
         <div
           className="mobile-stick-thumb"
           style={{

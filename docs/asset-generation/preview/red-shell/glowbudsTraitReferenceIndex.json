@@ -1,0 +1,5164 @@
+{
+  "source": {
+    "collectionName": "Glowbuds",
+    "metadataBase": "ipfs://QmYCkyQE4zadqWNxTUesDXY1HvY2KJGtbj7Ahka1ejAerD",
+    "sampledTokenRange": "1-3333",
+    "sampledTokens": 3333,
+    "observedValueCounts": {
+      "Background": {
+        "Blue": 674,
+        "Green": 649,
+        "Purple": 682,
+        "Red": 658,
+        "Yellow": 670
+      },
+      "Companion": {
+        "Canary Birb": 138,
+        "Cardinal Birb": 107,
+        "Snail": 126,
+        "Toad": 71
+      },
+      "Eyes": {
+        "Blazeitup420": 283,
+        "Eeeek": 217,
+        "Enjoyer": 541,
+        "Mellow": 331,
+        "Mochi": 574,
+        "Mossing": 195,
+        "Purp": 270,
+        "Shades": 136,
+        "Suspicious": 180,
+        "Unibrow": 127,
+        "VR": 246,
+        "Whats that?": 233
+      },
+      "Item": {
+        "Axe": 297,
+        "Fire": 123,
+        "Peak": 194,
+        "Staff": 133,
+        "Sword": 217
+      },
+      "Mouth": {
+        "Blush": 136,
+        "Ciggy": 69,
+        "GRRRRRRR": 112,
+        "Huh?": 368,
+        "Long face": 472,
+        "Normal guy": 341,
+        "Oh?": 476,
+        "OMG!": 99,
+        "Sad": 203,
+        "Smile": 301,
+        "Vampire": 228,
+        "Wazzzzzzzzup": 371,
+        "Woozy": 157
+      },
+      "Nose": {
+        "Clown Nose": 312
+      },
+      "Plant": {
+        "Amami": 85,
+        "Bonsai": 24,
+        "Bonsai sakura": 36,
+        "Bunch of Flowers": 156,
+        "Cactus": 267,
+        "Dandelion": 142,
+        "Douglas": 250,
+        "Fern": 160,
+        "Flower": 180,
+        "lavender": 188,
+        "Lotus": 122,
+        "Myrtle": 209,
+        "Palm tree": 110,
+        "Roses": 140,
+        "Shroom": 126,
+        "Snake plant": 162,
+        "Sprout": 148,
+        "Sunflower": 168,
+        "Two flowers": 135,
+        "Venus": 34
+      },
+      "Pot": {
+        "Avante Garden": 1294,
+        "Crown": 67,
+        "Kitsch": 973,
+        "Terracotta": 508
+      },
+      "Shell": {
+        "Amethyst": 114,
+        "Ancient": 255,
+        "Diamond": 157,
+        "Gemstone": 101,
+        "Gold": 70,
+        "Green Cloak": 111,
+        "Guard": 112,
+        "Heavy Duty": 150,
+        "Hoodie": 46,
+        "Horny": 115,
+        "Ice": 181,
+        "Log": 91,
+        "Mossy": 217,
+        "Racer": 119,
+        "Raddish": 130,
+        "Red Cloak": 145,
+        "Robot": 89,
+        "Rock": 124,
+        "Seed": 366,
+        "Shark": 35,
+        "Smooth": 163,
+        "Soft": 224,
+        "Spikey": 69,
+        "Stoic": 149
+      },
+      "Type": {
+        "Alien": 12,
+        "Ape": 16,
+        "Gold": 423,
+        "OG": 1391,
+        "Pink": 463,
+        "Red": 500,
+        "Robot": 474,
+        "Zombie": 54
+      }
+    },
+    "representativeRule": "Prefer tokens whose other traits are closest to the established baseline; keep up to three examples per source value."
+  },
+  "rows": [
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Blue",
+      "observedSampleCount": 674,
+      "samples": [
+        {
+          "tokenId": 1193,
+          "name": "Glowbud #1193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 17,
+          "name": "Glowbud #17",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/17",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Yellow",
+      "observedSampleCount": 670,
+      "samples": [
+        {
+          "tokenId": 1339,
+          "name": "Glowbud #1339",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1339",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2204,
+          "name": "Glowbud #2204",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2204",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2204",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2204",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 2310,
+          "name": "Glowbud #2310",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2310",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2310",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2310",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Green",
+      "observedSampleCount": 649,
+      "samples": [
+        {
+          "tokenId": 749,
+          "name": "Glowbud #749",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/749",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 2995,
+          "name": "Glowbud #2995",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2995",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2995",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2995",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Eeeek",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1126,
+          "name": "Glowbud #1126",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1126",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1126",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1126",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Long face"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Purple",
+      "observedSampleCount": 682,
+      "samples": [
+        {
+          "tokenId": 1677,
+          "name": "Glowbud #1677",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1677",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 126,
+          "name": "Glowbud #126",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/126",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Green Cloak",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1505,
+          "name": "Glowbud #1505",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1505",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1505",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1505",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Gold",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Red",
+      "observedSampleCount": 658,
+      "samples": [
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2902,
+          "name": "Glowbud #2902",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2902",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 3156,
+          "name": "Glowbud #3156",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3156",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3156",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3156",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Green Cloak",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Canary Birb",
+      "observedSampleCount": 138,
+      "samples": [
+        {
+          "tokenId": 2766,
+          "name": "Glowbud #2766",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2766",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2766",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2766",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Purp",
+            "Mouth": "Smile",
+            "Companion": "Canary Birb"
+          }
+        },
+        {
+          "tokenId": 2666,
+          "name": "Glowbud #2666",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2666",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2666",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2666",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Horny",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Companion": "Canary Birb"
+          }
+        },
+        {
+          "tokenId": 2841,
+          "name": "Glowbud #2841",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2841",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2841",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2841",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Diamond",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile",
+            "Companion": "Canary Birb",
+            "Pot": "Kitsch",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Cardinal Birb",
+      "observedSampleCount": 107,
+      "samples": [
+        {
+          "tokenId": 1084,
+          "name": "Glowbud #1084",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1084",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1084",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1084",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Companion": "Cardinal Birb"
+          }
+        },
+        {
+          "tokenId": 2272,
+          "name": "Glowbud #2272",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2272",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2272",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2272",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Stoic",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Companion": "Cardinal Birb"
+          }
+        },
+        {
+          "tokenId": 2408,
+          "name": "Glowbud #2408",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2408",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2408",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2408",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Blush",
+            "Companion": "Cardinal Birb"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Snail",
+      "observedSampleCount": 126,
+      "samples": [
+        {
+          "tokenId": 1371,
+          "name": "Glowbud #1371",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1371",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1371",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1371",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Normal guy",
+            "Companion": "Snail",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 1831,
+          "name": "Glowbud #1831",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1831",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1831",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1831",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile",
+            "Companion": "Snail"
+          }
+        },
+        {
+          "tokenId": 611,
+          "name": "Glowbud #611",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/611",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/611",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/611",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?",
+            "Companion": "Snail",
+            "Pot": "Kitsch",
+            "Plant": "Myrtle"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Toad",
+      "observedSampleCount": 71,
+      "samples": [
+        {
+          "tokenId": 1298,
+          "name": "Glowbud #1298",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1298",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1298",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1298",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Companion": "Toad",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 661,
+          "name": "Glowbud #661",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/661",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/661",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/661",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Companion": "Toad",
+            "Pot": "Kitsch",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 2351,
+          "name": "Glowbud #2351",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2351",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2351",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2351",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Companion": "Toad",
+            "Pot": "Kitsch",
+            "Plant": "lavender"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mochi",
+      "observedSampleCount": 574,
+      "samples": [
+        {
+          "tokenId": 17,
+          "name": "Glowbud #17",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/17",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 1339,
+          "name": "Glowbud #1339",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1339",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2902,
+          "name": "Glowbud #2902",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2902",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Enjoyer",
+      "observedSampleCount": 541,
+      "samples": [
+        {
+          "tokenId": 1193,
+          "name": "Glowbud #1193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 787,
+          "name": "Glowbud #787",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/787",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 640,
+          "name": "Glowbud #640",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/640",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Gold",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Purp",
+      "observedSampleCount": 270,
+      "samples": [
+        {
+          "tokenId": 716,
+          "name": "Glowbud #716",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/716",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/716",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/716",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Purp",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 367,
+          "name": "Glowbud #367",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/367",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/367",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/367",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Purp",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Two flowers"
+          }
+        },
+        {
+          "tokenId": 3188,
+          "name": "Glowbud #3188",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3188",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3188",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3188",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Purp",
+            "Mouth": "Normal guy"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mellow",
+      "observedSampleCount": 331,
+      "samples": [
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1677,
+          "name": "Glowbud #1677",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1677",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "VR",
+      "observedSampleCount": 246,
+      "samples": [
+        {
+          "tokenId": 1915,
+          "name": "Glowbud #1915",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1915",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1915",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1915",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "VR",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2317,
+          "name": "Glowbud #2317",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2317",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2317",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2317",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "VR",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2663,
+          "name": "Glowbud #2663",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2663",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2663",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2663",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "VR",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Eeeek",
+      "observedSampleCount": 217,
+      "samples": [
+        {
+          "tokenId": 2995,
+          "name": "Glowbud #2995",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2995",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2995",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2995",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Eeeek",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 2686,
+          "name": "Glowbud #2686",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2686",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2686",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2686",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Eeeek",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 1948,
+          "name": "Glowbud #1948",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1948",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1948",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1948",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Eeeek",
+            "Mouth": "Vampire"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Suspicious",
+      "observedSampleCount": 180,
+      "samples": [
+        {
+          "tokenId": 548,
+          "name": "Glowbud #548",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/548",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/548",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/548",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Suspicious",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 198,
+          "name": "Glowbud #198",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/198",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/198",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/198",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Suspicious",
+            "Mouth": "Long face"
+          }
+        },
+        {
+          "tokenId": 2761,
+          "name": "Glowbud #2761",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2761",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2761",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2761",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Suspicious",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Bonsai sakura"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Blazeitup420",
+      "observedSampleCount": 283,
+      "samples": [
+        {
+          "tokenId": 2204,
+          "name": "Glowbud #2204",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2204",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2204",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2204",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 288,
+          "name": "Glowbud #288",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/288",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/288",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/288",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2464,
+          "name": "Glowbud #2464",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2464",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2464",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2464",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Normal guy",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Whats that?",
+      "observedSampleCount": 233,
+      "samples": [
+        {
+          "tokenId": 2825,
+          "name": "Glowbud #2825",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2825",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 2587,
+          "name": "Glowbud #2587",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2587",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2587",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2587",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2624,
+          "name": "Glowbud #2624",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2624",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2624",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2624",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mossing",
+      "observedSampleCount": 195,
+      "samples": [
+        {
+          "tokenId": 219,
+          "name": "Glowbud #219",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/219",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/219",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/219",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mossing",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1275,
+          "name": "Glowbud #1275",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1275",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1275",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1275",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mossing",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2769,
+          "name": "Glowbud #2769",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2769",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2769",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2769",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mossing",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Unibrow",
+      "observedSampleCount": 127,
+      "samples": [
+        {
+          "tokenId": 3306,
+          "name": "Glowbud #3306",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3306",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3306",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3306",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Unibrow",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1415,
+          "name": "Glowbud #1415",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1415",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1415",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1415",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Unibrow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 1800,
+          "name": "Glowbud #1800",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1800",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1800",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1800",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Smooth",
+            "Type": "OG",
+            "Eyes": "Unibrow",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Shades",
+      "observedSampleCount": 136,
+      "samples": [
+        {
+          "tokenId": 113,
+          "name": "Glowbud #113",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/113",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/113",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/113",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Shades",
+            "Mouth": "Sad",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 945,
+          "name": "Glowbud #945",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/945",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/945",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/945",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Shades",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2561,
+          "name": "Glowbud #2561",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2561",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2561",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2561",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Shades",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Dandelion"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Axe",
+      "observedSampleCount": 297,
+      "samples": [
+        {
+          "tokenId": 1519,
+          "name": "Glowbud #1519",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1519",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1519",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1519",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Item": "Axe",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 285,
+          "name": "Glowbud #285",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/285",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/285",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/285",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Item": "Axe",
+            "Type": "Robot",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 1876,
+          "name": "Glowbud #1876",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1876",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1876",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1876",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Item": "Axe",
+            "Type": "OG",
+            "Eyes": "Purp",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Sword",
+      "observedSampleCount": 217,
+      "samples": [
+        {
+          "tokenId": 350,
+          "name": "Glowbud #350",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/350",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/350",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/350",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Item": "Sword",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Long face"
+          }
+        },
+        {
+          "tokenId": 690,
+          "name": "Glowbud #690",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/690",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/690",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/690",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Item": "Sword",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Roses"
+          }
+        },
+        {
+          "tokenId": 2751,
+          "name": "Glowbud #2751",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2751",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2751",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2751",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Green Cloak",
+            "Item": "Sword",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Peak",
+      "observedSampleCount": 194,
+      "samples": [
+        {
+          "tokenId": 2544,
+          "name": "Glowbud #2544",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2544",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2544",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2544",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Item": "Peak",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1185,
+          "name": "Glowbud #1185",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1185",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1185",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1185",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Item": "Peak",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "GRRRRRRR"
+          }
+        },
+        {
+          "tokenId": 1474,
+          "name": "Glowbud #1474",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1474",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1474",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1474",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Item": "Peak",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Long face",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Staff",
+      "observedSampleCount": 133,
+      "samples": [
+        {
+          "tokenId": 332,
+          "name": "Glowbud #332",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/332",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/332",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/332",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Item": "Staff",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 229,
+          "name": "Glowbud #229",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/229",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/229",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/229",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Log",
+            "Item": "Staff",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 484,
+          "name": "Glowbud #484",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/484",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/484",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/484",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Horny",
+            "Item": "Staff",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Fire",
+      "observedSampleCount": 123,
+      "samples": [
+        {
+          "tokenId": 2877,
+          "name": "Glowbud #2877",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2877",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2877",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2877",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Item": "Fire",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Sad"
+          }
+        },
+        {
+          "tokenId": 2141,
+          "name": "Glowbud #2141",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2141",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2141",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2141",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Item": "Fire",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Douglas"
+          }
+        },
+        {
+          "tokenId": 2266,
+          "name": "Glowbud #2266",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2266",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2266",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2266",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Item": "Fire",
+            "Type": "OG",
+            "Eyes": "Eeeek",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Long face",
+      "observedSampleCount": 472,
+      "samples": [
+        {
+          "tokenId": 1126,
+          "name": "Glowbud #1126",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1126",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1126",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1126",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Long face"
+          }
+        },
+        {
+          "tokenId": 3,
+          "name": "Glowbud #3",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Long face",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2415,
+          "name": "Glowbud #2415",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2415",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2415",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2415",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Long face"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Oh?",
+      "observedSampleCount": 476,
+      "samples": [
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1339,
+          "name": "Glowbud #1339",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1339",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Huh?",
+      "observedSampleCount": 368,
+      "samples": [
+        {
+          "tokenId": 1193,
+          "name": "Glowbud #1193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 17,
+          "name": "Glowbud #17",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/17",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 1677,
+          "name": "Glowbud #1677",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1677",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Wazzzzzzzzup",
+      "observedSampleCount": 371,
+      "samples": [
+        {
+          "tokenId": 3216,
+          "name": "Glowbud #3216",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3216",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3216",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3216",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Wazzzzzzzzup"
+          }
+        },
+        {
+          "tokenId": 3250,
+          "name": "Glowbud #3250",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3250",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3250",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3250",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Wazzzzzzzzup"
+          }
+        },
+        {
+          "tokenId": 148,
+          "name": "Glowbud #148",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/148",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/148",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/148",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Wazzzzzzzzup"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Normal guy",
+      "observedSampleCount": 341,
+      "samples": [
+        {
+          "tokenId": 1850,
+          "name": "Glowbud #1850",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1850",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1850",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1850",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Normal guy"
+          }
+        },
+        {
+          "tokenId": 1968,
+          "name": "Glowbud #1968",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1968",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1968",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1968",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Normal guy"
+          }
+        },
+        {
+          "tokenId": 2717,
+          "name": "Glowbud #2717",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2717",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2717",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2717",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Normal guy",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Smile",
+      "observedSampleCount": 301,
+      "samples": [
+        {
+          "tokenId": 126,
+          "name": "Glowbud #126",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/126",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Green Cloak",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 749,
+          "name": "Glowbud #749",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/749",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 1530,
+          "name": "Glowbud #1530",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1530",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Vampire",
+      "observedSampleCount": 228,
+      "samples": [
+        {
+          "tokenId": 2458,
+          "name": "Glowbud #2458",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2458",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2458",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2458",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Vampire"
+          }
+        },
+        {
+          "tokenId": 2132,
+          "name": "Glowbud #2132",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2132",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2132",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2132",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Vampire",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 1948,
+          "name": "Glowbud #1948",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1948",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1948",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1948",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Eeeek",
+            "Mouth": "Vampire"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Sad",
+      "observedSampleCount": 203,
+      "samples": [
+        {
+          "tokenId": 1089,
+          "name": "Glowbud #1089",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1089",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1089",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1089",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Sad",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 751,
+          "name": "Glowbud #751",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/751",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/751",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/751",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Sad"
+          }
+        },
+        {
+          "tokenId": 674,
+          "name": "Glowbud #674",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/674",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/674",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/674",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Sad",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Blush",
+      "observedSampleCount": 136,
+      "samples": [
+        {
+          "tokenId": 2664,
+          "name": "Glowbud #2664",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2664",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2664",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2664",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Robot",
+            "Eyes": "Enjoyer",
+            "Mouth": "Blush"
+          }
+        },
+        {
+          "tokenId": 662,
+          "name": "Glowbud #662",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/662",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/662",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/662",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Smooth",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Blush"
+          }
+        },
+        {
+          "tokenId": 2901,
+          "name": "Glowbud #2901",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2901",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2901",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2901",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "VR",
+            "Mouth": "Blush"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "GRRRRRRR",
+      "observedSampleCount": 112,
+      "samples": [
+        {
+          "tokenId": 605,
+          "name": "Glowbud #605",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/605",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/605",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/605",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "GRRRRRRR"
+          }
+        },
+        {
+          "tokenId": 2124,
+          "name": "Glowbud #2124",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2124",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2124",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2124",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "GRRRRRRR"
+          }
+        },
+        {
+          "tokenId": 1004,
+          "name": "Glowbud #1004",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1004",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1004",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1004",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "GRRRRRRR",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Ciggy",
+      "observedSampleCount": 69,
+      "samples": [
+        {
+          "tokenId": 682,
+          "name": "Glowbud #682",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/682",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/682",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/682",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Ciggy"
+          }
+        },
+        {
+          "tokenId": 1909,
+          "name": "Glowbud #1909",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1909",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1909",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1909",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Heavy Duty",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Ciggy"
+          }
+        },
+        {
+          "tokenId": 2212,
+          "name": "Glowbud #2212",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2212",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2212",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2212",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "VR",
+            "Mouth": "Ciggy"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Woozy",
+      "observedSampleCount": 157,
+      "samples": [
+        {
+          "tokenId": 855,
+          "name": "Glowbud #855",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/855",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/855",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/855",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ice",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Woozy"
+          }
+        },
+        {
+          "tokenId": 2658,
+          "name": "Glowbud #2658",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2658",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2658",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2658",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Log",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Woozy",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 547,
+          "name": "Glowbud #547",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/547",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/547",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/547",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Woozy",
+            "Pot": "Kitsch",
+            "Plant": "Shroom"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "OMG!",
+      "observedSampleCount": 99,
+      "samples": [
+        {
+          "tokenId": 2571,
+          "name": "Glowbud #2571",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2571",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2571",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2571",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Green Cloak",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "OMG!"
+          }
+        },
+        {
+          "tokenId": 167,
+          "name": "Glowbud #167",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/167",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/167",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/167",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "OMG!",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 665,
+          "name": "Glowbud #665",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/665",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/665",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/665",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Log",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "OMG!"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Nose",
+      "sourceTrait": "Clown Nose",
+      "observedSampleCount": 312,
+      "samples": [
+        {
+          "tokenId": 2485,
+          "name": "Glowbud #2485",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2485",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2485",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2485",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Nose": "Clown Nose",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Myrtle"
+          }
+        },
+        {
+          "tokenId": 1209,
+          "name": "Glowbud #1209",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1209",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1209",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1209",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Nose": "Clown Nose",
+            "Eyes": "Suspicious",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1381,
+          "name": "Glowbud #1381",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1381",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1381",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1381",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Nose": "Clown Nose",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Terracotta",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Douglas",
+      "observedSampleCount": 250,
+      "samples": [
+        {
+          "tokenId": 703,
+          "name": "Glowbud #703",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/703",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/703",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/703",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Douglas"
+          }
+        },
+        {
+          "tokenId": 2222,
+          "name": "Glowbud #2222",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2222",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2222",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2222",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Douglas"
+          }
+        },
+        {
+          "tokenId": 570,
+          "name": "Glowbud #570",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/570",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/570",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/570",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Douglas"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Cactus",
+      "observedSampleCount": 267,
+      "samples": [
+        {
+          "tokenId": 2910,
+          "name": "Glowbud #2910",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2910",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2910",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2910",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Cactus"
+          }
+        },
+        {
+          "tokenId": 765,
+          "name": "Glowbud #765",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/765",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/765",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/765",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Amethyst",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Cactus"
+          }
+        },
+        {
+          "tokenId": 429,
+          "name": "Glowbud #429",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/429",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/429",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/429",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Diamond",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Cactus"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Lotus",
+      "observedSampleCount": 122,
+      "samples": [
+        {
+          "tokenId": 806,
+          "name": "Glowbud #806",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/806",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/806",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/806",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Lotus"
+          }
+        },
+        {
+          "tokenId": 3165,
+          "name": "Glowbud #3165",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3165",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3165",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3165",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Horny",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Lotus"
+          }
+        },
+        {
+          "tokenId": 386,
+          "name": "Glowbud #386",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/386",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/386",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/386",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Rock",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Lotus"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Fern",
+      "observedSampleCount": 160,
+      "samples": [
+        {
+          "tokenId": 343,
+          "name": "Glowbud #343",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/343",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/343",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/343",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Fern"
+          }
+        },
+        {
+          "tokenId": 2185,
+          "name": "Glowbud #2185",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2185",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2185",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2185",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Fern"
+          }
+        },
+        {
+          "tokenId": 471,
+          "name": "Glowbud #471",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/471",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/471",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/471",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Robot",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Fern"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Myrtle",
+      "observedSampleCount": 209,
+      "samples": [
+        {
+          "tokenId": 2977,
+          "name": "Glowbud #2977",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2977",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2977",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2977",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Myrtle"
+          }
+        },
+        {
+          "tokenId": 3282,
+          "name": "Glowbud #3282",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3282",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3282",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3282",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Gold",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Myrtle"
+          }
+        },
+        {
+          "tokenId": 3293,
+          "name": "Glowbud #3293",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3293",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3293",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3293",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Terracotta",
+            "Plant": "Myrtle"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Sprout",
+      "observedSampleCount": 148,
+      "samples": [
+        {
+          "tokenId": 716,
+          "name": "Glowbud #716",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/716",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/716",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/716",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Purp",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 2310,
+          "name": "Glowbud #2310",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2310",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2310",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2310",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 2132,
+          "name": "Glowbud #2132",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2132",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2132",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2132",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Vampire",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bunch of Flowers",
+      "observedSampleCount": 156,
+      "samples": [
+        {
+          "tokenId": 2409,
+          "name": "Glowbud #2409",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2409",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2409",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2409",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Bunch of Flowers"
+          }
+        },
+        {
+          "tokenId": 159,
+          "name": "Glowbud #159",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/159",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/159",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/159",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Bunch of Flowers"
+          }
+        },
+        {
+          "tokenId": 1607,
+          "name": "Glowbud #1607",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1607",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1607",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1607",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Bunch of Flowers"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Roses",
+      "observedSampleCount": 140,
+      "samples": [
+        {
+          "tokenId": 353,
+          "name": "Glowbud #353",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/353",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/353",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/353",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Roses"
+          }
+        },
+        {
+          "tokenId": 2547,
+          "name": "Glowbud #2547",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2547",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2547",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2547",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Soft",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Roses"
+          }
+        },
+        {
+          "tokenId": 845,
+          "name": "Glowbud #845",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/845",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/845",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/845",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ice",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Roses"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Snake plant",
+      "observedSampleCount": 162,
+      "samples": [
+        {
+          "tokenId": 2242,
+          "name": "Glowbud #2242",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2242",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2242",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2242",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Snake plant"
+          }
+        },
+        {
+          "tokenId": 623,
+          "name": "Glowbud #623",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/623",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/623",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/623",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Snake plant"
+          }
+        },
+        {
+          "tokenId": 2893,
+          "name": "Glowbud #2893",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2893",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2893",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2893",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Snake plant"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Sunflower",
+      "observedSampleCount": 168,
+      "samples": [
+        {
+          "tokenId": 190,
+          "name": "Glowbud #190",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/190",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/190",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/190",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sunflower"
+          }
+        },
+        {
+          "tokenId": 2834,
+          "name": "Glowbud #2834",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2834",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2834",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2834",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Sunflower"
+          }
+        },
+        {
+          "tokenId": 170,
+          "name": "Glowbud #170",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/170",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/170",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/170",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Mossy",
+            "Type": "Zombie",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Sunflower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Flower",
+      "observedSampleCount": 180,
+      "samples": [
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1530,
+          "name": "Glowbud #1530",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1530",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Two flowers",
+      "observedSampleCount": 135,
+      "samples": [
+        {
+          "tokenId": 1414,
+          "name": "Glowbud #1414",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1414",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1414",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1414",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Long face",
+            "Pot": "Avante Garden",
+            "Plant": "Two flowers"
+          }
+        },
+        {
+          "tokenId": 367,
+          "name": "Glowbud #367",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/367",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/367",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/367",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Purp",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Two flowers"
+          }
+        },
+        {
+          "tokenId": 1285,
+          "name": "Glowbud #1285",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1285",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1285",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1285",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "Red",
+            "Eyes": "Mossing",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Two flowers"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "lavender",
+      "observedSampleCount": 188,
+      "samples": [
+        {
+          "tokenId": 749,
+          "name": "Glowbud #749",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/749",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 3022,
+          "name": "Glowbud #3022",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3022",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3022",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3022",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 2706,
+          "name": "Glowbud #2706",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2706",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2706",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2706",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "lavender"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Palm tree",
+      "observedSampleCount": 110,
+      "samples": [
+        {
+          "tokenId": 2037,
+          "name": "Glowbud #2037",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2037",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2037",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2037",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Palm tree"
+          }
+        },
+        {
+          "tokenId": 1366,
+          "name": "Glowbud #1366",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1366",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1366",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1366",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Palm tree"
+          }
+        },
+        {
+          "tokenId": 166,
+          "name": "Glowbud #166",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/166",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/166",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/166",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Long face",
+            "Pot": "Avante Garden",
+            "Plant": "Palm tree"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Shroom",
+      "observedSampleCount": 126,
+      "samples": [
+        {
+          "tokenId": 1811,
+          "name": "Glowbud #1811",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1811",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1811",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1811",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Shroom"
+          }
+        },
+        {
+          "tokenId": 341,
+          "name": "Glowbud #341",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/341",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/341",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/341",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Stoic",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Shroom"
+          }
+        },
+        {
+          "tokenId": 457,
+          "name": "Glowbud #457",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/457",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/457",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/457",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Eeeek",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Shroom"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bonsai",
+      "observedSampleCount": 24,
+      "samples": [
+        {
+          "tokenId": 2313,
+          "name": "Glowbud #2313",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2313",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2313",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2313",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ice",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Bonsai"
+          }
+        },
+        {
+          "tokenId": 1133,
+          "name": "Glowbud #1133",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1133",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1133",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1133",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "Red",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Bonsai"
+          }
+        },
+        {
+          "tokenId": 312,
+          "name": "Glowbud #312",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/312",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/312",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/312",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Gemstone",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Ciggy",
+            "Pot": "Avante Garden",
+            "Plant": "Bonsai"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Amami",
+      "observedSampleCount": 85,
+      "samples": [
+        {
+          "tokenId": 709,
+          "name": "Glowbud #709",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/709",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/709",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/709",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 2825,
+          "name": "Glowbud #2825",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2825",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 1078,
+          "name": "Glowbud #1078",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1078",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1078",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1078",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Hoodie",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bonsai sakura",
+      "observedSampleCount": 36,
+      "samples": [
+        {
+          "tokenId": 1306,
+          "name": "Glowbud #1306",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1306",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1306",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1306",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Bonsai sakura"
+          }
+        },
+        {
+          "tokenId": 2761,
+          "name": "Glowbud #2761",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2761",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2761",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2761",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Suspicious",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Bonsai sakura"
+          }
+        },
+        {
+          "tokenId": 3020,
+          "name": "Glowbud #3020",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3020",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3020",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3020",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Hoodie",
+            "Type": "OG",
+            "Eyes": "Mossing",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Bonsai sakura"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Dandelion",
+      "observedSampleCount": 142,
+      "samples": [
+        {
+          "tokenId": 3194,
+          "name": "Glowbud #3194",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3194",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3194",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3194",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Dandelion"
+          }
+        },
+        {
+          "tokenId": 1,
+          "name": "Glowbud #1",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Log",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Dandelion"
+          }
+        },
+        {
+          "tokenId": 2908,
+          "name": "Glowbud #2908",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2908",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2908",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2908",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Dandelion"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Venus",
+      "observedSampleCount": 34,
+      "samples": [
+        {
+          "tokenId": 1328,
+          "name": "Glowbud #1328",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1328",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1328",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1328",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Long face",
+            "Pot": "Kitsch",
+            "Plant": "Venus"
+          }
+        },
+        {
+          "tokenId": 1368,
+          "name": "Glowbud #1368",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1368",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1368",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1368",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Blazeitup420",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Venus"
+          }
+        },
+        {
+          "tokenId": 2118,
+          "name": "Glowbud #2118",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2118",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2118",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2118",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Pink",
+            "Eyes": "Eeeek",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Venus"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Avante Garden",
+      "observedSampleCount": 1294,
+      "samples": [
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 749,
+          "name": "Glowbud #749",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/749",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 1530,
+          "name": "Glowbud #1530",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1530",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Kitsch",
+      "observedSampleCount": 973,
+      "samples": [
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1089,
+          "name": "Glowbud #1089",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1089",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1089",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1089",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Sad",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 219,
+          "name": "Glowbud #219",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/219",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/219",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/219",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mossing",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Terracotta",
+      "observedSampleCount": 508,
+      "samples": [
+        {
+          "tokenId": 2944,
+          "name": "Glowbud #2944",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2944",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2944",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2944",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Terracotta",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 3293,
+          "name": "Glowbud #3293",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3293",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3293",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3293",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Terracotta",
+            "Plant": "Myrtle"
+          }
+        },
+        {
+          "tokenId": 692,
+          "name": "Glowbud #692",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/692",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/692",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/692",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Terracotta",
+            "Plant": "lavender"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Crown",
+      "observedSampleCount": 67,
+      "samples": [
+        {
+          "tokenId": 651,
+          "name": "Glowbud #651",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/651",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/651",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/651",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Crown",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 189,
+          "name": "Glowbud #189",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/189",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/189",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/189",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Smooth",
+            "Type": "Gold",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Crown",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 798,
+          "name": "Glowbud #798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/798",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Heavy Duty",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Crown",
+            "Plant": "Fern"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Ancient",
+      "observedSampleCount": 255,
+      "samples": [
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 17,
+          "name": "Glowbud #17",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/17",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 787,
+          "name": "Glowbud #787",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/787",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Soft",
+      "observedSampleCount": 224,
+      "samples": [
+        {
+          "tokenId": 1090,
+          "name": "Glowbud #1090",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1090",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1090",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1090",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2812,
+          "name": "Glowbud #2812",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2812",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2812",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2812",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Soft",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 709,
+          "name": "Glowbud #709",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/709",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/709",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/709",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Soft",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Seed",
+      "observedSampleCount": 366,
+      "samples": [
+        {
+          "tokenId": 1193,
+          "name": "Glowbud #1193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 1339,
+          "name": "Glowbud #1339",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1339",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2917,
+          "name": "Glowbud #2917",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2917",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2917",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Stoic",
+      "observedSampleCount": 149,
+      "samples": [
+        {
+          "tokenId": 1017,
+          "name": "Glowbud #1017",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1017",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1017",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1017",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Stoic",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 341,
+          "name": "Glowbud #341",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/341",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/341",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/341",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Stoic",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Shroom"
+          }
+        },
+        {
+          "tokenId": 748,
+          "name": "Glowbud #748",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/748",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/748",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/748",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Stoic",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Normal guy"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Gemstone",
+      "observedSampleCount": 101,
+      "samples": [
+        {
+          "tokenId": 1412,
+          "name": "Glowbud #1412",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1412",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1412",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1412",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Gemstone",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Sad"
+          }
+        },
+        {
+          "tokenId": 563,
+          "name": "Glowbud #563",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/563",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/563",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/563",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Gemstone",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sunflower"
+          }
+        },
+        {
+          "tokenId": 2861,
+          "name": "Glowbud #2861",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2861",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2861",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2861",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Gemstone",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Bunch of Flowers"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Raddish",
+      "observedSampleCount": 130,
+      "samples": [
+        {
+          "tokenId": 1530,
+          "name": "Glowbud #1530",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1530",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1530",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 3172,
+          "name": "Glowbud #3172",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3172",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3172",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3172",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 97,
+          "name": "Glowbud #97",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/97",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/97",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/97",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Raddish",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Ice",
+      "observedSampleCount": 181,
+      "samples": [
+        {
+          "tokenId": 2459,
+          "name": "Glowbud #2459",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2459",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2459",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2459",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Ice",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 211,
+          "name": "Glowbud #211",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/211",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/211",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/211",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Ice",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2347,
+          "name": "Glowbud #2347",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2347",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2347",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2347",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Ice",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Mossy",
+      "observedSampleCount": 217,
+      "samples": [
+        {
+          "tokenId": 1677,
+          "name": "Glowbud #1677",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1677",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2902,
+          "name": "Glowbud #2902",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2902",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 2825,
+          "name": "Glowbud #2825",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2825",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2825",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Rock",
+      "observedSampleCount": 124,
+      "samples": [
+        {
+          "tokenId": 187,
+          "name": "Glowbud #187",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/187",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/187",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/187",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Rock",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 3133,
+          "name": "Glowbud #3133",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3133",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3133",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3133",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Rock",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Sad"
+          }
+        },
+        {
+          "tokenId": 386,
+          "name": "Glowbud #386",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/386",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/386",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/386",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Rock",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Lotus"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Smooth",
+      "observedSampleCount": 163,
+      "samples": [
+        {
+          "tokenId": 1800,
+          "name": "Glowbud #1800",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1800",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1800",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1800",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Smooth",
+            "Type": "OG",
+            "Eyes": "Unibrow",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 2274,
+          "name": "Glowbud #2274",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2274",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2274",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2274",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Smooth",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 2791,
+          "name": "Glowbud #2791",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2791",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2791",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2791",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Smooth",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Long face"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Diamond",
+      "observedSampleCount": 157,
+      "samples": [
+        {
+          "tokenId": 3158,
+          "name": "Glowbud #3158",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3158",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3158",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3158",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Diamond",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 1169,
+          "name": "Glowbud #1169",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1169",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1169",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1169",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Diamond",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 1405,
+          "name": "Glowbud #1405",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1405",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1405",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1405",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Diamond",
+            "Type": "Pink",
+            "Eyes": "Eeeek",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Amethyst",
+      "observedSampleCount": 114,
+      "samples": [
+        {
+          "tokenId": 765,
+          "name": "Glowbud #765",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/765",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/765",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/765",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Amethyst",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Cactus"
+          }
+        },
+        {
+          "tokenId": 1693,
+          "name": "Glowbud #1693",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1693",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1693",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1693",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Amethyst",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Normal guy"
+          }
+        },
+        {
+          "tokenId": 734,
+          "name": "Glowbud #734",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/734",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/734",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/734",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Amethyst",
+            "Type": "Gold",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Green Cloak",
+      "observedSampleCount": 111,
+      "samples": [
+        {
+          "tokenId": 126,
+          "name": "Glowbud #126",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/126",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/126",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Green Cloak",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 3156,
+          "name": "Glowbud #3156",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3156",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3156",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3156",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Green Cloak",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2742,
+          "name": "Glowbud #2742",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2742",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2742",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2742",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Green Cloak",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Guard",
+      "observedSampleCount": 112,
+      "samples": [
+        {
+          "tokenId": 2249,
+          "name": "Glowbud #2249",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2249",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2249",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2249",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Guard",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 946,
+          "name": "Glowbud #946",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/946",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/946",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/946",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Guard",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2109,
+          "name": "Glowbud #2109",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2109",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2109",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2109",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Guard",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Heavy Duty",
+      "observedSampleCount": 150,
+      "samples": [
+        {
+          "tokenId": 2523,
+          "name": "Glowbud #2523",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2523",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2523",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2523",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Heavy Duty",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2326,
+          "name": "Glowbud #2326",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2326",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2326",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2326",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Heavy Duty",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "lavender"
+          }
+        },
+        {
+          "tokenId": 1514,
+          "name": "Glowbud #1514",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1514",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1514",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1514",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Heavy Duty",
+            "Type": "OG",
+            "Eyes": "Purp",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Red Cloak",
+      "observedSampleCount": 145,
+      "samples": [
+        {
+          "tokenId": 1279,
+          "name": "Glowbud #1279",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1279",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1279",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1279",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Red Cloak",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 344,
+          "name": "Glowbud #344",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/344",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/344",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/344",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Red Cloak",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 3136,
+          "name": "Glowbud #3136",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3136",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3136",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3136",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Red Cloak",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Long face",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Gold",
+      "observedSampleCount": 70,
+      "samples": [
+        {
+          "tokenId": 640,
+          "name": "Glowbud #640",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/640",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Gold",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 807,
+          "name": "Glowbud #807",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/807",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/807",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/807",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Gold",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Snake plant"
+          }
+        },
+        {
+          "tokenId": 700,
+          "name": "Glowbud #700",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/700",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/700",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/700",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Gold",
+            "Type": "OG",
+            "Eyes": "Eeeek",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Log",
+      "observedSampleCount": 91,
+      "samples": [
+        {
+          "tokenId": 1,
+          "name": "Glowbud #1",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Log",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Dandelion"
+          }
+        },
+        {
+          "tokenId": 2658,
+          "name": "Glowbud #2658",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2658",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2658",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2658",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Log",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Woozy",
+            "Pot": "Avante Garden",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 3127,
+          "name": "Glowbud #3127",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3127",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3127",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3127",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Log",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Sprout"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Racer",
+      "observedSampleCount": 119,
+      "samples": [
+        {
+          "tokenId": 796,
+          "name": "Glowbud #796",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/796",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/796",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/796",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Racer",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2039,
+          "name": "Glowbud #2039",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2039",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2039",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2039",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Racer",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 3143,
+          "name": "Glowbud #3143",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3143",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3143",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3143",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Racer",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Long face"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Horny",
+      "observedSampleCount": 115,
+      "samples": [
+        {
+          "tokenId": 1533,
+          "name": "Glowbud #1533",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1533",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1533",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1533",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Horny",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1625,
+          "name": "Glowbud #1625",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1625",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1625",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1625",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Horny",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 2481,
+          "name": "Glowbud #2481",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2481",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2481",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2481",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Horny",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Robot",
+      "observedSampleCount": 89,
+      "samples": [
+        {
+          "tokenId": 2613,
+          "name": "Glowbud #2613",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2613",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2613",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2613",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Robot",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1492,
+          "name": "Glowbud #1492",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1492",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1492",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1492",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Robot",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 3025,
+          "name": "Glowbud #3025",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3025",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3025",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3025",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Robot",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Hoodie",
+      "observedSampleCount": 46,
+      "samples": [
+        {
+          "tokenId": 1078,
+          "name": "Glowbud #1078",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1078",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1078",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1078",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Hoodie",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Amami"
+          }
+        },
+        {
+          "tokenId": 2569,
+          "name": "Glowbud #2569",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2569",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2569",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2569",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Hoodie",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 1264,
+          "name": "Glowbud #1264",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1264",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1264",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1264",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Hoodie",
+            "Type": "Pink",
+            "Eyes": "Whats that?",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Spikey",
+      "observedSampleCount": 69,
+      "samples": [
+        {
+          "tokenId": 1878,
+          "name": "Glowbud #1878",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1878",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1878",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1878",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Spikey",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2492,
+          "name": "Glowbud #2492",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2492",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2492",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2492",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Spikey",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 1645,
+          "name": "Glowbud #1645",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1645",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1645",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1645",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Spikey",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Dandelion"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Shark",
+      "observedSampleCount": 35,
+      "samples": [
+        {
+          "tokenId": 1882,
+          "name": "Glowbud #1882",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1882",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1882",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1882",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Shark",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Blush"
+          }
+        },
+        {
+          "tokenId": 2537,
+          "name": "Glowbud #2537",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2537",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2537",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2537",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Shark",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Long face",
+            "Pot": "Avante Garden",
+            "Plant": "Fern"
+          }
+        },
+        {
+          "tokenId": 3010,
+          "name": "Glowbud #3010",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3010",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3010",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3010",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Shark",
+            "Type": "OG",
+            "Eyes": "Whats that?",
+            "Mouth": "Wazzzzzzzzup"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "OG",
+      "observedSampleCount": 1391,
+      "samples": [
+        {
+          "tokenId": 1193,
+          "name": "Glowbud #1193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2798,
+          "name": "Glowbud #2798",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2798",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2798",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "OG",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Avante Garden",
+            "Plant": "Flower"
+          }
+        },
+        {
+          "tokenId": 1339,
+          "name": "Glowbud #1339",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1339",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1339",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "OG",
+            "Eyes": "Mochi",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Red",
+      "observedSampleCount": 500,
+      "samples": [
+        {
+          "tokenId": 17,
+          "name": "Glowbud #17",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/17",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/17",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Red",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 640,
+          "name": "Glowbud #640",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/640",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/640",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Gold",
+            "Type": "Red",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 749,
+          "name": "Glowbud #749",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/749",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/749",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Seed",
+            "Type": "Red",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "lavender"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Robot",
+      "observedSampleCount": 474,
+      "samples": [
+        {
+          "tokenId": 1104,
+          "name": "Glowbud #1104",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1104",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1104",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1104",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Seed",
+            "Type": "Robot",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 694,
+          "name": "Glowbud #694",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/694",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/694",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/694",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Mossy",
+            "Type": "Robot",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?",
+            "Pot": "Kitsch",
+            "Plant": "Sprout"
+          }
+        },
+        {
+          "tokenId": 2664,
+          "name": "Glowbud #2664",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2664",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2664",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2664",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Seed",
+            "Type": "Robot",
+            "Eyes": "Enjoyer",
+            "Mouth": "Blush"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Gold",
+      "observedSampleCount": 423,
+      "samples": [
+        {
+          "tokenId": 1505,
+          "name": "Glowbud #1505",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1505",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1505",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1505",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Seed",
+            "Type": "Gold",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 2154,
+          "name": "Glowbud #2154",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2154",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2154",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2154",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Mossy",
+            "Type": "Gold",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 781,
+          "name": "Glowbud #781",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/781",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/781",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/781",
+          "attributes": {
+            "Background": "Yellow",
+            "Shell": "Seed",
+            "Type": "Gold",
+            "Eyes": "Mochi",
+            "Mouth": "Smile",
+            "Pot": "Kitsch",
+            "Plant": "Flower"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Pink",
+      "observedSampleCount": 463,
+      "samples": [
+        {
+          "tokenId": 1677,
+          "name": "Glowbud #1677",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1677",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1677",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 787,
+          "name": "Glowbud #787",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/787",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/787",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Pink",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 2902,
+          "name": "Glowbud #2902",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2902",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2902",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Mossy",
+            "Type": "Pink",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Ape",
+      "observedSampleCount": 16,
+      "samples": [
+        {
+          "tokenId": 1348,
+          "name": "Glowbud #1348",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1348",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1348",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1348",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Ape",
+            "Eyes": "Mochi",
+            "Mouth": "Huh?",
+            "Pot": "Avante Garden",
+            "Plant": "Bunch of Flowers"
+          }
+        },
+        {
+          "tokenId": 1536,
+          "name": "Glowbud #1536",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1536",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1536",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1536",
+          "attributes": {
+            "Background": "Red",
+            "Shell": "Soft",
+            "Type": "Ape",
+            "Eyes": "Mochi",
+            "Mouth": "Smile"
+          }
+        },
+        {
+          "tokenId": 193,
+          "name": "Glowbud #193",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/193",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/193",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/193",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ancient",
+            "Type": "Ape",
+            "Eyes": "Purp",
+            "Mouth": "Wazzzzzzzzup"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Zombie",
+      "observedSampleCount": 54,
+      "samples": [
+        {
+          "tokenId": 757,
+          "name": "Glowbud #757",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/757",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/757",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/757",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Robot",
+            "Type": "Zombie",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?"
+          }
+        },
+        {
+          "tokenId": 170,
+          "name": "Glowbud #170",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/170",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/170",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/170",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Mossy",
+            "Type": "Zombie",
+            "Eyes": "Mellow",
+            "Mouth": "Smile",
+            "Pot": "Avante Garden",
+            "Plant": "Sunflower"
+          }
+        },
+        {
+          "tokenId": 2220,
+          "name": "Glowbud #2220",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2220",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2220",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2220",
+          "attributes": {
+            "Background": "Green",
+            "Shell": "Smooth",
+            "Type": "Zombie",
+            "Eyes": "Enjoyer",
+            "Mouth": "Oh?"
+          }
+        }
+      ]
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Alien",
+      "observedSampleCount": 12,
+      "samples": [
+        {
+          "tokenId": 2206,
+          "name": "Glowbud #2206",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2206",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/2206",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/2206",
+          "attributes": {
+            "Background": "Purple",
+            "Shell": "Smooth",
+            "Type": "Alien",
+            "Eyes": "Enjoyer",
+            "Mouth": "Huh?"
+          }
+        },
+        {
+          "tokenId": 3065,
+          "name": "Glowbud #3065",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3065",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/3065",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/3065",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Ice",
+            "Type": "Alien",
+            "Eyes": "Mellow",
+            "Mouth": "Oh?",
+            "Pot": "Kitsch",
+            "Plant": "Lotus"
+          }
+        },
+        {
+          "tokenId": 1117,
+          "name": "Glowbud #1117",
+          "imageIpfs": "ipfs://QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1117",
+          "imageUrl": "https://ipfs.io/ipfs/QmaqEJNBEJWdwwSGBHtcqGCdJfnXazNVj6tcvr21E6abAU/1117",
+          "openSeaUrl": "https://opensea.io/item/abstract/0x40148d9aec2d0aed12ccf556cd7cd79c15197644/1117",
+          "attributes": {
+            "Background": "Blue",
+            "Shell": "Smooth",
+            "Type": "Alien",
+            "Nose": "Clown Nose",
+            "Eyes": "Mellow",
+            "Mouth": "Huh?"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -98,11 +98,12 @@ function colorCycleOffsetForActor(actor: TinyRascalConfig) {
   return actor.colorCycleOffset ?? (actor.phaseOffset * 0.72 + hashUnit(actor.id) * 0.83) % 1
 }
 
-function TinyRascalActor({ actor }: { actor: TinyRascalConfig }) {
+function TinyRascalActor({ actor, actorIndex, enterWardrobe }: { actor: TinyRascalConfig; actorIndex: number; enterWardrobe: boolean }) {
   const actorRef = useRef<THREE.Group>(null)
+  const wardrobeProgressRef = useRef(0)
   const [baseX, , baseZ] = actor.basePosition
 
-  useFrame((state) => {
+  useFrame((state, dt) => {
     const group = actorRef.current
     if (!group) return
 
@@ -138,8 +139,25 @@ function TinyRascalActor({ actor }: { actor: TinyRascalConfig }) {
       yaw += Math.sin(beat * 0.52) * 0.075
     }
 
+    wardrobeProgressRef.current = THREE.MathUtils.lerp(
+      wardrobeProgressRef.current,
+      enterWardrobe ? 1 : 0,
+      1 - Math.exp(-dt * (enterWardrobe ? 1.9 : 6.5)),
+    )
+    const progress = wardrobeProgressRef.current
+    const delay = (actorIndex % 6) * 0.018 + hashUnit(`${actor.id}-wardrobe`) * 0.12
+    const localProgress = clamp((progress - delay) / Math.max(0.001, 1 - delay), 0, 1)
+    const travel = localProgress * localProgress * (3 - localProgress * 2)
+    if (travel > 0) {
+      const doorwayX = (hashUnit(`${actor.id}-door-lane`) - 0.5) * 0.86
+      x = THREE.MathUtils.lerp(x, doorwayX, travel)
+      z = THREE.MathUtils.lerp(z, 2.48, travel)
+      yaw = THREE.MathUtils.lerp(yaw, Math.PI, travel)
+    }
+
     group.position.set(x, groundedY(actor.scale), z)
     group.rotation.set(0, yaw, 0)
+    group.scale.setScalar(1 - travel * 0.18)
   })
 
   const activity = actor.role === 'runner' ? 1.06 : actor.role === 'bouncer' ? 1.02 : 0.94
@@ -148,7 +166,7 @@ function TinyRascalActor({ actor }: { actor: TinyRascalConfig }) {
   return (
     <group ref={actorRef} position={[baseX, groundedY(actor.scale), baseZ]} rotation={[0, actor.yawBias, 0]}>
       <PsychedelicPogoOrbAsset
-        animation={actor.animation}
+        animation={enterWardrobe ? 'run' : actor.animation}
         activity={activity}
         colorCycleSpeed={actor.colorCycleSpeed ?? 0.76}
         colorCycleOffset={colorCycleOffsetForActor(actor)}
@@ -156,18 +174,18 @@ function TinyRascalActor({ actor }: { actor: TinyRascalConfig }) {
         glowIntensity={0}
         scale={actor.scale}
         phaseOffset={actor.phaseOffset}
-        animationTimeScale={actor.animationTimeScale}
+        animationTimeScale={enterWardrobe ? Math.max(1.18, actor.animationTimeScale * 1.18) : actor.animationTimeScale}
         verticalMotionScale={verticalMotionScale}
       />
     </group>
   )
 }
 
-export function TinyRascalCrowd() {
+export function TinyRascalCrowd({ enterWardrobe = false }: { enterWardrobe?: boolean }) {
   return (
     <group>
-      {TINY_RASCALS.map((actor) => (
-        <TinyRascalActor key={actor.id} actor={actor} />
+      {TINY_RASCALS.map((actor, actorIndex) => (
+        <TinyRascalActor key={actor.id} actor={actor} actorIndex={actorIndex} enterWardrobe={enterWardrobe} />
       ))}
     </group>
   )

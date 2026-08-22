@@ -8080,7 +8080,7 @@ function RitualRunController({
   return null
 }
 
-export function VacuumAssetInspect() {
+export function VacuumAssetInspect({ playerMode = false }: { playerMode?: boolean } = {}) {
   const router = useRouter()
   const runtime = useRef(createRuntime())
   const dropSequenceStart = useRef<number | null>(null)
@@ -8146,7 +8146,7 @@ export function VacuumAssetInspect() {
       }}
     >
       <Canvas
-        dpr={[1.5, 2]}
+        dpr={[1, playerMode ? 1.5 : 2]}
         camera={{ fov: 41, position: [1.22, 5.18, 10.35], near: 0.1, far: 30 }}
         gl={{ antialias: true, powerPreference: 'high-performance' }}
       >
@@ -8293,33 +8293,35 @@ export function VacuumAssetInspect() {
           maxPolarAngle={Math.PI * 0.74}
         />
       </Canvas>
-      <button
-        type="button"
-        aria-pressed={devSoldOut}
-        onClick={() => {
-          setDevSoldOut((soldOut) => !soldOut)
-        }}
-        style={{
-          position: 'fixed',
-          top: 18,
-          right: 18,
-          zIndex: 10,
-          padding: '10px 16px',
-          border: '3px solid #17121f',
-          borderRadius: 6,
-          background: devSoldOut ? '#c43426' : '#d4dde0',
-          boxShadow: '4px 4px 0 #17121f',
-          color: devSoldOut ? '#fff0a8' : '#17121f',
-          cursor: 'pointer',
-          fontFamily: 'inherit',
-          fontSize: 14,
-          fontWeight: 800,
-          letterSpacing: 0,
-          textTransform: 'uppercase',
-        }}
-      >
-        Dev sold out: {devSoldOut ? 'on' : 'off'}
-      </button>
+      {!playerMode ? (
+        <button
+          type="button"
+          aria-pressed={devSoldOut}
+          onClick={() => {
+            setDevSoldOut((soldOut) => !soldOut)
+          }}
+          style={{
+            position: 'fixed',
+            top: 18,
+            right: 18,
+            zIndex: 10,
+            padding: '10px 16px',
+            border: '3px solid #17121f',
+            borderRadius: 6,
+            background: devSoldOut ? '#c43426' : '#d4dde0',
+            boxShadow: '4px 4px 0 #17121f',
+            color: devSoldOut ? '#fff0a8' : '#17121f',
+            cursor: 'pointer',
+            fontFamily: 'inherit',
+            fontSize: 14,
+            fontWeight: 800,
+            letterSpacing: 0,
+            textTransform: 'uppercase',
+          }}
+        >
+          Dev sold out: {devSoldOut ? 'on' : 'off'}
+        </button>
+      ) : null}
     </div>
   )
 }

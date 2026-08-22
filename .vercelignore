@@ -1,5 +1,13 @@
-docs/validation
-docs/asset-generation/preview/pogo-orb-v2/node_modules
-docs/asset-generation/preview/pogo-orb-v2/dist
-docs/asset-generation/preview/pogo-orb-v2/.vercel
+.DS_Store
+node_modules/
+.next/
+.vercel/output/
+out/
+build/
+dist/
+coverage/
+*.tsbuildinfo
 
+# Local validation media and generated export frame dumps are not part of deployable app source.
+docs/validation/
+docs/asset-generation/exports/**/frames/
