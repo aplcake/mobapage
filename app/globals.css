@@ -97,6 +97,301 @@ html, body {
   display: block;
 }
 
+.homeDestinationDirectory {
+  position: fixed;
+  z-index: 48;
+  top: 51%;
+  left: 50%;
+  width: min(550px, calc(100vw - 32px));
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 4px solid var(--ink);
+  border-radius: 14px;
+  background:
+    linear-gradient(120deg, rgba(255, 239, 181, 0.07), transparent 34%),
+    repeating-linear-gradient(0deg, #3a293d 0 12px, #352438 12px 24px);
+  box-shadow:
+    inset 0 0 0 2px #b99355,
+    inset 0 3px 0 rgba(255, 244, 202, 0.12),
+    0 7px 0 #17121f,
+    0 18px 34px rgba(13, 9, 18, 0.48);
+  color: #fff0bc;
+  backdrop-filter: blur(6px);
+  animation: home-directory-arrive 480ms cubic-bezier(0.2, 0.85, 0.25, 1.08) both;
+}
+
+.homeDestinationDirectory::before,
+.homeDestinationDirectory::after {
+  position: absolute;
+  top: 14px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: #d8b65c;
+  box-shadow: inset 0 2px 0 #ffedac;
+  content: '';
+}
+
+.homeDestinationDirectory::before { left: 15px; }
+.homeDestinationDirectory::after { right: 15px; }
+
+.homeDestinationDirectoryHeading {
+  justify-self: center;
+  min-width: 220px;
+  padding: 8px 24px 7px;
+  border: 3px solid var(--ink);
+  border-radius: 7px;
+  background: #f1d78e;
+  color: #291f30;
+  box-shadow:
+    inset 0 3px 0 rgba(255, 252, 218, 0.55),
+    0 4px 0 #17121f;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.homeDestinationDirectoryHeading strong {
+  font: 900 20px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.homeDestinationDirectoryGrid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.homeDestinationButton {
+  --destination-color: #d9b55a;
+  --destination-light: #fff0bc;
+  position: relative;
+  min-width: 0;
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 22px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 10px;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 9px;
+  background:
+    linear-gradient(90deg, var(--destination-color) 0 7px, transparent 7px),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), transparent 48%),
+    #302536;
+  color: #fff7dc;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 240, 188, 0.2),
+    inset 0 3px 0 rgba(255, 255, 255, 0.08),
+    0 5px 0 #17121f;
+  cursor: pointer;
+  text-align: left;
+  touch-action: manipulation;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    background-color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+.homeDestinationButton[data-destination='galleries'] {
+  --destination-color: #78d9ce;
+  --destination-light: #c9fff7;
+}
+
+.homeDestinationButton[data-destination='wardrobe'] {
+  --destination-color: #e4bc5a;
+  --destination-light: #fff0b0;
+}
+
+.homeDestinationButton[data-destination='courtyard'] {
+  --destination-color: #7fc89d;
+  --destination-light: #d7f5dc;
+}
+
+.homeDestinationButton[data-destination='burn'] {
+  --destination-color: #df795c;
+  --destination-light: #ffc7aa;
+}
+
+.homeDestinationButton:hover:not(:disabled) {
+  z-index: 1;
+  border-color: var(--destination-light);
+  background-color: #44354a;
+  box-shadow:
+    inset 0 0 0 2px var(--destination-color),
+    inset 0 3px 0 rgba(255, 255, 255, 0.14),
+    0 7px 0 #17121f,
+    0 12px 20px rgba(10, 7, 14, 0.28);
+  transform: translateY(-3px) scale(1.015);
+}
+
+.homeDestinationButton:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08);
+}
+
+.homeDestinationButton:focus-visible {
+  z-index: 2;
+  outline: 4px solid #9effef;
+  outline-offset: 3px;
+  border-color: #fff8d8;
+}
+
+.homeDestinationButton:disabled {
+  cursor: wait;
+}
+
+.homeDestinationButton:disabled:not(.isSelected) {
+  opacity: 0.48;
+  filter: saturate(0.55);
+}
+
+.homeDestinationButton.isSelected {
+  border-color: var(--destination-light);
+  background-color: color-mix(in srgb, var(--destination-color) 22%, #302736);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.16),
+    0 4px 0 #17121f,
+    0 0 0 2px color-mix(in srgb, var(--destination-color) 45%, transparent);
+  animation: home-destination-selected 620ms ease-in-out infinite alternate;
+}
+
+.homeDestinationSymbol {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--destination-color);
+  color: #21192a;
+  box-shadow:
+    inset 0 4px 0 rgba(255, 255, 255, 0.3),
+    0 3px 0 #17121f;
+  font: 900 18px/1 Arial Black, Impact, system-ui, sans-serif;
+}
+
+.homeDestinationLabel {
+  min-width: 0;
+  font: 900 16px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.homeDestinationArrow {
+  color: var(--destination-light);
+  font: 900 24px/1 Arial Black, Impact, system-ui, sans-serif;
+}
+
+.homeDestinationStatus {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes home-directory-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 18px)) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes home-destination-selected {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.12); }
+}
+
+.museumMobileNav {
+  pointer-events: none;
+  position: fixed;
+  z-index: 49;
+  top: max(16px, env(safe-area-inset-top));
+  left: max(16px, env(safe-area-inset-left));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Arial Black, Impact, system-ui, sans-serif;
+  text-transform: uppercase;
+}
+
+.museumMobileNavLink {
+  pointer-events: auto;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  background: #ffe281;
+  color: #21192a;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 11px;
+  line-height: 1;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.museumMobileNavLink > span {
+  font-size: 20px;
+}
+
+.museumMobileNavLink:hover {
+  background: #fff0b7;
+  transform: translate(-1px, -1px);
+}
+
+.museumMobileNavLink:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.museumMobileNavLink:focus-visible {
+  outline: 4px solid #e9fbff;
+  outline-offset: 4px;
+}
+
+.museumDesktopExitKey {
+  display: grid;
+  place-items: center;
+  min-width: 31px;
+  min-height: 27px;
+  padding: 0 5px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: #fff8d8;
+  box-shadow: inset 0 -3px 0 rgba(33, 25, 42, 0.16);
+  font-family: Arial Black, Impact, system-ui, sans-serif;
+  font-size: 8px;
+  font-style: normal;
+}
+
+.museumMobileRoomName {
+  padding: 5px 8px;
+  border: 2px solid rgba(23, 18, 31, 0.84);
+  border-radius: 4px;
+  background: rgba(34, 25, 42, 0.82);
+  color: #fff0bc;
+  box-shadow: 2px 2px 0 rgba(23, 18, 31, 0.84);
+  font-size: 9px;
+  line-height: 1;
+}
+
 .homeInfoButton {
   pointer-events: auto;
   position: fixed;
@@ -885,6 +1180,11 @@ html, body {
   animation: home-route-whiteout 3100ms cubic-bezier(0.17, 0.72, 0.15, 1) forwards;
 }
 
+.homeRouteTransitionOverlay.isGalleries {
+  background:
+    radial-gradient(circle at 50% 46%, #fff8d4 0 13%, rgba(137, 231, 218, 0.94) 32%, rgba(76, 121, 124, 0.74) 59%, rgba(25, 18, 31, 0.64) 100%);
+}
+
 .homeRouteTransitionOverlay.isCourtyard {
   background:
     radial-gradient(circle at 54% 42%, #ffffff 0 16%, rgba(255, 251, 224, 0.96) 31%, rgba(205, 255, 231, 0.78) 55%, rgba(255, 255, 255, 0.24) 100%);
@@ -893,6 +1193,11 @@ html, body {
 .homeRouteTransitionOverlay.isBurn {
   background:
     radial-gradient(circle at 47% 45%, #fff0a6 0 10%, rgba(255, 153, 45, 0.96) 27%, rgba(255, 47, 24, 0.86) 58%, rgba(72, 8, 8, 0.58) 100%);
+}
+
+.homeRouteTransitionOverlay.isWardrobe {
+  background:
+    radial-gradient(circle at 50% 48%, #fff8bd 0 12%, rgba(126, 242, 219, 0.96) 30%, rgba(255, 141, 196, 0.82) 58%, rgba(32, 23, 37, 0.62) 100%);
 }
 
 @keyframes home-route-whiteout {
@@ -985,8 +1290,121 @@ html, body {
   touch-action: none;
 }
 
-.control-room-polished .mobile-controls {
+.mobile-controls {
   display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+}
+
+.mobile-stick,
+.mobile-action-cluster {
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.mobile-stick {
+  position: absolute;
+  left: max(22px, env(safe-area-inset-left));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  width: 144px;
+  height: 144px;
+  border: 4px solid #17121f;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.42), transparent 0 34%),
+    rgba(255, 248, 205, 0.76);
+  box-shadow: 5px 5px 0 #2c2336, inset 0 -12px 0 rgba(90, 122, 75, 0.16);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-stick-ring {
+  position: absolute;
+  inset: 22px;
+  border: 3px dashed rgba(23, 18, 31, 0.38);
+  border-radius: 50%;
+}
+
+.mobile-stick-thumb {
+  position: absolute;
+  left: calc(50% - 28px);
+  top: calc(50% - 28px);
+  width: 56px;
+  height: 56px;
+  border: 4px solid #17121f;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.78), transparent 0 30%),
+    linear-gradient(145deg, #78ffe2, #d5ff6b 54%, #ff84d8);
+  box-shadow: 4px 4px 0 #2c2336;
+  will-change: transform;
+}
+
+.mobile-stick.is-active {
+  background:
+    radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.54), transparent 0 34%),
+    rgba(120, 255, 226, 0.68);
+}
+
+.mobile-action-cluster {
+  position: absolute;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(24px, env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: 72px 92px;
+  grid-template-rows: 52px 82px;
+  align-items: end;
+  gap: 10px;
+}
+
+.mobile-action-button {
+  border: 4px solid #17121f;
+  border-radius: 999px;
+  background: rgba(255, 248, 205, 0.94);
+  box-shadow: 4px 4px 0 #2c2336;
+  color: #17121f;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-action-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 #2c2336;
+}
+
+.mobile-action-run {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 72px;
+  height: 72px;
+  background: #ffe27d;
+}
+
+.mobile-action-jump {
+  grid-column: 2;
+  grid-row: 2;
+  width: 92px;
+  height: 92px;
+  background: #78ffe2;
+  font-size: 13px;
+}
+
+.mobile-action-reset {
+  grid-column: 2;
+  grid-row: 1;
+  width: 76px;
+  height: 48px;
+  justify-self: end;
+  border-width: 3px;
+  background: rgba(255, 182, 226, 0.94);
+  box-shadow: 3px 3px 0 #2c2336;
+  font-size: 10px;
 }
 
 .courtyardControlsIntro {
@@ -1212,6 +1630,279 @@ html, body {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 760px), (max-height: 520px) and (max-width: 900px) {
+  .homeInfoButton {
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    width: 52px;
+    height: 52px;
+    padding-bottom: 3px;
+    border-width: 3px;
+    box-shadow:
+      inset 5px 6px 0 rgba(255, 255, 255, 0.3),
+      inset -7px -8px 0 rgba(3, 33, 92, 0.58),
+      0 5px 0 #052a68,
+      0 8px 0 var(--ink),
+      0 12px 18px rgba(15, 12, 26, 0.4);
+    font-size: 31px;
+  }
+
+  .homeInfoButton::before {
+    inset: 6px;
+    border-width: 2px;
+  }
+
+  .museumMobileNav {
+    pointer-events: none;
+    position: fixed;
+    z-index: 49;
+    top: max(10px, env(safe-area-inset-top));
+    left: max(10px, env(safe-area-inset-left));
+    display: flex;
+    max-width: 142px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    font-family: Arial Black, Impact, system-ui, sans-serif;
+    text-transform: uppercase;
+  }
+
+  .museumMobileNavLink {
+    pointer-events: auto;
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 10px;
+    border: 3px solid var(--ink);
+    border-radius: 6px;
+    background: #ffe281;
+    color: #21192a;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-size: 10px;
+    line-height: 1;
+    text-decoration: none;
+    touch-action: manipulation;
+  }
+
+  .museumMobileNavLink > span {
+    font-size: 20px;
+  }
+
+  .museumDesktopExitKey {
+    display: none;
+  }
+
+  .museumMobileRoomName {
+    margin-left: 3px;
+    padding: 4px 7px;
+    border: 2px solid rgba(23, 18, 31, 0.84);
+    border-radius: 4px;
+    background: rgba(34, 25, 42, 0.82);
+    color: #fff0bc;
+    font-size: 8px;
+    line-height: 1;
+    box-shadow: 2px 2px 0 rgba(23, 18, 31, 0.84);
+  }
+
+  .control-room-polished .mobile-controls {
+    display: block;
+  }
+
+  .courtyardControlsIntro {
+    display: none;
+  }
+
+  .controlMuseumEntryButton {
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    bottom: auto;
+    left: auto;
+    min-width: 136px;
+    min-height: 48px;
+    gap: 0;
+    padding: 8px 11px;
+    border-width: 3px;
+    box-shadow:
+      inset 0 4px 0 rgba(255, 255, 255, 0.42),
+      inset 0 -5px 0 rgba(104, 47, 23, 0.28),
+      0 5px 0 #6b351d,
+      0 8px 0 var(--ink),
+      0 13px 22px rgba(16, 11, 21, 0.3);
+    font-size: 12px;
+    transform: none;
+  }
+
+  .controlMuseumEntryButton:hover {
+    transform: translateY(-2px);
+  }
+
+  .controlMuseumEntryButton:active {
+    transform: translateY(5px);
+  }
+
+  .controlMuseumEntryKey {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) and (min-height: 521px) {
+  .homeDestinationDirectory {
+    top: 50%;
+    width: min(360px, calc(100vw - 24px));
+    gap: 9px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .homeDestinationDirectoryHeading {
+    min-width: 190px;
+    padding: 7px 18px 6px;
+  }
+
+  .homeDestinationDirectoryHeading strong {
+    font-size: 17px;
+  }
+
+  .homeDestinationDirectoryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .homeDestinationButton {
+    min-height: 70px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 7px;
+    padding: 8px 8px 8px 7px;
+  }
+
+  .homeDestinationSymbol {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .homeDestinationLabel {
+    font-size: clamp(10px, 3.4vw, 14px);
+    white-space: normal;
+  }
+
+  .homeDestinationArrow {
+    display: none;
+  }
+}
+
+@media (max-height: 520px) and (min-width: 561px) and (max-width: 900px) {
+  .homeDestinationDirectory {
+    top: 49%;
+    width: min(720px, calc(100vw - 24px));
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .homeDestinationDirectoryHeading {
+    min-width: 180px;
+    padding: 5px 18px 4px;
+  }
+
+  .homeDestinationDirectoryHeading strong {
+    font-size: 14px;
+  }
+
+  .homeDestinationDirectoryGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .homeDestinationButton {
+    min-height: 58px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .homeDestinationSymbol {
+    width: 30px;
+    height: 30px;
+    border-width: 2px;
+    font-size: 12px;
+  }
+
+  .homeDestinationLabel {
+    font-size: clamp(9px, 1.6vw, 11px);
+    white-space: normal;
+  }
+
+  .homeDestinationArrow {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .mobile-stick {
+    left: max(14px, env(safe-area-inset-left));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    width: 126px;
+    height: 126px;
+    border-width: 3px;
+    box-shadow: 4px 4px 0 #2c2336, inset 0 -10px 0 rgba(90, 122, 75, 0.16);
+  }
+
+  .mobile-stick-ring {
+    inset: 18px;
+    border-width: 2px;
+  }
+
+  .mobile-stick-thumb {
+    left: calc(50% - 24px);
+    top: calc(50% - 24px);
+    width: 48px;
+    height: 48px;
+    border-width: 3px;
+  }
+
+  .mobile-action-cluster {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+    grid-template-columns: 62px 82px;
+    grid-template-rows: 46px 74px;
+    gap: 8px;
+  }
+
+  .mobile-action-run {
+    width: 62px;
+    height: 62px;
+  }
+
+  .mobile-action-jump {
+    width: 82px;
+    height: 82px;
+  }
+
+  .mobile-action-reset {
+    width: 68px;
+    height: 42px;
+  }
+}
+
+@media (max-height: 560px) and (hover: none), (max-height: 560px) and (pointer: coarse), (max-height: 560px) and (max-width: 900px) {
+  .mobile-stick {
+    bottom: max(9px, env(safe-area-inset-bottom));
+    transform: scale(0.76);
+    transform-origin: bottom left;
+  }
+
+  .mobile-action-cluster {
+    bottom: max(9px, env(safe-area-inset-bottom));
+    transform: scale(0.78);
+    transform-origin: bottom right;
+  }
+
+  .museumMobileRoomName {
+    display: none;
   }
 }
 
@@ -4445,6 +5136,16 @@ html, body {
 
 @media (prefers-reduced-motion: reduce) {
   :root { --motion-scale: 0.35; }
+
+  .homeDestinationDirectory,
+  .homeDestinationButton.isSelected {
+    animation: none;
+  }
+
+  .homeRouteTransitionOverlay {
+    opacity: 1;
+    animation-duration: 1ms;
+  }
 
   .levelCompletionOverlay.partyActive,
   .levelCompletionOverlay.partyActive .levelMeterHeader > span,

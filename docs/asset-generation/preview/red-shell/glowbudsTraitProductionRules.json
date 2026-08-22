@@ -1,0 +1,108 @@
+{
+  "categoryProfiles": {
+    "Background": {
+      "order": 1,
+      "phase": "Foundation palette",
+      "complexity": "small",
+      "batchSize": 5,
+      "implementationNote": "Add a reusable stage/background color option without changing avatar geometry."
+    },
+    "Type": {
+      "order": 2,
+      "phase": "Body palette",
+      "complexity": "small",
+      "batchSize": 2,
+      "implementationNote": "Reuse the established skin palette contract and preserve face/hand color agreement."
+    },
+    "Eyes": {
+      "order": 3,
+      "phase": "Expression library",
+      "complexity": "small",
+      "batchSize": 2,
+      "implementationNote": "Keep the eye style replaceable, readable at game distance, and seated on the face."
+    },
+    "Mouth": {
+      "order": 4,
+      "phase": "Expression library",
+      "complexity": "medium",
+      "batchSize": 2,
+      "implementationNote": "Keep the mouth replaceable, dimensional, unobstructed, and expression-faithful."
+    },
+    "Nose": {
+      "order": 5,
+      "phase": "Expression library",
+      "complexity": "small",
+      "batchSize": 1,
+      "implementationNote": "Add the nose as a dedicated optional face slot with deliberate surface contact."
+    },
+    "Pot": {
+      "order": 6,
+      "phase": "Shared attachments",
+      "complexity": "medium",
+      "batchSize": 1,
+      "implementationNote": "Match the common pot anchor, fill the opening with soil, and verify all top angles."
+    },
+    "Item": {
+      "order": 7,
+      "phase": "Shared attachments",
+      "complexity": "medium",
+      "batchSize": 1,
+      "implementationNote": "Use the held-item attachment contract and verify both hand contact and animation."
+    },
+    "Companion": {
+      "order": 8,
+      "phase": "Shared attachments",
+      "complexity": "medium",
+      "batchSize": 1,
+      "implementationNote": "Ground the companion on the base and keep it clear of the shell and hands."
+    },
+    "Plant": {
+      "order": 9,
+      "phase": "Hero accessories",
+      "complexity": "large",
+      "batchSize": 1,
+      "implementationNote": "Build one plant at a time from soil contact upward; audit every stem and overlap."
+    },
+    "Shell": {
+      "order": 10,
+      "phase": "Hero shells",
+      "complexity": "large",
+      "batchSize": 1,
+      "implementationNote": "Build one shell at a time around the solved face aperture, hands, floor, and pot anchor."
+    }
+  },
+  "qualityGates": [
+    {
+      "id": "source",
+      "label": "Source identity"
+    },
+    {
+      "id": "front",
+      "label": "Front silhouette"
+    },
+    {
+      "id": "obliques",
+      "label": "Both obliques"
+    },
+    {
+      "id": "back-top",
+      "label": "Back and top"
+    },
+    {
+      "id": "collisions",
+      "label": "Natural collisions"
+    },
+    {
+      "id": "occlusion",
+      "label": "No leaks or floaters"
+    },
+    {
+      "id": "style",
+      "label": "Outline and material"
+    },
+    {
+      "id": "motion",
+      "label": "Idle and hop"
+    }
+  ]
+}

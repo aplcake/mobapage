@@ -1,0 +1,1017 @@
+{
+  "source": {
+    "collectionName": "Glowbuds",
+    "collectionUrl": "https://opensea.io/collection/glowbuds",
+    "chain": "Abstract",
+    "contract": "0x40148d9aec2d0aed12ccf556cd7cd79c15197644",
+    "metadataBase": "ipfs://QmYCkyQE4zadqWNxTUesDXY1HvY2KJGtbj7Ahka1ejAerD",
+    "tokenRange": "1-3333",
+    "categoryCountSource": "OpenSea collection filters plus the complete 1-3333 public IPFS metadata census",
+    "valueSource": "Complete public IPFS metadata census; observed counts cover all 3,333 collection tokens.",
+    "sampledTokens": 3333
+  },
+  "categoryTotals": [
+    {
+      "category": "Background",
+      "expectedValues": 5
+    },
+    {
+      "category": "Companion",
+      "expectedValues": 4
+    },
+    {
+      "category": "Eyes",
+      "expectedValues": 12
+    },
+    {
+      "category": "Item",
+      "expectedValues": 5
+    },
+    {
+      "category": "Mouth",
+      "expectedValues": 13
+    },
+    {
+      "category": "Nose",
+      "expectedValues": 1
+    },
+    {
+      "category": "Plant",
+      "expectedValues": 20
+    },
+    {
+      "category": "Pot",
+      "expectedValues": 4
+    },
+    {
+      "category": "Shell",
+      "expectedValues": 24
+    },
+    {
+      "category": "Type",
+      "expectedValues": 8
+    }
+  ],
+  "rows": [
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Blue",
+      "studioCategory": "background",
+      "studioTrait": "Blue",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 674,
+      "notes": "Direct source-color background sampled from the full collection reference set and selectable in the studio."
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Yellow",
+      "studioCategory": "background",
+      "studioTrait": "Yellow",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 670,
+      "notes": "Direct source-color background sampled from the full collection reference set and selectable in the studio."
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Green",
+      "studioCategory": "background",
+      "studioTrait": "Green",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 649,
+      "notes": "Direct source-color background sampled from the full collection reference set and selectable in the studio."
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Purple",
+      "studioCategory": "background",
+      "studioTrait": "Purple",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 682,
+      "notes": "Direct source-color background sampled from the full collection reference set and selectable in the studio."
+    },
+    {
+      "sourceCategory": "Background",
+      "sourceTrait": "Red",
+      "studioCategory": "background",
+      "studioTrait": "Red",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 658,
+      "notes": "Direct source-color background sampled from the full collection reference set and selectable in the studio."
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Canary Birb",
+      "studioCategory": "companion",
+      "studioTrait": "Canary Birb",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 138,
+      "notes": "Dedicated grounded yellow profile bird verified against Glowbuds #2766, #2666, and #2841; selectable independently with embedded feet, inward pose, and polished reverse geometry."
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Cardinal Birb",
+      "studioCategory": "companion",
+      "studioTrait": "Cardinal Birb",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 107,
+      "notes": "Dedicated grounded red profile bird verified against Glowbuds #1084, #2272, and #2408; staged on the source-faithful opposite side with embedded feet, layered tail, and polished reverse geometry."
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Snail",
+      "studioCategory": "companion",
+      "studioTrait": "Snail",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 126,
+      "notes": "Studio has a selectable Snail companion; this is the direct source match."
+    },
+    {
+      "sourceCategory": "Companion",
+      "sourceTrait": "Toad",
+      "studioCategory": "companion",
+      "studioTrait": "Toad",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 71,
+      "notes": "Dedicated grounded crouching green toad verified against Glowbuds #1298, #661, and #2351; built with embedded feet, green-backed eye sockets, a recessed red mouth, and complete rear geometry."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mochi",
+      "studioCategory": "eyes",
+      "studioTrait": "Mochi",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 574,
+      "notes": "Verified against the full-census reference set: the studio's tiny bead eyes are the direct Mochi match."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Enjoyer",
+      "studioCategory": "eyes",
+      "studioTrait": "Enjoyer",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 541,
+      "notes": "Dedicated source-faithful slim vertical black eye marks; Open Eyes remains a separate studio prototype."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Purp",
+      "studioCategory": "eyes",
+      "studioTrait": "Purp",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 270,
+      "notes": "Source-faithful violet eye pills with cream glints, modeled as rounded face-following forms rather than literal pixel blocks."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mellow",
+      "studioCategory": "eyes",
+      "studioTrait": "Mellow",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 331,
+      "notes": "Direct selectable eye trait already exists."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "VR",
+      "studioCategory": "eyes",
+      "studioTrait": "VR",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 246,
+      "notes": "Rigid curved black visor with a neon green scanline, kept distinct from the separate Shades trait."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Eeeek",
+      "studioCategory": "eyes",
+      "studioTrait": "Eeeek",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 217,
+      "notes": "Tall startled white eye slits with inward dark bars and a clean embedded face fit."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Suspicious",
+      "studioCategory": "eyes",
+      "studioTrait": "Suspicious",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 180,
+      "notes": "Narrow white eye slits with heavy angled lids and a skeptical, source-faithful gaze."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Blazeitup420",
+      "studioCategory": "eyes",
+      "studioTrait": "Blazeitup420",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 283,
+      "notes": "Heavy rosy half-lids with compact sleepy pupils, preserving the source expression at normal play scale."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Whats that?",
+      "studioCategory": "eyes",
+      "studioTrait": "Whats that?",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 233,
+      "notes": "Curious inward-looking pupils with rounded whites and clear separation from the suspicious expression."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Mossing",
+      "studioCategory": "eyes",
+      "studioTrait": "Mossing",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 195,
+      "notes": "White eyes under moss-green shadow lids, translated into rounded layered geometry that follows the face."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Unibrow",
+      "studioCategory": "eyes",
+      "studioTrait": "Unibrow",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 127,
+      "notes": "User-confirmed direct match; rebuilt as one closed curved unibrow eye trait. The overlay appears only for Unibrow and clears immediately when another Eyes trait is selected."
+    },
+    {
+      "sourceCategory": "Eyes",
+      "sourceTrait": "Shades",
+      "studioCategory": "eyes",
+      "studioTrait": "Shades",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 136,
+      "notes": "Rounded black sunglasses with a rigid curved fit, independently selectable from the VR visor."
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Axe",
+      "studioCategory": "held",
+      "studioTrait": "Axe",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 297,
+      "notes": "Verified across three indexed references: a flared pale-steel axe head on a brown shaft, modeled as a solid beveled left-hand tool."
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Sword",
+      "studioCategory": "held",
+      "studioTrait": "Sword",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 217,
+      "notes": "Verified compact upright sword with a pale steel blade, warm guard, dimensional grip, and source-side hand attachment."
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Peak",
+      "studioCategory": "held",
+      "studioTrait": "Peak",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 194,
+      "notes": "Three source examples establish that the collection trait named Peak is a silver hooked pickaxe; the exact source name is preserved."
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Staff",
+      "studioCategory": "held",
+      "studioTrait": "Staff",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 133,
+      "notes": "Direct held item match."
+    },
+    {
+      "sourceCategory": "Item",
+      "sourceTrait": "Fire",
+      "studioCategory": "held",
+      "studioTrait": "Fire",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 123,
+      "notes": "Verified hand torch with a buried wooden grip and solid nested red, orange, yellow, and cream flame volumes."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Long face",
+      "studioCategory": "mouth",
+      "studioTrait": "Long face",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 472,
+      "notes": "Verified against the full-census reference set: the long pixel bar is translated semantically as a broad rounded recessed mouth line."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Oh?",
+      "studioCategory": "mouth",
+      "studioTrait": "Oh?",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 476,
+      "notes": "Verified against the full-census reference set: the small offset O mouth is the direct Oh? match."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Huh?",
+      "studioCategory": "mouth",
+      "studioTrait": "Huh?",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 368,
+      "notes": "Verified source match rebuilt as a tiny circular puzzled O. Pixel-square edges describe resolution, not the intended organic mouth shape."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Wazzzzzzzzup",
+      "studioCategory": "mouth",
+      "studioTrait": "Wazzzzzzzzup",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 371,
+      "notes": "Verified against the full-census reference set: a wide rounded cavity with a clean embedded cartoon tongue."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Normal guy",
+      "studioCategory": "mouth",
+      "studioTrait": "Normal guy",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 341,
+      "notes": "Verified against the full-census reference set: a restrained shallow curved mouth with rounded, face-following geometry."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Smile",
+      "studioCategory": "mouth",
+      "studioTrait": "Smile",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 301,
+      "notes": "Direct relaxed smile match."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Vampire",
+      "studioCategory": "mouth",
+      "studioTrait": "Vampire",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 228,
+      "notes": "Shallow rounded mouth cavity with two cute embedded fangs; tooth roots remain buried at all audited angles."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Sad",
+      "studioCategory": "mouth",
+      "studioTrait": "Sad",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 203,
+      "notes": "Softly rounded downturned frown that follows the facial curvature without becoming a flat pixel bar."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Blush",
+      "studioCategory": "mouth",
+      "studioTrait": "Blush",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 136,
+      "notes": "Tiny neutral mouth with paired soft pink cheek marks, kept face-following and readable at normal scale."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "GRRRRRRR",
+      "studioCategory": "mouth",
+      "studioTrait": "GRRRRRRR",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 112,
+      "notes": "Compact rounded gritted-teeth mouth with clean internal divisions and no exposed tooth bases."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Ciggy",
+      "studioCategory": "mouth",
+      "studioTrait": "Ciggy",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 69,
+      "notes": "Puckered rounded mouth with a forward-projecting lit cigarette, dimensional filter, paper and ash sections, a flickering ember, and depth-tested curling toon smoke."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "Woozy",
+      "studioCategory": "mouth",
+      "studioTrait": "Woozy",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 157,
+      "notes": "Smooth dimensional wavy mouth line that reads as woozy without literalizing the source pixel staircase."
+    },
+    {
+      "sourceCategory": "Mouth",
+      "sourceTrait": "OMG!",
+      "studioCategory": "mouth",
+      "studioTrait": "OMG!",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 99,
+      "notes": "Large recessed circular O mouth, clearly differentiated from the smaller Oh? and Huh? variants."
+    },
+    {
+      "sourceCategory": "Nose",
+      "sourceTrait": "Clown Nose",
+      "studioCategory": "nose",
+      "studioTrait": "Clown Nose",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 312,
+      "notes": "Dedicated glossy red clown nose with a curved attachment point, selectable independently from eyes and mouth."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Douglas",
+      "studioCategory": "head",
+      "studioTrait": "Douglas",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 250,
+      "notes": "Reference-first Douglas-fir build uses an embedded reddish trunk, irregular tiered branch whorls, and closed puffy evergreen sprays with complete rear and top volume."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Cactus",
+      "studioCategory": "head",
+      "studioTrait": "Cactus",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 267,
+      "notes": "Dedicated source-faithful Cactus plant verified from Glowbuds #2910, #765, and #429 across all four pots, required camera views, idle, and hop."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Lotus",
+      "studioCategory": "head",
+      "studioTrait": "Lotus",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 122,
+      "notes": "Reference-first Lotus redesign uses a botanically recognizable open pink bloom, yellow stamen center, and lotus-pad foliage while preserving the exact one-to-one collection trait."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Fern",
+      "studioCategory": "head",
+      "studioTrait": "Fern",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 160,
+      "notes": "Reference-first Fern build uses a buried crown, radial arching fronds, thick scalloped compound blades, visible rachises, and tucked young fiddleheads."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Myrtle",
+      "studioCategory": "head",
+      "studioTrait": "Myrtle",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 209,
+      "notes": "Reference-first Myrtle build preserves the source topiary silhouette with a buried woody trunk, rounded asymmetric canopy, closed glossy opposite leaves, embedded white flowers, and restrained blue-black berries."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Sprout",
+      "studioCategory": "head",
+      "studioTrait": "Sprout",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 148,
+      "notes": "Reference-first dicot seedling verified against Glowbuds #716, #2310, and #2132; the studio trait uses a buried curved hypocotyl, broad puffy cotyledons, smaller true leaves, a folded growth bud, and a split seed coat seated in the soil."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bunch of Flowers",
+      "studioCategory": "head",
+      "studioTrait": "Bunch of Flowers",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 156,
+      "notes": "Source-faithful mixed bouquet verified against Glowbuds #2409, #159, and #1607; the studio trait preserves the cyan-blue hero bloom, violet companions, warm gold accents, layered heights, converging embedded stems, and a fully finished reverse."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Roses",
+      "studioCategory": "head",
+      "studioTrait": "Roses",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 140,
+      "notes": "Verified against Glowbuds #353, #2547, and #845. The reference-first rebuild preserves four magenta terminal blooms and airy branching while using asymmetric, inward-cupping layered rose whorls, sealed pink spiral cores, buried calyxes, deeply joined canes, compound foliage, and a finished reverse."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Snake plant",
+      "studioCategory": "head",
+      "studioTrait": "Snake plant",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 162,
+      "notes": "Reference-first Snake plant redesign uses broad fleshy sword leaves, irregular clumping, painted transverse bands, and yellow margins while preserving the exact one-to-one collection trait."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Sunflower",
+      "studioCategory": "head",
+      "studioTrait": "Sunflower",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 168,
+      "notes": "Direct plant/head match."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Flower",
+      "studioCategory": "head",
+      "studioTrait": "Flower",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 180,
+      "notes": "Verified against Glowbuds #2798, #2917, and #1530. The reusable reference-first build uses five closed puffy blue petals, a dimensional clustered purple center, a finished rear calyx, curved planted stem, and embedded foliage while preserving the exact one-to-one Flower trait."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Two flowers",
+      "studioCategory": "head",
+      "studioTrait": "Two flowers",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 135,
+      "notes": "Verified against Glowbuds #1414, #367, and #1285. The reusable radial-bloom build preserves the taller red upper-left flower and shorter purple lower-right flower as separately rooted, differently opened blooms with tucked calyxes, curved planted stems, and finished reverse geometry."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "lavender",
+      "studioCategory": "head",
+      "studioTrait": "lavender",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 188,
+      "notes": "Reference-first English lavender shrub with deeply buried semi-woody stems, rounded silvery leaf sprigs, and closed lobed terminal purple spikes arranged as a dimensional radial bouquet."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Palm tree",
+      "studioCategory": "head",
+      "studioTrait": "Palm tree",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 110,
+      "notes": "Verified against Glowbuds #2037, #1366, and #166. The reference-first miniature palm uses one curved tapered trunk with integrated segmented bark bands, a buried root flare, and a compact dimensional crown of closed puffy fronds with varied gravity-driven arcs and finished reverse geometry."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Shroom",
+      "studioCategory": "head",
+      "studioTrait": "Shroom",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 126,
+      "notes": "Verified from the source mushroom silhouette and red spotted cap; the completed studio plant now uses the source name Shroom."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bonsai",
+      "studioCategory": "head",
+      "studioTrait": "Bonsai",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 24,
+      "notes": "Verified against Glowbuds #2313, #1133, and #312. The reference-first studio build preserves the source's warm red-brown trunk, low horizontal spread, stepped evergreen pads, and deliberate negative space while translating them into tapered joined branches, embedded root flare, closed lobed foliage volumes, bark character, and a finished reverse."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Amami",
+      "studioCategory": "head",
+      "studioTrait": "Amami",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 85,
+      "notes": "User-confirmed direct match; the constructed flower head now uses the Amami source trait name."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Bonsai sakura",
+      "studioCategory": "head",
+      "studioTrait": "Bonsai sakura",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 36,
+      "notes": "Verified against Glowbuds #1306, #2761, and #3020. The dedicated Sakura build preserves the source's broad tiered pink crown, upright leaning trunk, and open branch gaps while translating them into joined tapered wood, layered blossom clouds, individual five-petal flowers, embedded buds, sparse supporting leaves, and finished rear and top surfaces."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Dandelion",
+      "studioCategory": "head",
+      "studioTrait": "Dandelion",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 142,
+      "notes": "Reference-first white seed-clock plant verified against Glowbuds #3194, #1, and #2908; the studio trait uses a rooted lobed rosette, closed curved stem, and a fully connected opaque spherical pappus crown."
+    },
+    {
+      "sourceCategory": "Plant",
+      "sourceTrait": "Venus",
+      "studioCategory": "head",
+      "studioTrait": "Venus",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 34,
+      "notes": "Direct plant/head match."
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Avante Garden",
+      "studioCategory": "pot",
+      "studioTrait": "Avante Garden",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 1294,
+      "notes": "Verified against the source's rounded blue and teal pot silhouette; this is the direct Avante Garden match."
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Kitsch",
+      "studioCategory": "pot",
+      "studioTrait": "Kitsch",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 973,
+      "notes": "Verified against the striped purple cube reference used for the build; this is the direct Kitsch match."
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Terracotta",
+      "studioCategory": "pot",
+      "studioTrait": "Terracotta",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 508,
+      "notes": "Verified against Glowbuds #2944, #3293, and #692: a squat brick-red ceramic vessel with a flared joined rim, dusty clay bands, opaque sealed soil, and the shared plant anchor."
+    },
+    {
+      "sourceCategory": "Pot",
+      "sourceTrait": "Crown",
+      "studioCategory": "pot",
+      "studioTrait": "Crown",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 67,
+      "notes": "Direct crown planter match."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Ancient",
+    "studioCategory": "shell",
+    "studioTrait": "Ancient",
+    "status": "complete",
+    "confidence": "high",
+    "observedSampleCount": 255,
+    "notes": "Fresh source-guided rebuild referencing Glowbuds #2798, #17, and #787: a weathered petrified-stone shell with a true carved portal, deeply indented branching fractures, root buttresses, eroded temple slabs, painted lichen, and sparse damp-ledge moss colonies. Awaiting multi-angle visual approval."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Soft",
+    "studioCategory": "shell",
+    "studioTrait": "Soft",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 224,
+    "notes": "Rebuilt from the Seed shell foundation with 7,200 surface-sampled GPU fibres: a dense short undercoat plus longer reactive guard fibres, tapered crossed-ribbon volume, and damped spring/inertia response; visual multi-angle approval remains before marking complete."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Seed",
+      "studioCategory": "shell",
+      "studioTrait": "Seed",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 366,
+      "notes": "Direct shell match."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Stoic",
+    "studioCategory": "shell",
+    "studioTrait": "Stoic",
+    "status": "complete",
+    "confidence": "high",
+    "observedSampleCount": 149,
+    "notes": "Source-guided Seed-family finish verified against Glowbuds #1017, #341, and #748: the exact plump Seed silhouette receives opaque honed graphite-grey mineral bands, subtle stone grain painted into the shared mesh, and a continuous matching aperture cowl. Approved across front, oblique, side, back, top, idle, hop, and planted loadouts."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Gemstone",
+    "studioCategory": "shell",
+    "studioTrait": "Gemstone",
+    "status": "complete",
+    "confidence": "high",
+    "observedSampleCount": 101,
+    "notes": "Rebuilt from Glowbuds #1412, #563, and #2861 as a display-grade polished purple cushion gemstone: a sealed broad-facet hull, opaque violet depth core, controlled translucent glaze, matching faceted aperture bezel, and bright flashes painted into selected facets keep it distinct from rough cloudy Amethyst and icy-white Diamond. Approved across front, both obliques, both sides, back, top, idle, hop, mobile, console, and direct three-shell comparison."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Raddish",
+      "studioCategory": "shell",
+      "studioTrait": "Raddish",
+      "status": "partial",
+      "confidence": "high",
+      "observedSampleCount": 130,
+      "notes": "Reference-first root-vegetable rebuild verified against Glowbuds #1530, #3172, and #97: a tapered raspberry radish bulb with a true aperture, integrated white flesh band, creamy curved taproot, and a dimensional lobed leaf crown that compacts around selected head accessories; visual multi-angle approval remains before completion."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Ice",
+    "studioCategory": "shell",
+    "studioTrait": "Ice",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 181,
+    "notes": "Reference-guided frozen-shell rebuild against Glowbuds #2459, #211, and #2347: a rounded ice-block hull with opaque internal clouding, embedded cracks, integrated melt lobes, short buried-root icicles, and a dedicated frozen aperture; awaiting final multi-angle visual approval."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Mossy",
+      "studioCategory": "shell",
+      "studioTrait": "Mossy",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 217,
+      "notes": "Direct moss-covered shell match."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Rock",
+    "studioCategory": "shell",
+    "studioTrait": "Rock",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 124,
+    "notes": "Fresh geological rebuild with an asymmetric faceted boulder body, attached procedural strata and mineral veins, a deeply embedded crag crown, and a dedicated chipped stone opening; awaiting multi-angle visual approval."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Smooth",
+    "studioCategory": "shell",
+    "studioTrait": "Smooth",
+    "status": "complete",
+    "confidence": "high",
+    "observedSampleCount": 163,
+    "notes": "Source-guided Seed-family finish verified against Glowbuds #1800, #2274, and #2791: the exact plump Seed silhouette receives an opaque satin chestnut glaze, broad warm toon highlights painted into the shared mesh, and a continuous matching aperture cowl. Approved across front, oblique, side, back, top, idle, hop, and planted loadouts."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Diamond",
+      "studioCategory": "shell",
+      "studioTrait": "Diamond",
+      "status": "partial",
+      "confidence": "high",
+      "observedSampleCount": 157,
+      "notes": "Rebuilt against Glowbuds #3158, #1169, and #1405 as a precision-cut brilliant shell with a coherent faceted hull, faceted aperture, controlled spectral planes, and depth-tested jewel glints; intentionally excludes frost, cracks, drips, and clouding so it remains distinct from Ice; awaiting final multi-angle visual approval."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Amethyst",
+      "studioCategory": "shell",
+      "studioTrait": "Amethyst",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 114,
+      "notes": "Amethyst geode shell is already modeled."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Green Cloak",
+    "studioCategory": "shell",
+    "studioTrait": "Green Cloak",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 111,
+    "notes": "Verified against Glowbuds #126, #3156, and #2742. Uses the exact rebuilt Red Cloak garment geometry with only the source-faithful green rolled opening and hem trim changed; front, oblique, side, back, top, idle, hop, plant-fit, and depth checks pass; awaiting user visual approval."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Guard",
+    "studioCategory": "shell",
+    "studioTrait": "Guard",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 112,
+    "notes": "Dedicated forged Roman helmet shell with a true armored face aperture, brow reinforcement, cheek guards, flared neck guard, brass hardware, and a dense reactive red horsehair crest; audited against Glowbuds #2249, #946, and #2109."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Heavy Duty",
+    "studioCategory": "shell",
+    "studioTrait": "Heavy Duty",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 150,
+    "notes": "Verified against Glowbuds #2523, #2326, and #1514. Fresh tank-inspired rebuild uses a one-piece olive cast hull, true armored face tunnel, reinforced mantlet plates, deeply seated side skirts and hand ports, a low hatch crown, rear engine louvers, recessed bolts, welds, chipped paint, and grounded mud wear; awaiting user visual approval."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Red Cloak",
+    "studioCategory": "shell",
+    "studioTrait": "Red Cloak",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 145,
+    "notes": "Verified against Glowbuds #1279, #344, and #3136. Rebuilt as one cohesive charcoal fabric garment with a true sealed face aperture, continuous rolled red trim, grounded hem, broad tailored folds, opaque depth-safe construction, and a finished rear seam; front, oblique, side, back, top, idle, hop, grumble, and plant-fit checks pass; awaiting user visual approval."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Gold",
+      "studioCategory": "shell",
+      "studioTrait": "Gold",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 70,
+      "notes": "Gold jewel shell is already modeled."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Log",
+    "studioCategory": "shell",
+    "studioTrait": "Log",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 91,
+    "notes": "Fresh upright hollow-stump rebuild with a squared fluted silhouette, object-space procedural bark, painted embedded knots, a growth-ring cut crown, sapwood face opening, and grounded root buttresses; awaiting multi-angle visual approval."
+    },
+    {
+      "sourceCategory": "Shell",
+      "sourceTrait": "Racer",
+      "studioCategory": "shell",
+      "studioTrait": "Racer",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 119,
+      "notes": "Verified against the source's purple racing shell and fin silhouette; this is the direct Racer match."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Horny",
+    "studioCategory": "shell",
+    "studioTrait": "Horny",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 115,
+    "notes": "Fresh source-guided devil-shell rebuild with an opaque leathery crimson body, a true face aperture, two oversized swept and ridged ivory hero horns, and two smaller rear hornlets; references Glowbuds #1533, #1625, and #2481. Awaiting multi-angle visual approval."
+  },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Robot",
+    "studioCategory": "shell",
+    "studioTrait": "Robot",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 89,
+    "notes": "Fresh source-guided rounded mech exosuit with a true face aperture, deep opaque tunnel, segmented V antenna, embedded arm sockets, silver armor rails, opaque status lights, and a finished rear service deck; references Glowbuds #2613, #1492, and #3025. Awaiting final multi-angle visual approval."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Hoodie",
+    "studioCategory": "shell",
+    "studioTrait": "Hoodie",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 46,
+    "notes": "Dedicated deep-purple fleece pullover with a true face aperture, lined cowl, ribbed hem and cuffs, kangaroo pocket, garment seams, and drawstrings; audited against Glowbuds #1078, #2569, and #1264."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Spikey",
+    "studioCategory": "shell",
+    "studioTrait": "Spikey",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 69,
+    "notes": "Fresh source-guided rebuild based on Glowbuds #1878, #2492, and #1645: a craggy indigo rock shell with a true face aperture, twenty deeply buried multicolour spikes, and source-colour mineral studs; awaiting final multi-angle visual approval."
+    },
+  {
+    "sourceCategory": "Shell",
+    "sourceTrait": "Shark",
+    "studioCategory": "shell",
+    "studioTrait": "Shark",
+    "status": "partial",
+    "confidence": "high",
+    "observedSampleCount": 35,
+    "notes": "Fresh source-guided rebuild based on Glowbuds #1882, #2537, and #3010: a complete slate-blue shark mascot body with a true mouth tunnel around the Glowbud face, integrated gums and short rounded teeth, friendly shark eyes, gills, deeply rooted fins, and an animated finished tail; awaiting final multi-angle visual approval."
+  },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "OG",
+      "studioCategory": "skin",
+      "studioTrait": "OG",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 1391,
+      "notes": "Verified against the collection's standard bright lime body; this is the direct OG match."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Red",
+      "studioCategory": "skin",
+      "studioTrait": "Red",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 500,
+      "notes": "Direct skin/type color match."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Robot",
+      "studioCategory": "skin",
+      "studioTrait": "Robot",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 474,
+      "notes": "Verified at the Type slot: Robot is the collection's gray body palette; mechanical shell details remain separate Shell traits."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Gold",
+      "studioCategory": "skin",
+      "studioTrait": "Gold",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 423,
+      "notes": "Verified across three indexed source tokens as a palette-led Type: bright lemon-gold skin with warm satin bands and matching readable hands."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Pink",
+      "studioCategory": "skin",
+      "studioTrait": "Pink",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 463,
+      "notes": "Direct pink skin/type match."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Ape",
+      "studioCategory": "skin",
+      "studioTrait": "Ape",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 16,
+      "notes": "Rebuilt and visually verified from source examples #1348, #1536, and #193 as a dimensional primate skin treatment: thousands of short reactive fur fibres frame one continuous sculpted bare-face mesh with a strong M-shaped hairline, darker orbital planes, projecting cheeks and lower muzzle, a tapered jaw, swept sideburn fur, and narrower low-contrast creased palms. Ape-specific feature spacing and depth seat the independently selected Glowbud eyes, nose, and mouth onto that anatomy without replacing them; shell compatibility, held-item fit, and the one-to-one Type mapping remain preserved."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Zombie",
+      "studioCategory": "skin",
+      "studioTrait": "Zombie",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 54,
+      "notes": "Rebuilt and visually verified from source examples #757, #170, and #2220 as a dimensional garden-undead skin treatment: an outboard embedded root-brain patch, curved stitched repair, organic lichen bruising, and matching repaired hands. The central feature area is deliberately clean so every selected Glowbud eye, nose, and mouth remains authoritative; shell, held-item, animation, and one-to-one Type compatibility remain preserved."
+    },
+    {
+      "sourceCategory": "Type",
+      "sourceTrait": "Alien",
+      "studioCategory": "skin",
+      "studioTrait": "Alien",
+      "status": "complete",
+      "confidence": "high",
+      "observedSampleCount": 12,
+      "notes": "Rebuilt and visually verified from source examples #2206, #3065, and #1117 as a dimensional pale-cyan Alien skin treatment: face-conforming cranial ridges, a pulsing forehead sensory constellation, embedded bioluminescent pores, feature-safe cheek gills, and matching three-node palm organs. The central feature area is reserved for the independently selected Glowbud eyes, nose, and mouth; held-item fit, cloak compatibility, opaque depth behavior, and one-to-one Type mapping remain preserved."
+    }
+  ]
+}

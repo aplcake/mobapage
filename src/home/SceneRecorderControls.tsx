@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 type SceneRecordingMode = 'idle' | 'recording' | 'review' | 'exporting'
@@ -285,6 +286,7 @@ async function encodeVideoSegment({
 }
 
 export function SceneRecorderControls() {
+  const pathname = usePathname()
   const mediaRecorderRef = useRef<MediaRecorder | null>(null)
   const recordingStreamRef = useRef<MediaStream | null>(null)
   const recordingCanvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -668,6 +670,8 @@ export function SceneRecorderControls() {
       setMode('review')
     }
   }
+
+  if (['/', '/courtyard', '/burn-room', '/wardrobe', '/formal-room'].includes(pathname)) return null
 
   if (mode === 'idle') {
     return (

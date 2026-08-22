@@ -30,7 +30,7 @@ const DANCE_TRANSITION_SECONDS = 0.72
 const HOME_ROUTE_TRANSITION_MS = 3100
 
 type Vec3Tuple = readonly [number, number, number]
-type WayfindingChoice = 'courtyard' | 'burn'
+type WayfindingChoice = 'courtyard' | 'burn' | 'wardrobe'
 type InfoPanelControls = {
   infoOpen: boolean
   setInfoOpen: Dispatch<SetStateAction<boolean>>
@@ -86,6 +86,7 @@ const SEGMENT_Y_AXIS = new THREE.Vector3(0, 1, 0)
 const DESTINATION_ROUTES: Record<WayfindingChoice, string> = {
   courtyard: '/courtyard',
   burn: '/burn-room',
+  wardrobe: '/wardrobe',
 }
 
 const SPOTLIGHT_VERTEX_SHADER = `
@@ -783,13 +784,50 @@ function TeakSlatPanel({
   )
 }
 
-function RearHallwayPortal() {
+function RearHallwayPortal({ transitionChoice, onDestinationSelect }: HomeRouteTransitionControls) {
   const doorLeaves = [-0.58, 0.58] as const
   const hingeYs = [-1.06, -0.18, 0.7] as const
   const showLegacyDoorDetail = false
+  const leftDoorRef = useRef<THREE.Group>(null)
+  const rightDoorRef = useRef<THREE.Group>(null)
+  const glowRef = useRef<THREE.Mesh>(null)
+  const doorOpenRef = useRef(0)
+  const [hovered, setHovered] = useState(false)
+
+  useFrame(({ clock }, dt) => {
+    const selected = transitionChoice === 'wardrobe'
+    const targetOpen = selected ? 1 : hovered && !transitionChoice ? 0.1 : 0
+    doorOpenRef.current = THREE.MathUtils.lerp(doorOpenRef.current, targetOpen, 1 - Math.exp(-dt * (selected ? 4.8 : 7.2)))
+    const open = doorOpenRef.current
+    const idleBreath = selected ? 0 : Math.sin(clock.elapsedTime * 1.3) * 0.008
+
+    if (leftDoorRef.current) {
+      leftDoorRef.current.position.x = -0.58 - open * 0.09
+      leftDoorRef.current.position.z = -0.08 + open * 0.08
+      leftDoorRef.current.rotation.y = open * 1.18 + idleBreath
+    }
+    if (rightDoorRef.current) {
+      rightDoorRef.current.position.x = 0.58 + open * 0.09
+      rightDoorRef.current.position.z = -0.08 + open * 0.08
+      rightDoorRef.current.rotation.y = -open * 1.18 - idleBreath
+    }
+    if (glowRef.current) {
+      const material = glowRef.current.material as THREE.MeshBasicMaterial
+      material.opacity = 0.04 + (hovered ? 0.09 : 0) + open * 0.62
+      glowRef.current.scale.set(2.08 + open * 0.84, 1.98 + open * 1.02, 1)
+    }
+  })
+
+  useEffect(() => () => {
+    document.body.style.cursor = ''
+  }, [])
 
   return (
-    <group position={[0, 0, 2.64]}>
+    <group name="glowbud-wardrobe-entrance" position={[0, 0, 2.64]}>
+      <mesh ref={glowRef} position={[0, -0.54, 0.12]} scale={[2.08, 1.98, 1]} renderOrder={-3}>
+        <circleGeometry args={[1, 80]} />
+        <meshBasicMaterial color="#9cfff0" transparent opacity={0.04} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
+      </mesh>
       <mesh position={[0, 0.2, -0.08]} scale={[4.18, 3.62, 1]} renderOrder={-16}>
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial color="#fff0bf" transparent opacity={0.072} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
@@ -814,7 +852,7 @@ function RearHallwayPortal() {
       <ToonBox position={[0, 1.78, -0.14]} scale={[2.58, 0.04, 0.055]} color={BRASS} emissive="#62410f" emissiveIntensity={0.08} roughness={0.34} metalness={0.2} outlineOpacity={0.08} outlineScale={[1.012, 1.28, 1.08]} />
       <ToonBox position={[0, 1.34, -0.14]} scale={[2.58, 0.04, 0.055]} color={BRASS} emissive="#62410f" emissiveIntensity={0.07} roughness={0.36} metalness={0.18} outlineOpacity={0.08} outlineScale={[1.012, 1.28, 1.08]} />
       {doorLeaves.map((x) => (
-        <group key={`grand-back-door-leaf-${x}`} position={[x, -0.62, -0.08]}>
+        <group ref={x < 0 ? leftDoorRef : rightDoorRef} key={`grand-back-door-leaf-${x}`} position={[x, -0.62, -0.08]}>
           <ToonBox
             position={[0, 0, 0]}
             scale={[1.04, 2.64, 0.16]}
@@ -857,6 +895,39 @@ function RearHallwayPortal() {
           </mesh>
         </group>
       ))}
+      <WayfindingTextPlane
+        width={2.42}
+        height={0.5}
+        position={[0, 1.56, -0.22]}
+        renderOrder={32}
+        lines={[{ text: 'WARDROBE', size: 148, y: 166, fill: SOFT_INK }]}
+      />
+      <mesh
+        position={[0, -0.52, -0.38]}
+        scale={[2.52, 2.72, 1]}
+        renderOrder={34}
+        onPointerOver={(event) => {
+          event.stopPropagation()
+          if (transitionChoice) return
+          setHovered(true)
+          document.body.style.cursor = 'pointer'
+        }}
+        onPointerOut={(event) => {
+          event.stopPropagation()
+          setHovered(false)
+          document.body.style.cursor = ''
+        }}
+        onClick={(event) => {
+          event.stopPropagation()
+          if (transitionChoice) return
+          setHovered(false)
+          document.body.style.cursor = ''
+          onDestinationSelect('wardrobe')
+        }}
+      >
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial transparent opacity={0.001} depthWrite={false} depthTest={false} side={THREE.DoubleSide} />
+      </mesh>
       <ToonBox position={[0, -0.62, -0.22]} scale={[0.055, 2.56, 0.075]} color={ROASTED_TEAK} emissive="#1c0d06" emissiveIntensity={0.028} roughness={0.5} metalness={0.04} outlineOpacity={0.08} outlineScale={[1.28, 1.01, 1.06]} />
       <ToonBox position={[0, -0.62, -0.27]} scale={[0.022, 2.36, 0.06]} color={BRASS} emissive="#62410f" emissiveIntensity={0.07} roughness={0.36} metalness={0.2} outlineOpacity={0.06} outlineScale={[1.8, 1.012, 1.04]} />
       {[-0.18, 0.18].map((x) => (
@@ -2076,7 +2147,7 @@ function InfoDeskWindow({ visible, onClose }: { visible: boolean; onClose: () =>
           { text: 'FOYER MAP', size: 92, y: 58, fill: SOFT_INK },
           { text: 'LEFT - SUNNY COURTYARD', size: 56, y: 146, fill: SOFT_INK },
           { text: 'RIGHT - BURN ROOM', size: 56, y: 216, fill: SOFT_INK },
-          { text: 'CHOOSE A SOFT ARROW', size: 44, y: 282, fill: SOFT_INK },
+          { text: 'FORWARD - GLOWBUD WARDROBE', size: 48, y: 282, fill: SOFT_INK },
         ]}
       />
     </group>
@@ -2086,6 +2157,12 @@ function InfoDeskWindow({ visible, onClose }: { visible: boolean; onClose: () =>
 function MuseumWayfindingSign({ infoOpen, setInfoOpen, transitionChoice, onDestinationSelect }: InfoPanelControls & HomeRouteTransitionControls) {
   const rootRef = useRef<THREE.Group>(null)
   const [activeChoice, setActiveChoice] = useState<WayfindingChoice | null>(null)
+  const { size } = useThree()
+  const compactLayout = size.width <= 760 || size.height <= 520
+  const portraitLayout = compactLayout && size.height > size.width
+  const signScale = portraitLayout ? 0.76 : compactLayout ? 0.92 : 1.18
+  const signY = portraitLayout ? 1.54 : compactLayout ? 1.64 : 1.82
+  const signZ = portraitLayout ? -1.56 : compactLayout ? -1.64 : -1.72
 
   useFrame(({ clock }) => {
     const root = rootRef.current
@@ -2093,8 +2170,8 @@ function MuseumWayfindingSign({ infoOpen, setInfoOpen, transitionChoice, onDesti
 
     const time = clock.elapsedTime
     root.position.x = Math.sin(time * 0.56) * 0.026
-    root.position.y = 1.82 + Math.sin(time * 0.72 + 0.4) * 0.026
-    root.position.z = -1.72 + Math.sin(time * 0.48 + 1.1) * 0.028
+    root.position.y = signY + Math.sin(time * 0.72 + 0.4) * 0.026
+    root.position.z = signZ + Math.sin(time * 0.48 + 1.1) * 0.028
     root.rotation.z = Math.sin(time * 0.52) * 0.006
   })
 
@@ -2107,7 +2184,7 @@ function MuseumWayfindingSign({ infoOpen, setInfoOpen, transitionChoice, onDesti
 
   return (
     <>
-      <group ref={rootRef} position={[0, 1.82, -1.72]} scale={[1.18, 1.18, 1.18]}>
+      <group ref={rootRef} position={[0, signY, signZ]} scale={[signScale, signScale, signScale]}>
         <mesh position={[0, -0.18, -0.26]} scale={[6.16, 2.08, 1]} renderOrder={-2}>
           <circleGeometry args={[1, 84]} />
           <meshBasicMaterial color="#fff0bc" transparent opacity={0.09} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
@@ -2117,7 +2194,7 @@ function MuseumWayfindingSign({ infoOpen, setInfoOpen, transitionChoice, onDesti
           <group scale={[1.08, 1.08, 1.08]}>
             <WayfindingArrowPlaque choice="burn" direction="left" label="BURN ROOM" position={[-1.58, -0.94, -0.06]} idlePhase={2.1} baseScale={0.78} transitionChoice={transitionChoice} active={activeChoice === 'burn' || transitionChoice === 'burn'} onSelect={handleSelect} />
             <WayfindingArrowPlaque choice="courtyard" direction="right" label="EXPLORE COURTYARD" position={[1.58, -0.94, -0.06]} idlePhase={0.6} baseScale={0.78} transitionChoice={transitionChoice} active={activeChoice === 'courtyard' || transitionChoice === 'courtyard'} onSelect={handleSelect} />
-            <WayfindingSelectionBurst transitionChoice={transitionChoice} />
+            <WayfindingSelectionBurst transitionChoice={transitionChoice === 'wardrobe' ? null : transitionChoice} />
           </group>
         ) : null}
       </group>
@@ -2343,7 +2420,8 @@ function DoorTransitionEffects({ transitionChoice }: { transitionChoice: Wayfind
 
     if (groupRef.current) {
       groupRef.current.scale.setScalar(0.74 + eased * 1.22 + pulse * 0.03)
-      groupRef.current.position.z = -0.76 - eased * 0.2
+      const baseZ = transitionChoice === 'wardrobe' ? 2.02 : -0.76
+      groupRef.current.position.z = baseZ - eased * (transitionChoice === 'wardrobe' ? 0.48 : 0.2)
     }
     if (coreRef.current) {
       const material = coreRef.current.material as THREE.MeshBasicMaterial
@@ -2359,14 +2437,16 @@ function DoorTransitionEffects({ transitionChoice }: { transitionChoice: Wayfind
 
   if (!transitionChoice) return null
 
-  const sign = transitionChoice === 'burn' ? -1 : 1
+  const sign = transitionChoice === 'burn' ? -1 : transitionChoice === 'courtyard' ? 1 : 0
   const isBurn = transitionChoice === 'burn'
-  const coreColor = isBurn ? '#ff4a1d' : '#fffdf2'
-  const washColor = isBurn ? '#ff7a24' : '#dffff0'
+  const isWardrobe = transitionChoice === 'wardrobe'
+  const coreColor = isBurn ? '#ff4a1d' : isWardrobe ? '#fff3b0' : '#fffdf2'
+  const washColor = isBurn ? '#ff7a24' : isWardrobe ? '#7ff5df' : '#dffff0'
+  const effectPosition: Vec3Tuple = isWardrobe ? [0, -0.18, 2.02] : [sign * 4.78, -0.18, -0.76]
 
   return (
-    <group ref={groupRef} position={[sign * 4.78, -0.18, -0.76]} rotation={[0, sign * 0.08, 0]}>
-      <pointLight ref={lightRef} position={[0, 0.08, -0.08]} color={isBurn ? '#ff5a22' : '#fff8d6'} distance={4.6} decay={1.35} intensity={1} />
+    <group ref={groupRef} position={effectPosition} rotation={[0, sign * 0.08, 0]}>
+      <pointLight ref={lightRef} position={[0, 0.08, -0.08]} color={isBurn ? '#ff5a22' : isWardrobe ? '#8dffe8' : '#fff8d6'} distance={4.6} decay={1.35} intensity={1} />
       <mesh ref={washRef} position={[0, 0.18, -0.1]} scale={[1.1, 1.7, 1]} renderOrder={18}>
         <circleGeometry args={[1, 72]} />
         <meshBasicMaterial color={washColor} transparent opacity={0.1} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
@@ -2383,7 +2463,7 @@ function DoorTransitionEffects({ transitionChoice }: { transitionChoice: Wayfind
         [-0.34, 0, 0.34].map((x, index) => (
           <mesh key={`door-transition-white-ray-${index}`} position={[x, 0.04, -0.22]} rotation={[0, 0, x * -0.22]} scale={[0.09, 1.08 + index * 0.18, 0.018]} renderOrder={24}>
             <boxGeometry args={[1, 1, 1]} />
-            <meshBasicMaterial color="#ffffff" transparent opacity={0.42} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
+            <meshBasicMaterial color={isWardrobe && index % 2 === 0 ? '#ff9dd0' : '#ffffff'} transparent opacity={0.42} depthWrite={false} depthTest={false} blending={THREE.AdditiveBlending} />
           </mesh>
         ))
       )}
@@ -2574,7 +2654,7 @@ function StageBackdrop({ infoOpen, setInfoOpen, transitionChoice, onDestinationS
       <ToonSwingDoor side="left" transitionChoice={transitionChoice} />
       <ToonSwingDoor side="right" transitionChoice={transitionChoice} />
       <DoorTransitionEffects transitionChoice={transitionChoice} />
-      <RearHallwayPortal />
+      <RearHallwayPortal transitionChoice={transitionChoice} onDestinationSelect={onDestinationSelect} />
       <MuseumWayfindingSign infoOpen={infoOpen} setInfoOpen={setInfoOpen} transitionChoice={transitionChoice} onDestinationSelect={onDestinationSelect} />
 
       <ToonBox position={[0, -0.62, 2.71]} scale={[10.42, 0.07, 0.055]} color={ROASTED_TEAK} roughness={0.5} outlineOpacity={0.18} outlineScale={[1.003, 1.18, 1.12]} />
@@ -3361,18 +3441,25 @@ function HomeCameraTransition({ transitionChoice }: { transitionChoice: Wayfindi
     elapsedRef.current = Math.min(2.85, elapsedRef.current + dt)
     const t = Math.min(1, elapsedRef.current / 2.55)
     const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-    const sign = transitionChoice === 'burn' ? -1 : 1
-    const lateralSwoop = Math.sin(eased * Math.PI) * sign * 0.42
+    const isWardrobe = transitionChoice === 'wardrobe'
+    const sign = transitionChoice === 'burn' ? -1 : transitionChoice === 'courtyard' ? 1 : 0
+    const lateralSwoop = isWardrobe
+      ? Math.sin(eased * Math.PI * 2) * 0.08 * (1 - eased)
+      : Math.sin(eased * Math.PI) * sign * 0.42
 
-    targetPosition.set(sign * 4.38 + lateralSwoop, -0.18 + eased * -0.2, -3.05 + eased * 0.2)
+    if (isWardrobe) {
+      targetPosition.set(lateralSwoop, 0.06 - eased * 0.22, 1.3)
+      lookTarget.set(0, -0.34 + eased * 0.12, 2.48)
+    } else {
+      targetPosition.set(sign * 4.38 + lateralSwoop, -0.18 + eased * -0.2, -3.05 + eased * 0.2)
+      lookTarget.set(sign * (1.25 + eased * 3.72), -0.16 + eased * 0.18, -0.28 + eased * -0.18)
+    }
     camera.position.lerpVectors(startPositionRef.current, targetPosition, eased)
-
-    lookTarget.set(sign * (1.25 + eased * 3.72), -0.16 + eased * 0.18, -0.28 + eased * -0.18)
     camera.lookAt(lookTarget)
 
     if ('fov' in camera) {
       const perspectiveCamera = camera as THREE.PerspectiveCamera
-      perspectiveCamera.fov = THREE.MathUtils.lerp(50, 37, eased)
+      perspectiveCamera.fov = THREE.MathUtils.lerp(50, isWardrobe ? 42 : 37, eased)
       perspectiveCamera.updateProjectionMatrix()
     }
   })
@@ -3403,7 +3490,7 @@ function HomeStage({ infoOpen, setInfoOpen, transitionChoice, onDestinationSelec
       <HomeCameraTransition transitionChoice={transitionChoice} />
       <StageBackdrop infoOpen={infoOpen} setInfoOpen={setInfoOpen} transitionChoice={transitionChoice} onDestinationSelect={onDestinationSelect} />
       <AmbientVibeLayer />
-      <TinyRascalCrowd />
+      <TinyRascalCrowd enterWardrobe={transitionChoice === 'wardrobe'} />
       <SpotlightBeam />
       {SHOW_STAGE_CHARACTER ? (
         <>
@@ -3434,7 +3521,72 @@ function HomeInfoButton({ active, disabled, onToggle }: { active: boolean; disab
 function HomeRouteTransitionOverlay({ transitionChoice }: { transitionChoice: WayfindingChoice | null }) {
   if (!transitionChoice) return null
 
-  return <div className={`homeRouteTransitionOverlay ${transitionChoice === 'burn' ? 'isBurn' : 'isCourtyard'}`} aria-hidden="true" />
+  const destinationClass = transitionChoice === 'burn'
+    ? 'isBurn'
+    : transitionChoice === 'wardrobe'
+      ? 'isWardrobe'
+      : 'isCourtyard'
+  return <div className={`homeRouteTransitionOverlay ${destinationClass}`} aria-hidden="true" />
+}
+
+function HomeMobileRoomDock({
+  transitionChoice,
+  onDestinationSelect,
+}: HomeRouteTransitionControls) {
+  return (
+    <nav className="homeMobileRoomDock" aria-label="Museum rooms">
+      <button
+        type="button"
+        className="isCourtyard"
+        disabled={transitionChoice !== null}
+        onClick={() => onDestinationSelect('courtyard')}
+      >
+        Courtyard
+      </button>
+      <button
+        type="button"
+        className="isWardrobe"
+        disabled={transitionChoice !== null}
+        onClick={() => onDestinationSelect('wardrobe')}
+      >
+        <span aria-hidden="true">✦</span>
+        <strong>Enter Wardrobe</strong>
+        <small>Dress a Glowbud</small>
+      </button>
+      <button
+        type="button"
+        className="isBurn"
+        disabled={transitionChoice !== null}
+        onClick={() => onDestinationSelect('burn')}
+      >
+        Burn Room
+      </button>
+    </nav>
+  )
+}
+
+function HomeWardrobeEntranceButton({
+  transitionChoice,
+  onDestinationSelect,
+}: HomeRouteTransitionControls) {
+  const isEntering = transitionChoice === 'wardrobe'
+
+  return (
+    <button
+      type="button"
+      className={`homeWardrobeEntranceButton${isEntering ? ' isEntering' : ''}`}
+      disabled={transitionChoice !== null}
+      onClick={() => onDestinationSelect('wardrobe')}
+      aria-label="Enter the Glowbuds wardrobe"
+    >
+      <span className="homeWardrobeEntranceIcon" aria-hidden="true">✦</span>
+      <span className="homeWardrobeEntranceCopy">
+        <strong>{isEntering ? 'Opening Wardrobe' : 'Enter Wardrobe'}</strong>
+        <small>Build and dress your Glowbud</small>
+      </span>
+      <span className="homeWardrobeEntranceArrow" aria-hidden="true">→</span>
+    </button>
+  )
 }
 
 function HomeMuseumInfoPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -3453,7 +3605,7 @@ function HomeMuseumInfoPanel({ open, onClose }: { open: boolean; onClose: () => 
           <p>
             The first exhibit, <strong>Portraits of an Enjoyer</strong>, brought 599 Joseph Pixler portraits to Base. This foyer is the first playable room of the museum we are building around that spirit: art, rooms, rituals, and weird little moments you can actually step into.
           </p>
-          <p className="homeMuseumInfoNote">Start here. Wander the courtyard. Visit the burn room. The museum grows from this doorway outward.</p>
+          <p className="homeMuseumInfoNote">Start here. Dress a Glowbud through the center doors, then wander the courtyard or visit the burn room.</p>
           <div className="homeMuseumInfoLinks" aria-label="MoBA links">
             <a href="https://x.com/MoBAonchain" target="_blank" rel="noreferrer">X</a>
             <a href="https://opensea.io/collection/moba--1/overview" target="_blank" rel="noreferrer">OpenSea</a>
@@ -3492,6 +3644,8 @@ export function HomePage() {
       <HomeInfoButton active={infoOpen} disabled={transitionChoice !== null} onToggle={() => setInfoOpen((current) => !current)} />
       <HomeMuseumInfoPanel open={infoOpen && transitionChoice === null} onClose={() => setInfoOpen(false)} />
       <HomeRouteTransitionOverlay transitionChoice={transitionChoice} />
+      <HomeWardrobeEntranceButton transitionChoice={transitionChoice} onDestinationSelect={handleDestinationSelect} />
+      <HomeMobileRoomDock transitionChoice={transitionChoice} onDestinationSelect={handleDestinationSelect} />
       <Canvas camera={{ position: [0, 0.3, -9.6], fov: 50, near: 0.1, far: 80 }} dpr={[1, 1.5]} gl={{ antialias: true }}>
         <HomeStage infoOpen={infoOpen} setInfoOpen={setInfoOpen} transitionChoice={transitionChoice} onDestinationSelect={handleDestinationSelect} />
       </Canvas>

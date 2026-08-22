@@ -1,0 +1,93 @@
+.routeState {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 9px;
+  padding: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 38%, rgba(140, 235, 214, 0.18), transparent 28%),
+    #214844;
+  color: #fff0c7;
+  font-family: Arial, Helvetica, system-ui, sans-serif;
+  text-align: center;
+}
+
+.seal {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  margin-bottom: 9px;
+  border: 4px solid #17131d;
+  border-radius: 50%;
+  background: #d2a543;
+  color: #17131d;
+  box-shadow: 5px 6px 0 #17131d, inset 0 5px 0 rgba(255, 255, 255, 0.3);
+  font: 900 28px/1 Arial Black, Impact, system-ui, sans-serif;
+  animation: breathe 1.4s ease-in-out infinite alternate;
+}
+
+.errorSeal {
+  background: #ed876e;
+  animation: none;
+}
+
+.routeState strong {
+  max-width: 520px;
+  font: 900 clamp(20px, 4vw, 34px)/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+.routeState small {
+  max-width: 440px;
+  color: #cce4d8;
+  font: 750 12px/1.35 Arial, Helvetica, system-ui, sans-serif;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.actions button,
+.actions a {
+  min-height: 46px;
+  padding: 0 16px;
+  border: 3px solid #17131d;
+  border-radius: 7px;
+  background: #fff0c7;
+  color: #17131d;
+  box-shadow: 3px 4px 0 #17131d;
+  font: 900 10px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.actions a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.actions button:focus-visible,
+.actions a:focus-visible {
+  outline: 4px solid #ffffff;
+  outline-offset: 4px;
+}
+
+@keyframes breathe {
+  from { transform: translateY(0) rotate(-4deg); }
+  to { transform: translateY(-5px) rotate(4deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal { animation: none; }
+}

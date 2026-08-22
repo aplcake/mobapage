@@ -10,7 +10,7 @@ const LABS = [
 ]
 
 function isActive(pathname: string, href: string) {
-  if (href === '/vacuum-lab') return pathname === '/' || pathname === '/vacuum-lab'
+  if (href === '/vacuum-lab') return pathname === '/vacuum-lab'
   return pathname === href
 }
 

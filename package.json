@@ -1,26 +1,47 @@
 {
-  "name": "mobapage",
+  "name": "psychedelic-slurper",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "export:terrarium-manifold": "node scripts/build-terrarium-manifold.mjs",
+    "lint": "npm run lint:core && npm run lab:boundaries",
+    "lint:core": "eslint app src/home src/museum src/core src/dev src/render src/experiment/slimePhysics.ts src/experiment/experimentMaterials.tsx tests scripts --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:gameplay": "vitest run production-dev suction-slime",
+    "check:fast": "npm run typecheck && npm run test:gameplay && npm run lint:core",
+    "check:playable": "npm run typecheck && npm run test:gameplay && npm run build && npm run lab:active",
+    "invariant:sample": "node scripts/invariant-sampler.mjs",
+    "liquid:audit": "node scripts/organic-liquid-audit.mjs",
+    "lab:active": "node scripts/experiment-active-proof.mjs",
+    "lab:smoke": "node scripts/lab-split-smoke.mjs",
+    "lab:boundaries": "node scripts/lab-boundary-check.mjs",
+    "performance:smoke": "node scripts/performance-smoke.mjs",
+    "visual-smoke": "node scripts/visual-smoke.mjs"
   },
   "dependencies": {
-    "@react-three/drei": "^9.120.0",
-    "@react-three/fiber": "^8.17.0",
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
     "next": "latest",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "three": "^0.168.0",
-    "zustand": "^4.5.2"
+    "react": "latest",
+    "react-dom": "latest",
+    "sharp": "0.34.5",
+    "three": "latest",
+    "zustand": "latest"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/three": "^0.168.0",
-    "typescript": "^5"
+    "@playwright/test": "^1.60.0",
+    "@types/node": "latest",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/three": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "pngjs": "^7.0.0",
+    "typescript": "latest",
+    "vitest": "^4.1.6"
   }
 }
