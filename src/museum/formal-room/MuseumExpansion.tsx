@@ -81,6 +81,11 @@ import type {
 } from '../collection-registry/museumAssetTypes'
 import { glowbudAttributesForToken } from '../glowbuds/glowbudDisplayTraits'
 import { GlowbudMuseumAvatar } from '../glowbuds/GlowbudMuseumAvatar'
+import {
+  createMuseumArtworkProvenance,
+  MUSEUM_ARTWORK_USER_DATA_KEY,
+  museumArtworkIdentityFromAsset,
+} from './artworkProvenance'
 
 const INK = '#17131d'
 const BRASS = '#d2a543'
@@ -942,8 +947,24 @@ function AtriumWallFrame({ bay, artwork, animationIndex }: { bay: (typeof ATRIUM
   const [aspectRatio, setAspectRatio] = useState(artwork.aspectRatio)
   const layout = atriumArtworkFrameLayout(bay, aspectRatio)
   const frameColor = artwork.source === 'personal' ? '#456d67' : '#4d3a32'
+  const provenance = createMuseumArtworkProvenance({
+    id: artwork.id,
+    title: artwork.title,
+    collection: artwork.collection,
+    sourceUrl: artwork.sourceUrl,
+    identity: artwork.identity ? museumArtworkIdentityFromAsset(artwork.identity) : undefined,
+  })
   return (
-    <group position={[...bay.position]} rotation={[0, bay.rotationY, 0]} userData={{ atriumWallBay: bay.id, source: artwork.source, artworkId: artwork.id }}>
+    <group
+      position={[...bay.position]}
+      rotation={[0, bay.rotationY, 0]}
+      userData={{
+        atriumWallBay: bay.id,
+        source: artwork.source,
+        artworkId: artwork.id,
+        [MUSEUM_ARTWORK_USER_DATA_KEY]: provenance,
+      }}
+    >
       {bay.anchor ? (
         <mesh position={[0, 0.03, -0.025]} scale={[layout.outerWidth * 1.3, layout.outerHeight * 1.36, 1]} renderOrder={0}>
           <shapeGeometry args={[PORTRAIT_WASH_SHAPE]} />
@@ -970,6 +991,7 @@ function OpeningSalonMobaGalleryHang() {
           id: `opening-salon-${work.id}`,
           title: work.title,
           collection: 'MoBA Gallery',
+          sourceUrl: work.sourceUrl,
           imageUrl: work.poster,
           animationUrl: work.motion,
           motionSheet: work.motionSheet ?? null,
@@ -3923,7 +3945,21 @@ function GalleryArtworkFrame({
   )
 
   return (
-    <group position={[...display.position]} rotation={[0, display.rotationY, display.roll ?? 0]} userData={{ artworkId: work.id, title: work.title, slotId: display.id }}>
+    <group
+      position={[...display.position]}
+      rotation={[0, display.rotationY, display.roll ?? 0]}
+      userData={{
+        artworkId: work.id,
+        title: work.title,
+        slotId: display.id,
+        [MUSEUM_ARTWORK_USER_DATA_KEY]: createMuseumArtworkProvenance({
+          id: work.id,
+          title: work.title,
+          collection: gallery.shortTitle,
+          sourceUrl: work.sourceUrl,
+        }),
+      }}
+    >
       {display.lamp ? (
         <mesh position={[0, -0.02, -0.05]} scale={[frameWidth * 1.18, frameHeight * 1.28, 1]} renderOrder={1}>
           <shapeGeometry args={[PORTRAIT_WASH_SHAPE]} />

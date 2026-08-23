@@ -45,6 +45,13 @@ import {
   shouldPaintFormalRoomAnimationFrame,
 } from './mediaPlayback'
 import { MuseumExpansion } from './MuseumExpansion'
+import { ArtworkApproachTracker } from './ArtworkApproachTracker'
+import { ArtworkProvenanceHud } from './ArtworkProvenanceHud'
+import {
+  createMuseumArtworkProvenance,
+  MUSEUM_ARTWORK_USER_DATA_KEY,
+  type MuseumArtworkProvenance,
+} from './artworkProvenance'
 import { AtriumRegistryPanel } from './AtriumRegistryPanel'
 import { atriumResidentColliders } from './atriumRegistryPlan'
 import {
@@ -1202,7 +1209,15 @@ function FramedArtwork({
     <group
       ref={groupRef}
       position={[...artwork.position]}
-      userData={{ motionStatus }}
+      userData={{
+        motionStatus,
+        [MUSEUM_ARTWORK_USER_DATA_KEY]: createMuseumArtworkProvenance({
+          id: artwork.id,
+          title: artwork.title,
+          collection: artwork.artist,
+          sourceUrl: artwork.sourceUrl ?? artwork.openseaUrl ?? null,
+        }),
+      }}
       onPointerOver={handleEnter}
       onPointerOut={handleLeave}
       onClick={handleClick}
@@ -1281,6 +1296,7 @@ function FormalRoomScene({
   onOpenAtriumRegistry,
   onOpenCourtyard,
   onOpenBurnRoom,
+  onApproachedArtworkChange,
 }: {
   artworks: readonly FormalRoomArtwork[]
   focusIndex: FocusIndex
@@ -1301,6 +1317,7 @@ function FormalRoomScene({
   onOpenAtriumRegistry: () => void
   onOpenCourtyard: () => void
   onOpenBurnRoom: () => void
+  onApproachedArtworkChange: (artwork: MuseumArtworkProvenance | null) => void
 }) {
   const residentColliders = useMemo(
     () => atriumResidentColliders(atriumInstallation ? atriumInstallation.glowbuds.length : 3),
@@ -1322,6 +1339,10 @@ function FormalRoomScene({
         extraColliders={residentColliders}
         onGalleryChange={onGalleryChange}
         onMuseumAreaChange={onMuseumAreaChange}
+      />
+      <ArtworkApproachTracker
+        enabled={mode === 'explore' && !motionPaused}
+        onArtworkChange={onApproachedArtworkChange}
       />
       <SalonArchitecture mode={mode} />
       <MuseumExpansion
@@ -1461,6 +1482,7 @@ export function FormalMuseumRoom() {
   const [collectionToast, setCollectionToast] = useState<string | null>(null)
   const [artworkMediaStatus, setArtworkMediaStatus] = useState<Record<string, ArtworkMediaStatus>>({})
   const [artworkMotionStatus, setArtworkMotionStatus] = useState<Record<string, ArtworkMotionStatus>>({})
+  const [approachedArtwork, setApproachedArtwork] = useState<MuseumArtworkProvenance | null>(null)
   const collectionButtonRef = useRef<HTMLButtonElement>(null)
   const museumMenuRef = useRef<HTMLDivElement>(null)
   const walkInputRef = useRef<FormalWalkInputState>(createFormalWalkInputState())
@@ -1809,6 +1831,7 @@ export function FormalMuseumRoom() {
             onOpenAtriumRegistry={openAtriumRegistry}
             onOpenCourtyard={openCourtyard}
             onOpenBurnRoom={openBurnRoom}
+            onApproachedArtworkChange={setApproachedArtwork}
           />
         </Canvas>
       </div>
@@ -1881,7 +1904,9 @@ export function FormalMuseumRoom() {
         </aside>
       ) : null}
 
-      {selectedArtwork ? (
+      <ArtworkProvenanceHud artwork={approachedArtwork} hidden={modalOpen} />
+
+      {selectedArtwork && !approachedArtwork ? (
         <div className={styles.walkArtworkHint} aria-live="polite">
           <span className={styles.focusSwatch} style={{ background: selectedArtwork.accent }} aria-hidden="true" />
           <span>

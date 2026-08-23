@@ -28,6 +28,7 @@ export type AtriumWallArtwork = {
   id: string
   title: string
   collection: string
+  sourceUrl: string | null
   imageUrl: string
   animationUrl: string | null
   motionSheet: string | null
@@ -162,6 +163,7 @@ export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GAL
   id: `museum-${work.id}`,
   title: work.title,
   collection,
+  sourceUrl: work.sourceUrl,
   imageUrl: work.poster,
   animationUrl: work.motion,
   motionSheet: work.motionSheet ?? null,
@@ -179,6 +181,7 @@ export function personalAtriumArtwork(asset: MuseumAssetSummary): AtriumWallArtw
     id: `personal-${asset.key}`,
     title: asset.title,
     collection: asset.collection,
+    sourceUrl: null,
     imageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'room'),
     animationUrl: asset.animationUrl ? ownedNftMediaProxyUrl(asset.animationUrl, 'motion') : null,
     motionSheet: null,

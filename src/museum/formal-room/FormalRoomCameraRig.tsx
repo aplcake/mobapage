@@ -47,6 +47,7 @@ function formalRoomReviewPose(): MuseumTravelPose | null {
   if (review === 'courtyard-door') return { x: -9.2, z: 6.5, yaw: 0 }
   if (review === 'burn-room-door') return { x: 9.2, z: 6.5, yaw: 0 }
   if (review === 'atrium-hang') return { x: 0, z: 19.55, yaw: Math.PI / 2 }
+  if (review === 'artwork-placard') return { x: -14.8, z: 8.25, yaw: Math.PI / 2 }
   return null
 }
 export type FormalRoomFocusIndex = number | null
