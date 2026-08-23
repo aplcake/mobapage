@@ -4,6 +4,7 @@ import { getFormalRoomArtworkTextureSize } from '../src/museum/formal-room/artwo
 import {
   MUSEUM_BASE_LIGHTING,
   MUSEUM_LIGHTING_BUDGET,
+  museumToneMappingExposure,
   OPENING_SALON_ARCHITECTURAL_LIGHTS,
   OPENING_SALON_ARTWORK_LIGHTS,
 } from '../src/museum/formal-room/museumLighting'
@@ -149,8 +150,13 @@ describe('Formal Museum Room MVP', () => {
     expect(pictureLamp).toContain('THREE.NormalBlending')
     expect(salonLighting.indexOf('{active ? (')).toBeLessThan(salonLighting.indexOf('OPENING_SALON_ARTWORK_LIGHTS.map'))
     expect(salonLighting.indexOf('<hemisphereLight')).toBeLessThan(salonLighting.indexOf('{active ? ('))
-    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeLessThanOrEqual(0.3)
-    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeLessThanOrEqual(0.5)
+    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeGreaterThanOrEqual(0.36)
+    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeLessThanOrEqual(0.42)
+    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeGreaterThanOrEqual(0.6)
+    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeLessThanOrEqual(0.68)
+    expect(museumToneMappingExposure(390)).toBeGreaterThan(museumToneMappingExposure(768))
+    expect(museumToneMappingExposure(768)).toBeGreaterThan(museumToneMappingExposure(1440))
+    expect(room).toContain('<MuseumRendererLighting />')
     expect(OPENING_SALON_ARTWORK_LIGHTS).toHaveLength(3)
     expect(OPENING_SALON_ARCHITECTURAL_LIGHTS).toHaveLength(1)
     expect(MUSEUM_LIGHTING_BUDGET.openingSalonActiveLights).toBe(4)

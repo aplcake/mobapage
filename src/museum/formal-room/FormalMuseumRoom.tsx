@@ -49,6 +49,7 @@ import { AtriumRegistryPanel } from './AtriumRegistryPanel'
 import { atriumResidentColliders } from './atriumRegistryPlan'
 import {
   MUSEUM_BASE_LIGHTING,
+  museumToneMappingExposure,
   OPENING_SALON_ARCHITECTURAL_LIGHTS,
   OPENING_SALON_ARTWORK_LIGHTS,
   type MuseumSpotlightPlan,
@@ -124,6 +125,20 @@ function useReducedMotion() {
   }, [])
 
   return reduced
+}
+
+function MuseumRendererLighting() {
+  const { gl, size } = useThree()
+
+  useEffect(() => {
+    const previousExposure = gl.toneMappingExposure
+    gl.toneMappingExposure = museumToneMappingExposure(size.width)
+    return () => {
+      gl.toneMappingExposure = previousExposure
+    }
+  }, [gl, size.width])
+
+  return null
 }
 
 function ToonBox({
@@ -1293,8 +1308,9 @@ function FormalRoomScene({
   )
   return (
     <>
-      <color attach="background" args={['#91aaa0']} />
-      <fog attach="fog" args={['#91aaa0', 28, 68]} />
+      <MuseumRendererLighting />
+      <color attach="background" args={['#a8c0b5']} />
+      <fog attach="fog" args={['#a8c0b5', 30, 72]} />
       <SalonLighting active={activeMuseumArea === 'lobby'} />
 
       <FormalRoomCameraRig

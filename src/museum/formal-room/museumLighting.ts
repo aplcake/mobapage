@@ -56,15 +56,33 @@ export const MUSEUM_LIGHTING_BUDGET = {
 
 export const MUSEUM_BASE_LIGHTING = {
   ambient: {
-    color: '#f3e5d4',
-    intensity: 0.28,
+    color: '#fff0dd',
+    intensity: 0.38,
   },
   hemisphere: {
-    skyColor: '#e5f0ec',
-    groundColor: '#3f4748',
-    intensity: 0.48,
+    skyColor: '#f1faf5',
+    groundColor: '#586361',
+    intensity: 0.62,
   },
 } as const
+
+export const MUSEUM_VIEWPORT_EXPOSURE = {
+  desktop: 1.12,
+  compact: 1.22,
+  mobile: 1.34,
+  compactMaxWidth: 920,
+  mobileMaxWidth: 700,
+} as const
+
+export function museumToneMappingExposure(viewportWidth: number): number {
+  if (viewportWidth <= MUSEUM_VIEWPORT_EXPOSURE.mobileMaxWidth) {
+    return MUSEUM_VIEWPORT_EXPOSURE.mobile
+  }
+  if (viewportWidth <= MUSEUM_VIEWPORT_EXPOSURE.compactMaxWidth) {
+    return MUSEUM_VIEWPORT_EXPOSURE.compact
+  }
+  return MUSEUM_VIEWPORT_EXPOSURE.desktop
+}
 
 /**
  * A restrained material response for each gallery. These are not extra lights:
@@ -75,40 +93,40 @@ export const MUSEUM_GALLERY_SURFACE_LIGHTING: Readonly<Record<PermanentMuseumGal
   'moba-one': {
     wallEmissive: '#a76561',
     lowerWallEmissive: '#7a4b45',
-    activeWallEmissiveIntensity: 0.16,
-    inactiveWallEmissiveIntensity: 0.015,
-    activeLowerWallEmissiveIntensity: 0.13,
-    inactiveLowerWallEmissiveIntensity: 0.012,
+    activeWallEmissiveIntensity: 0.18,
+    inactiveWallEmissiveIntensity: 0.04,
+    activeLowerWallEmissiveIntensity: 0.15,
+    inactiveLowerWallEmissiveIntensity: 0.032,
     artworkWashColor: '#f3d5a3',
     artworkWashOpacity: 0.07,
   },
   'moba-two': {
     wallEmissive: '#c2d3d0',
     lowerWallEmissive: '#9ab3b6',
-    activeWallEmissiveIntensity: 0.13,
-    inactiveWallEmissiveIntensity: 0.018,
-    activeLowerWallEmissiveIntensity: 0.11,
-    inactiveLowerWallEmissiveIntensity: 0.014,
+    activeWallEmissiveIntensity: 0.16,
+    inactiveWallEmissiveIntensity: 0.042,
+    activeLowerWallEmissiveIntensity: 0.14,
+    inactiveLowerWallEmissiveIntensity: 0.034,
     artworkWashColor: '#dce9e5',
     artworkWashOpacity: 0.04,
   },
   photography: {
     wallEmissive: '#dce7e2',
     lowerWallEmissive: '#e1e2db',
-    activeWallEmissiveIntensity: 0.075,
-    inactiveWallEmissiveIntensity: 0.015,
-    activeLowerWallEmissiveIntensity: 0.055,
-    inactiveLowerWallEmissiveIntensity: 0.012,
+    activeWallEmissiveIntensity: 0.12,
+    inactiveWallEmissiveIntensity: 0.04,
+    activeLowerWallEmissiveIntensity: 0.09,
+    inactiveLowerWallEmissiveIntensity: 0.03,
     artworkWashColor: '#e6e9df',
     artworkWashOpacity: 0.03,
   },
   holiday: {
     wallEmissive: '#a66b70',
     lowerWallEmissive: '#52715e',
-    activeWallEmissiveIntensity: 0.17,
-    inactiveWallEmissiveIntensity: 0.015,
-    activeLowerWallEmissiveIntensity: 0.14,
-    inactiveLowerWallEmissiveIntensity: 0.012,
+    activeWallEmissiveIntensity: 0.18,
+    inactiveWallEmissiveIntensity: 0.04,
+    activeLowerWallEmissiveIntensity: 0.15,
+    inactiveLowerWallEmissiveIntensity: 0.032,
     artworkWashColor: '#f1d3a2',
     artworkWashOpacity: 0.055,
   },

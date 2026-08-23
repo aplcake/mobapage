@@ -281,7 +281,7 @@ describe('Formal museum authored gallery design', () => {
     expect(frameSource).toContain('opacity={surfaceLighting.artworkWashOpacity}')
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING['moba-one']).toMatchObject({
       artworkWashOpacity: 0.07,
-      activeWallEmissiveIntensity: 0.16,
+      activeWallEmissiveIntensity: 0.18,
     })
     expect(frameSource).not.toContain('blending={THREE.AdditiveBlending}')
     const lighting = MUSEUM_GALLERY_LIGHTING_PLANS['moba-one']
@@ -367,7 +367,7 @@ describe('Formal museum authored gallery design', () => {
     expect(lighting[2]).toMatchObject({ intensity: 2.5, distance: 10.4, penumbra: 0.92 })
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING['moba-two']).toMatchObject({
       artworkWashOpacity: 0.04,
-      activeWallEmissiveIntensity: 0.13,
+      activeWallEmissiveIntensity: 0.16,
     })
     expect(expansionSource).not.toContain('intensity={7}')
     expect(expansionSource).toContain('texture.generateMipmaps = false')
@@ -469,7 +469,7 @@ describe('Formal museum authored gallery design', () => {
     expect(lighting.map((light) => light.source)).toEqual(['picture-light', 'north-light', 'north-light'])
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING.photography).toMatchObject({
       artworkWashOpacity: 0.03,
-      activeWallEmissiveIntensity: 0.075,
+      activeWallEmissiveIntensity: 0.12,
     })
   })
 
@@ -570,7 +570,7 @@ describe('Formal museum authored gallery design', () => {
     expect(lighting[2]).toMatchObject({ intensity: 2.4, penumbra: 0.94 })
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING.holiday).toMatchObject({
       artworkWashOpacity: 0.055,
-      activeWallEmissiveIntensity: 0.17,
+      activeWallEmissiveIntensity: 0.18,
     })
   })
 
