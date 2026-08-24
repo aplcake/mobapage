@@ -19,6 +19,10 @@
   -webkit-user-select: none;
 }
 
+.room:focus {
+  outline: none;
+}
+
 .walking {
   overscroll-behavior: none;
   touch-action: none;
@@ -47,7 +51,7 @@
 }
 
 .walking .canvasWrap canvas {
-  cursor: grab;
+  cursor: crosshair;
   touch-action: none;
 }
 
@@ -112,6 +116,314 @@
   font-family: Arial Black, Impact, system-ui, sans-serif;
   text-transform: uppercase;
   transform: translateX(-50%);
+}
+
+.welcomeOpen {
+  touch-action: none;
+}
+
+.welcomeOpen .canvasWrap {
+  pointer-events: none;
+}
+
+.welcomeOpen .minimalChrome,
+.welcomeOpen .walkCrosshair,
+.welcomeOpen .mobileWalkControls {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.welcomeScrim {
+  position: absolute;
+  z-index: 40;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding:
+    max(18px, env(safe-area-inset-top))
+    max(18px, env(safe-area-inset-right))
+    max(18px, env(safe-area-inset-bottom))
+    max(18px, env(safe-area-inset-left));
+  background:
+    radial-gradient(circle at 50% 43%, rgba(255, 243, 208, 0.04) 0 17%, rgba(20, 15, 21, 0.14) 58%, rgba(15, 11, 17, 0.48) 100%),
+    linear-gradient(180deg, rgba(22, 17, 23, 0.12), rgba(19, 14, 20, 0.28));
+  animation: welcome-scrim-enter 360ms ease-out both;
+}
+
+.welcomePanel {
+  position: relative;
+  display: grid;
+  width: min(540px, calc(100vw - 36px));
+  gap: 10px;
+  padding: 25px 27px 20px;
+  overflow: hidden;
+  border: 1px solid rgba(47, 36, 31, 0.95);
+  border-radius: 5px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.76), transparent 34%),
+    linear-gradient(145deg, rgba(255, 250, 231, 0.99), rgba(240, 225, 190, 0.99));
+  box-shadow:
+    0 0 0 3px rgba(199, 161, 83, 0.9),
+    0 0 0 5px rgba(27, 21, 25, 0.94),
+    0 28px 76px rgba(12, 8, 13, 0.5);
+  text-align: center;
+  animation: welcome-panel-enter 440ms cubic-bezier(0.2, 0.85, 0.2, 1) both;
+}
+
+.welcomePanel::before,
+.welcomePanel::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border-color: rgba(159, 117, 49, 0.68);
+  pointer-events: none;
+}
+
+.welcomePanel::before {
+  top: 9px;
+  left: 9px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.welcomePanel::after {
+  right: 9px;
+  bottom: 9px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.welcomeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  color: #735b35;
+}
+
+.welcomeHeader span {
+  font: 800 9px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.welcomeHeader i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border: 1px solid #846636;
+  background: var(--brass);
+  transform: rotate(45deg);
+}
+
+.welcomePanel h1 {
+  margin: 1px 0 0;
+  color: #241b22;
+  font: 700 clamp(31px, 4.2vw, 43px)/0.98 Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.035em;
+}
+
+.welcomePanel > p {
+  margin: 0;
+  color: #675445;
+  font: 700 12px/1.3 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.025em;
+}
+
+.welcomeControls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.welcomeControl {
+  display: grid;
+  min-width: 0;
+  min-height: 86px;
+  grid-template-rows: 48px auto;
+  place-items: center;
+  gap: 5px;
+  padding: 9px 5px 8px;
+  border: 1px solid rgba(93, 72, 58, 0.32);
+  border-radius: 3px;
+  background: rgba(255, 253, 241, 0.64);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.welcomeControl strong {
+  overflow: hidden;
+  color: #423239;
+  font: 900 9px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.welcomeControlArt {
+  display: grid;
+  min-width: 58px;
+  height: 48px;
+  place-items: center;
+}
+
+.desktopMoveKeys {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.desktopMoveKeys > span {
+  display: flex;
+  gap: 2px;
+}
+
+.desktopMoveKeys kbd,
+.desktopJumpKey {
+  display: grid;
+  min-width: 17px;
+  height: 17px;
+  place-items: center;
+  padding: 0 3px;
+  border: 1px solid #3f3438;
+  border-radius: 3px;
+  background: #f7e9c7;
+  color: #2d242a;
+  box-shadow: 0 2px 0 #a8844f;
+  font: 800 8px/1 Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+}
+
+.desktopJumpKey {
+  min-width: 61px;
+  height: 23px;
+  font-size: 7px;
+  letter-spacing: 0.08em;
+}
+
+.lookControlArt > span {
+  display: grid;
+  width: 48px;
+  height: 29px;
+  place-items: center;
+  border: 1px solid #5b4b43;
+  border-radius: 999px;
+  background: rgba(224, 208, 172, 0.58);
+  color: #2e5b57;
+  font: 900 21px/1 Georgia, serif;
+}
+
+.mobileLookCopy {
+  display: none;
+}
+
+.mobileMoveKeys,
+.mobileJumpKey {
+  display: none;
+}
+
+.welcomeJoystickMini {
+  position: relative;
+  display: grid;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  border: 2px solid #34292e;
+  border-radius: 50%;
+  background: radial-gradient(circle, #355d58 0 56%, #d4ad59 57% 69%, #f4e5bd 70% 100%);
+  box-shadow: 0 3px 0 #694c34;
+}
+
+.welcomeJoystickMini i {
+  display: block;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #34292e;
+  border-radius: 50%;
+  background: #8cebd6;
+  box-shadow: 0 2px 0 #2e6861;
+  transform: translate(4px, -4px);
+}
+
+.mobileWelcomeGestureHint {
+  display: none;
+}
+
+.welcomeEnter {
+  display: grid;
+  width: 100%;
+  min-height: 52px;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-top: 3px;
+  padding: 8px 15px;
+  border: 2px solid #1e2928;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #43817a, #2f6863);
+  color: #fff8df;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    0 3px 0 #1c4542,
+    0 9px 18px rgba(31, 65, 61, 0.22);
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, filter 140ms ease;
+}
+
+.welcomeEnter strong {
+  grid-column: 2;
+  font: 900 12px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.welcomeEnter span {
+  grid-column: 3;
+  justify-self: end;
+  font: 700 22px/1 Georgia, serif;
+}
+
+.welcomeEnter:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.welcomeEnter:active {
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12), 0 1px 0 #1c4542;
+  transform: translateY(2px);
+}
+
+.welcomeEnter:focus-visible {
+  outline: 3px solid #fff4c8;
+  outline-offset: -6px;
+  box-shadow:
+    0 0 0 2px #1d171d,
+    0 3px 0 #1c4542,
+    0 10px 22px rgba(31, 65, 61, 0.3);
+}
+
+.welcomeMenuHint {
+  color: #786450;
+  font: 800 8px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes welcome-scrim-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes welcome-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .minimalChrome {
@@ -350,7 +662,8 @@
 .overviewButton,
 .artChoice,
 .mobileArrow,
-.mobileDpad button,
+.mobileJoystickPad,
+.mobileA11yDirectionButton,
 .walkHelpButton,
 .previewActions button,
 .collectionNote button {
@@ -417,7 +730,8 @@
 .overviewButton:focus-visible,
 .artChoice:focus-visible,
 .mobileArrow:focus-visible,
-.mobileDpad button:focus-visible,
+.mobileJoystickPad:focus-visible,
+.mobileA11yDirectionButton:focus-visible,
 .walkHelpButton:focus-visible,
 .previewActions button:focus-visible,
 .collectionNote button:focus-visible {
@@ -1332,11 +1646,316 @@
 }
 
 .mobileWalkControls {
+  pointer-events: none;
+  position: absolute;
+  z-index: 15;
+  inset: 0;
   display: none;
 }
 
-.mobileJumpButton {
+.mobileJoystickCluster {
+  pointer-events: auto;
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+  left: calc(env(safe-area-inset-left) + 12px);
+  display: grid;
+  width: 144px;
+  height: 158px;
+  place-items: end center;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobileJoystickLabel {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 50%;
+  min-width: 58px;
+  padding: 5px 10px 4px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: #4d3a32;
+  box-shadow: 0 3px 0 #8d642f, 0 5px 0 var(--ink);
+  font: 900 8px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.mobileJoystickPad {
+  position: relative;
+  display: grid;
+  width: 136px;
+  height: 136px;
+  place-items: center;
+  padding: 0;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(112, 190, 174, 0.2) 0 29%, transparent 30%),
+    radial-gradient(circle, #273e3d 0 60%, #d1a647 61% 70%, #f1dfb4 71% 82%, #5c432e 83% 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 245, 205, 0.32),
+    inset 0 -11px 18px rgba(8, 15, 17, 0.3),
+    0 6px 0 #2b1e22,
+    0 12px 24px rgba(14, 10, 18, 0.36);
+  color: var(--ink);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mobileJoystickPad:disabled,
+.mobileJumpButton:disabled {
+  opacity: 0.48;
+  filter: saturate(0.62);
+}
+
+.mobileJoystickCompass {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(246, 231, 191, 0.28);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.mobileJoystickCompass::before,
+.mobileJoystickCompass::after,
+.mobileJoystickCompass i {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: rgba(246, 231, 191, 0.24);
+  transform: translate(-50%, -50%);
+}
+
+.mobileJoystickCompass::before {
+  width: 1px;
+  height: 100%;
+}
+
+.mobileJoystickCompass::after {
+  width: 100%;
+  height: 1px;
+}
+
+.mobileJoystickCompass i {
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(246, 231, 191, 0.5);
+  background: #d1a647;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mobileJoystickCompass i:first-child {
+  top: 4px;
+}
+
+.mobileJoystickCompass i:last-child {
+  top: auto;
+  bottom: -3px;
+}
+
+.mobileJoystickKnob {
+  --joystick-x: 0px;
+  --joystick-y: 0px;
+  position: relative;
+  z-index: 3;
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.42), transparent 26%),
+    linear-gradient(145deg, #8cebd6, #3f8b80);
+  box-shadow:
+    inset 0 -8px 0 rgba(29, 83, 78, 0.32),
+    0 5px 0 #173d3a,
+    0 8px 0 var(--ink),
+    0 12px 18px rgba(7, 12, 14, 0.34);
+  pointer-events: none;
+  transform: translate3d(var(--joystick-x), var(--joystick-y), 0);
+  transition: transform 170ms cubic-bezier(0.2, 0.86, 0.25, 1.18);
+  will-change: transform;
+}
+
+.mobileJoystickCluster[data-active='true'] .mobileJoystickKnob {
+  box-shadow:
+    inset 0 -5px 0 rgba(29, 83, 78, 0.32),
+    0 3px 0 #173d3a,
+    0 6px 0 var(--ink),
+    0 9px 14px rgba(7, 12, 14, 0.3);
+  transition: none;
+}
+
+.mobileJoystickKnob i {
+  width: 13px;
+  height: 13px;
+  border: 2px solid var(--ink);
+  background: var(--brass);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.35);
+  transform: rotate(45deg);
+}
+
+.mobileA11yDirections {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mobileA11yDirectionButton {
+  pointer-events: auto;
+}
+
+.mobileLookGuide {
+  pointer-events: none;
+  position: absolute;
+  right: calc(env(safe-area-inset-right) + 14px);
+  bottom: calc(env(safe-area-inset-bottom) + 112px);
   display: none;
+  width: 146px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px 8px 8px;
+  border: 2px solid rgba(23, 19, 29, 0.88);
+  border-radius: 12px;
+  background: rgba(255, 240, 199, 0.92);
+  color: var(--ink);
+  box-shadow: 0 4px 0 rgba(92, 65, 43, 0.88), 0 7px 0 rgba(23, 19, 29, 0.9), 0 13px 25px rgba(17, 11, 22, 0.25);
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 220ms ease, transform 260ms ease;
+}
+
+.mobileLookGuideVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.mobileLookGuide > span:last-child {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.mobileLookGuide strong {
+  font: 900 8px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.mobileLookGuide small {
+  color: #6a5140;
+  font: 800 7px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.mobileLookGesture {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(53, 109, 105, 0.14);
+  overflow: hidden;
+}
+
+.mobileLookGesture::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  left: 7px;
+  height: 2px;
+  border-radius: 999px;
+  background: #9b7438;
+  transform: translateY(-50%);
+}
+
+.mobileLookGesture i:first-child {
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  left: 7px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: #8cebd6;
+  box-shadow: 0 2px 0 #2c6d64;
+  animation: mobile-look-swipe 1.8s ease-in-out infinite;
+}
+
+.mobileLookGesture i:last-child {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #9b7438;
+  border-right: 2px solid #9b7438;
+  transform: rotate(45deg);
+}
+
+.mobileJumpButton {
+  pointer-events: auto;
+  position: absolute;
+  right: calc(env(safe-area-inset-right) + 14px);
+  bottom: calc(env(safe-area-inset-bottom) + 14px);
+  display: none;
+  width: 74px;
+  height: 74px;
+  place-items: center;
+  gap: 1px;
+  padding: 8px 5px 6px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 26%, rgba(255, 255, 255, 0.44), transparent 24%),
+    linear-gradient(145deg, #f6d986, #d6a83c);
+  color: var(--ink);
+  box-shadow: inset 0 -8px 0 rgba(151, 98, 35, 0.18), 0 5px 0 #9a6d2f, 0 8px 0 var(--ink), 0 14px 24px rgba(18, 12, 22, 0.3);
+  font-family: Arial Black, Impact, system-ui, sans-serif;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobileJumpButton span {
+  font-size: 25px;
+  line-height: 0.8;
+}
+
+.mobileJumpButton small {
+  font: 900 9px/1 Arial Black, Impact, system-ui, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.mobileJumpButton:active:not(:disabled) {
+  box-shadow: inset 0 -4px 0 rgba(151, 98, 35, 0.16), 0 1px 0 #9a6d2f, 0 4px 0 var(--ink);
+  transform: translateY(4px);
+}
+
+.collectionDeskOpen .mobileWalkControls {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes mobile-look-swipe {
+  0%, 20% { transform: translateX(0); }
+  60%, 80% { transform: translateX(20px); }
+  100% { transform: translateX(0); }
 }
 
 .modeAnnouncement {
@@ -1559,142 +2178,115 @@
     width: 128px;
   }
 
+}
+
+@media (hover: none) and (pointer: coarse) {
   .mobileWalkControls {
-    pointer-events: none;
-    position: absolute;
-    z-index: 15;
-    inset: 0;
     display: block;
   }
 
-  .mobileDpad {
-    pointer-events: auto;
-    position: absolute;
-    bottom: max(18px, env(safe-area-inset-bottom));
-    left: max(16px, env(safe-area-inset-left));
-    display: grid;
-    width: 144px;
-    height: 144px;
-    grid-template-columns: repeat(3, 46px);
-    grid-template-rows: repeat(3, 46px);
-    gap: 3px;
-    padding: 0;
-    touch-action: none;
-  }
-
-  .mobileDpad::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: 15px;
-    border: 3px solid var(--ink);
-    border-radius: 50%;
-    background: rgba(40, 32, 47, 0.78);
-    box-shadow: 0 6px 0 rgba(13, 11, 17, 0.9), 0 13px 24px rgba(19, 13, 24, 0.32);
-  }
-
-  .mobileDpad button {
-    display: grid;
-    width: 46px;
-    height: 46px;
-    place-items: center;
-    padding: 0 0 2px;
-    border: 3px solid var(--ink);
-    border-radius: 12px;
-    background: rgba(140, 235, 214, 0.96);
-    color: var(--ink);
-    box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.26), 0 4px 0 #2c6d64;
-    font: 900 21px/1 Arial Black, Impact, system-ui, sans-serif;
-    touch-action: none;
-  }
-
-  .mobileDpad button:active {
-    background: #fff0c7;
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.28), 0 1px 0 #76543b;
-    transform: translateY(3px);
-  }
-
-  .walkForward {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .walkLeft {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .walkRight {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  .walkBackward {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .mobileLookGuide {
-    position: absolute;
-    right: max(20px, env(safe-area-inset-right));
-    bottom: max(112px, calc(env(safe-area-inset-bottom) + 104px));
-    display: grid;
-    width: 130px;
-    justify-items: center;
-    gap: 5px;
-    color: #fff0c7;
-    text-align: center;
-    text-shadow: 0 2px 0 var(--ink), 1px 0 0 var(--ink), -1px 0 0 var(--ink);
-    text-transform: uppercase;
-  }
-
-  .mobileLookGuide span {
-    font: 900 28px/1 Arial Black, Impact, system-ui, sans-serif;
-  }
-
-  .mobileLookGuide strong {
-    font: 900 9px/1 Arial Black, Impact, system-ui, sans-serif;
-    letter-spacing: 0.06em;
-  }
-
+  .mobileLookGuide,
   .mobileJumpButton {
-    pointer-events: auto;
-    position: absolute;
-    right: max(22px, env(safe-area-inset-right));
-    bottom: max(20px, env(safe-area-inset-bottom));
     display: grid;
-    width: 72px;
-    height: 72px;
+  }
+
+  .desktopLookCopy {
+    display: none;
+  }
+
+  .mobileLookCopy {
+    display: inline;
+  }
+
+  .desktopMoveKeys,
+  .desktopJumpKey {
+    display: none;
+  }
+
+  .mobileMoveKeys,
+  .mobileJumpKey {
+    display: grid;
     place-items: center;
-    gap: 1px;
-    padding: 8px 5px 6px;
-    border: 3px solid var(--ink);
-    border-radius: 50%;
-    background: #f0c867;
-    color: var(--ink);
-    box-shadow: inset 0 5px 0 rgba(255, 255, 255, 0.28), 0 5px 0 #9a6d2f, 0 8px 0 var(--ink);
-    font-family: Arial Black, Impact, system-ui, sans-serif;
-    text-transform: uppercase;
-    touch-action: manipulation;
+    color: #2e5b57;
+    font: 900 29px/1 Georgia, serif;
   }
 
-  .mobileJumpButton span {
-    font-size: 25px;
-    line-height: 0.8;
-  }
-
-  .mobileJumpButton small {
-    font: 900 9px/1 Arial Black, Impact, system-ui, sans-serif;
-    letter-spacing: 0.04em;
-  }
-
-  .mobileJumpButton:active {
-    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.25), 0 1px 0 #9a6d2f, 0 4px 0 var(--ink);
-    transform: translateY(4px);
+  .mobileWelcomeGestureHint {
+    display: block;
+    color: #5f4a3c;
+    font: 800 9px/1.25 Arial, Helvetica, sans-serif;
+    letter-spacing: 0.025em;
   }
 }
 
 @media (max-width: 700px) {
+  .desktopLookCopy,
+  .desktopMoveKeys,
+  .desktopJumpKey {
+    display: none;
+  }
+
+  .mobileLookCopy {
+    display: inline;
+  }
+
+  .mobileMoveKeys,
+  .mobileJumpKey {
+    display: grid;
+    place-items: center;
+    color: #2e5b57;
+    font: 900 29px/1 Georgia, serif;
+  }
+
+  .mobileWelcomeGestureHint {
+    display: block;
+    color: #5f4a3c;
+    font: 800 9px/1.25 Arial, Helvetica, sans-serif;
+    letter-spacing: 0.025em;
+  }
+
+  .welcomeScrim {
+    padding:
+      max(14px, env(safe-area-inset-top))
+      max(14px, env(safe-area-inset-right))
+      max(14px, env(safe-area-inset-bottom))
+      max(14px, env(safe-area-inset-left));
+  }
+
+  .welcomePanel {
+    width: min(390px, calc(100vw - 28px));
+    gap: 8px;
+    padding: 21px 15px 16px;
+  }
+
+  .welcomePanel h1 {
+    font-size: clamp(28px, 9vw, 36px);
+  }
+
+  .welcomeControls {
+    gap: 5px;
+  }
+
+  .welcomeControl {
+    min-height: 80px;
+    grid-template-rows: 44px auto;
+    padding: 7px 3px 6px;
+  }
+
+  .welcomeControlArt {
+    min-width: 48px;
+    height: 44px;
+  }
+
+  .welcomeControl strong {
+    font-size: 8px;
+    letter-spacing: 0.035em;
+  }
+
+  .welcomeEnter {
+    min-height: 50px;
+  }
+
   .minimalChrome {
     top: max(8px, env(safe-area-inset-top));
     right: max(8px, env(safe-area-inset-right));
@@ -2108,6 +2700,78 @@
 }
 
 @media (max-width: 920px) and (max-height: 610px) and (orientation: landscape) {
+  .desktopLookCopy,
+  .desktopMoveKeys,
+  .desktopJumpKey {
+    display: none;
+  }
+
+  .mobileLookCopy {
+    display: inline;
+  }
+
+  .mobileMoveKeys,
+  .mobileJumpKey {
+    display: grid;
+    place-items: center;
+    color: #2e5b57;
+    font: 900 25px/1 Georgia, serif;
+  }
+
+  .mobileWelcomeGestureHint {
+    display: block;
+    color: #5f4a3c;
+    font: 800 8px/1.15 Arial, Helvetica, sans-serif;
+  }
+
+  .welcomeScrim {
+    padding:
+      max(10px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      max(10px, env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+
+  .welcomePanel {
+    width: min(600px, calc(100vw - 28px));
+    max-height: calc(100dvh - 20px);
+    gap: 6px;
+    padding: 14px 20px 12px;
+  }
+
+  .welcomePanel h1 {
+    font-size: 28px;
+  }
+
+  .welcomePanel > p {
+    font-size: 10px;
+  }
+
+  .welcomeControls {
+    gap: 6px;
+    margin-top: 1px;
+  }
+
+  .welcomeControl {
+    min-height: 64px;
+    grid-template-rows: 34px auto;
+    padding: 4px;
+  }
+
+  .welcomeControlArt {
+    height: 34px;
+    transform: scale(0.86);
+  }
+
+  .welcomeEnter {
+    min-height: 44px;
+    margin-top: 1px;
+  }
+
+  .welcomeMenuHint {
+    display: none;
+  }
+
   .minimalChrome {
     top: max(6px, env(safe-area-inset-top));
   }
@@ -2276,19 +2940,50 @@
     padding-block: 5px;
   }
 
-  .mobileDpad {
-    bottom: max(8px, env(safe-area-inset-bottom));
-    left: max(12px, env(safe-area-inset-left));
-    transform: none;
+  .mobileJoystickCluster {
+    bottom: calc(env(safe-area-inset-bottom) + 8px);
+    left: calc(env(safe-area-inset-left) + 10px);
+    width: 118px;
+    height: 130px;
+  }
+
+  .mobileJoystickPad {
+    width: 112px;
+    height: 112px;
+  }
+
+  .mobileJoystickLabel {
+    min-width: 52px;
+    padding: 4px 8px 3px;
+    font-size: 7px;
+  }
+
+  .mobileJoystickCompass {
+    inset: 17px;
+  }
+
+  .mobileJoystickKnob {
+    width: 46px;
+    height: 46px;
   }
 
   .mobileLookGuide {
-    display: none;
+    right: calc(env(safe-area-inset-right) + 86px);
+    bottom: calc(env(safe-area-inset-bottom) + 17px);
+    display: grid;
+    width: 132px;
+    grid-template-columns: 45px minmax(0, 1fr);
+    gap: 6px;
+    padding: 6px 8px 6px 6px;
+  }
+
+  .mobileLookGesture {
+    width: 43px;
   }
 
   .mobileJumpButton {
-    right: max(16px, env(safe-area-inset-right));
-    bottom: max(14px, env(safe-area-inset-bottom));
+    right: calc(env(safe-area-inset-right) + 14px);
+    bottom: calc(env(safe-area-inset-bottom) + 14px);
     width: 64px;
     height: 64px;
   }
@@ -2339,6 +3034,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .welcomeScrim,
+  .welcomePanel,
+  .welcomeEnter,
   .museumMenuButton,
   .walletButton,
   .museumMenuPanel,
@@ -2353,7 +3051,11 @@
   .walkArtworkHint,
   .walkHelp,
   .walkHelpButton,
-  .mobileDpad button,
+  .mobileJoystickPad,
+  .mobileJoystickKnob,
+  .mobileLookGuide,
+  .mobileLookGesture i:first-child,
+  .mobileA11yDirectionButton,
   .collectionNote,
   .collectionToast,
   .previewRibbon,

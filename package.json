@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "museum:curate:holders": "node scripts/curate-museum-collector-assets.mjs",
     "export:terrarium-manifold": "node scripts/build-terrarium-manifold.mjs",
     "lint": "npm run lint:core && npm run lab:boundaries",
     "lint:core": "eslint app src/home src/museum src/core src/dev src/render src/experiment/slimePhysics.ts src/experiment/experimentMaterials.tsx tests scripts --max-warnings=0",

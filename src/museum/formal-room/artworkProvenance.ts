@@ -26,6 +26,12 @@ export type MuseumArtworkProvenance = {
   collection: string
   sourceUrl: string | null
   identity: MuseumArtworkTokenIdentity | null
+  ownerHint: MuseumArtworkOwnerHint | null
+}
+
+export type MuseumArtworkOwnerHint = {
+  address: `0x${string}`
+  label: string
 }
 
 export type MuseumArtworkOwner = {
@@ -107,12 +113,14 @@ export function createMuseumArtworkProvenance({
   collection,
   sourceUrl = null,
   identity,
+  ownerHint = null,
 }: {
   id: string
   title: string
   collection: string
   sourceUrl?: string | null
   identity?: MuseumArtworkTokenIdentity | null
+  ownerHint?: MuseumArtworkOwnerHint | null
 }): MuseumArtworkProvenance {
   return {
     id,
@@ -120,6 +128,7 @@ export function createMuseumArtworkProvenance({
     collection,
     sourceUrl,
     identity: identity ?? museumArtworkIdentityFromSourceUrl(sourceUrl),
+    ownerHint,
   }
 }
 
@@ -130,6 +139,13 @@ export function isMuseumArtworkProvenance(value: unknown): value is MuseumArtwor
     && typeof candidate.title === 'string'
     && typeof candidate.collection === 'string'
     && (candidate.sourceUrl === null || typeof candidate.sourceUrl === 'string')
+    && (candidate.ownerHint === undefined || candidate.ownerHint === null || (
+      typeof candidate.ownerHint === 'object'
+      && candidate.ownerHint !== null
+      && !Array.isArray(candidate.ownerHint)
+      && typeof (candidate.ownerHint as Record<string, unknown>).address === 'string'
+      && typeof (candidate.ownerHint as Record<string, unknown>).label === 'string'
+    ))
     && (candidate.identity === null || (
       typeof candidate.identity === 'object'
       && candidate.identity !== null
@@ -141,8 +157,17 @@ export function shortenMuseumAddress(address: string) {
   return ADDRESS_PATTERN.test(address) ? `${address.slice(0, 6)}…${address.slice(-4)}` : address
 }
 
-export function museumOwnerDisplayName(owner: MuseumArtworkOwner) {
-  return owner.ensName || owner.username || shortenMuseumAddress(owner.address)
+export function museumOwnerDisplayName(owner: MuseumArtworkOwner, ownerHint?: MuseumArtworkOwnerHint | null) {
+  const matchingHint = ownerHint?.address.toLowerCase() === owner.address.toLowerCase()
+    ? ownerHint.label.trim()
+    : ''
+  const hintedEnsName = /(?:^|\.)[^.\s]+\.eth$/i.test(matchingHint) ? matchingHint : ''
+  const hintedUsername = hintedEnsName ? '' : matchingHint
+  return owner.ensName
+    || hintedEnsName
+    || owner.username
+    || hintedUsername
+    || shortenMuseumAddress(owner.address)
 }
 
 export function museumArtworkOwnerRequestUrl(identity: MuseumArtworkTokenIdentity) {

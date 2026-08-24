@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 2,
+  "assetVersion": "top-holders-balanced-20260823",
+  "snapshot": {
+    "chainId": 8453,
+    "blockNumber": 50354787,
+    "blockHash": "0x12934c74a4b7e140fb53b16b268e071b2178624980dd52320409e33dd4316aff",
+    "capturedAt": "2026-08-23T15:30:11.232Z",
+    "method": "User-provided MoBA #1 holder roster above five tokens, cross-checked with live balanceOf; every selected work rechecked with ownerOf immediately before generation",
+    "sourceUrl": "https://base.blockscout.com/block/50354787"
+  },
+  "policy": {
+    "museumWide": "All 23 wallets holding more than five MoBA #1 tokens receive at least one of the 24 available frames; only one holder repeats.",
+    "moba-one": "Twelve portraits: one each for ranks 1-8 and the four additional eligible holders without MoBA #2 works at ranks 14, 16, 18, and 22.",
+    "moba-two": "Twelve hearts: one each for the eleven eligible holders not shown in MoBA #1, plus the featured rank-2 heart."
+  },
+  "holders": [
+    { "rank": 1, "address": "0x0cb27e883e207905ad2a94f9b6ef0c7a99223c37", "mobaOneBalance": 50, "mobaTwoBalance": 137, "username": "seanwbren", "ensName": "seanwbren.eth", "label": "seanwbren.eth" },
+    { "rank": 2, "address": "0x9c45f3cf0958c5a8b5b1f4477441b77c0fa68151", "mobaOneBalance": 30, "mobaTwoBalance": 32, "username": "CollectorCha", "ensName": "chromospace.eth", "label": "chromospace.eth" },
+    { "rank": 3, "address": "0x978bdbecb54c54800d01055df5a8f6af600bface", "mobaOneBalance": 20, "mobaTwoBalance": 0, "username": null, "ensName": "blue-onchain.eth", "label": "blue-onchain.eth" },
+    { "rank": 4, "address": "0xe5a76db577299caf1cc922f1be816db2a911253b", "mobaOneBalance": 20, "mobaTwoBalance": 0, "username": null, "ensName": null, "label": "0xe5a7…253b" },
+    { "rank": 5, "address": "0x381e0aa5965dd44ca0920577506bd1cc5677badb", "mobaOneBalance": 17, "mobaTwoBalance": 29, "username": "AngryWelder", "ensName": "base-builders.base.eth", "label": "base-builders.base.eth" },
+    { "rank": 6, "address": "0x3e9bd3b8318b60b631a10c663705abc5164416c1", "mobaOneBalance": 14, "mobaTwoBalance": 15, "username": "BleedBlu_Vault", "ensName": null, "label": "BleedBlu_Vault" },
+    { "rank": 7, "address": "0x4b3dcc15a8ab43128210fe3327bc830c36a15541", "mobaOneBalance": 13, "mobaTwoBalance": 14, "username": null, "ensName": "leadwithlove.eth", "label": "leadwithlove.eth" },
+    { "rank": 8, "address": "0x94cdbf69ad672ed4eab377cdbffb75c3893bebfb", "mobaOneBalance": 13, "mobaTwoBalance": 42, "username": "Xehanortt", "ensName": "xenmas.eth", "label": "xenmas.eth" },
+    { "rank": 9, "address": "0x36a64b3e3e0a77228449f98aa16eadfa9bad51ad", "mobaOneBalance": 10, "mobaTwoBalance": 10, "username": null, "ensName": "dad.base.eth", "label": "dad.base.eth" },
+    { "rank": 10, "address": "0x7d406de3d4b2970da41414f2024ac0fc87d41ca5", "mobaOneBalance": 10, "mobaTwoBalance": 75, "username": null, "ensName": "shaneisgreat.base.eth", "label": "shaneisgreat.base.eth" },
+    { "rank": 11, "address": "0x7ea0ccda3930abca0e6cb57f98e30ebcb708dd60", "mobaOneBalance": 10, "mobaTwoBalance": 1, "username": null, "ensName": "mobaonchain.base.eth", "label": "mobaonchain.base.eth" },
+    { "rank": 12, "address": "0x93953f26c713627b6d6f413954a3994a22b69e4c", "mobaOneBalance": 10, "mobaTwoBalance": 10, "username": null, "ensName": "kdust.eth", "label": "kdust.eth" },
+    { "rank": 13, "address": "0xd8f08986df7120a7ae34d6d0159ef43aa55d8be3", "mobaOneBalance": 10, "mobaTwoBalance": 21, "username": null, "ensName": null, "label": "0xd8f0…8be3" },
+    { "rank": 14, "address": "0xdc5c992de8b93d5cf1368c331eab067cdb0ca532", "mobaOneBalance": 10, "mobaTwoBalance": 0, "username": null, "ensName": null, "label": "0xdc5c…a532" },
+    { "rank": 15, "address": "0x087cafad3e67ce555e2d5ed71e7d8b246b9bdad7", "mobaOneBalance": 7, "mobaTwoBalance": 54, "username": null, "ensName": "ibidmo.base.eth", "label": "ibidmo.base.eth" },
+    { "rank": 16, "address": "0x07f40f373b66495aab0eefd2b5050fa72725e05f", "mobaOneBalance": 6, "mobaTwoBalance": 0, "username": null, "ensName": null, "label": "0x07f4…e05f" },
+    { "rank": 17, "address": "0x2625b4da309819cb8b5eb8aee13c86ad0e097ef6", "mobaOneBalance": 6, "mobaTwoBalance": 49, "username": null, "ensName": null, "label": "0x2625…7ef6" },
+    { "rank": 18, "address": "0x4ce1c49d6dc93f7c3b31b6716bb86cdd994260e6", "mobaOneBalance": 6, "mobaTwoBalance": 0, "username": null, "ensName": "8675309.base.eth", "label": "8675309.base.eth" },
+    { "rank": 19, "address": "0x4da73f16ea68796cf8cd5dd26f90b090280f4517", "mobaOneBalance": 6, "mobaTwoBalance": 12, "username": null, "ensName": "*🔵️🔵️🔵️🔵️🔵️🔵️🔵️🔵️.base.eth", "label": "*🔵️🔵️🔵️🔵️🔵️🔵️🔵️🔵️.base.eth" },
+    { "rank": 20, "address": "0x6d128898bb1ebc5b1bd953854905afbb9a9bdc53", "mobaOneBalance": 6, "mobaTwoBalance": 23, "username": null, "ensName": null, "label": "0x6d12…dc53" },
+    { "rank": 21, "address": "0xaed3d37b761bf61767208da1dbb3a971b9f13fb5", "mobaOneBalance": 6, "mobaTwoBalance": 37, "username": null, "ensName": "projectshift.base.eth", "label": "projectshift.base.eth" },
+    { "rank": 22, "address": "0xf1e1de48af7ad5e2b7157dc1d5d6e21499934116", "mobaOneBalance": 6, "mobaTwoBalance": 0, "username": null, "ensName": null, "label": "0xf1e1…4116" },
+    { "rank": 23, "address": "0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5", "mobaOneBalance": 6, "mobaTwoBalance": 21, "username": null, "ensName": "dabber.base.eth", "label": "dabber.base.eth" }
+  ],
+  "selections": {
+    "moba-one": [
+      { "tokenId": "394", "holderRank": 1, "holderAddress": "0x0cb27e883e207905ad2a94f9b6ef0c7a99223c37", "featured": true },
+      { "tokenId": "226", "holderRank": 2, "holderAddress": "0x9c45f3cf0958c5a8b5b1f4477441b77c0fa68151", "featured": false },
+      { "tokenId": "161", "holderRank": 3, "holderAddress": "0x978bdbecb54c54800d01055df5a8f6af600bface", "featured": false },
+      { "tokenId": "114", "holderRank": 4, "holderAddress": "0xe5a76db577299caf1cc922f1be816db2a911253b", "featured": false },
+      { "tokenId": "261", "holderRank": 5, "holderAddress": "0x381e0aa5965dd44ca0920577506bd1cc5677badb", "featured": false },
+      { "tokenId": "461", "holderRank": 6, "holderAddress": "0x3e9bd3b8318b60b631a10c663705abc5164416c1", "featured": false },
+      { "tokenId": "341", "holderRank": 7, "holderAddress": "0x4b3dcc15a8ab43128210fe3327bc830c36a15541", "featured": false },
+      { "tokenId": "279", "holderRank": 8, "holderAddress": "0x94cdbf69ad672ed4eab377cdbffb75c3893bebfb", "featured": false },
+      { "tokenId": "471", "holderRank": 14, "holderAddress": "0xdc5c992de8b93d5cf1368c331eab067cdb0ca532", "featured": false },
+      { "tokenId": "376", "holderRank": 16, "holderAddress": "0x07f40f373b66495aab0eefd2b5050fa72725e05f", "featured": false },
+      { "tokenId": "584", "holderRank": 18, "holderAddress": "0x4ce1c49d6dc93f7c3b31b6716bb86cdd994260e6", "featured": false },
+      { "tokenId": "427", "holderRank": 22, "holderAddress": "0xf1e1de48af7ad5e2b7157dc1d5d6e21499934116", "featured": false }
+    ],
+    "moba-two": [
+      { "tokenId": "220", "holderRank": 2, "holderAddress": "0x9c45f3cf0958c5a8b5b1f4477441b77c0fa68151", "featured": true },
+      { "tokenId": "170", "holderRank": 9, "holderAddress": "0x36a64b3e3e0a77228449f98aa16eadfa9bad51ad", "featured": false },
+      { "tokenId": "2142", "holderRank": 10, "holderAddress": "0x7d406de3d4b2970da41414f2024ac0fc87d41ca5", "featured": false },
+      { "tokenId": "586", "holderRank": 11, "holderAddress": "0x7ea0ccda3930abca0e6cb57f98e30ebcb708dd60", "featured": false },
+      { "tokenId": "532", "holderRank": 12, "holderAddress": "0x93953f26c713627b6d6f413954a3994a22b69e4c", "featured": false },
+      { "tokenId": "473", "holderRank": 13, "holderAddress": "0xd8f08986df7120a7ae34d6d0159ef43aa55d8be3", "featured": false },
+      { "tokenId": "2210", "holderRank": 15, "holderAddress": "0x087cafad3e67ce555e2d5ed71e7d8b246b9bdad7", "featured": false },
+      { "tokenId": "2139", "holderRank": 17, "holderAddress": "0x2625b4da309819cb8b5eb8aee13c86ad0e097ef6", "featured": false },
+      { "tokenId": "2173", "holderRank": 19, "holderAddress": "0x4da73f16ea68796cf8cd5dd26f90b090280f4517", "featured": false },
+      { "tokenId": "2097", "holderRank": 20, "holderAddress": "0x6d128898bb1ebc5b1bd953854905afbb9a9bdc53", "featured": false },
+      { "tokenId": "2204", "holderRank": 21, "holderAddress": "0xaed3d37b761bf61767208da1dbb3a971b9f13fb5", "featured": false },
+      { "tokenId": "2149", "holderRank": 23, "holderAddress": "0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5", "featured": false }
+    ]
+  }
+}

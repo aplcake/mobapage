@@ -59,10 +59,11 @@ import {
   type PermanentMuseumGalleryId,
 } from './museumLighting'
 import {
-  MUSEUM_ATRIUM_TREE_SPECS,
   MUSEUM_EXTERIOR_TREE_SPECS,
-  type MuseumAtriumTreeSpec,
+  MUSEUM_GALLERY_PLANT_SPECS,
+  museumGalleryPlantLocalPosition,
   type MuseumExteriorTreeSpec,
+  type MuseumGalleryPlantSpec,
 } from './museumTreeDesign'
 import {
   ATRIUM_REGISTRY_DEVICE_POSITION,
@@ -86,6 +87,21 @@ import {
   MUSEUM_ARTWORK_USER_DATA_KEY,
   museumArtworkIdentityFromAsset,
 } from './artworkProvenance'
+import {
+  MOBA_TWO_HEART_SCULPTURE_SPEC,
+  mobaTwoHeartMotionAtPhase,
+} from './mobaTwoHeartSculpture'
+import { MonkeydhashyCreateboxInstallation } from './MonkeydhashyCreateboxInstallation'
+import {
+  MUSEUM_LORE_BY_ID,
+  type MuseumLoreChapter,
+  type MuseumLoreId,
+} from './museumLore'
+import {
+  MuseumEvergreenSprig,
+  MuseumExteriorTreeBotany,
+  MuseumGalleryPlantBotany,
+} from './MuseumBotanicalKit'
 
 const INK = '#17131d'
 const BRASS = '#d2a543'
@@ -93,6 +109,12 @@ const AGED_BRASS = '#a98c58'
 const MUSEUM_OUTLINE_SCALE = 0.68
 const MUSEUM_EMISSIVE_SCALE = 0.42
 const TOON_RAMP = getToonRampTexture()
+const MUSEUM_GALLERY_PLANTS_BY_ID = {
+  'moba-one': MUSEUM_GALLERY_PLANT_SPECS.filter((spec) => spec.galleryId === 'moba-one'),
+  'moba-two': MUSEUM_GALLERY_PLANT_SPECS.filter((spec) => spec.galleryId === 'moba-two'),
+  photography: MUSEUM_GALLERY_PLANT_SPECS.filter((spec) => spec.galleryId === 'photography'),
+  holiday: MUSEUM_GALLERY_PLANT_SPECS.filter((spec) => spec.galleryId === 'holiday'),
+} satisfies Partial<Record<MuseumGalleryId, readonly MuseumGalleryPlantSpec[]>>
 const PORTRAIT_WASH_SHAPE = new THREE.Shape()
 PORTRAIT_WASH_SHAPE.moveTo(-0.18, 0.5)
 PORTRAIT_WASH_SHAPE.lineTo(0.18, 0.5)
@@ -254,56 +276,6 @@ function MuseumSphere({
       scale={[...scale]}
       outlineWidth={outlineWidth * MUSEUM_OUTLINE_SCALE}
       geometry={<sphereGeometry args={[0.5, 20, 14]} />}
-      material={<meshToonMaterial color={color} gradientMap={TOON_RAMP} />}
-    />
-  )
-}
-
-function MuseumTaperedTreePart({
-  position,
-  scale,
-  rotation = [0, 0, 0],
-  color,
-  outlineWidth = 0.032,
-}: {
-  position: Vec3
-  scale: Vec3
-  rotation?: Vec3
-  color: string
-  outlineWidth?: number
-}) {
-  return (
-    <OutlineMesh
-      position={position}
-      rotation={rotation}
-      scale={[...scale]}
-      outlineWidth={outlineWidth * MUSEUM_OUTLINE_SCALE}
-      geometry={<cylinderGeometry args={[0.34, 0.56, 1, 8]} />}
-      material={<meshToonMaterial color={color} gradientMap={TOON_RAMP} />}
-    />
-  )
-}
-
-function MuseumCanopyCluster({
-  position,
-  scale,
-  rotation = [0, 0, 0],
-  color,
-  outlineWidth = 0.035,
-}: {
-  position: Vec3
-  scale: Vec3
-  rotation?: Vec3
-  color: string
-  outlineWidth?: number
-}) {
-  return (
-    <OutlineMesh
-      position={position}
-      rotation={rotation}
-      scale={[...scale]}
-      outlineWidth={outlineWidth * MUSEUM_OUTLINE_SCALE}
-      geometry={<dodecahedronGeometry args={[0.5, 0]} />}
       material={<meshToonMaterial color={color} gradientMap={TOON_RAMP} />}
     />
   )
@@ -551,33 +523,8 @@ function AtriumDaylightEffects({ active }: { active: boolean }) {
   )
 }
 
-const EXTERIOR_TREE_CLUSTERS = [
-  [
-    { position: [-0.24, 2.02, 0.05], scale: [1.18, 1.3, 1.02], rotation: [0.08, 0.16, -0.06], tone: 0 },
-    { position: [0.5, 2.18, -0.08], scale: [0.96, 1.08, 0.88], rotation: [-0.1, -0.22, 0.08], tone: 1 },
-    { position: [-0.05, 2.72, 0.08], scale: [0.88, 0.96, 0.8], rotation: [0.14, 0.32, 0], tone: 2 },
-    { position: [-0.64, 2.42, -0.04], scale: [0.78, 0.82, 0.72], rotation: [-0.12, 0.1, -0.08], tone: 1 },
-    { position: [0.12, 2.42, 0.38], scale: [0.8, 0.86, 0.7], rotation: [0.04, -0.34, 0.05], tone: 0 },
-  ],
-  [
-    { position: [0.12, 2.04, 0.06], scale: [1.2, 1.24, 1.02], rotation: [-0.1, 0.2, 0.04], tone: 0 },
-    { position: [-0.5, 2.28, -0.04], scale: [0.9, 1.04, 0.84], rotation: [0.08, -0.18, -0.06], tone: 1 },
-    { position: [0.34, 2.68, -0.02], scale: [0.86, 0.94, 0.76], rotation: [-0.14, 0.3, 0.09], tone: 2 },
-    { position: [0.7, 2.3, 0.12], scale: [0.72, 0.78, 0.68], rotation: [0.1, -0.1, 0.08], tone: 1 },
-    { position: [-0.06, 2.5, 0.38], scale: [0.78, 0.84, 0.72], rotation: [-0.04, 0.36, -0.04], tone: 0 },
-  ],
-  [
-    { position: [-0.08, 2.08, 0.04], scale: [1.12, 1.38, 0.98], rotation: [0.1, -0.16, -0.04], tone: 0 },
-    { position: [0.52, 2.28, -0.06], scale: [0.86, 0.98, 0.8], rotation: [-0.08, 0.22, 0.08], tone: 1 },
-    { position: [-0.46, 2.62, 0.1], scale: [0.88, 0.96, 0.78], rotation: [0.14, 0.12, -0.08], tone: 2 },
-    { position: [0.12, 2.92, -0.02], scale: [0.7, 0.74, 0.64], rotation: [-0.12, -0.24, 0.04], tone: 1 },
-    { position: [0.08, 2.46, 0.4], scale: [0.76, 0.86, 0.7], rotation: [0.02, 0.34, -0.04], tone: 0 },
-  ],
-] as const
-
 function CourtyardTree({ spec }: { spec: MuseumExteriorTreeSpec }) {
   const palette = exteriorTreePalette(spec.color)
-  const clusters = EXTERIOR_TREE_CLUSTERS[spec.variant]
   return (
     <group
       position={[...spec.position]}
@@ -585,88 +532,7 @@ function CourtyardTree({ spec }: { spec: MuseumExteriorTreeSpec }) {
       scale={[spec.scale, spec.scale, spec.scale]}
       userData={{ museumTree: spec.id, treeFamily: 'faceted-exterior-garden' }}
     >
-      <MuseumTaperedTreePart position={[0, 1.02, 0]} scale={[0.34, 1.94, 0.34]} color="#654531" outlineWidth={0.03} />
-      <MuseumTaperedTreePart position={[-0.18, 1.55, 0.02]} scale={[0.16, 0.84, 0.16]} rotation={[0.04, 0, 0.48]} color="#5b3d2b" outlineWidth={0.022} />
-      <MuseumTaperedTreePart position={[0.2, 1.62, -0.02]} scale={[0.15, 0.76, 0.15]} rotation={[-0.04, 0, -0.5]} color="#5b3d2b" outlineWidth={0.022} />
-      <MuseumBox position={[-0.17, 0.12, 0]} scale={[0.42, 0.08, 0.13]} rotation={[0, -0.34, 0.05]} color="#57402e" outlineWidth={0.014} />
-      <MuseumBox position={[0.16, 0.12, 0.04]} scale={[0.38, 0.075, 0.12]} rotation={[0, 0.52, -0.04]} color="#57402e" outlineWidth={0.014} />
-      {clusters.map((cluster, index) => (
-        <MuseumCanopyCluster
-          key={index}
-          position={cluster.position}
-          scale={cluster.scale}
-          rotation={cluster.rotation}
-          color={palette[cluster.tone]}
-          outlineWidth={0.032}
-        />
-      ))}
-    </group>
-  )
-}
-
-const ATRIUM_TREE_CLUSTERS = [
-  [
-    { position: [-0.22, 2.18, 0.04], scale: [1.02, 1.16, 0.9], rotation: [0.08, 0.12, -0.05], tone: 0 },
-    { position: [0.46, 2.34, -0.08], scale: [0.82, 0.98, 0.76], rotation: [-0.08, -0.2, 0.08], tone: 1 },
-    { position: [-0.48, 2.58, 0.1], scale: [0.72, 0.82, 0.68], rotation: [0.12, 0.28, -0.08], tone: 1 },
-    { position: [0.08, 2.92, -0.04], scale: [0.72, 0.78, 0.62], rotation: [-0.12, -0.14, 0.04], tone: 2 },
-    { position: [0.48, 2.76, 0.1], scale: [0.52, 0.58, 0.5], rotation: [0.08, 0.32, 0.05], tone: 2 },
-  ],
-  [
-    { position: [0.16, 2.15, 0.04], scale: [1.04, 1.1, 0.92], rotation: [-0.08, 0.18, 0.04], tone: 0 },
-    { position: [-0.5, 2.34, -0.06], scale: [0.78, 0.94, 0.72], rotation: [0.1, -0.22, -0.08], tone: 1 },
-    { position: [0.54, 2.55, 0.08], scale: [0.7, 0.8, 0.66], rotation: [-0.1, 0.24, 0.06], tone: 1 },
-    { position: [-0.14, 2.84, 0.02], scale: [0.78, 0.86, 0.66], rotation: [0.12, 0.1, -0.04], tone: 2 },
-    { position: [0.3, 3.03, -0.08], scale: [0.5, 0.54, 0.46], rotation: [-0.08, -0.3, 0.08], tone: 2 },
-  ],
-  [
-    { position: [-0.08, 2.2, 0.04], scale: [0.94, 1.2, 0.86], rotation: [0.1, -0.14, -0.04], tone: 0 },
-    { position: [0.46, 2.38, -0.08], scale: [0.76, 0.88, 0.7], rotation: [-0.1, 0.24, 0.08], tone: 1 },
-    { position: [-0.5, 2.56, 0.12], scale: [0.76, 0.84, 0.68], rotation: [0.12, 0.18, -0.08], tone: 1 },
-    { position: [0, 2.9, -0.02], scale: [0.7, 0.76, 0.58], rotation: [-0.08, -0.18, 0.04], tone: 2 },
-    { position: [0.42, 2.82, 0.12], scale: [0.48, 0.54, 0.46], rotation: [0.08, 0.3, 0.04], tone: 2 },
-  ],
-] as const
-
-function AtriumSpecimenTree({ spec }: { spec: MuseumAtriumTreeSpec }) {
-  const clusters = ATRIUM_TREE_CLUSTERS[spec.variant]
-  const labelSide = spec.position[0] < 0 ? 1 : -1
-  return (
-    <group
-      position={[...spec.position]}
-      scale={[spec.scale, spec.scale, spec.scale]}
-      userData={{ museumTree: spec.id, treeFamily: 'faceted-atrium-specimen' }}
-    >
-      <MuseumBox position={[0, 0.16, 0]} scale={[1.34, 0.32, 1.34]} color="#c8bea4" outlineWidth={0.035} />
-      <MuseumBox position={[0, 0.35, 0]} scale={[1.16, 0.16, 1.16]} color="#ded5c0" outlineWidth={0.022} />
-      <MuseumCylinder position={[0, 0.455, 0]} scale={[0.98, 0.055, 0.98]} color="#514335" outlineWidth={0.009} segments={12} />
-      <group rotation={[0, spec.yaw, 0]}>
-        <MuseumTaperedTreePart position={[0, 1.26, 0]} scale={[0.28, 1.64, 0.28]} color="#684632" outlineWidth={0.03} />
-        <MuseumTaperedTreePart position={[-0.2, 1.68, 0.03]} scale={[0.15, 0.8, 0.15]} rotation={[0.03, 0, 0.5]} color="#5b3d2b" outlineWidth={0.021} />
-        <MuseumTaperedTreePart position={[0.22, 1.75, -0.03]} scale={[0.14, 0.74, 0.14]} rotation={[-0.04, 0, -0.5]} color="#5b3d2b" outlineWidth={0.021} />
-        {[0, Math.PI * 0.66, Math.PI * 1.32].map((angle) => (
-          <MuseumBox
-            key={angle}
-            position={[Math.cos(angle) * 0.15, 0.535, Math.sin(angle) * 0.15]}
-            scale={[0.34, 0.05, 0.1]}
-            rotation={[0, -angle, 0]}
-            color="#684b38"
-            outlineWidth={0.009}
-          />
-        ))}
-        {clusters.map((cluster, index) => (
-          <MuseumCanopyCluster
-            key={index}
-            position={cluster.position}
-            scale={cluster.scale}
-            rotation={cluster.rotation}
-            color={spec.canopy[cluster.tone]}
-            outlineWidth={0.033}
-          />
-        ))}
-      </group>
-      <MuseumBox position={[labelSide * 0.615, 0.35, 0]} scale={[0.07, 0.13, 0.48]} color="#344f46" outlineWidth={0.015} />
-      <MuseumBox position={[labelSide * 0.655, 0.36, 0]} scale={[0.025, 0.075, 0.36]} color={BRASS} outlineWidth={0.008} />
+      <MuseumExteriorTreeBotany variant={spec.variant} palette={palette} />
     </group>
   )
 }
@@ -880,6 +746,7 @@ function AtriumArtworkMedia({
           height={layout.mediaHeight}
           featured={layout.outerWidth > 1.1}
           startDelayMs={animationIndex * 48}
+          targetFps={6}
           surfaceZ={0.15}
         />
       ) : null}
@@ -953,6 +820,9 @@ function AtriumWallFrame({ bay, artwork, animationIndex }: { bay: (typeof ATRIUM
     collection: artwork.collection,
     sourceUrl: artwork.sourceUrl,
     identity: artwork.identity ? museumArtworkIdentityFromAsset(artwork.identity) : undefined,
+    ownerHint: artwork.ownerHint
+      ? { address: artwork.ownerHint.address, label: artwork.ownerHint.label }
+      : null,
   })
   return (
     <group
@@ -1019,20 +889,91 @@ function OpeningSalonMobaGalleryHang() {
 
 function AtriumGlowbudGardenBeds() {
   return (
-    <group userData={{ garden: 'glowbud-resident-beds', flush: true }}>
+    <group userData={{ garden: 'glowbud-resident-beds', botanicalRhythm: 'clear-resident-display', flush: true }}>
       {([-1, 1] as const).map((side) => (
         <group key={side} position={[side * 2.3, -1.9, 19.55]}>
-          <MuseumBox position={[0, 0.025, 0]} scale={[1.08, 0.05, 9.45]} color="#52644d" outlineWidth={0.01} />
+          <MuseumBox position={[0, 0.025, 0]} scale={[1.08, 0.05, 9.45]} color="#354b3c" outlineWidth={0.01} />
           <MuseumBox position={[-side * 0.55, 0.045, 0]} scale={[0.08, 0.07, 9.55]} color="#bda779" outlineWidth={0.008} />
           <MuseumBox position={[side * 0.55, 0.045, 0]} scale={[0.08, 0.07, 9.55]} color="#bda779" outlineWidth={0.008} />
-          {[-3.95, -2.95, -1.9, -0.95, 0.95, 1.9, 2.95, 3.95].map((offset, index) => (
-            <group key={offset} position={[side * (index % 2 ? 0.36 : -0.34), 0.11, offset]} rotation={[0, index * 0.7, 0]}>
-              <MuseumSphere position={[-0.08, 0.03, 0]} scale={[0.16, 0.09, 0.12]} color={index % 3 ? '#6e855e' : '#76946d'} outlineWidth={0.008} />
-              <MuseumSphere position={[0.09, 0.05, 0.03]} scale={[0.13, 0.11, 0.1]} color={index % 2 ? '#8b9e6c' : '#5f7958'} outlineWidth={0.008} />
-            </group>
-          ))}
         </group>
       ))}
+    </group>
+  )
+}
+
+function AtriumResidentGlowbud({
+  resident,
+  index,
+  paused,
+  reducedMotion,
+  museumResident,
+  onSelect,
+}: {
+  resident: MuseumAssetSummary
+  index: number
+  paused: boolean
+  reducedMotion: boolean
+  museumResident: boolean
+  onSelect?: (resident: MuseumAssetSummary) => void
+}) {
+  const [hovered, setHovered] = useState(false)
+  const slot = ATRIUM_RESIDENT_SLOTS[index]
+  const attributes = resident.attributes.length ? resident.attributes : glowbudAttributesForToken(resident.tokenId)
+
+  useEffect(() => {
+    if (!hovered) return
+    document.body.style.cursor = 'pointer'
+    return () => {
+      document.body.style.cursor = ''
+    }
+  }, [hovered])
+
+  if (!slot) return null
+  return (
+    <group
+      position={[slot.position[0], slot.position[1], slot.position[2]]}
+      rotation={[0, slot.yaw, 0]}
+      onPointerOver={(event) => {
+        event.stopPropagation()
+        setHovered(true)
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation()
+        setHovered(false)
+      }}
+      onClick={(event) => {
+        event.stopPropagation()
+        setHovered(false)
+        onSelect?.(resident)
+      }}
+      userData={{
+        atriumResident: resident.tokenId,
+        museumResident,
+        interaction: 'open-pixel-to-3d-study',
+      }}
+    >
+      <mesh
+        position={[0, 0.025, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        visible={hovered}
+        renderOrder={7}
+      >
+        <ringGeometry args={[0.57, 0.7, 40]} />
+        <meshBasicMaterial
+          color="#8fe3d8"
+          transparent
+          opacity={0.78}
+          depthWrite={false}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      <GlowbudMuseumAvatar
+        tokenId={resident.tokenId}
+        attributes={attributes}
+        phase={index * 0.72}
+        paused={paused}
+        reducedMotion={reducedMotion}
+      />
     </group>
   )
 }
@@ -1042,11 +983,13 @@ function AtriumPersonalInstallation({
   assets,
   paused,
   reducedMotion,
+  onSelectResident,
 }: {
   installation: AppliedAtriumInstallation | null
   assets: readonly MuseumAssetSummary[]
   paused: boolean
   reducedMotion: boolean
+  onSelectResident?: (resident: MuseumAssetSummary) => void
 }) {
   const residents = selectedResidentAssets(installation, assets)
   const wallArtworks = buildAtriumWallInstallation(installation, assets)
@@ -1057,16 +1000,17 @@ function AtriumPersonalInstallation({
         const artwork = wallArtworks[index]!
         return <AtriumWallFrame key={`${bay.id}-${artwork.id}`} bay={bay} artwork={artwork} animationIndex={index} />
       })}
-      {residents.map((resident, index) => {
-        const slot = ATRIUM_RESIDENT_SLOTS[index]
-        if (!slot) return null
-        const attributes = resident.attributes.length ? resident.attributes : glowbudAttributesForToken(resident.tokenId)
-        return (
-          <group key={resident.key} position={[slot.position[0], slot.position[1], slot.position[2]]} rotation={[0, slot.yaw, 0]} userData={{ atriumResident: resident.tokenId, museumResident: !installation }}>
-            <GlowbudMuseumAvatar tokenId={resident.tokenId} attributes={attributes} phase={index * 0.72} paused={paused} reducedMotion={reducedMotion} />
-          </group>
-        )
-      })}
+      {residents.map((resident, index) => (
+        <AtriumResidentGlowbud
+          key={resident.key}
+          resident={resident}
+          index={index}
+          paused={paused}
+          reducedMotion={reducedMotion}
+          museumResident={!installation}
+          onSelect={onSelectResident}
+        />
+      ))}
     </group>
   )
 }
@@ -1078,6 +1022,7 @@ function MuseumAtrium({
   installationAssets,
   installationPaused,
   onOpenRegistry,
+  onSelectResident,
 }: {
   active: boolean
   reducedMotion: boolean
@@ -1085,6 +1030,7 @@ function MuseumAtrium({
   installationAssets: readonly MuseumAssetSummary[]
   installationPaused: boolean
   onOpenRegistry?: () => void
+  onSelectResident?: (resident: MuseumAssetSummary) => void
 }) {
   const roofAngle = Math.atan2(1.72, 5.25)
   const roofSlope = Math.hypot(5.25, 1.72)
@@ -1161,7 +1107,6 @@ function MuseumAtrium({
         </group>
       )))}
 
-      {MUSEUM_ATRIUM_TREE_SPECS.map((spec) => <AtriumSpecimenTree key={spec.id} spec={spec} />)}
       <AtriumDaylightEffects active={active} />
       <AtriumRegistryDevice onOpen={onOpenRegistry} />
       <AtriumBench x={-3.75} />
@@ -1171,6 +1116,7 @@ function MuseumAtrium({
         assets={installationAssets}
         reducedMotion={reducedMotion}
         paused={installationPaused}
+        onSelectResident={onSelectResident}
       />
       <AtriumMobile active={active} reducedMotion={reducedMotion} />
       <AtriumRearPassage />
@@ -1614,8 +1560,15 @@ function CourtyardGardenDoor({ x, onOpen }: { x: number; onOpen?: () => void }) 
       </mesh>
       {([-1, 1] as const).map((side) => (
         <group key={`courtyard-door-garden-${side}`} position={[side * 2.12, -1.34, -0.72]}>
-          <MuseumBox position={[0, 0.52, 0]} scale={[0.16, 1.18, 0.12]} color="#5c4431" outlineWidth={0.012} />
-          <MuseumSphere position={[side * 0.08, 1.22, 0]} scale={[0.68, 0.88, 0.36]} color={side < 0 ? '#64805e' : '#718d68'} outlineWidth={0.018} />
+          <group position={[0, 0.12, 0]} scale={[0.48, 0.48, 0.4]} rotation={[0, side * 0.34, 0]}>
+            <MuseumExteriorTreeBotany
+              variant={side < 0 ? 0 : 1}
+              compact
+              palette={side < 0
+                ? ['#486d55', '#64805e', '#8fa174']
+                : ['#4e725b', '#718d68', '#98a778']}
+            />
+          </group>
         </group>
       ))}
 
@@ -1948,6 +1901,194 @@ function LoopSign({
   )
 }
 
+function drawWrappedMuseumText(
+  context: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  startY: number,
+  maxWidth: number,
+  lineHeight: number,
+  maxLines: number,
+) {
+  const words = text.split(/\s+/)
+  const lines: string[] = []
+  let line = ''
+
+  words.forEach((word) => {
+    const candidate = line ? `${line} ${word}` : word
+    if (context.measureText(candidate).width <= maxWidth || !line) {
+      line = candidate
+      return
+    }
+    lines.push(line)
+    line = word
+  })
+  if (line) lines.push(line)
+
+  const visibleLines = lines.slice(0, maxLines)
+  if (lines.length > maxLines) {
+    let finalLine = visibleLines[maxLines - 1]
+    while (finalLine.length > 1 && context.measureText(`${finalLine}…`).width > maxWidth) {
+      finalLine = finalLine.slice(0, -1)
+    }
+    visibleLines[maxLines - 1] = `${finalLine.trimEnd()}…`
+  }
+  visibleLines.forEach((visibleLine, index) => context.fillText(visibleLine, x, startY + index * lineHeight))
+}
+
+function drawMuseumLorePlaque(context: CanvasRenderingContext2D, chapter: MuseumLoreChapter) {
+  const { width, height } = context.canvas
+  context.fillStyle = '#efe4ca'
+  context.fillRect(0, 0, width, height)
+  const wash = context.createLinearGradient(0, 0, width, height)
+  wash.addColorStop(0, 'rgba(255,255,255,.7)')
+  wash.addColorStop(0.46, 'rgba(255,255,255,0)')
+  wash.addColorStop(1, 'rgba(72,48,40,.08)')
+  context.fillStyle = wash
+  context.fillRect(0, 0, width, height)
+
+  context.strokeStyle = '#8e7144'
+  context.lineWidth = 7
+  context.strokeRect(20, 20, width - 40, height - 40)
+  context.strokeStyle = 'rgba(63,45,41,.3)'
+  context.lineWidth = 2
+  context.strokeRect(37, 37, width - 74, height - 74)
+
+  context.fillStyle = chapter.accent
+  context.fillRect(0, 0, 26, height)
+  context.fillStyle = '#2b2528'
+  context.fillRect(26, 0, 7, height)
+
+  context.textAlign = 'left'
+  context.textBaseline = 'alphabetic'
+  context.fillStyle = '#6a5847'
+  context.font = '800 25px Arial, Helvetica, sans-serif'
+  context.fillText(`${chapter.trailLabel.toUpperCase()}  ·  ${chapter.date.toUpperCase()}`, 76, 90)
+
+  context.fillStyle = '#261f22'
+  context.font = '700 63px Georgia, Times New Roman, serif'
+  drawWrappedMuseumText(context, chapter.shortTitle, 76, 176, width - 142, 70, 2)
+
+  context.fillStyle = chapter.accent
+  context.fillRect(76, 282, 94, 7)
+
+  context.fillStyle = '#594b43'
+  context.font = '500 31px Arial, Helvetica, sans-serif'
+  drawWrappedMuseumText(context, chapter.plaqueCopy, 76, 350, width - 142, 43, 3)
+
+  context.fillStyle = '#2d282b'
+  context.fillRect(76, height - 100, width - 152, 56)
+  context.fillStyle = chapter.accent
+  context.fillRect(76, height - 100, 12, 56)
+  context.fillStyle = '#fff3d4'
+  context.font = '900 23px Arial, Helvetica, sans-serif'
+  context.fillText('OPEN THE STORY  →', 112, height - 64)
+}
+
+function useMuseumLorePlaqueTexture(chapter: MuseumLoreChapter) {
+  const texture = useMemo(() => {
+    if (typeof document === 'undefined') return createFallbackTexture(chapter.accent)
+    const canvas = document.createElement('canvas')
+    canvas.width = 1024
+    canvas.height = 640
+    const context = canvas.getContext('2d')
+    if (!context) return createFallbackTexture(chapter.accent)
+    drawMuseumLorePlaque(context, chapter)
+    const nextTexture = new THREE.CanvasTexture(canvas)
+    nextTexture.colorSpace = THREE.SRGBColorSpace
+    nextTexture.anisotropy = 8
+    nextTexture.needsUpdate = true
+    return nextTexture
+  }, [chapter])
+
+  useEffect(() => () => texture.dispose(), [texture])
+  return texture
+}
+
+function MuseumLoreStation({
+  chapterId,
+  position,
+  rotationY,
+  onOpen,
+}: {
+  chapterId: MuseumLoreId
+  position: Vec3
+  rotationY: number
+  onOpen?: (chapterId: MuseumLoreId) => void
+}) {
+  const [hovered, setHovered] = useState(false)
+  const chapter = MUSEUM_LORE_BY_ID[chapterId]
+  const texture = useMuseumLorePlaqueTexture(chapter)
+  const width = 1.72
+  const height = 1.08
+
+  useEffect(() => {
+    if (!hovered) return
+    document.body.style.cursor = 'pointer'
+    return () => {
+      document.body.style.cursor = ''
+    }
+  }, [hovered])
+
+  return (
+    <group
+      position={[...position]}
+      rotation={[0, rotationY, 0]}
+      onPointerOver={(event) => {
+        event.stopPropagation()
+        setHovered(true)
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation()
+        setHovered(false)
+      }}
+      onClick={(event) => {
+        event.stopPropagation()
+        setHovered(false)
+        onOpen?.(chapterId)
+      }}
+      userData={{
+        museumLore: chapterId,
+        interaction: 'open-museum-story',
+        room: chapter.room,
+      }}
+    >
+      <MuseumBox
+        position={[0, 0, 0]}
+        scale={[width + 0.18, height + 0.18, 0.1]}
+        color={hovered ? chapter.accent : AGED_BRASS}
+        outlineWidth={0.022}
+        emissive={chapter.accent}
+        emissiveIntensity={hovered ? 0.12 : 0.025}
+      />
+      <MuseumBox position={[0, 0, 0.065]} scale={[width + 0.04, height + 0.04, 0.07]} color="#282127" outlineWidth={0.011} />
+      <mesh position={[0, 0, 0.112]} scale={[width, height, 1]} renderOrder={8}>
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial map={texture} toneMapped={false} />
+      </mesh>
+      <MuseumBox
+        position={[0, height * 0.5 + 0.17, 0.1]}
+        scale={[width * 0.76, 0.08, 0.16]}
+        color="#332a2b"
+        outlineWidth={0.012}
+        emissive={chapter.accent}
+        emissiveIntensity={hovered ? 0.2 : 0.06}
+      />
+      <pointLight
+        position={[0, height * 0.5 + 0.08, 0.5]}
+        color={chapter.accent}
+        intensity={hovered ? 0.65 : 0.24}
+        distance={2.5}
+        decay={2}
+      />
+      <mesh position={[0, 0, 0.18]} scale={[width + 0.18, height + 0.18, 1]} renderOrder={9}>
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial transparent opacity={0.001} depthWrite={false} />
+      </mesh>
+    </group>
+  )
+}
+
 function GalleryAtriumPortal({ gallery }: { gallery: MuseumGalleryPlan }) {
   if (gallery.id === 'lobby') return null
   const isPortraitSalon = gallery.id === 'moba-one'
@@ -2143,6 +2284,7 @@ function MuseumLoopArchitecture({
   atriumInstallationAssets,
   atriumInstallationPaused,
   onOpenAtriumRegistry,
+  onSelectAtriumResident,
   onOpenCourtyard,
   onOpenBurnRoom,
 }: {
@@ -2152,6 +2294,7 @@ function MuseumLoopArchitecture({
   atriumInstallationAssets: readonly MuseumAssetSummary[]
   atriumInstallationPaused: boolean
   onOpenAtriumRegistry?: () => void
+  onSelectAtriumResident?: (resident: MuseumAssetSummary) => void
   onOpenCourtyard?: () => void
   onOpenBurnRoom?: () => void
 }) {
@@ -2167,6 +2310,7 @@ function MuseumLoopArchitecture({
         installationAssets={atriumInstallationAssets}
         installationPaused={atriumInstallationPaused}
         onOpenRegistry={onOpenAtriumRegistry}
+        onSelectResident={onSelectAtriumResident}
       />
       <MuseumExteriorGrounds />
       {MUSEUM_STRUCTURAL_SLABS.map((slab) => {
@@ -2346,25 +2490,12 @@ function GalleryWindow({
             color="#8b9785"
             outlineWidth={0.003}
           />
-          <MuseumCylinder
-            position={[spec.width * 0.2, -spec.height * 0.04, 0.03]}
-            scale={[0.045, spec.height * 0.5, 0.045]}
-            color="#655d45"
-            outlineWidth={0.003}
-            segments={8}
-          />
-          <MuseumSphere
-            position={[-spec.width * 0.18, -spec.height * 0.18, 0.04]}
-            scale={[spec.width * 0.5, spec.height * 0.34, 0.18]}
-            color="#758570"
-            outlineWidth={0.003}
-          />
-          <MuseumSphere
-            position={[spec.width * 0.23, -spec.height * 0.1, 0.06]}
-            scale={[spec.width * 0.42, spec.height * 0.4, 0.16]}
-            color="#839078"
-            outlineWidth={0.003}
-          />
+          <group position={[-spec.width * 0.18, -spec.height * 0.42, 0.03]} scale={[0.24, 0.24, 0.16]}>
+            <MuseumExteriorTreeBotany compact variant={0} palette={['#536957', '#758570', '#9ca68d']} />
+          </group>
+          <group position={[spec.width * 0.24, -spec.height * 0.4, 0.05]} scale={[0.2, 0.2, 0.14]}>
+            <MuseumExteriorTreeBotany compact variant={2} palette={['#5c705c', '#839078', '#aab29a']} />
+          </group>
         </group>
       ) : null}
 
@@ -2376,25 +2507,12 @@ function GalleryWindow({
             color="#829792"
             outlineWidth={0.003}
           />
-          <MuseumSphere
-            position={[-spec.width * 0.23, -spec.height * 0.16, 0.04]}
-            scale={[spec.width * 0.44, spec.height * 0.3, 0.18]}
-            color="#708984"
-            outlineWidth={0.003}
-          />
-          <MuseumSphere
-            position={[spec.width * 0.2, -spec.height * 0.08, 0.07]}
-            scale={[spec.width * 0.38, spec.height * 0.34, 0.16]}
-            color="#8ba09a"
-            outlineWidth={0.003}
-          />
-          <MuseumCylinder
-            position={[spec.width * 0.24, -spec.height * 0.05, 0.025]}
-            scale={[0.035, spec.height * 0.42, 0.035]}
-            color="#586d67"
-            outlineWidth={0.003}
-            segments={8}
-          />
+          <group position={[-spec.width * 0.22, -spec.height * 0.43, 0.04]} scale={[0.22, 0.22, 0.15]}>
+            <MuseumExteriorTreeBotany compact variant={1} palette={['#526c67', '#708984', '#94a9a1']} />
+          </group>
+          <group position={[spec.width * 0.2, -spec.height * 0.41, 0.06]} scale={[0.2, 0.2, 0.14]}>
+            <MuseumExteriorTreeBotany compact variant={2} palette={['#617b75', '#8ba09a', '#b0bdb5']} />
+          </group>
         </group>
       ) : null}
 
@@ -2477,7 +2595,7 @@ function GallerySkylight({
   const isPortraitLaylight = gallery.id === 'moba-one'
   const isPhotographyGallery = gallery.id === 'photography'
   const isWinterConservatory = gallery.id === 'holiday'
-  const skylightX = isHeartOculus ? -3.85 : 0
+  const skylightX = isHeartOculus ? MOBA_TWO_HEART_SCULPTURE_SPEC.localPosition[0] : 0
   const panelColor = isPhotographyGallery ? '#dceae6' : isHeartGallery ? '#dfe7e2' : isPortraitLaylight ? '#edd8b7' : isWinterConservatory ? '#eaf0e7' : gallery.light
   return (
     <group userData={isHeartGallery ? { skylight: 'mineral-gallery-laylight' } : isPhotographyGallery ? { skylight: 'north-light-roof-monitor' } : isWinterConservatory ? { skylight: 'winter-garden-laylight' } : undefined}>
@@ -3322,6 +3440,99 @@ function GalleryBench({ gallery, interior }: { gallery: MuseumGalleryPlan; inter
   )
 }
 
+function GalleryPlantVessel({ spec }: { spec: MuseumGalleryPlantSpec }) {
+  if (spec.galleryId === 'moba-one') {
+    return (
+      <group>
+        <MuseumCylinder position={[0, 0.24, 0]} scale={[0.72, 0.46, 0.72]} color="#4a332e" outlineWidth={0.022} segments={12} />
+        <MuseumCylinder position={[0, 0.49, 0]} scale={[0.82, 0.1, 0.82]} color="#b0915e" outlineWidth={0.014} segments={12} />
+        <MuseumCylinder position={[0, 0.55, 0]} scale={[0.62, 0.04, 0.62]} color="#211c1d" outlineWidth={0.006} segments={12} />
+      </group>
+    )
+  }
+  if (spec.galleryId === 'moba-two') {
+    return (
+      <group>
+        <MuseumCylinder position={[0, 0.22, 0]} scale={[0.78, 0.42, 0.78]} color="#718f92" outlineWidth={0.02} segments={12} />
+        <MuseumCylinder position={[0, 0.45, 0]} scale={[0.86, 0.09, 0.86]} color="#dde6e1" outlineWidth={0.013} segments={12} />
+        <MuseumCylinder position={[0, 0.505, 0]} scale={[0.64, 0.04, 0.64]} color="#40545a" outlineWidth={0.006} segments={12} />
+      </group>
+    )
+  }
+  if (spec.galleryId === 'holiday') {
+    return (
+      <group>
+        <MuseumCylinder position={[0, 0.22, 0]} scale={[0.78, 0.42, 0.78]} color="#6b303d" outlineWidth={0.022} segments={12} />
+        <MuseumCylinder position={[0, 0.45, 0]} scale={[0.86, 0.09, 0.86]} color="#d0ae6c" outlineWidth={0.013} segments={12} />
+        <MuseumCylinder position={[0, 0.505, 0]} scale={[0.64, 0.04, 0.64]} color="#3d3227" outlineWidth={0.006} segments={12} />
+      </group>
+    )
+  }
+  if (spec.family === 'river-still-life') {
+    return (
+      <group>
+        <MuseumCylinder position={[0, 0.08, 0]} scale={[0.9, 0.12, 0.7]} color="#aaa89c" outlineWidth={0.014} segments={12} />
+        <MuseumCylinder position={[-0.3, 0.17, 0.12]} scale={[0.3, 0.18, 0.26]} color="#777a70" outlineWidth={0.01} segments={10} />
+        <MuseumCylinder position={[0.32, 0.15, -0.08]} scale={[0.24, 0.14, 0.2]} color="#c2bbae" outlineWidth={0.009} segments={10} />
+      </group>
+    )
+  }
+  const fieldGrass = spec.family === 'field-grass'
+  return (
+    <group>
+      <MuseumCylinder
+        position={[0, fieldGrass ? 0.16 : 0.2, 0]}
+        scale={[fieldGrass ? 0.68 : 0.76, fieldGrass ? 0.3 : 0.38, fieldGrass ? 0.68 : 0.76]}
+        color={fieldGrass ? '#c9c3b7' : '#956f60'}
+        outlineWidth={0.018}
+        segments={12}
+      />
+      <MuseumCylinder
+        position={[0, fieldGrass ? 0.33 : 0.41, 0]}
+        scale={[fieldGrass ? 0.74 : 0.82, 0.08, fieldGrass ? 0.74 : 0.82]}
+        color={fieldGrass ? '#eee9de' : '#b98a75'}
+        outlineWidth={0.011}
+        segments={12}
+      />
+      <MuseumCylinder
+        position={[0, fieldGrass ? 0.38 : 0.46, 0]}
+        scale={[fieldGrass ? 0.56 : 0.62, 0.035, fieldGrass ? 0.56 : 0.62]}
+        color="#4e493e"
+        outlineWidth={0.005}
+        segments={12}
+      />
+    </group>
+  )
+}
+
+function GalleryPlantBotany({ spec }: { spec: MuseumGalleryPlantSpec }) {
+  return <MuseumGalleryPlantBotany family={spec.family} />
+}
+function MuseumGalleryPlant({ spec }: { spec: MuseumGalleryPlantSpec }) {
+  const position = museumGalleryPlantLocalPosition(spec)
+  return (
+    <group
+      position={[...position]}
+      rotation={[0, spec.yaw, 0]}
+      scale={[spec.scale, spec.scale, spec.scale]}
+      userData={{ museumPlant: spec.id, botanicalFamily: spec.family, gallery: spec.galleryId }}
+    >
+      <GalleryPlantVessel spec={spec} />
+      <GalleryPlantBotany spec={spec} />
+    </group>
+  )
+}
+
+function GalleryBotanicals({ gallery }: { gallery: MuseumGalleryPlan }) {
+  const plants = MUSEUM_GALLERY_PLANTS_BY_ID[gallery.id as keyof typeof MUSEUM_GALLERY_PLANTS_BY_ID] ?? []
+  if (!plants.length) return null
+  return (
+    <group userData={{ galleryBotanicals: gallery.id, plantCount: plants.length }}>
+      {plants.map((spec) => <MuseumGalleryPlant key={spec.id} spec={spec} />)}
+    </group>
+  )
+}
+
 function WinterSalonFestiveDetails({ gallery }: { gallery: MuseumGalleryPlan }) {
   const opening = museumGalleryBoundaryOpening(gallery, 'end')
   const berryAngles = [-2.65, -2.12, -1.55, -0.88, -0.24, 0.42, 1.04] as const
@@ -3360,13 +3571,12 @@ function WinterSalonFestiveDetails({ gallery }: { gallery: MuseumGalleryPlan }) 
           material={<meshToonMaterial color="#5c775e" gradientMap={TOON_RAMP} />}
         />
         {foliageAngles.map((angle, index) => (
-          <MuseumBox
+          <MuseumEvergreenSprig
             key={`leaf-${angle}`}
             position={[Math.cos(angle) * 0.51, Math.sin(angle) * 0.51, 0.07]}
-            rotation={[0, 0, angle + (index % 2 ? 0.38 : -0.38)]}
-            scale={[0.24, 0.09, 0.055]}
+            rotation={[0, 0, angle - Math.PI / 2 + (index % 2 ? 0.24 : -0.24)]}
+            scale={[0.34, 0.42, 0.7]}
             color={index % 2 ? '#5b805b' : '#426b49'}
-            outlineWidth={0.008}
           />
         ))}
         {berryAngles.map((angle) => (
@@ -3396,7 +3606,12 @@ function WinterSalonFestiveDetails({ gallery }: { gallery: MuseumGalleryPlan }) 
         ))}
         {swagNodes.map((node, index) => (
           <group key={node.x} position={[node.x, node.y, 0.04]}>
-            <MuseumSphere position={[0, 0, 0]} scale={[0.38, 0.14, 0.12]} color={index % 2 ? '#5b805b' : '#426b49'} outlineWidth={0.008} />
+            <MuseumEvergreenSprig
+              position={[0, 0, 0]}
+              rotation={[0.08, index % 2 ? 0.2 : -0.2, index % 2 ? -1.18 : 1.18]}
+              scale={[0.3, 0.5, 0.68]}
+              color={index % 2 ? '#5b805b' : '#426b49'}
+            />
             {node.berry ? (
               <MuseumSphere position={[0, -0.015, 0.09]} scale={[0.055, 0.055, 0.055]} color="#a94e5e" outlineWidth={0.006} />
             ) : null}
@@ -3457,6 +3672,7 @@ function GalleryShell({ gallery, active, surfaceActive }: { gallery: MuseumGalle
         .map((spec) => <GalleryWindow key={spec.id} gallery={gallery} spec={spec} active={active} />)}
       {interior.skylights.map((spec) => <GallerySkylight key={spec.id} gallery={gallery} spec={spec} active={active} />)}
       <GalleryBench gallery={gallery} interior={interior} />
+      <GalleryBotanicals gallery={gallery} />
       {gallery.id !== 'moba-one' && gallery.id !== 'moba-two' && gallery.id !== 'photography' && gallery.id !== 'holiday' ? (
         <MuseumBox position={[0, -1.895, centerZ]} scale={[0.035, 0.018, depth - 0.38]} color={AGED_BRASS} outlineWidth={0.006} />
       ) : null}
@@ -3534,6 +3750,7 @@ function GalleryMotionPlane({
   height,
   featured,
   startDelayMs,
+  targetFps = 12,
   surfaceZ = 0.224,
 }: {
   artworkId: string
@@ -3542,9 +3759,14 @@ function GalleryMotionPlane({
   height: number
   featured: boolean
   startDelayMs: number
+  targetFps?: number
   surfaceZ?: number
 }) {
   const [ready, setReady] = useState(false)
+  const targetFpsRef = useRef(targetFps)
+  useEffect(() => {
+    targetFpsRef.current = targetFps
+  }, [targetFps])
   const texture = useMemo(() => {
     if (typeof document === 'undefined') return null
     const canvas = document.createElement('canvas')
@@ -3583,6 +3805,7 @@ function GalleryMotionPlane({
     const debugCanvas = debugProbe ? document.createElement('canvas') : null
     const debugContext = debugCanvas?.getContext('2d') ?? null
     let paintCount = 0
+    const currentFrameDurationMs = () => 1000 / THREE.MathUtils.clamp(targetFpsRef.current, 1, 24)
 
     if (debugProbe && debugCanvas) {
       debugCanvas.width = 16
@@ -3630,7 +3853,7 @@ function GalleryMotionPlane({
       } catch {
         // The poster below remains visible if this browser cannot paint motion.
       }
-      fallbackTimer = window.setTimeout(paintFallback, 1000 / 12)
+      fallbackTimer = window.setTimeout(paintFallback, currentFrameDurationMs())
     }
 
     const startImageFallback = () => {
@@ -3657,7 +3880,7 @@ function GalleryMotionPlane({
         texture.needsUpdate = true
         reportPaint('native-image', -1, image)
         setReady(true)
-        fallbackTimer = window.setTimeout(paintFallback, 1000 / 12)
+        fallbackTimer = window.setTimeout(paintFallback, currentFrameDurationMs())
       }
       image.onerror = () => {
         if (debugProbe) debugProbe.dataset.status = 'unavailable'
@@ -3704,9 +3927,14 @@ function GalleryMotionPlane({
             context.drawImage(result.image, 0, 0, canvas.width, canvas.height)
             texture.needsUpdate = true
             reportPaint('image-decoder', frameIndex, result.image)
-            const durationMs = Math.max(1000 / 12, (result.image.duration ?? 100_000) / 1000)
+            const sourceFrameDurationMs = Math.max(1, (result.image.duration ?? 100_000) / 1000)
+            const durationMs = Math.max(currentFrameDurationMs(), sourceFrameDurationMs)
+            const frameAdvance = Math.max(1, Math.round(durationMs / sourceFrameDurationMs))
             result.image.close()
-            frameIndex = (frameIndex + 1) % frameCount
+            // Distant work refreshes less often, but skips ahead instead of
+            // playing in slow motion. The animation remains temporally honest
+            // while avoiding texture uploads the visitor cannot appreciate.
+            frameIndex = (frameIndex + frameAdvance) % frameCount
             setReady(true)
             animationTimer = window.setTimeout(() => void paintNextFrame(), durationMs)
           } catch {
@@ -3853,11 +4081,13 @@ function GalleryArtworkFrame({
   gallery,
   animate,
   animationIndex,
+  motionFps,
 }: {
   display: MuseumArtworkDisplay
   gallery: MuseumGalleryPlan
   animate: boolean
   animationIndex: number
+  motionFps: number
 }) {
   const work = display.work
   const hero = Boolean(display.featured)
@@ -3939,6 +4169,7 @@ function GalleryArtworkFrame({
           height={artHeight}
           featured={hero}
           startDelayMs={animationIndex * 55}
+          targetFps={motionFps}
         />
       ) : null}
     </>
@@ -3957,6 +4188,9 @@ function GalleryArtworkFrame({
           title: work.title,
           collection: gallery.shortTitle,
           sourceUrl: work.sourceUrl,
+          ownerHint: work.collector
+            ? { address: work.collector.address, label: work.collector.label }
+            : null,
         }),
       }}
     >
@@ -4028,9 +4262,11 @@ function GalleryArtworkFrame({
 function GalleryExhibition({
   gallery,
   animate,
+  motionFps,
 }: {
   gallery: MuseumGalleryPlan
   animate: boolean
+  motionFps: number
 }) {
   const displays = museumGalleryArtworkDisplays(gallery)
   return (
@@ -4046,6 +4282,7 @@ function GalleryExhibition({
             gallery={gallery}
             animate={animate}
             animationIndex={animationIndex}
+            motionFps={motionFps}
           />
         )
       })}
@@ -4053,9 +4290,101 @@ function GalleryExhibition({
   )
 }
 
+const YES_YES_WEAVE_PALETTE = [
+  '#4e253b',
+  '#693555',
+  '#c98dc8',
+  '#bd6798',
+  '#a2395b',
+  '#c0586e',
+  '#c55f40',
+  '#dbbc67',
+  '#bd6798',
+  '#693555',
+  '#a2395b',
+  '#8a332c',
+] as const
+
+function createYesYesWeaveTexture() {
+  const size = 256
+  const data = new Uint8Array(size * size * 4)
+  const palette = YES_YES_WEAVE_PALETTE.map((hex) => {
+    const color = new THREE.Color(hex)
+    return [color.r * 255, color.g * 255, color.b * 255] as const
+  })
+  const bandWidth = 16
+
+  for (let y = 0; y < size; y += 1) {
+    const chevronPhase = (y % 24) / 12
+    const chevron = chevronPhase <= 1 ? chevronPhase : 2 - chevronPhase
+    const weaveShift = (chevron - 0.5) * 11 + Math.sin(y * 0.17) * 1.6
+    for (let x = 0; x < size; x += 1) {
+      const shiftedX = x + weaveShift
+      const bandIndex = Math.floor(shiftedX / bandWidth)
+      const localBandX = ((shiftedX % bandWidth) + bandWidth) % bandWidth
+      const paletteIndex = ((bandIndex % palette.length) + palette.length) % palette.length
+      const base = palette[paletteIndex]
+      const edgeShade = localBandX < 2.2
+        ? 0.5
+        : localBandX > bandWidth - 3.2
+          ? 0.7
+          : localBandX < 5.2
+            ? 1.18
+            : 0.94 + Math.sin((localBandX / bandWidth) * Math.PI) * 0.13
+      const vertical = y / size
+      const crownLift = 0.92 + Math.max(0, 1 - Math.abs(vertical - 0.72) / 0.65) * 0.25
+      const horizontalVignette = 0.92 + Math.sin((x / size) * Math.PI) * 0.22
+      const dither = ((x + y * 3) % 7 === 0 ? 1.06 : 0.98)
+      const shade = edgeShade * crownLift * horizontalVignette * dither
+      const index = (y * size + x) * 4
+      data[index] = Math.min(255, Math.round(base[0] * shade))
+      data[index + 1] = Math.min(255, Math.round(base[1] * shade))
+      data[index + 2] = Math.min(255, Math.round(base[2] * shade))
+      data[index + 3] = 255
+    }
+  }
+
+  const texture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat)
+  texture.colorSpace = THREE.SRGBColorSpace
+  texture.wrapS = THREE.ClampToEdgeWrapping
+  texture.wrapT = THREE.ClampToEdgeWrapping
+  texture.generateMipmaps = false
+  texture.minFilter = THREE.NearestFilter
+  texture.magFilter = THREE.NearestFilter
+  texture.needsUpdate = true
+  return texture
+}
+
+function createHeartLightPoolTexture() {
+  const size = 96
+  const data = new Uint8Array(size * size * 4)
+  for (let y = 0; y < size; y += 1) {
+    for (let x = 0; x < size; x += 1) {
+      const nx = ((x / (size - 1)) * 2 - 1) * 1.14
+      const ny = ((y / (size - 1)) * 2 - 1) * 1.16 - 0.08
+      const base = nx * nx + ny * ny - 1
+      const equation = base * base * base - nx * nx * ny * ny * ny
+      const alpha = Math.max(0, Math.min(1, -equation * 3.8)) ** 0.56
+      const index = (y * size + x) * 4
+      data[index] = 255
+      data[index + 1] = 196
+      data[index + 2] = 208
+      data[index + 3] = Math.round(alpha * 255)
+    }
+  }
+  const texture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat)
+  texture.colorSpace = THREE.SRGBColorSpace
+  texture.generateMipmaps = false
+  texture.minFilter = THREE.LinearFilter
+  texture.magFilter = THREE.LinearFilter
+  texture.needsUpdate = true
+  return texture
+}
+
 function BouncingHeart({ reducedMotion, lit }: { reducedMotion: boolean; lit: boolean }) {
   const groupRef = useRef<THREE.Group>(null)
   const shadowRef = useRef<THREE.Mesh>(null)
+  const lightPoolRef = useRef<THREE.Mesh>(null)
   const geometry = useMemo(() => {
     const shape = new THREE.Shape()
     shape.moveTo(0, -0.95)
@@ -4064,65 +4393,176 @@ function BouncingHeart({ reducedMotion, lit }: { reducedMotion: boolean; lit: bo
     shape.bezierCurveTo(0.38, 1.38, 1.08, 1.08, 1.08, 0.52)
     shape.bezierCurveTo(1.08, -0.18, 0.18, -0.72, 0, -0.95)
     const nextGeometry = new THREE.ExtrudeGeometry(shape, {
-      depth: 0.42,
+      depth: 0.52,
       bevelEnabled: true,
-      bevelSegments: 3,
-      bevelSize: 0.09,
-      bevelThickness: 0.08,
-      curveSegments: 24,
+      bevelSegments: 5,
+      bevelSize: 0.14,
+      bevelThickness: 0.14,
+      curveSegments: 20,
       steps: 1,
     })
     nextGeometry.center()
+    nextGeometry.computeBoundingBox()
+    const bounds = nextGeometry.boundingBox
+    const positions = nextGeometry.getAttribute('position')
+    const uvs = nextGeometry.getAttribute('uv')
+    if (bounds && uvs) {
+      const width = Math.max(0.0001, bounds.max.x - bounds.min.x)
+      const height = Math.max(0.0001, bounds.max.y - bounds.min.y)
+      for (let index = 0; index < positions.count; index += 1) {
+        uvs.setXY(
+          index,
+          (positions.getX(index) - bounds.min.x) / width,
+          (positions.getY(index) - bounds.min.y) / height,
+        )
+      }
+      uvs.needsUpdate = true
+    }
+    nextGeometry.computeVertexNormals()
     return nextGeometry
   }, [])
-  useEffect(() => () => geometry.dispose(), [geometry])
+  const weaveTexture = useMemo(() => createYesYesWeaveTexture(), [])
+  const lightPoolTexture = useMemo(() => createHeartLightPoolTexture(), [])
+  useEffect(() => () => {
+    geometry.dispose()
+    weaveTexture.dispose()
+    lightPoolTexture.dispose()
+  }, [geometry, lightPoolTexture, weaveTexture])
 
   useFrame(({ clock }) => {
     const group = groupRef.current
     const shadow = shadowRef.current
-    if (!group || !shadow) return
-    const phase = (clock.elapsedTime % 2.25) / 2.25
-    const hop = reducedMotion ? 0 : Math.max(0, Math.sin(phase * Math.PI)) ** 1.75
-    const landing = reducedMotion ? 0 : Math.max(0, 1 - Math.min(1, Math.abs(phase - 0.02) * 32))
-    group.position.y = -1.12 + hop * 0.5
-    group.rotation.y = reducedMotion ? -0.72 : -0.72 + Math.sin(clock.elapsedTime * 0.55) * 0.12
-    group.scale.set(1 + landing * 0.08, 1 - landing * 0.12, 1 + landing * 0.08)
-    shadow.scale.setScalar(0.82 - hop * 0.18)
-    ;(shadow.material as THREE.MeshBasicMaterial).opacity = 0.18 - hop * 0.07
+    const lightPool = lightPoolRef.current
+    if (!group || !shadow || !lightPool) return
+    const phase = (clock.elapsedTime % MOBA_TWO_HEART_SCULPTURE_SPEC.cycleSeconds)
+      / MOBA_TWO_HEART_SCULPTURE_SPEC.cycleSeconds
+    const motion = mobaTwoHeartMotionAtPhase(phase, reducedMotion)
+    group.position.y = MOBA_TWO_HEART_SCULPTURE_SPEC.heartRestY + motion.height
+    group.rotation.z = motion.rotationZ
+    group.scale.set(motion.scaleX, motion.scaleY, motion.scaleZ)
+    shadow.scale.set(motion.shadowScale, motion.shadowScale * 0.72, 1)
+    ;(shadow.material as THREE.MeshBasicMaterial).opacity = motion.shadowOpacity
+    ;(lightPool.material as THREE.MeshBasicMaterial).opacity = lit
+      ? 0.1 + motion.lightPoolPulse * 0.15
+      : 0.035 + motion.lightPoolPulse * 0.025
   })
 
   return (
-    <group position={[-3.85, 0, 29.7]} userData={{ landmark: 'curated-hearts-sculpture' }}>
-      <MuseumCylinder
-        position={[0, -1.855, 0]}
-        scale={[0.72, 0.09, 0.72]}
-        color="#c4ccc7"
-        outlineWidth={0.018}
-        segments={48}
-      />
-      <MuseumCylinder
-        position={[0, -1.795, 0]}
-        scale={[0.6, 0.035, 0.6]}
-        color="#e2e5df"
-        outlineWidth={0.006}
-        segments={48}
-      />
-      <mesh ref={shadowRef} position={[0, -1.768, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.82, 0.82, 0.82]}>
-        <circleGeometry args={[0.58, 48]} />
-        <meshBasicMaterial color="#526068" transparent opacity={0.18} depthWrite={false} />
+    <group
+      position={[...MOBA_TWO_HEART_SCULPTURE_SPEC.localPosition]}
+      userData={{
+        landmark: MOBA_TWO_HEART_SCULPTURE_SPEC.landmark,
+        originArtworkId: MOBA_TWO_HEART_SCULPTURE_SPEC.originArtworkId,
+        installation: 'yes-yes-origin-heart',
+      }}
+    >
+      <mesh
+        ref={lightPoolRef}
+        position={[0, -1.87, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={[1.55, 1.25, 1]}
+        renderOrder={2}
+        raycast={() => null}
+      >
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial
+          map={lightPoolTexture}
+          color="#ffd1dc"
+          transparent
+          opacity={lit ? 0.1 : 0.035}
+          depthWrite={false}
+          blending={THREE.NormalBlending}
+          toneMapped={false}
+        />
       </mesh>
-      <group ref={groupRef} position={[0, -1.12, 0]}>
-        <group scale={[0.9, 0.9, 0.9]}>
-          <OutlineMesh
-            rotation={[0.04, 0, -0.04]}
-            scale={[0.72, 0.72, 0.72]}
-            outlineWidth={0.045}
-            geometry={<primitive object={geometry} attach="geometry" />}
-            material={<meshToonMaterial color="#dc6882" gradientMap={TOON_RAMP} emissive="#5a2935" emissiveIntensity={lit ? 0.065 : 0.02} />}
+      <MuseumCylinder
+        position={[0, -1.86, 0]}
+        scale={[1.34, 0.08, 1.08]}
+        color="#40545a"
+        outlineWidth={0.02}
+        segments={16}
+      />
+      <MuseumCylinder
+        position={[0, -1.79, 0]}
+        scale={[1.2, 0.05, 0.94]}
+        color="#d8d8cf"
+        outlineWidth={0.008}
+        segments={16}
+      />
+      <OutlineMesh
+        position={[0, -1.38, 0]}
+        scale={[1, 1, 0.82]}
+        outlineWidth={0.018}
+        geometry={<cylinderGeometry args={[0.4, 0.48, 0.78, 12]} />}
+        material={<meshToonMaterial color="#aeb9b6" gradientMap={TOON_RAMP} />}
+      />
+      <MuseumCylinder
+        position={[0, -1.035, 0]}
+        scale={[1, 0.075, 0.8]}
+        color="#b68d59"
+        outlineWidth={0.008}
+        segments={16}
+      />
+      <MuseumCylinder
+        position={[0, -0.955, 0]}
+        scale={[1.16, 0.08, 0.92]}
+        color="#eee7db"
+        outlineWidth={0.012}
+        segments={16}
+      />
+      <MuseumCylinder
+        position={[0, -0.895, 0]}
+        scale={[0.92, 0.024, 0.7]}
+        color="#42283b"
+        outlineWidth={0.005}
+        emissive="#6b304d"
+        emissiveIntensity={lit ? 0.09 : 0.025}
+        segments={16}
+      />
+      <MuseumBox
+        position={[0, -1.34, 0.405]}
+        scale={[0.36, 0.2, 0.022]}
+        color="#efe6d4"
+        outlineWidth={0.008}
+      />
+      <MuseumBox
+        position={[0, -1.34, 0.419]}
+        scale={[0.22, 0.022, 0.009]}
+        color="#a2395b"
+        outlineWidth={0.003}
+      />
+      <mesh ref={shadowRef} position={[0, -0.868, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[1, 0.72, 1]}>
+        <circleGeometry args={[0.43, 48]} />
+        <meshBasicMaterial color="#21131d" transparent opacity={0.22} depthWrite={false} />
+      </mesh>
+      <group
+        ref={groupRef}
+        position={[0, MOBA_TWO_HEART_SCULPTURE_SPEC.heartRestY, 0]}
+        rotation={[0.015, MOBA_TWO_HEART_SCULPTURE_SPEC.fixedYaw, 0]}
+        userData={{ sculpture: 'woven-yes-yes-heart', animated: !reducedMotion }}
+      >
+        <mesh scale={[0.715, 0.715, 0.9]}>
+          <primitive object={geometry} attach="geometry" />
+          <meshBasicMaterial color="#17131d" side={THREE.BackSide} />
+        </mesh>
+        <mesh scale={[0.68, 0.68, 0.85]}>
+          <primitive object={geometry} attach="geometry" />
+          <meshToonMaterial
+            attach="material-0"
+            map={weaveTexture}
+            color="#ffffff"
+            gradientMap={TOON_RAMP}
+            emissive="#351b26"
+            emissiveIntensity={lit ? 0.12 : 0.045}
           />
-          <MuseumBox position={[-0.22, 0.21, 0.27]} scale={[0.14, 0.27, 0.07]} color="#68aaa8" outlineWidth={0.02} />
-          <MuseumBox position={[0.14, -0.23, 0.28]} scale={[0.27, 0.11, 0.07]} color="#eee1c8" outlineWidth={0.02} />
-        </group>
+          <meshToonMaterial
+            attach="material-1"
+            color="#75415f"
+            gradientMap={TOON_RAMP}
+            emissive="#4a1735"
+            emissiveIntensity={lit ? 0.08 : 0.025}
+          />
+        </mesh>
       </group>
     </group>
   )
@@ -4181,7 +4621,14 @@ function GalleryLandmark({
   reducedMotion: boolean
   active: boolean
 }) {
-  if (galleryId === 'moba-two') return <BouncingHeart reducedMotion={reducedMotion} lit={active} />
+  if (galleryId === 'moba-two') {
+    return (
+      <>
+        <BouncingHeart reducedMotion={reducedMotion} lit={active} />
+        <MonkeydhashyCreateboxInstallation reducedMotion={reducedMotion} active={active} />
+      </>
+    )
+  }
   if (galleryId === 'holiday') return <HolidayGiftVignette reducedMotion={reducedMotion} />
   return null
 }
@@ -4194,8 +4641,10 @@ export function MuseumExpansion({
   atriumInstallationAssets = [],
   atriumInstallationPaused = false,
   onOpenAtriumRegistry,
+  onSelectAtriumResident,
   onOpenCourtyard,
   onOpenBurnRoom,
+  onOpenMuseumLore,
 }: {
   activeGalleryId: MuseumGalleryId
   activeMuseumArea: MuseumAreaId
@@ -4204,13 +4653,27 @@ export function MuseumExpansion({
   atriumInstallationAssets?: readonly MuseumAssetSummary[]
   atriumInstallationPaused?: boolean
   onOpenAtriumRegistry?: () => void
+  onSelectAtriumResident?: (resident: MuseumAssetSummary) => void
   onOpenCourtyard?: () => void
   onOpenBurnRoom?: () => void
+  onOpenMuseumLore?: (chapterId: MuseumLoreId) => void
 }) {
   const wings = MUSEUM_GALLERIES.filter((gallery) => gallery.id !== 'lobby')
   return (
     <group>
       <OpeningSalonMobaGalleryHang />
+      <MuseumLoreStation
+        chapterId="pixler-origin"
+        position={[-3.7, 0.54, 9.76]}
+        rotationY={Math.PI}
+        onOpen={onOpenMuseumLore}
+      />
+      <MuseumLoreStation
+        chapterId="glowbud-world"
+        position={[4.45, 0.54, 31.94]}
+        rotationY={Math.PI}
+        onOpen={onOpenMuseumLore}
+      />
       <MuseumLoopArchitecture
         active={activeMuseumArea === 'atrium'}
         reducedMotion={reducedMotion}
@@ -4218,27 +4681,48 @@ export function MuseumExpansion({
         atriumInstallationAssets={atriumInstallationAssets}
         atriumInstallationPaused={atriumInstallationPaused}
         onOpenAtriumRegistry={onOpenAtriumRegistry}
+        onSelectAtriumResident={onSelectAtriumResident}
         onOpenCourtyard={onOpenCourtyard}
         onOpenBurnRoom={onOpenBurnRoom}
       />
-      {wings.map((gallery) => (
-        <group
-          key={gallery.id}
-          position={[gallery.placement.x, 0, gallery.placement.z]}
-          rotation={[0, gallery.placement.yaw, 0]}
-        >
-          <group position={[0, 0, -gallery.minZ]}>
-            <GalleryShell
-              gallery={gallery}
-              active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id}
-              surfaceActive={activeMuseumArea === 'atrium' || (activeGalleryId === gallery.id && activeMuseumArea === gallery.id)}
-            />
-            <GalleryThreshold gallery={gallery} />
-            <GalleryExhibition gallery={gallery} animate={!reducedMotion} />
-            <GalleryLandmark galleryId={gallery.id} reducedMotion={reducedMotion} active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id} />
+      {wings.map((gallery) => {
+        const chapterId = gallery.id === 'moba-one'
+          ? 'moba-one'
+          : gallery.id === 'moba-two'
+            ? 'moba-two'
+            : gallery.id === 'photography'
+              ? 'one-final-album'
+              : 'holiday-potluck'
+        const stationX = gallery.id === 'moba-one' || gallery.id === 'photography' ? -3.55 : 4.15
+        return (
+          <group
+            key={gallery.id}
+            position={[gallery.placement.x, 0, gallery.placement.z]}
+            rotation={[0, gallery.placement.yaw, 0]}
+          >
+            <group position={[0, 0, -gallery.minZ]}>
+              <GalleryShell
+                gallery={gallery}
+                active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id}
+                surfaceActive={activeMuseumArea === 'atrium' || (activeGalleryId === gallery.id && activeMuseumArea === gallery.id)}
+              />
+              <GalleryThreshold gallery={gallery} />
+              <MuseumLoreStation
+                chapterId={chapterId}
+                position={[stationX, 0.5, gallery.minZ + 0.37]}
+                rotationY={0}
+                onOpen={onOpenMuseumLore}
+              />
+              <GalleryExhibition
+                gallery={gallery}
+                animate={!reducedMotion}
+                motionFps={activeGalleryId === gallery.id && activeMuseumArea === gallery.id ? 12 : 4}
+              />
+              <GalleryLandmark galleryId={gallery.id} reducedMotion={reducedMotion} active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id} />
+            </group>
           </group>
-        </group>
-      ))}
+        )
+      })}
     </group>
   )
 }

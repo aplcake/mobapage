@@ -13,6 +13,7 @@ export type MuseumArtworkWall =
   | 'right'
   | 'end-left'
   | 'end-right'
+  | 'boundary-left-inner'
   | 'portal-south'
   | 'portal-north'
 export type MuseumFrameStyle = 'portrait-gilt' | 'heart-float' | 'photo-mat' | 'winter-gilt' | 'winter-frost'
@@ -379,18 +380,18 @@ export const MUSEUM_GALLERY_INTERIORS: Record<PermanentMuseumGalleryId, MuseumGa
     floorPattern: 'parquet',
     daylight: '#f3ddbc',
     artworkSlots: [
-      { id: 'left-a', artworkId: 'moba-one-598', wall: 'left', t: 0.08, y: 0.14, scale: 1.02, roll: -0.007, lamp: true, frameStyle: portraitGilt },
-      { id: 'left-b', artworkId: 'moba-one-597', wall: 'left', t: 0.285, y: 0.38, scale: 0.82, roll: 0.006, frameStyle: portraitGilt },
-      { id: 'left-c', artworkId: 'moba-one-596', wall: 'left', t: 0.48, y: -0.06, scale: 0.9, roll: -0.006, frameStyle: portraitGilt },
-      { id: 'left-d', artworkId: 'moba-one-595', wall: 'left', t: 0.675, y: 0.34, scale: 0.78, roll: 0.007, frameStyle: portraitGilt },
-      { id: 'left-e', artworkId: 'moba-one-594', wall: 'left', t: 0.88, y: 0.1, scale: 1.06, roll: -0.006, lamp: true, frameStyle: portraitGilt },
-      { id: 'right-a', artworkId: 'moba-one-593', wall: 'right', t: 0.12, y: 0.28, scale: 0.84, roll: 0.006, frameStyle: portraitGilt },
-      { id: 'right-b', artworkId: 'moba-one-592', wall: 'portal-south', y: 0.08, scale: 0.94, roll: -0.007, frameStyle: portraitGilt },
-      { id: 'right-c', artworkId: 'moba-one-591', wall: 'portal-north', y: 0.18, scale: 0.78, roll: 0.006, frameStyle: portraitGilt },
-      { id: 'right-d', artworkId: 'moba-one-590', wall: 'right', t: 0.75, y: 0.1, scale: 1.02, roll: -0.006, lamp: true, frameStyle: portraitGilt },
-      { id: 'right-e', artworkId: 'moba-one-589', wall: 'right', t: 0.95, y: 0.3, scale: 0.76, roll: 0.007, frameStyle: portraitGilt },
-      { id: 'end-feature', artworkId: 'moba-one-599', wall: 'end-left', y: 0.16, scale: 1.16, featured: true, lamp: true, frameStyle: portraitGilt },
-      { id: 'end-companion', artworkId: 'moba-one-588', wall: 'end-right', y: 0.1, scale: 0.96, lamp: true, frameStyle: portraitGilt },
+      { id: 'left-a', artworkId: 'moba-one-471', wall: 'left', t: 0.08, y: 0.14, scale: 1.02, roll: -0.007, lamp: true, frameStyle: portraitGilt },
+      { id: 'left-b', artworkId: 'moba-one-226', wall: 'left', t: 0.285, y: 0.38, scale: 0.82, roll: 0.006, frameStyle: portraitGilt },
+      { id: 'left-c', artworkId: 'moba-one-161', wall: 'left', t: 0.48, y: -0.06, scale: 0.9, roll: -0.006, frameStyle: portraitGilt },
+      { id: 'left-d', artworkId: 'moba-one-114', wall: 'left', t: 0.675, y: 0.34, scale: 0.78, roll: 0.007, frameStyle: portraitGilt },
+      { id: 'left-e', artworkId: 'moba-one-261', wall: 'left', t: 0.88, y: 0.1, scale: 1.06, roll: -0.006, lamp: true, frameStyle: portraitGilt },
+      { id: 'right-a', artworkId: 'moba-one-461', wall: 'right', t: 0.12, y: 0.28, scale: 0.84, roll: 0.006, frameStyle: portraitGilt },
+      { id: 'right-b', artworkId: 'moba-one-341', wall: 'portal-south', y: 0.08, scale: 0.94, roll: -0.007, frameStyle: portraitGilt },
+      { id: 'right-c', artworkId: 'moba-one-279', wall: 'portal-north', y: 0.18, scale: 0.78, roll: 0.006, frameStyle: portraitGilt },
+      { id: 'right-d', artworkId: 'moba-one-376', wall: 'right', t: 0.75, y: 0.1, scale: 1.02, roll: -0.006, lamp: true, frameStyle: portraitGilt },
+      { id: 'right-e', artworkId: 'moba-one-584', wall: 'right', t: 0.95, y: 0.3, scale: 0.76, roll: 0.007, frameStyle: portraitGilt },
+      { id: 'end-feature', artworkId: 'moba-one-394', wall: 'end-left', y: 0.16, scale: 1.16, featured: true, lamp: true, frameStyle: portraitGilt },
+      { id: 'end-companion', artworkId: 'moba-one-427', wall: 'end-right', y: 0.1, scale: 0.96, lamp: true, frameStyle: portraitGilt },
     ],
     windows: [
       { id: 'amber-left', wall: 'left', t: 0.58, y: 2.28, width: 2.6, height: 0.92, kind: 'amber-clerestory', view: 'outer-garden' },
@@ -408,18 +409,18 @@ export const MUSEUM_GALLERY_INTERIORS: Record<PermanentMuseumGalleryId, MuseumGa
     floorPattern: 'terrazzo',
     daylight: '#e8efea',
     artworkSlots: [
-      { id: 'left-a', artworkId: 'moba-two-2221', wall: 'left', t: 0.08, y: 0.1, scale: 0.94, frameStyle: heartFloat },
-      { id: 'left-b', artworkId: 'moba-two-2220', wall: 'left', t: 0.28, y: 0.18, scale: 0.84, frameStyle: heartFloat },
-      { id: 'left-c', artworkId: 'moba-two-2219', wall: 'left', t: 0.48, y: 0.08, scale: 1.02, frameStyle: heartFloat },
-      { id: 'left-d', artworkId: 'moba-two-2218', wall: 'left', t: 0.7, y: 0.18, scale: 0.86, frameStyle: heartFloat },
-      { id: 'left-e', artworkId: 'moba-two-2217', wall: 'left', t: 0.9, y: 0.1, scale: 1, frameStyle: heartFloat },
-      { id: 'right-a', artworkId: 'moba-two-2216', wall: 'right', t: 0.1, y: 0.12, scale: 0.88, frameStyle: heartFloat },
-      { id: 'right-b', artworkId: 'moba-two-2215', wall: 'portal-south', y: 0.08, scale: 1, frameStyle: heartFloat },
-      { id: 'right-c', artworkId: 'moba-two-2214', wall: 'portal-north', y: 0.12, scale: 0.86, frameStyle: heartFloat },
-      { id: 'right-d', artworkId: 'moba-two-2213', wall: 'right', t: 0.73, y: 0.08, scale: 1.04, frameStyle: heartFloat },
-      { id: 'right-e', artworkId: 'moba-two-2212', wall: 'right', t: 0.92, y: 0.16, scale: 0.84, frameStyle: heartFloat },
-      { id: 'end-companion', artworkId: 'moba-two-2211', wall: 'end-left', y: 0.12, scale: 0.98, frameStyle: heartFloat },
-      { id: 'end-feature', artworkId: 'moba-two-2222', wall: 'end-right', y: 0.16, scale: 1.18, featured: true, lamp: true, frameStyle: heartFloat },
+      { id: 'left-a', artworkId: 'moba-two-170', wall: 'boundary-left-inner', y: 0.1, scale: 0.82, frameStyle: heartFloat },
+      { id: 'left-b', artworkId: 'moba-two-2142', wall: 'right', t: 0.32, y: 0.18, scale: 0.8, frameStyle: heartFloat },
+      { id: 'left-c', artworkId: 'moba-two-586', wall: 'left', t: 0.6, y: 0.08, scale: 0.9, frameStyle: heartFloat },
+      { id: 'left-d', artworkId: 'moba-two-532', wall: 'left', t: 0.775, y: 0.18, scale: 0.8, frameStyle: heartFloat },
+      { id: 'left-e', artworkId: 'moba-two-473', wall: 'left', t: 0.95, y: 0.1, scale: 0.9, frameStyle: heartFloat },
+      { id: 'right-a', artworkId: 'moba-two-2210', wall: 'right', t: 0.1, y: 0.12, scale: 0.88, frameStyle: heartFloat },
+      { id: 'right-b', artworkId: 'moba-two-2139', wall: 'portal-south', y: 0.08, scale: 1, frameStyle: heartFloat },
+      { id: 'right-c', artworkId: 'moba-two-2173', wall: 'portal-north', y: 0.12, scale: 0.86, frameStyle: heartFloat },
+      { id: 'right-d', artworkId: 'moba-two-2097', wall: 'right', t: 0.73, y: 0.08, scale: 1.04, frameStyle: heartFloat },
+      { id: 'right-e', artworkId: 'moba-two-2204', wall: 'right', t: 0.92, y: 0.16, scale: 0.84, frameStyle: heartFloat },
+      { id: 'end-companion', artworkId: 'moba-two-2149', wall: 'end-left', y: 0.12, scale: 0.98, frameStyle: heartFloat },
+      { id: 'end-feature', artworkId: 'moba-two-220', wall: 'end-right', y: 0.16, scale: 1.18, featured: true, lamp: true, frameStyle: heartFloat },
     ],
     windows: [
       { id: 'cobalt-left', wall: 'left', t: 0.59, y: 2.22, width: 2.7, height: 0.9, kind: 'cobalt-clerestory', view: 'outer-garden' },
@@ -427,7 +428,7 @@ export const MUSEUM_GALLERY_INTERIORS: Record<PermanentMuseumGalleryId, MuseumGa
     ],
     skylights: [
       { id: 'heart-light-a', t: 0.18, width: 4.1, depth: 1.35, drift: 0.32 },
-      { id: 'heart-light-b', t: 0.5, width: 4.55, depth: 1.75, drift: -0.18 },
+      { id: 'heart-light-b', t: 0.5, width: 4.55, depth: 1.75, drift: 0 },
       { id: 'heart-light-c', t: 0.82, width: 4.1, depth: 1.35, drift: 0.34 },
     ],
     bench: { x: 3.05, t: 0.18, rotationY: Math.PI / 2, length: 2.56, depth: 0.72, upholstery: '#718f92', frame: '#b39d78' },
@@ -840,6 +841,15 @@ export function museumGalleryArtworkDisplays(gallery: MuseumGalleryPlan): readon
           portalReturn.centerZ + Math.cos(portalReturn.artworkRotationY) * mountOffset,
         ] as const,
         rotationY: portalReturn.artworkRotationY,
+      }
+    }
+
+    if (slot.wall === 'boundary-left-inner') {
+      return {
+        ...slot,
+        work,
+        position: [-1.75, slot.y, gallery.maxZ - 0.42] as const,
+        rotationY: Math.PI,
       }
     }
 

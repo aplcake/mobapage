@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "chain": "base",
+  "contract": "0x04619852f38ebec22bb94ef36b99351db9900194",
+  "tokenId": "6",
+  "title": "!Createbox",
+  "artist": "Joseph Pixler",
+  "collection": "MoBA Gallery",
+  "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/6",
+  "originalMediaUrl": "https://arweave.net/o4A2MX0thIVo39tikSSkL0N_ULVeJY_2_0yzBcl1j2g",
+  "originalMediaSha256": "bc5041c70ced33175d719e4a52a9ef6ab5920b2fdd295b1bf29224ae41ffc191",
+  "media": {
+    "format": "gif",
+    "width": 1125,
+    "height": 1125,
+    "frameCount": 20,
+    "frameDurationMs": 100
+  },
+  "exhibitionCredit": {
+    "address": "0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5",
+    "openSeaUsername": "MonkeyDHashy",
+    "verifiedAt": "2026-08-23T15:55:04Z"
+  }
+}

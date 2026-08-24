@@ -10,7 +10,7 @@ import {
 } from './artworkProvenance'
 
 const SAMPLE_INTERVAL_SECONDS = 0.14
-const ANCHOR_REFRESH_SECONDS = 0.9
+const SCENE_CACHE_REFRESH_SECONDS = 5
 const APPROACH_DWELL_SECONDS = 0.18
 const LEAVE_GRACE_SECONDS = 0.34
 const ENTER_DISTANCE = 5.1
@@ -27,6 +27,31 @@ type ArtworkAnchor = {
 type ArtworkCandidate = ArtworkAnchor & {
   distance: number
   score: number
+}
+
+type ArtworkApproachSceneCache = {
+  anchors: ArtworkAnchor[]
+  raycastTargets: THREE.Mesh[]
+}
+
+const EXCLUDED_SUBTREE_USER_DATA_KEYS = new Set([
+  'atriumResident',
+  'botanicalFamily',
+  'botanicalRhythm',
+  'daylightEffect',
+  'galleryBotanicals',
+  'lightingPlan',
+  'lightingSystem',
+  'museumPlant',
+  'museumResident',
+  'museumTree',
+  'treeFamily',
+])
+
+function excludesArtworkApproachRaycastSubtree(object: THREE.Object3D) {
+  const userData = object.userData
+  if (userData.exteriorLayer || userData.garden === 'glowbud-resident-beds') return true
+  return Object.keys(userData).some((key) => EXCLUDED_SUBTREE_USER_DATA_KEYS.has(key))
 }
 
 function isVisibleInHierarchy(object: THREE.Object3D) {
@@ -49,13 +74,32 @@ function artworkAncestor(object: THREE.Object3D | null) {
 
 function intersectionCanBlock(object: THREE.Object3D) {
   const mesh = object as THREE.Mesh
-  if (!mesh.isMesh) return true
+  if (!mesh.isMesh) return false
   const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material]
   return materials.some((material) => (
     material.visible
     && (!material.transparent || material.opacity > 0.14)
     && (material.depthWrite || !material.transparent)
   ))
+}
+
+export function collectArtworkApproachSceneCache(root: THREE.Object3D): ArtworkApproachSceneCache {
+  const anchors: ArtworkAnchor[] = []
+  const raycastTargets: THREE.Mesh[] = []
+
+  const visit = (object: THREE.Object3D) => {
+    if (excludesArtworkApproachRaycastSubtree(object)) return
+
+    const artwork = object.userData[MUSEUM_ARTWORK_USER_DATA_KEY]
+    if (isMuseumArtworkProvenance(artwork)) anchors.push({ object, artwork })
+
+    const mesh = object as THREE.Mesh
+    if (mesh.isMesh && intersectionCanBlock(mesh)) raycastTargets.push(mesh)
+    for (const child of object.children) visit(child)
+  }
+
+  for (const child of root.children) visit(child)
+  return { anchors, raycastTargets }
 }
 
 export function ArtworkApproachTracker({
@@ -67,8 +111,9 @@ export function ArtworkApproachTracker({
 }) {
   const { camera, scene } = useThree()
   const anchorsRef = useRef<ArtworkAnchor[]>([])
+  const raycastTargetsRef = useRef<THREE.Mesh[]>([])
   const nextSampleAtRef = useRef(0)
-  const nextAnchorRefreshAtRef = useRef(0)
+  const nextSceneCacheRefreshAtRef = useRef(0)
   const currentRef = useRef<MuseumArtworkProvenance | null>(null)
   const currentLastSeenAtRef = useRef(0)
   const pendingRef = useRef<{ id: string; since: number } | null>(null)
@@ -98,14 +143,11 @@ export function ArtworkApproachTracker({
     if (elapsed < nextSampleAtRef.current) return
     nextSampleAtRef.current = elapsed + SAMPLE_INTERVAL_SECONDS
 
-    if (elapsed >= nextAnchorRefreshAtRef.current || anchorsRef.current.length === 0) {
-      const nextAnchors: ArtworkAnchor[] = []
-      scene.traverse((object) => {
-        const artwork = object.userData[MUSEUM_ARTWORK_USER_DATA_KEY]
-        if (isMuseumArtworkProvenance(artwork)) nextAnchors.push({ object, artwork })
-      })
-      anchorsRef.current = nextAnchors
-      nextAnchorRefreshAtRef.current = elapsed + ANCHOR_REFRESH_SECONDS
+    if (elapsed >= nextSceneCacheRefreshAtRef.current || anchorsRef.current.length === 0) {
+      const sceneCache = collectArtworkApproachSceneCache(scene)
+      anchorsRef.current = sceneCache.anchors
+      raycastTargetsRef.current = sceneCache.raycastTargets
+      nextSceneCacheRefreshAtRef.current = elapsed + SCENE_CACHE_REFRESH_SECONDS
     }
 
     const cameraPosition = camera.getWorldPosition(cameraPositionRef.current)
@@ -146,7 +188,7 @@ export function ArtworkApproachTracker({
       raycaster.set(cameraPosition, rayDirection)
       raycaster.near = 0.08
       raycaster.far = best.distance + 0.45
-      const intersections = raycaster.intersectObjects(scene.children, true)
+      const intersections = raycaster.intersectObjects(raycastTargetsRef.current, false)
       let visible = false
       for (const intersection of intersections) {
         const artworkObject = artworkAncestor(intersection.object)
