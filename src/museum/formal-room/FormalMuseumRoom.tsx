@@ -45,15 +45,23 @@ import {
   shouldPaintFormalRoomAnimationFrame,
 } from './mediaPlayback'
 import { MuseumExpansion } from './MuseumExpansion'
+import { MuseumAtriumSpecimenBotany } from './MuseumBotanicalKit'
+import { MobileMovementJoystick } from './MobileMovementJoystick'
 import { ArtworkApproachTracker } from './ArtworkApproachTracker'
 import { ArtworkProvenanceHud } from './ArtworkProvenanceHud'
+import { GlowbudComparisonPanel } from './GlowbudComparisonPanel'
+import { MuseumLorePanel } from './MuseumLorePanel'
+import type { MuseumLoreId } from './museumLore'
 import {
   createMuseumArtworkProvenance,
   MUSEUM_ARTWORK_USER_DATA_KEY,
   type MuseumArtworkProvenance,
 } from './artworkProvenance'
 import { AtriumRegistryPanel } from './AtriumRegistryPanel'
-import { atriumResidentColliders } from './atriumRegistryPlan'
+import {
+  ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS,
+  atriumResidentColliders,
+} from './atriumRegistryPlan'
 import {
   MUSEUM_BASE_LIGHTING,
   museumToneMappingExposure,
@@ -357,9 +365,9 @@ function GalleryWallDisplay() {
 }
 
 function MuseumTopiary({ side }: { side: -1 | 1 }) {
-  const x = side * 5.28
+  const x = side * 4.25
   return (
-    <group position={[x, -1.42, -0.86]} rotation={[0, side * -0.08, 0]}>
+    <group position={[x, -1.42, 7.2]} rotation={[0, side * -0.08, 0]}>
       <mesh position={[0, -0.72, 0.12]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.82, 0.46, 1]}>
         <circleGeometry args={[1, 42]} />
         <meshBasicMaterial color={INK} transparent opacity={0.16} depthWrite={false} />
@@ -371,25 +379,15 @@ function MuseumTopiary({ side }: { side: -1 | 1 }) {
         geometry={<cylinderGeometry args={[0.34, 0.5, 1, 14]} />}
         material={<meshToonMaterial color={CORAL} gradientMap={TOON_RAMP} />}
       />
-      <ToonCylinder position={[0, 0.22, 0]} scale={[0.17, 0.86, 0.17]} color={TEAK_DARK} outlineWidth={0.025} />
-      <OutlineMesh
-        position={[0, 0.78, 0]}
-        scale={[0.94, 1.02, 0.82]}
-        outlineWidth={0.055}
-        geometry={<sphereGeometry args={[0.5, 12, 8]} />}
-        material={<meshToonMaterial color={side < 0 ? '#4f9b73' : '#438d6c'} gradientMap={TOON_RAMP} />}
-      />
-      <OutlineMesh
-        position={[side * -0.24, 1.28, 0.03]}
-        scale={[0.66, 0.75, 0.62]}
-        outlineWidth={0.045}
-        geometry={<sphereGeometry args={[0.5, 12, 8]} />}
-        material={<meshToonMaterial color="#72bd78" gradientMap={TOON_RAMP} />}
-      />
-      <mesh position={[side * 0.2, 1.48, 0.34]} scale={[0.13, 0.13, 1]}>
-        <circleGeometry args={[1, 20]} />
-        <meshBasicMaterial color="#ffe989" toneMapped={false} />
-      </mesh>
+      <group position={[0, -0.22, 0]} scale={[0.62, 0.62, 0.62]}>
+        <MuseumAtriumSpecimenBotany
+          family="black-olive"
+          palette={side < 0
+            ? ['#315849', '#4f7656', '#8ba16d']
+            : ['#294f42', '#47705a', '#7f9868']}
+          yaw={side * 0.24}
+        />
+      </group>
     </group>
   )
 }
@@ -1285,15 +1283,21 @@ function FormalRoomScene({
   onMediaStatus,
   onMotionStatus,
   motionPaused,
+  controlsEnabled,
   reducedMotion,
   activeGalleryId,
   activeMuseumArea,
   onGalleryChange,
   onMuseumAreaChange,
+  onMobileLook,
   atriumInstallation,
   atriumInstallationAssets,
   atriumRegistryOpen,
+  glowbudComparisonOpen,
+  museumLoreOpen,
   onOpenAtriumRegistry,
+  onSelectAtriumResident,
+  onOpenMuseumLore,
   onOpenCourtyard,
   onOpenBurnRoom,
   onApproachedArtworkChange,
@@ -1306,21 +1310,29 @@ function FormalRoomScene({
   onMediaStatus: (artworkId: string, status: ArtworkMediaStatus) => void
   onMotionStatus: (artworkId: string, status: ArtworkMotionStatus) => void
   motionPaused: boolean
+  controlsEnabled: boolean
   reducedMotion: boolean
   activeGalleryId: MuseumGalleryId
   activeMuseumArea: MuseumAreaId
   onGalleryChange: (galleryId: MuseumGalleryId) => void
   onMuseumAreaChange: (areaId: MuseumAreaId) => void
+  onMobileLook: () => void
   atriumInstallation: AppliedAtriumInstallation | null
   atriumInstallationAssets: readonly MuseumAssetSummary[]
   atriumRegistryOpen: boolean
+  glowbudComparisonOpen: boolean
+  museumLoreOpen: boolean
   onOpenAtriumRegistry: () => void
+  onSelectAtriumResident: (resident: MuseumAssetSummary) => void
+  onOpenMuseumLore: (chapterId: MuseumLoreId) => void
   onOpenCourtyard: () => void
   onOpenBurnRoom: () => void
   onApproachedArtworkChange: (artwork: MuseumArtworkProvenance | null) => void
 }) {
   const residentColliders = useMemo(
-    () => atriumResidentColliders(atriumInstallation ? atriumInstallation.glowbuds.length : 3),
+    () => atriumResidentColliders(
+      atriumInstallation ? atriumInstallation.glowbuds.length : ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS.length,
+    ),
     [atriumInstallation],
   )
   return (
@@ -1336,12 +1348,14 @@ function FormalRoomScene({
         mode={mode}
         inputRef={walkInputRef}
         reducedMotion={reducedMotion}
+        controlsEnabled={controlsEnabled}
         extraColliders={residentColliders}
         onGalleryChange={onGalleryChange}
         onMuseumAreaChange={onMuseumAreaChange}
+        onTouchLook={onMobileLook}
       />
       <ArtworkApproachTracker
-        enabled={mode === 'explore' && !motionPaused}
+        enabled={mode === 'explore' && controlsEnabled && !motionPaused}
         onArtworkChange={onApproachedArtworkChange}
       />
       <SalonArchitecture mode={mode} />
@@ -1351,8 +1365,10 @@ function FormalRoomScene({
         reducedMotion={reducedMotion}
         atriumInstallation={atriumInstallation}
         atriumInstallationAssets={atriumInstallationAssets}
-        atriumInstallationPaused={atriumRegistryOpen}
+        atriumInstallationPaused={atriumRegistryOpen || glowbudComparisonOpen || museumLoreOpen}
         onOpenAtriumRegistry={onOpenAtriumRegistry}
+        onSelectAtriumResident={onSelectAtriumResident}
+        onOpenMuseumLore={onOpenMuseumLore}
         onOpenCourtyard={onOpenCourtyard}
         onOpenBurnRoom={onOpenBurnRoom}
       />
@@ -1407,11 +1423,13 @@ function MobileWalkButton({
   const handleKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
     if (event.key !== ' ' && event.key !== 'Enter') return
     event.preventDefault()
+    event.stopPropagation()
     inputRef.current[walkKey] = true
   }
   const handleKeyUp = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
     if (event.key !== ' ' && event.key !== 'Enter') return
     event.preventDefault()
+    event.stopPropagation()
     inputRef.current[walkKey] = false
   }
   const handleAccessibleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
@@ -1465,6 +1483,14 @@ export function FormalMuseumRoom() {
   const router = useRouter()
   const reducedMotion = useReducedMotion()
   const [focusIndex, setFocusIndex] = useState<FocusIndex>(null)
+  const [welcomeOpen, setWelcomeOpen] = useState(() => !(
+    typeof window !== 'undefined'
+    && (window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 700)
+  ))
+  const [mobileCoachVisible, setMobileCoachVisible] = useState(() => (
+    typeof window !== 'undefined'
+    && (window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 700)
+  ))
   const mode: FormalRoomViewMode = 'explore'
   const [activeGalleryId, setActiveGalleryId] = useState<MuseumGalleryId>('lobby')
   const [activeMuseumArea, setActiveMuseumArea] = useState<MuseumAreaId>('lobby')
@@ -1477,6 +1503,8 @@ export function FormalMuseumRoom() {
   const [atriumRegistryOpen, setAtriumRegistryOpen] = useState(false)
   const [atriumInstallation, setAtriumInstallation] = useState<AppliedAtriumInstallation | null>(null)
   const [atriumInstallationAssets, setAtriumInstallationAssets] = useState<readonly MuseumAssetSummary[]>([])
+  const [selectedGlowbud, setSelectedGlowbud] = useState<MuseumAssetSummary | null>(null)
+  const [selectedLoreId, setSelectedLoreId] = useState<MuseumLoreId | null>(null)
   const [collectionAddress, setCollectionAddress] = useState<string | null>(null)
   const [appliedOwnerAddress, setAppliedOwnerAddress] = useState<string | null>(null)
   const [collectionToast, setCollectionToast] = useState<string | null>(null)
@@ -1485,6 +1513,7 @@ export function FormalMuseumRoom() {
   const [approachedArtwork, setApproachedArtwork] = useState<MuseumArtworkProvenance | null>(null)
   const collectionButtonRef = useRef<HTMLButtonElement>(null)
   const museumMenuRef = useRef<HTMLDivElement>(null)
+  const roomRef = useRef<HTMLElement>(null)
   const walkInputRef = useRef<FormalWalkInputState>(createFormalWalkInputState())
   const appliedOwnerRef = useRef<string | null>(null)
   const previewAddressRef = useRef<string | null>(null)
@@ -1493,7 +1522,11 @@ export function FormalMuseumRoom() {
   const displayArtworks = exhibitionPreview?.artworks ?? appliedArtworks
   const activeGallery = MUSEUM_GALLERY_BY_ID[activeGalleryId]
   const inAtrium = activeMuseumArea === 'atrium'
-  const modalOpen = collectionDeskOpen || atriumRegistryOpen
+  const glowbudComparisonOpen = selectedGlowbud !== null
+  const museumLoreOpen = selectedLoreId !== null
+  const modalOpen = collectionDeskOpen || atriumRegistryOpen || glowbudComparisonOpen || museumLoreOpen
+  const sceneBlocked = welcomeOpen || modalOpen
+  const walkBlocked = sceneBlocked || museumMenuOpen
 
   const handleArtworkMediaStatus = useCallback((artworkId: string, status: ArtworkMediaStatus) => {
     setArtworkMediaStatus((current) => current[artworkId] === status
@@ -1515,9 +1548,46 @@ export function FormalMuseumRoom() {
     setActiveMuseumArea((current) => current === areaId ? current : areaId)
   }, [])
 
+  const handleMobileLook = useCallback(() => setMobileCoachVisible(false), [])
+
   useEffect(() => () => clearFormalWalkInputState(walkInputRef.current), [])
 
   useEffect(() => () => previewVerificationAbortRef.current?.abort(), [])
+
+  const dismissWelcome = useCallback(() => {
+    clearFormalWalkInputState(walkInputRef.current)
+    setWelcomeOpen(false)
+    setMobileCoachVisible(true)
+    window.requestAnimationFrame(() => roomRef.current?.focus({ preventScroll: true }))
+  }, [])
+
+  const enterMuseum = useCallback(() => {
+    dismissWelcome()
+  }, [dismissWelcome])
+
+  const openWelcome = useCallback(() => {
+    clearFormalWalkInputState(walkInputRef.current)
+    setMuseumMenuOpen(false)
+    setMobileCoachVisible(false)
+    setWelcomeOpen(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mobileCoachVisible) return
+    const timer = window.setTimeout(() => setMobileCoachVisible(false), 6500)
+    return () => window.clearTimeout(timer)
+  }, [mobileCoachVisible])
+
+  useEffect(() => {
+    if (!welcomeOpen) return
+    const dismissOnEscape = (event: KeyboardEvent) => {
+      if (event.code !== 'Escape' || isEditableKeyboardTarget(event.target)) return
+      event.preventDefault()
+      dismissWelcome()
+    }
+    window.addEventListener('keydown', dismissOnEscape)
+    return () => window.removeEventListener('keydown', dismissOnEscape)
+  }, [dismissWelcome, welcomeOpen])
 
   useEffect(() => {
     if (!collectionToast) return
@@ -1541,9 +1611,9 @@ export function FormalMuseumRoom() {
   }, [])
 
   const requestJump = useCallback(() => {
-    if (modalOpen) return
+    if (walkBlocked) return
     walkInputRef.current.jumpRequested = true
-  }, [modalOpen])
+  }, [walkBlocked])
 
   const closeCollectionDesk = useCallback(() => {
     setCollectionDeskOpen(false)
@@ -1552,6 +1622,8 @@ export function FormalMuseumRoom() {
   const openAtriumRegistry = useCallback(() => {
     clearFormalWalkInputState(walkInputRef.current)
     setCollectionDeskOpen(false)
+    setSelectedGlowbud(null)
+    setSelectedLoreId(null)
     setFocusIndex(null)
     setMuseumMenuOpen(false)
     setCollectionToast(null)
@@ -1562,10 +1634,44 @@ export function FormalMuseumRoom() {
     setAtriumRegistryOpen(false)
   }, [])
 
+  const openGlowbudComparison = useCallback((resident: MuseumAssetSummary) => {
+    clearFormalWalkInputState(walkInputRef.current)
+    setCollectionDeskOpen(false)
+    setAtriumRegistryOpen(false)
+    setMuseumMenuOpen(false)
+    setFocusIndex(null)
+    setApproachedArtwork(null)
+    setSelectedLoreId(null)
+    setSelectedGlowbud(resident)
+  }, [])
+
+  const closeGlowbudComparison = useCallback(() => {
+    setSelectedGlowbud(null)
+    window.requestAnimationFrame(() => roomRef.current?.focus({ preventScroll: true }))
+  }, [])
+
+  const openMuseumLore = useCallback((chapterId: MuseumLoreId) => {
+    clearFormalWalkInputState(walkInputRef.current)
+    setCollectionDeskOpen(false)
+    setAtriumRegistryOpen(false)
+    setSelectedGlowbud(null)
+    setMuseumMenuOpen(false)
+    setFocusIndex(null)
+    setApproachedArtwork(null)
+    setSelectedLoreId(chapterId)
+  }, [])
+
+  const closeMuseumLore = useCallback(() => {
+    setSelectedLoreId(null)
+    window.requestAnimationFrame(() => roomRef.current?.focus({ preventScroll: true }))
+  }, [])
+
   const openCourtyard = useCallback(() => {
     clearFormalWalkInputState(walkInputRef.current)
     setCollectionDeskOpen(false)
     setAtriumRegistryOpen(false)
+    setSelectedGlowbud(null)
+    setSelectedLoreId(null)
     setMuseumMenuOpen(false)
     router.push('/courtyard')
   }, [router])
@@ -1574,6 +1680,8 @@ export function FormalMuseumRoom() {
     clearFormalWalkInputState(walkInputRef.current)
     setCollectionDeskOpen(false)
     setAtriumRegistryOpen(false)
+    setSelectedGlowbud(null)
+    setSelectedLoreId(null)
     setMuseumMenuOpen(false)
     router.push('/burn-room')
   }, [router])
@@ -1701,7 +1809,7 @@ export function FormalMuseumRoom() {
   }, [applyingPreview, artworkMediaStatus, exhibitionPreview])
 
   useEffect(() => {
-    if (modalOpen) return
+    if (walkBlocked) return
     const input = walkInputRef.current
     const setKey = (code: string, pressed: boolean) => {
       if (code === 'KeyW' || code === 'ArrowUp') input.forward = pressed
@@ -1755,7 +1863,7 @@ export function FormalMuseumRoom() {
       document.removeEventListener('visibilitychange', handleVisibility)
       clearInput()
     }
-  }, [modalOpen])
+  }, [walkBlocked])
 
   const selectedArtwork = focusIndex === null ? null : displayArtworks[focusIndex]
   const selectedMotionStatus = selectedArtwork ? artworkMotionStatus[selectedArtwork.id] : undefined
@@ -1792,23 +1900,25 @@ export function FormalMuseumRoom() {
 
   return (
     <main
-      className={`${styles.room} ${styles.walking} ${previewingExhibition ? styles.previewing : ''} ${modalOpen ? styles.collectionDeskOpen : ''}`}
+      ref={roomRef}
+      tabIndex={-1}
+      className={`${styles.room} ${styles.walking} ${previewingExhibition ? styles.previewing : ''} ${modalOpen ? styles.collectionDeskOpen : ''} ${welcomeOpen ? styles.welcomeOpen : ''}`}
       aria-label="Museum of Based Art Main Museum"
       data-testid="formal-museum-room"
       data-room-mode={mode}
     >
-      <div inert={modalOpen ? true : undefined} aria-hidden={modalOpen ? true : undefined}>
+      <div inert={sceneBlocked ? true : undefined} aria-hidden={sceneBlocked ? true : undefined}>
       <div
         className={styles.canvasWrap}
         aria-hidden="true"
       >
         <Canvas
           camera={{ position: [0, 0.7, 10], fov: 43, near: 0.1, far: 90 }}
-          dpr={[1, 1.65]}
+          dpr={[0.9, 1.35]}
           gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
           performance={{ min: 0.6 }}
           onPointerMissed={() => {
-            if (!modalOpen) setFocusIndex(null)
+            if (!walkBlocked) setFocusIndex(null)
           }}
         >
           <FormalRoomScene
@@ -1820,15 +1930,21 @@ export function FormalMuseumRoom() {
             onMediaStatus={handleArtworkMediaStatus}
             onMotionStatus={handleArtworkMotionStatus}
             motionPaused={modalOpen}
+            controlsEnabled={!walkBlocked}
             reducedMotion={reducedMotion}
             activeGalleryId={activeGalleryId}
             activeMuseumArea={activeMuseumArea}
             onGalleryChange={handleGalleryChange}
             onMuseumAreaChange={handleMuseumAreaChange}
+            onMobileLook={handleMobileLook}
             atriumInstallation={atriumInstallation}
             atriumInstallationAssets={atriumInstallationAssets}
             atriumRegistryOpen={atriumRegistryOpen}
+            glowbudComparisonOpen={glowbudComparisonOpen}
+            museumLoreOpen={museumLoreOpen}
             onOpenAtriumRegistry={openAtriumRegistry}
+            onSelectAtriumResident={openGlowbudComparison}
+            onOpenMuseumLore={openMuseumLore}
             onOpenCourtyard={openCourtyard}
             onOpenBurnRoom={openBurnRoom}
             onApproachedArtworkChange={setApproachedArtwork}
@@ -1845,7 +1961,10 @@ export function FormalMuseumRoom() {
           <button
             type="button"
             className={`${styles.museumMenuButton} ${museumMenuOpen ? styles.museumMenuButtonOpen : ''}`}
-            onClick={() => setMuseumMenuOpen((open) => !open)}
+            onClick={() => {
+              clearFormalWalkInputState(walkInputRef.current)
+              setMuseumMenuOpen((open) => !open)
+            }}
             aria-label="Open museum menu"
             aria-expanded={museumMenuOpen}
             aria-controls="museum-area-menu"
@@ -1865,7 +1984,9 @@ export function FormalMuseumRoom() {
               <button type="button" onClick={openBurnRoom}>
                 <span aria-hidden="true">▲</span><strong>Burn Room</strong>
               </button>
-              <small className={styles.museumControlHint}>WASD · DRAG · SPACE</small>
+              <button type="button" onClick={openWelcome}>
+                <span aria-hidden="true">?</span><strong>How to Move</strong>
+              </button>
             </nav>
           ) : null}
         </div>
@@ -1904,7 +2025,7 @@ export function FormalMuseumRoom() {
         </aside>
       ) : null}
 
-      <ArtworkProvenanceHud artwork={approachedArtwork} hidden={modalOpen} />
+      <ArtworkProvenanceHud artwork={approachedArtwork} hidden={walkBlocked} />
 
       {selectedArtwork && !approachedArtwork ? (
         <div className={styles.walkArtworkHint} aria-live="polite">
@@ -1917,18 +2038,43 @@ export function FormalMuseumRoom() {
       ) : null}
 
       <div className={styles.walkCrosshair} aria-hidden="true" />
-      <div className={styles.mobileWalkControls} aria-label="Mobile walking controls">
-        <div className={styles.mobileDpad} role="group" aria-label="Press and hold to walk">
-          <MobileWalkButton inputRef={walkInputRef} walkKey="forward" className={styles.walkForward} label="Walk forward" symbol="↑" />
-          <MobileWalkButton inputRef={walkInputRef} walkKey="strafeLeft" className={styles.walkLeft} label="Step left" symbol="←" />
-          <MobileWalkButton inputRef={walkInputRef} walkKey="strafeRight" className={styles.walkRight} label="Step right" symbol="→" />
-          <MobileWalkButton inputRef={walkInputRef} walkKey="backward" className={styles.walkBackward} label="Walk backward" symbol="↓" />
+      <div
+        className={styles.mobileWalkControls}
+        aria-label="Mobile walking controls"
+        aria-describedby="museum-mobile-controls-description"
+      >
+        <span id="museum-mobile-controls-description" className={styles.screenReaderOnly}>
+          Push the movement joystick to walk. Swipe on the museum view to look around. Activate Jump to hop.
+        </span>
+        <MobileMovementJoystick inputRef={walkInputRef} disabled={walkBlocked || museumMenuOpen} />
+        <div className={styles.mobileA11yDirections} role="group" aria-label="Directional movement alternatives">
+          <MobileWalkButton inputRef={walkInputRef} walkKey="forward" className={styles.mobileA11yDirectionButton} label="Walk forward" symbol="↑" />
+          <MobileWalkButton inputRef={walkInputRef} walkKey="strafeLeft" className={styles.mobileA11yDirectionButton} label="Step left" symbol="←" />
+          <MobileWalkButton inputRef={walkInputRef} walkKey="strafeRight" className={styles.mobileA11yDirectionButton} label="Step right" symbol="→" />
+          <MobileWalkButton inputRef={walkInputRef} walkKey="backward" className={styles.mobileA11yDirectionButton} label="Walk backward" symbol="↓" />
         </div>
-        <div className={styles.mobileLookGuide} aria-hidden="true">
-          <span>↔</span>
-          <strong>Drag room to look</strong>
+        <div
+          className={`${styles.mobileLookGuide} ${mobileCoachVisible ? styles.mobileLookGuideVisible : ''}`}
+          role="status"
+          aria-live="polite"
+          aria-hidden={!mobileCoachVisible}
+        >
+          <span className={styles.mobileLookGesture}><i /><i /></span>
+          <span><strong>Swipe anywhere</strong><small>to look around</small></span>
         </div>
-        <button type="button" className={styles.mobileJumpButton} onClick={requestJump} aria-label="Jump">
+        <button
+          type="button"
+          className={styles.mobileJumpButton}
+          disabled={walkBlocked || museumMenuOpen}
+          onPointerDown={(event) => {
+            event.preventDefault()
+            requestJump()
+          }}
+          onClick={(event) => {
+            if (event.detail === 0) requestJump()
+          }}
+          aria-label="Jump"
+        >
           <span aria-hidden="true">↟</span>
           <small>Jump</small>
         </button>
@@ -1950,6 +2096,63 @@ export function FormalMuseumRoom() {
 
       </div>
 
+      {welcomeOpen ? (
+        <div className={styles.welcomeScrim}>
+          <section
+            className={styles.welcomePanel}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="museum-welcome-title"
+            aria-describedby="museum-welcome-copy"
+            data-testid="museum-welcome"
+          >
+            <header className={styles.welcomeHeader}>
+              <span>Museum of Based Art</span>
+              <i aria-hidden="true" />
+            </header>
+            <h1 id="museum-welcome-title">Welcome to MoBA</h1>
+            <p id="museum-welcome-copy">Explore at your own pace.</p>
+
+            <div className={styles.welcomeControls} aria-label="Museum controls">
+              <div className={styles.welcomeControl}>
+                <span className={styles.welcomeControlArt} aria-hidden="true">
+                  <span className={styles.desktopMoveKeys}>
+                    <kbd>W</kbd>
+                    <span><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+                  </span>
+                  <span className={styles.mobileMoveKeys}><span className={styles.welcomeJoystickMini}><i /></span></span>
+                </span>
+                <strong>Move</strong>
+              </div>
+              <div className={styles.welcomeControl}>
+                <span className={`${styles.welcomeControlArt} ${styles.lookControlArt}`} aria-hidden="true">
+                  <span>↔</span>
+                </span>
+                <strong>
+                  <span className={styles.desktopLookCopy}>Point to turn</span>
+                  <span className={styles.mobileLookCopy}>Swipe to look</span>
+                </strong>
+              </div>
+              <div className={styles.welcomeControl}>
+                <span className={styles.welcomeControlArt} aria-hidden="true">
+                  <kbd className={styles.desktopJumpKey}>Space</kbd>
+                  <span className={styles.mobileJumpKey}>↟</span>
+                </span>
+                <strong>Jump</strong>
+              </div>
+            </div>
+
+            <p className={styles.mobileWelcomeGestureHint}>Left stick walks · swipe anywhere to look around</p>
+
+            <button type="button" className={styles.welcomeEnter} onClick={enterMuseum} autoFocus>
+              <strong>Enter Museum</strong>
+              <span aria-hidden="true">→</span>
+            </button>
+            <small className={styles.welcomeMenuHint}>Pointer steers · Centre stops</small>
+          </section>
+        </div>
+      ) : null}
+
       <CollectionDesk
         open={collectionDeskOpen}
         onClose={closeCollectionDesk}
@@ -1961,6 +2164,18 @@ export function FormalMuseumRoom() {
         onClose={closeAtriumRegistry}
         onInstall={applyAtriumInstallation}
         onAddressChange={handleAtriumRegistryAddressChange}
+      />
+      <GlowbudComparisonPanel
+        key={selectedGlowbud?.key ?? 'closed-glowbud-study'}
+        resident={selectedGlowbud}
+        ownerAddress={atriumInstallation?.address ?? null}
+        reducedMotion={reducedMotion}
+        onClose={closeGlowbudComparison}
+      />
+      <MuseumLorePanel
+        chapterId={selectedLoreId}
+        onClose={closeMuseumLore}
+        onNavigate={setSelectedLoreId}
       />
     </main>
   )

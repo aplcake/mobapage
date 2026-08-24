@@ -1,5 +1,6 @@
 import { MUSEUM_COLLECTIONS } from '../../../../src/museum/collection-registry/museumCollections'
 import { isEthereumAddress } from '../../../../src/museum/formal-room/ownedNfts'
+import { fetchGlowbudOpenSeaOwner } from '../../../../docs/asset-generation/preview/red-shell/glowbudsOpenSeaOwner'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -185,17 +186,50 @@ function readResolvedAccount(value: unknown, fallbackAddress: `0x${string}`): Ow
 
 async function resolveOpenSeaAccount(address: `0x${string}`, apiKey: string) {
   try {
-    const response = await fetchWithTimeout(
+    const resolvedResponse = await fetchWithTimeout(
       `https://api.opensea.io/api/v2/accounts/resolve/${encodeURIComponent(address)}`,
       {
         headers: { Accept: 'application/json', 'x-api-key': apiKey },
         cache: 'no-store',
       },
     )
-    if (!response.ok) return { address, username: null, ensName: null }
-    return readResolvedAccount(await response.json(), address)
+    if (resolvedResponse.ok) return readResolvedAccount(await resolvedResponse.json(), address)
+
+    // The resolve endpoint is the preferred path because it enriches an
+    // address with both ENS and OpenSea identity. Older keys can occasionally
+    // reject that newer route while still allowing the standard profile call.
+    const profileResponse = await fetchWithTimeout(
+      `https://api.opensea.io/api/v2/accounts/${encodeURIComponent(address)}`,
+      {
+        headers: { Accept: 'application/json', 'x-api-key': apiKey },
+        cache: 'no-store',
+      },
+    )
+    if (profileResponse.ok) return readResolvedAccount(await profileResponse.json(), address)
+    return { address, username: null, ensName: null }
   } catch {
     return { address, username: null, ensName: null }
+  }
+}
+
+async function enrichGlowbudOwnerFromPublicItem(
+  collection: (typeof MUSEUM_COLLECTIONS)[number],
+  tokenId: string,
+  owner: OwnerIdentity,
+) {
+  if (collection.id !== 'glowbuds' || owner.username || owner.ensName) return owner
+  try {
+    const publicOwner = await fetchGlowbudOpenSeaOwner(Number(tokenId), {
+      chain: collection.chainSlug,
+      contract: collection.contract,
+    })
+    if (publicOwner?.address.toLowerCase() !== owner.address) return owner
+    return {
+      ...owner,
+      username: publicOwner.username,
+    }
+  } catch {
+    return owner
   }
 }
 
@@ -227,8 +261,7 @@ export async function GET(request: Request) {
   const contract = url.searchParams.get('contract')?.trim().toLowerCase() ?? ''
   const tokenId = canonicalTokenId(url.searchParams.get('tokenId')?.trim() ?? '')
   const collection = MUSEUM_COLLECTIONS.find((candidate) => (
-    candidate.category !== 'resident'
-    && candidate.chainSlug === chain
+    candidate.chainSlug === chain
     && candidate.contract === contract
   ))
 
@@ -258,9 +291,10 @@ export async function GET(request: Request) {
       return errorResponse('not_configured', 'This owner record is not available yet.', 503)
     }
 
-    const owner = apiKey
+    const resolvedOwner = apiKey
       ? await resolveOpenSeaAccount(ownerResult.addresses[0], apiKey)
       : { address: ownerResult.addresses[0], username: null, ensName: null }
+    const owner = await enrichGlowbudOwnerFromPublicItem(collection, tokenId, resolvedOwner)
     const value: OwnerResponse = {
       owner,
       ownerCount: ownerResult.addresses.length,

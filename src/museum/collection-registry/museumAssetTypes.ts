@@ -18,6 +18,10 @@ export type MuseumAssetSummary = MuseumAssetIdentity & {
   imageUrl: string | null
   animationUrl: string | null
   attributes: readonly MuseumAssetAttribute[]
+  ownerHint?: {
+    address: WalletAddress
+    label: string
+  }
 }
 
 export type MuseumAssetAttribute = {

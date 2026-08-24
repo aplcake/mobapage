@@ -3,6 +3,7 @@ import {
   type MuseumGalleryId,
   type MuseumGalleryPlan,
 } from './museumPlan'
+import { MONKEYDHASHY_CREATEBOX_SPEC } from './monkeydhashyCreatebox'
 
 export type MuseumLightRole = 'key' | 'fill' | 'accent'
 
@@ -317,28 +318,28 @@ export const MUSEUM_GALLERY_LIGHTING_PLANS: Readonly<Record<PermanentMuseumGalle
   ],
   'moba-two': [
     {
-      id: 'moba-two-feature-picture-light',
+      id: 'moba-two-createbox-prismatic-key',
       role: 'key',
       source: 'picture-light',
-      position: [1.6, 2.92, mobaTwo.maxZ - 3.1],
-      target: [4.18, 0.16, mobaTwo.maxZ - 0.42],
-      color: '#e3ece7',
-      intensity: 4.2,
-      distance: 7.2,
-      angle: 0.48,
-      penumbra: 0.9,
+      position: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].position,
+      target: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].target,
+      color: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].color,
+      intensity: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].intensity,
+      distance: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].distance,
+      angle: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].angle,
+      penumbra: MONKEYDHASHY_CREATEBOX_SPEC.lights[0].penumbra,
     },
     {
       id: 'moba-two-sculpture-oculus-light',
       role: 'accent',
       source: 'laylight',
-      position: [-2.1, 2.9, 27.5],
-      target: [-3.85, -0.9, 29.7],
-      color: '#f0ded6',
-      intensity: 2.75,
+      position: [-1.45, 2.9, 28.4],
+      target: [0, 0.04, 29.725],
+      color: '#ffd0dc',
+      intensity: 3.15,
       distance: 6.4,
-      angle: 0.48,
-      penumbra: 0.9,
+      angle: 0.46,
+      penumbra: 0.92,
     },
     {
       id: 'moba-two-mineral-wall-wash',

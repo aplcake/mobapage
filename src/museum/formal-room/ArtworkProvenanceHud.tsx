@@ -98,16 +98,15 @@ function useMuseumArtworkOwner(artwork: MuseumArtworkProvenance) {
   return state
 }
 
-function ArtworkProvenanceCard({
-  artwork,
-  hidden,
-}: {
-  artwork: MuseumArtworkProvenance
-  hidden: boolean
-}) {
-  const visible = !hidden
+export type MuseumOwnerDisplay = {
+  label: string
+  primary: string
+  secondary: string | null
+}
+
+export function useMuseumOwnerDisplay(artwork: MuseumArtworkProvenance): MuseumOwnerDisplay {
   const ownerState = useMuseumArtworkOwner(artwork)
-  const ownerCopy = useMemo(() => {
+  return useMemo(() => {
     if (!artwork.identity) {
       return {
         label: 'Museum collection',
@@ -117,7 +116,7 @@ function ArtworkProvenanceCard({
     }
     if (ownerState.status === 'ready') {
       const { owner, ownerCount, hasMoreOwners } = ownerState.value
-      const displayName = museumOwnerDisplayName(owner)
+      const displayName = museumOwnerDisplayName(owner, artwork.ownerHint)
       const additionalOwners = ownerCount > 1
         ? ` + ${ownerCount - 1}${hasMoreOwners ? '+' : ''}`
         : hasMoreOwners
@@ -132,9 +131,23 @@ function ArtworkProvenanceCard({
       }
     }
     if (ownerState.status === 'unavailable') {
+      if (artwork.ownerHint) {
+        return {
+          label: 'Collection credit',
+          primary: artwork.ownerHint.label,
+          secondary: shortenMuseumAddress(artwork.ownerHint.address),
+        }
+      }
       return {
         label: 'Current owner',
         primary: 'Record temporarily unavailable',
+        secondary: null,
+      }
+    }
+    if (artwork.ownerHint) {
+      return {
+        label: 'Collection credit',
+        primary: artwork.ownerHint.label,
         secondary: null,
       }
     }
@@ -144,6 +157,17 @@ function ArtworkProvenanceCard({
       secondary: null,
     }
   }, [artwork, ownerState])
+}
+
+function ArtworkProvenanceCard({
+  artwork,
+  hidden,
+}: {
+  artwork: MuseumArtworkProvenance
+  hidden: boolean
+}) {
+  const visible = !hidden
+  const ownerCopy = useMuseumOwnerDisplay(artwork)
 
   const sourceUrl = artwork.sourceUrl
     ?? (artwork.identity ? openSeaItemUrl(artwork.identity) : null)

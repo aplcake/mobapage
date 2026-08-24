@@ -159,7 +159,9 @@ describe('Formal museum animated artwork assets', () => {
   })
 
   it('keeps every animated NFT alive across room and atrium sightlines', () => {
-    expect(expansionSource).toContain('<GalleryExhibition gallery={gallery} animate={!reducedMotion} />')
+    expect(expansionSource).toContain('animate={!reducedMotion}')
+    expect(expansionSource).toContain('motionFps={activeGalleryId === gallery.id && activeMuseumArea === gallery.id ? 12 : 4}')
+    expect(expansionSource).toContain('frameIndex = (frameIndex + frameAdvance) % frameCount')
     expect(expansionSource).not.toContain('active={activeGalleryId === gallery.id && !reducedMotion}')
 
     const exhibitionSource = expansionSource.slice(
@@ -167,6 +169,7 @@ describe('Formal museum animated artwork assets', () => {
       expansionSource.indexOf('function BouncingHeart'),
     )
     expect(exhibitionSource).toContain('animate={animate}')
+    expect(exhibitionSource).toContain('motionFps={motionFps}')
     expect(exhibitionSource).not.toContain('activeGalleryId')
   })
 
@@ -211,7 +214,7 @@ describe('Formal museum animated artwork assets', () => {
     const discovered = new Set(
       [...referenced]
         .flatMap((assetPath) => readdirSync(dirname(assetPath)).map((name) => join(dirname(assetPath), name)))
-        .filter((assetPath) => /^(?:hero|motion-\d+)\.(?:gif|png|webp)$/.test(basename(assetPath))),
+        .filter((assetPath) => /^(?:hero|motion-\d+|top-holders-[a-z0-9-]+-token-\d+-motion)\.(?:gif|png|webp)$/.test(basename(assetPath))),
     )
     expect([...discovered].sort()).toEqual([...referenced].sort())
   })

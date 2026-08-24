@@ -59,6 +59,11 @@ export type MuseumArtwork = {
   width: number
   height: number
   sourceUrl: string
+  collector?: {
+    holderRank: number
+    address: `0x${string}`
+    label: string
+  }
 }
 
 export type MuseumGalleryPlan = {
@@ -116,7 +121,7 @@ export const MUSEUM_GALLERIES: readonly MuseumGalleryPlan[] = [
     shortTitle: 'MoBA #1',
     title: 'Portraits of an Enjoyer',
     eyebrow: 'Exhibition 01 · 2024',
-    description: 'A candle-warm portrait salon where animated pixel personalities meet oxblood plaster, staggered walnut parquet, velvet, and leaded laylight.',
+    description: 'A collector-led portrait salon drawn from the leading MoBA #1 holdings, set against oxblood plaster, walnut parquet, velvet, and candle-warm light.',
     nextPrompt: 'Next: Curated Hearts',
     accent: '#b0915e',
     wall: '#8a5f69',
@@ -136,7 +141,7 @@ export const MUSEUM_GALLERIES: readonly MuseumGalleryPlan[] = [
     shortTitle: 'MoBA #2',
     title: 'Curated Hearts',
     eyebrow: 'Exhibition 02 · 2025',
-    description: 'A serene mineral-blue gallery where twelve animated hearts meet pearly terrazzo, garden light, pale oak, and one playful sculptural bounce.',
+    description: 'A collector-led salon of animated hearts held by leading MoBA #1 collectors, composed as a serene mineral-blue gallery of pearly terrazzo, garden light, and pale oak.',
     nextPrompt: 'Next: One Final Album',
     accent: '#cc788e',
     wall: '#839ba3',
@@ -301,7 +306,7 @@ export const MUSEUM_ATRIUM_WAYPOINTS = [
   { id: 'mobile-north', galleryId: 'lobby', x: 0, z: 21.8 },
   { id: 'north-cross-axis', galleryId: 'lobby', x: 0, z: 26.15 },
   { id: 'garden-belvedere', galleryId: 'lobby', x: 0, z: 30.8 },
-  { id: 'rear-window-turn', galleryId: 'moba-two', x: 0, z: 33.35 },
+  { id: 'personal-galleries-turn', galleryId: 'moba-two', x: 0, z: 33.35 },
 ] as const
 
 export const MUSEUM_LOOP_WAYPOINTS = [
@@ -311,6 +316,8 @@ export const MUSEUM_LOOP_WAYPOINTS = [
   { id: 'moba-one-entry', galleryId: 'moba-one', x: -12.2, z: 7.2 },
   { id: 'moba-one-exit', galleryId: 'moba-one', x: -12.2, z: 18.7 },
   { id: 'moba-two-entry', galleryId: 'moba-two', x: -12.2, z: 20.7 },
+  { id: 'moba-two-heart-south', galleryId: 'moba-two', x: -10.2, z: 24.6 },
+  { id: 'moba-two-heart-north', galleryId: 'moba-two', x: -10.2, z: 27.8 },
   { id: 'moba-two-exit', galleryId: 'moba-two', x: -12.2, z: 33.8 },
   { id: 'turn-center', galleryId: 'photography', x: 0.75, z: 34 },
   { id: 'photography-door-approach', galleryId: 'photography', x: 12.2, z: 34 },

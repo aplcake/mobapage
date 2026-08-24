@@ -76,10 +76,10 @@ describe('Formal Room museum expansion', () => {
     for (const offset of [-0.55, 0, 0.55]) {
       const atrium = { x: portal.atrium.x, z: portal.atrium.z + offset }
       const doorway = { x: portal.room.x, z: portal.room.z + offset }
-      const center = { x: -12.2, z: portal.room.z + offset }
+      const viewingLane = { x: -10.2, z: portal.room.z + offset }
       expectWalkableSegment(atrium, doorway)
-      expectWalkableSegment(doorway, center)
-      expectWalkableSegment(center, doorway)
+      expectWalkableSegment(doorway, viewingLane)
+      expectWalkableSegment(viewingLane, doorway)
     }
 
     expectWalkableSegment({ x: -14.2, z: 20.9 }, { x: -14.2, z: 31.7 })
@@ -88,12 +88,12 @@ describe('Formal Room museum expansion', () => {
     expectWalkableSegment({ x: -10.2, z: 32 }, { x: -10.2, z: 20.9 })
 
     const heartCollider = FORMAL_WALK_COLLIDERS.find((collider) => collider.id === 'moba-two-bouncing-heart')!
-    expect((heartCollider.minX + heartCollider.maxX) * 0.5).toBeCloseTo(-16.05, 8)
-    expect((heartCollider.minZ + heartCollider.maxZ) * 0.5).toBeCloseTo(26.15, 8)
+    expect((heartCollider.minX + heartCollider.maxX) * 0.5).toBeCloseTo(-12.2, 8)
+    expect((heartCollider.minZ + heartCollider.maxZ) * 0.5).toBeCloseTo(26.175, 8)
     expect(resolveFormalWalkPosition(
-      { x: -14.5, z: 26.15 },
-      { x: -15.6, z: 26.15 },
-    )).toEqual({ x: -14.5, z: 26.15 })
+      { x: -10.9, z: 26.175 },
+      { x: -12.2, z: 26.175 },
+    )).toEqual({ x: -10.9, z: 26.175 })
   })
 
   it('keeps every Photography atrium approach and viewing lane comfortably walkable', () => {
@@ -309,7 +309,7 @@ describe('Formal Room museum expansion', () => {
     expect(museumAreaAtPosition(MUSEUM_ATRIUM_REAR_PASSAGE.turn)).not.toBe('atrium')
   })
 
-  it('keeps non-door walls, rear-passage jambs, furniture, and planting physically solid', () => {
+  it('keeps walls and furniture solid while the former atrium planting stays open', () => {
     expect(resolveFormalWalkPosition({ x: 3, z: 9.2 }, { x: 3, z: 10.8 })).toEqual({ x: 3, z: 9.2 })
     expect(resolveFormalWalkPosition({ x: -5.3, z: 7.25 }, { x: -6.6, z: 7.25 })).toEqual({ x: -5.3, z: 7.25 })
     expect(resolveFormalWalkPosition({ x: 5.3, z: 2.7 }, { x: 6.6, z: 2.7 })).toEqual({ x: 5.3, z: 2.7 })
@@ -319,13 +319,11 @@ describe('Formal Room museum expansion', () => {
     expect(resolveFormalWalkPosition({ x: 3, z: 32.6 }, { x: 3, z: 31.1 })).toEqual({ x: 3, z: 32.6 })
     expectWalkableSegment({ x: 0, z: 16.5 }, { x: 0, z: 23 })
     expect(resolveFormalWalkPosition({ x: -3, z: 19.55 }, { x: -3.8, z: 19.55 })).toEqual({ x: -3, z: 19.55 })
-    const southWestPlanter = MUSEUM_ATRIUM_COLLIDERS.find((collider) => collider.id === 'atrium-south-west-planter')!
-    const planterCenter = {
-      x: (southWestPlanter.minX + southWestPlanter.maxX) * 0.5,
-      z: (southWestPlanter.minZ + southWestPlanter.maxZ) * 0.5,
-    }
-    const planterApproach = { x: southWestPlanter.maxX + FORMAL_WALK_PLAYER_RADIUS + 0.08, z: planterCenter.z }
-    expect(resolveFormalWalkPosition(planterApproach, planterCenter)).toEqual(planterApproach)
+    expect(MUSEUM_ATRIUM_COLLIDERS.some((collider) => collider.id?.endsWith('-planter'))).toBe(false)
+    expectWalkableSegment({ x: -5, z: 16.65 }, { x: -3.7, z: 16.65 })
+    expectWalkableSegment({ x: 3.7, z: 16.65 }, { x: 5, z: 16.65 })
+    expectWalkableSegment({ x: -5, z: 30.1 }, { x: -3.7, z: 30.1 })
+    expectWalkableSegment({ x: 3.8, z: 28 }, { x: 5.1, z: 28 })
 
     const colliderIds = new Set(FORMAL_WALK_COLLIDERS.map((collider) => collider.id))
     expect(MUSEUM_ATRIUM_COLLIDERS.every((collider) => colliderIds.has(collider.id))).toBe(true)
