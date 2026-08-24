@@ -306,7 +306,7 @@ export const MUSEUM_ATRIUM_WAYPOINTS = [
   { id: 'mobile-north', galleryId: 'lobby', x: 0, z: 21.8 },
   { id: 'north-cross-axis', galleryId: 'lobby', x: 0, z: 26.15 },
   { id: 'garden-belvedere', galleryId: 'lobby', x: 0, z: 30.8 },
-  { id: 'rear-window-turn', galleryId: 'moba-two', x: 0, z: 33.35 },
+  { id: 'personal-galleries-turn', galleryId: 'moba-two', x: 0, z: 33.35 },
 ] as const
 
 export const MUSEUM_LOOP_WAYPOINTS = [

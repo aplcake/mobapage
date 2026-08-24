@@ -36,6 +36,7 @@ import {
   type FormalWalkCollider,
 } from './walkMath'
 import { MONKEYDHASHY_CREATEBOX_SPEC } from './monkeydhashyCreatebox'
+import { PERSONAL_GALLERY_DOOR_SPEC } from './personalGalleryDoor'
 
 export type FormalRoomViewMode = 'curated' | 'explore'
 
@@ -69,6 +70,9 @@ function formalRoomReviewPose(): MuseumTravelPose | null {
   if (review === 'plants-moba-two-hoya') return { x: -10, z: 23.27, yaw: -Math.PI / 2 }
   if (review === 'plants-moba-two-caladium') return { x: -10.5, z: 27.55, yaw: -Math.PI / 2 }
   if (review === 'moba-two-createbox') return MONKEYDHASHY_CREATEBOX_SPEC.reviewPose
+  if (review === 'personal-galleries') return PERSONAL_GALLERY_DOOR_SPEC.reviewPose
+  if (review === 'personal-galleries-left') return PERSONAL_GALLERY_DOOR_SPEC.reviewPoseLeft
+  if (review === 'personal-galleries-right') return PERSONAL_GALLERY_DOOR_SPEC.reviewPoseRight
   if (review === 'moba-two-left-wall') return { x: -12.2, z: 26.5, yaw: Math.PI / 2 }
   if (review === 'moba-two-right-wall') return { x: -12.2, z: 26.5, yaw: -Math.PI / 2 }
   if (review === 'plants-photography') return { x: 12.35, z: 25.4, yaw: -Math.PI / 2 }

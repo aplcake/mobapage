@@ -92,6 +92,7 @@ import {
   mobaTwoHeartMotionAtPhase,
 } from './mobaTwoHeartSculpture'
 import { MonkeydhashyCreateboxInstallation } from './MonkeydhashyCreateboxInstallation'
+import { PERSONAL_GALLERY_DOOR_SPEC } from './personalGalleryDoor'
 import {
   MUSEUM_LORE_BY_ID,
   type MuseumLoreChapter,
@@ -131,6 +132,57 @@ Array.from({ length: 10 }).forEach((_, index) => {
   else FESTIVE_PAPER_STAR_SHAPE.lineTo(x, y)
 })
 FESTIVE_PAPER_STAR_SHAPE.closePath()
+
+function createCartoonArchShape(width: number, height: number, archRise: number) {
+  const shape = new THREE.Shape()
+  const halfWidth = width * 0.5
+  const halfHeight = height * 0.5
+  const shoulderY = halfHeight - archRise
+  shape.moveTo(-halfWidth, -halfHeight)
+  shape.lineTo(halfWidth, -halfHeight)
+  shape.lineTo(halfWidth, shoulderY)
+  shape.bezierCurveTo(
+    halfWidth,
+    shoulderY + archRise * 0.52,
+    halfWidth * 0.5,
+    halfHeight,
+    0,
+    halfHeight,
+  )
+  shape.bezierCurveTo(
+    -halfWidth * 0.5,
+    halfHeight,
+    -halfWidth,
+    shoulderY + archRise * 0.52,
+    -halfWidth,
+    shoulderY,
+  )
+  shape.closePath()
+  return shape
+}
+
+const PERSONAL_GALLERY_CASING_SHAPE = createCartoonArchShape(
+  PERSONAL_GALLERY_DOOR_SPEC.casing.width,
+  PERSONAL_GALLERY_DOOR_SPEC.casing.height,
+  PERSONAL_GALLERY_DOOR_SPEC.casing.archRise,
+)
+const PERSONAL_GALLERY_BRASS_REVEAL_SHAPE = createCartoonArchShape(4.12, 4.3, 0.88)
+const PERSONAL_GALLERY_RECESS_SHAPE = createCartoonArchShape(3.92, 4.16, 0.84)
+const PERSONAL_GALLERY_LEAF_SHAPE = createCartoonArchShape(
+  PERSONAL_GALLERY_DOOR_SPEC.leaf.width,
+  PERSONAL_GALLERY_DOOR_SPEC.leaf.height,
+  PERSONAL_GALLERY_DOOR_SPEC.leaf.archRise,
+)
+const PERSONAL_GALLERY_KEYHOLE_SHAPE = new THREE.Shape()
+PERSONAL_GALLERY_KEYHOLE_SHAPE.moveTo(0, 0.14)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.bezierCurveTo(0.1, 0.14, 0.15, 0.075, 0.15, 0)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.bezierCurveTo(0.15, -0.07, 0.11, -0.11, 0.065, -0.14)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.lineTo(0.13, -0.34)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.lineTo(-0.13, -0.34)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.lineTo(-0.065, -0.14)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.bezierCurveTo(-0.11, -0.11, -0.15, -0.07, -0.15, 0)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.bezierCurveTo(-0.15, 0.075, -0.1, 0.14, 0, 0.14)
+PERSONAL_GALLERY_KEYHOLE_SHAPE.closePath()
 const WINTER_END_SWAG_CURVES = [
   new THREE.CatmullRomCurve3([
     new THREE.Vector3(-5.05, 0, 0),
@@ -264,11 +316,15 @@ function MuseumSphere({
   scale,
   color,
   outlineWidth = 0.04,
+  emissive = '#000000',
+  emissiveIntensity = 0,
 }: {
   position: Vec3
   scale: Vec3
   color: string
   outlineWidth?: number
+  emissive?: string
+  emissiveIntensity?: number
 }) {
   return (
     <OutlineMesh
@@ -276,7 +332,14 @@ function MuseumSphere({
       scale={[...scale]}
       outlineWidth={outlineWidth * MUSEUM_OUTLINE_SCALE}
       geometry={<sphereGeometry args={[0.5, 20, 14]} />}
-      material={<meshToonMaterial color={color} gradientMap={TOON_RAMP} />}
+      material={(
+        <meshToonMaterial
+          color={color}
+          gradientMap={TOON_RAMP}
+          emissive={emissive}
+          emissiveIntensity={emissiveIntensity * MUSEUM_EMISSIVE_SCALE}
+        />
+      )}
     />
   )
 }
@@ -1263,19 +1326,181 @@ function MuseumExteriorGrounds() {
       {MUSEUM_EXTERIOR_TREE_SPECS
         .filter((spec) => spec.id.startsWith('rear-garden'))
         .map((spec) => <CourtyardTree key={spec.id} spec={spec} />)}
-      <group position={[0, -1.94, 39.2]}>
-        <MuseumCylinder position={[0, 0.48, 0]} scale={[1.6, 0.26, 1.6]} color="#cdbd91" outlineWidth={0.04} segments={24} />
-        <MuseumBox position={[-0.38, 1.1, 0]} scale={[0.76, 1.38, 0.34]} rotation={[0, 0.25, -0.18]} color="#4f7774" outlineWidth={0.055} />
-        <MuseumBox position={[0.38, 1.1, 0]} scale={[0.76, 1.38, 0.34]} rotation={[0, -0.25, 0.18]} color="#d0a949" outlineWidth={0.055} />
-      </group>
     </group>
   )
 }
 
-function FarTurnGardenWindow() {
-  const panes = [-9.6, -4.8, 0, 4.8, 9.6]
+function usePersonalGalleryDoorSignTexture() {
+  const [texture] = useState(() => {
+    if (typeof document === 'undefined') return createFallbackTexture('#263d3d')
+    const canvas = document.createElement('canvas')
+    canvas.width = 1200
+    canvas.height = 320
+    const context = canvas.getContext('2d')
+    if (!context) return createFallbackTexture('#263d3d')
+
+    context.fillStyle = '#203736'
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = '#2e4950'
+    context.fillRect(22, 22, canvas.width - 44, canvas.height - 44)
+    context.strokeStyle = '#b4935c'
+    context.lineWidth = 9
+    context.strokeRect(16, 16, canvas.width - 32, canvas.height - 32)
+    context.strokeStyle = '#f2d897'
+    context.lineWidth = 3
+    context.strokeRect(38, 38, canvas.width - 76, canvas.height - 76)
+
+    context.textAlign = 'center'
+    context.textBaseline = 'middle'
+    context.fillStyle = '#fff1cf'
+    context.font = '700 78px Georgia, Times New Roman, serif'
+    context.fillText('PERSONAL GALLERIES', canvas.width * 0.5, 125)
+    context.fillStyle = '#d4b66f'
+    context.fillRect(canvas.width * 0.5 - 64, 190, 128, 4)
+    context.font = '700 31px Arial, Helvetica, sans-serif'
+    drawMuseumTrackingText(context, 'COMING SOON', canvas.width * 0.5, 246, 8)
+
+    const nextTexture = new THREE.CanvasTexture(canvas)
+    nextTexture.colorSpace = THREE.SRGBColorSpace
+    nextTexture.anisotropy = 8
+    nextTexture.generateMipmaps = false
+    nextTexture.minFilter = THREE.LinearFilter
+    nextTexture.needsUpdate = true
+    return nextTexture
+  })
+
+  useEffect(() => () => texture.dispose(), [texture])
+  return texture
+}
+
+function PersonalGalleryDoor() {
+  const signTexture = usePersonalGalleryDoorSignTexture()
+  const archGeometry = (shape: THREE.Shape, depth: number, bevelSize: number) => (
+    <extrudeGeometry
+      args={[shape, {
+        depth,
+        bevelEnabled: true,
+        bevelSegments: 1,
+        bevelSize,
+        bevelThickness: bevelSize,
+        curveSegments: 10,
+      }]}
+    />
+  )
+
   return (
-    <group position={[0, 0, 35.34]}>
+    <group
+      position={[0, 0, -0.04]}
+      userData={{
+        lockedGalleryDoor: PERSONAL_GALLERY_DOOR_SPEC.id,
+        label: PERSONAL_GALLERY_DOOR_SPEC.label,
+        status: PERSONAL_GALLERY_DOOR_SPEC.status,
+        interactive: false,
+      }}
+    >
+      <MuseumStructuralBox position={[0, 0.62, 0.08]} scale={[4.58, 4.55, 0.3]} color="#5c6963" />
+      <MuseumBox position={[-2.22, 0.36, -0.12]} scale={[0.34, 4.6, 0.42]} color="#304a48" outlineWidth={0.038} />
+      <MuseumBox position={[2.22, 0.36, -0.12]} scale={[0.34, 4.6, 0.42]} color="#304a48" outlineWidth={0.038} />
+      <MuseumBox position={[0, 2.66, -0.13]} scale={[4.78, 0.24, 0.46]} color="#304a48" outlineWidth={0.038} />
+
+      <mesh position={[0, 0.28, -0.17]} renderOrder={1}>
+        {archGeometry(PERSONAL_GALLERY_CASING_SHAPE, 0.2, 0.04)}
+        <meshBasicMaterial color="#7dd8c8" transparent opacity={0.2} depthWrite={false} toneMapped={false} />
+      </mesh>
+      <OutlineMesh
+        position={[0, 0.28, -0.23]}
+        outlineWidth={0.034}
+        geometry={archGeometry(PERSONAL_GALLERY_CASING_SHAPE, 0.18, 0.035)}
+        material={<meshToonMaterial color="#263d3d" gradientMap={TOON_RAMP} />}
+      />
+      <OutlineMesh
+        position={[0, 0.28, -0.3]}
+        outlineWidth={0.026}
+        geometry={archGeometry(PERSONAL_GALLERY_BRASS_REVEAL_SHAPE, 0.15, 0.025)}
+        material={<meshToonMaterial color="#b4935c" gradientMap={TOON_RAMP} />}
+      />
+      <OutlineMesh
+        position={[0, 0.28, -0.37]}
+        outlineWidth={0.022}
+        geometry={archGeometry(PERSONAL_GALLERY_RECESS_SHAPE, 0.13, 0.02)}
+        material={<meshToonMaterial color="#131d21" gradientMap={TOON_RAMP} />}
+      />
+      <OutlineMesh
+        position={[0, 0.28, -0.45]}
+        outlineWidth={0.025}
+        geometry={archGeometry(PERSONAL_GALLERY_LEAF_SHAPE, 0.12, 0.018)}
+        material={(
+          <meshToonMaterial
+            color="#284b4c"
+            gradientMap={TOON_RAMP}
+            emissive="#243e47"
+            emissiveIntensity={0.18}
+          />
+        )}
+      />
+
+      {([-1, 1] as const).flatMap((side) => ([
+        { y: 0.85, height: 1.05, color: side < 0 ? '#31545a' : '#3b4b59' },
+        { y: -0.64, height: 1.35, color: side < 0 ? '#3a4f54' : '#354555' },
+      ].map((panel) => (
+        <group key={`${side}-${panel.y}`} position={[side * 0.91, panel.y, -0.62]}>
+          <MuseumBox position={[0, 0, 0]} scale={[1.35, panel.height, 0.09]} color="#172526" outlineWidth={0.02} />
+          <MuseumBox position={[0, 0, -0.058]} scale={[1.14, panel.height - 0.18, 0.05]} color={panel.color} outlineWidth={0.012} emissive="#5ea49d" emissiveIntensity={0.08} />
+          <MuseumBox position={[0, panel.height * 0.22, -0.098]} scale={[0.76, 0.04, 0.02]} color="#789992" outlineWidth={0.004} />
+        </group>
+      ))))}
+
+      <MuseumBox position={[0, -0.26, -0.69]} scale={[0.04, 2.88, 0.04]} color="#9b8359" outlineWidth={0.006} emissive="#8fe3d8" emissiveIntensity={0.09} />
+      <mesh position={[0, 1.54, -0.67]} rotation={[0, 0, Math.PI / 4]} scale={[0.2, 0.2, 1]} renderOrder={7}>
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial color="#bdf6e9" transparent opacity={0.72} depthWrite={false} toneMapped={false} />
+      </mesh>
+
+      <OutlineMesh
+        position={[0, -0.04, -0.77]}
+        outlineWidth={0.022}
+        geometry={<torusGeometry args={[0.43, 0.06, 10, 28]} />}
+        material={<meshToonMaterial color="#d1aa5c" gradientMap={TOON_RAMP} emissive="#8b6a22" emissiveIntensity={0.16} />}
+      />
+      <MuseumCylinder position={[0, -0.04, -0.76]} rotation={[Math.PI / 2, 0, 0]} scale={[0.42, 0.12, 0.42]} color="#b4935c" outlineWidth={0.022} segments={28} />
+      <MuseumCylinder position={[0, -0.04, -0.85]} rotation={[Math.PI / 2, 0, 0]} scale={[0.28, 0.08, 0.28]} color="#203637" outlineWidth={0.014} segments={24} emissive="#6bc8bd" emissiveIntensity={0.14} />
+      <mesh position={[0, 0.015, -0.9]} rotation={[0, Math.PI, 0]} scale={[0.52, 0.52, 1]} renderOrder={9}>
+        <shapeGeometry args={[PERSONAL_GALLERY_KEYHOLE_SHAPE]} />
+        <meshBasicMaterial color="#0e1718" toneMapped={false} />
+      </mesh>
+
+      {([-1, 1] as const).map((side) => (
+        <group key={`personal-gallery-sconce-${side}`} position={[side * 2.05, 0.92, -0.48]}>
+          <MuseumCylinder position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[0.21, 0.08, 0.21]} color="#b4935c" outlineWidth={0.018} segments={18} />
+          <MuseumBox position={[-side * 0.13, 0, -0.11]} rotation={[0, 0, side * 0.3]} scale={[0.27, 0.08, 0.08]} color="#b4935c" outlineWidth={0.012} />
+          <MuseumSphere position={[-side * 0.25, 0.03, -0.16]} scale={[0.16, 0.2, 0.13]} color="#f4d994" outlineWidth={0.016} emissive="#ffe9a8" emissiveIntensity={0.45} />
+        </group>
+      ))}
+
+      <MuseumBox position={[0, 2.63, -0.51]} scale={[3.82, 0.72, 0.15]} color="#b4935c" outlineWidth={0.026} />
+      <MuseumBox position={[0, 2.63, -0.605]} scale={[3.62, 0.56, 0.08]} color="#203736" outlineWidth={0.014} />
+      <mesh position={[0, 2.63, -0.655]} rotation={[0, Math.PI, 0]} scale={[3.48, 0.47, 1]} renderOrder={8}>
+        <planeGeometry args={[1, 1]} />
+        <meshBasicMaterial map={signTexture} toneMapped={false} />
+      </mesh>
+      {[-1.73, 1.73].map((x) => (
+        <MuseumCylinder key={x} position={[x, 2.63, -0.7]} rotation={[Math.PI / 2, 0, 0]} scale={[0.04, 0.04, 0.026]} color="#f3daa0" outlineWidth={0.005} segments={12} />
+      ))}
+
+      <MuseumBox position={[0, -1.72, -0.38]} scale={[4.72, 0.22, 0.72]} color="#304a48" outlineWidth={0.032} />
+      <MuseumBox position={[0, -1.58, -0.68]} scale={[3.92, 0.05, 0.72]} color="#c1a260" outlineWidth={0.014} emissive="#efd99c" emissiveIntensity={0.08} />
+      <MuseumBox position={[0, -1.87, -1.02]} scale={[2.5, 0.025, 1.28]} color="#294542" outlineWidth={0.012} />
+      <MuseumBox position={[0, -1.85, -1.02]} scale={[1.72, 0.018, 1.02]} color="#a88751" outlineWidth={0.008} />
+
+      <pointLight position={[0, 0.55, -1.08]} color="#8fe3d8" intensity={1.2} distance={4.8} decay={2} />
+    </group>
+  )
+}
+
+function FarTurnPersonalGalleryFacade() {
+  const panes = [-9.6, -4.8, 4.8, 9.6]
+  return (
+    <group position={[...PERSONAL_GALLERY_DOOR_SPEC.position]}>
       <MuseumBox position={[0, 3.03, 0]} scale={[25.34, 0.36, 0.32]} color="#53635e" outlineWidth={0.034} />
       <MuseumBox position={[0, -1.72, 0]} scale={[25.34, 0.34, 0.32]} color="#53635e" outlineWidth={0.034} />
       {[-12, -7.2, -2.4, 2.4, 7.2, 12].map((x) => (
@@ -1297,6 +1522,7 @@ function FarTurnGardenWindow() {
         </group>
       ))}
       <MuseumBox position={[0, 2.38, -0.16]} scale={[23.8, 0.06, 0.12]} color="#b8a986" outlineWidth={0.012} emissive="#f1e2bd" emissiveIntensity={0.16} />
+      <PersonalGalleryDoor />
     </group>
   )
 }
@@ -2299,7 +2525,6 @@ function MuseumLoopArchitecture({
   onOpenBurnRoom?: () => void
 }) {
   const mobaOne = MUSEUM_GALLERIES[1]
-  const photography = MUSEUM_GALLERIES[3]
   const holiday = MUSEUM_GALLERIES[4]
   return (
     <group>
@@ -2349,7 +2574,7 @@ function MuseumLoopArchitecture({
       <CourtyardGardenDoor x={-9.2} onOpen={onOpenCourtyard} />
       <BurnRoomDoorAndWindow x={9.2} onOpen={onOpenBurnRoom} />
 
-      <FarTurnGardenWindow />
+      <FarTurnPersonalGalleryFacade />
       <mesh position={[0, 3.12, 34]} rotation={[-Math.PI / 2, 0, 0]} scale={[8.6, 2.15, 1]}>
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial color="#b9ccc3" />
@@ -2359,6 +2584,18 @@ function MuseumLoopArchitecture({
         <planeGeometry args={[1, 1]} />
         <meshBasicMaterial color="#fff1bd" transparent opacity={0.12} depthWrite={false} blending={THREE.AdditiveBlending} />
       </mesh>
+
+      <LoopSign
+        kicker="East Gallery Wing"
+        title="Photography"
+        subtitle="One Final Album · North-Light Room"
+        accent={MUSEUM_GALLERIES[3].accent}
+        background={MUSEUM_GALLERIES[3].trim}
+        direction="right"
+        position={[8.8, 2.48, 35.12]}
+        rotation={[0, Math.PI, 0]}
+        size={[3.25, 0.72]}
+      />
 
       {([-1, 1] as const).map((side) => {
         const portal = side < 0 ? MUSEUM_LOOP_PORTALS.entry : MUSEUM_LOOP_PORTALS.return
@@ -2383,18 +2620,6 @@ function MuseumLoopArchitecture({
           </group>
         )
       })}
-
-      <LoopSign
-        kicker="East Gallery Wing"
-        title="Photography"
-        subtitle="One Final Album · North-Light Room"
-        accent={photography.accent}
-        background={photography.trim}
-        direction="right"
-        position={[0, 2.5, 35.12]}
-        rotation={[0, Math.PI, 0]}
-        size={[4.05, 1.02]}
-      />
 
       <MuseumBox position={[-2.65, -1.91, 5]} scale={[5.3, 0.018, 0.055]} color={AGED_BRASS} outlineWidth={0.008} />
       <MuseumBox position={[-8.75, -1.91, 5]} scale={[6.9, 0.018, 0.055]} color={AGED_BRASS} outlineWidth={0.008} />

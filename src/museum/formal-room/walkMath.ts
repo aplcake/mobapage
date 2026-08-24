@@ -13,6 +13,7 @@ import {
 } from './museumTreeDesign'
 import { MOBA_TWO_HEART_SCULPTURE_SPEC } from './mobaTwoHeartSculpture'
 import { MONKEYDHASHY_CREATEBOX_SPEC } from './monkeydhashyCreatebox'
+import { PERSONAL_GALLERY_DOOR_SPEC } from './personalGalleryDoor'
 
 export const MUSEUM_HOLIDAY_GIFT_VITRINE_COLLIDER = HOLIDAY_GIFT_VITRINE_COLLIDER
 
@@ -71,6 +72,7 @@ export const FORMAL_WALK_COLLIDERS: readonly FormalWalkCollider[] = [
   },
   MOBA_TWO_HEART_SCULPTURE_SPEC.collider,
   MONKEYDHASHY_CREATEBOX_SPEC.collider,
+  PERSONAL_GALLERY_DOOR_SPEC.collider,
   MUSEUM_HOLIDAY_GIFT_VITRINE_COLLIDER,
   ...MUSEUM_GALLERY_BENCH_COLLIDERS,
   ...MUSEUM_GALLERY_END_WALL_COLLIDERS,
