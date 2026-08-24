@@ -129,13 +129,13 @@ function createCollectionPlaqueTexture() {
   context.textBaseline = 'middle'
   context.fillStyle = '#31565b'
   context.font = '700 44px Arial, sans-serif'
-  context.fillText('FROM THE COLLECTION OF', canvas.width / 2, 124)
+  context.fillText('SOLE SURVIVING !CREATEBOX', canvas.width / 2, 124)
   context.fillStyle = '#211827'
   context.font = '900 92px Arial, sans-serif'
   context.fillText('MONKEYDHASHY', canvas.width / 2, 258)
   context.fillStyle = '#7b4b62'
   context.font = '700 36px Arial, sans-serif'
-  context.fillText('!CREATEBOX  ·  MoBA GALLERY #6', canvas.width / 2, 382)
+  context.fillText('1 / 1  ·  49 OF 50 BURNED', canvas.width / 2, 382)
   const texture = new THREE.CanvasTexture(canvas)
   texture.colorSpace = THREE.SRGBColorSpace
   texture.generateMipmaps = false

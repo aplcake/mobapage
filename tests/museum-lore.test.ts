@@ -30,6 +30,7 @@ describe('Museum history trail', () => {
     expect(MUSEUM_LORE_BY_ID['moba-one'].stats[0].value).toBe('599')
     expect(MUSEUM_LORE_BY_ID['holiday-potluck'].stats[1].value).toBe('1,200+')
     expect(MUSEUM_LORE_BY_ID['moba-two'].stats[0].value).toBe('2,222')
+    expect(MUSEUM_LORE_BY_ID['moba-two'].stats[1].value).toBe('50 → 1')
     expect(MUSEUM_LORE_BY_ID['one-final-album'].stats[1].value).toBe('2,669')
     expect(MUSEUM_LORE_BY_ID['glowbud-world'].stats[1].value).toBe('3,333')
 
@@ -37,6 +38,11 @@ describe('Museum history trail', () => {
     expect(allCopy).not.toContain('cite')
     expect(allCopy).not.toContain('filecite')
     expect(allCopy).not.toContain('[object Object]')
+    expect(allCopy).toContain('Forty-nine were burned')
+    expect(allCopy).toContain('MonkeyDHashy')
+    expect(allCopy).toContain('1/1')
+    expect(allCopy).not.toContain('Thirty-five were burned')
+    expect(allCopy).not.toContain('50 → 35')
   })
 
   it('mounts obvious interactive plaques in the walk and opens an accessible reading panel', () => {

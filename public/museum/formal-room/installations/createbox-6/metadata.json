@@ -7,6 +7,12 @@
   "artist": "Joseph Pixler",
   "collection": "MoBA Gallery",
   "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/6",
+  "edition": {
+    "originalSupply": 50,
+    "burned": 49,
+    "surviving": 1,
+    "museumLabel": "1/1"
+  },
   "originalMediaUrl": "https://arweave.net/o4A2MX0thIVo39tikSSkL0N_ULVeJY_2_0yzBcl1j2g",
   "originalMediaSha256": "bc5041c70ced33175d719e4a52a9ef6ab5920b2fdd295b1bf29224ae41ffc191",
   "media": {

@@ -42,12 +42,19 @@ describe('MonkeyDHashy !Createbox MoBA #2 installation', () => {
         address: '0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5',
         label: 'MonkeyDHashy',
       },
+      edition: {
+        originalSupply: 50,
+        burned: 49,
+        surviving: 1,
+        label: '1/1',
+      },
     })
     expect(MONKEYDHASHY_CREATEBOX_SPEC.sourceUrl).toBe(
       'https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/6',
     )
-    expect(componentSource).toContain('FROM THE COLLECTION OF')
+    expect(componentSource).toContain('SOLE SURVIVING !CREATEBOX')
     expect(componentSource).toContain("context.fillText('MONKEYDHASHY'")
+    expect(componentSource).toContain('1 / 1  ·  49 OF 50 BURNED')
     expect(componentSource).toContain('[MUSEUM_ARTWORK_USER_DATA_KEY]: provenance')
   })
 

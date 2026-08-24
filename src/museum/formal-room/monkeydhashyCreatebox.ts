@@ -12,6 +12,12 @@ export const MONKEYDHASHY_CREATEBOX_SPEC = {
     address: '0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5',
     label: 'MonkeyDHashy',
   },
+  edition: {
+    originalSupply: 50,
+    burned: 49,
+    surviving: 1,
+    label: '1/1',
+  },
   media: {
     original: '/museum/formal-room/installations/createbox-6/createbox-6-original.gif',
     poster: '/museum/formal-room/installations/createbox-6/createbox-6-poster.webp',

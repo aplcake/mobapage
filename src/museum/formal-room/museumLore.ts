@@ -144,18 +144,18 @@ export const MUSEUM_LORE_CHAPTERS: readonly MuseumLoreChapter[] = [
     title: 'The Audience Curates the Museum',
     shortTitle: 'Curated Hearts',
     deck: 'MoBA #2 let creation, destruction, and community votes shape what the final exhibition became.',
-    plaqueCopy: '2,222 works shaped by artists, collectors, creation boxes, burns, and community curation.',
+    plaqueCopy: '2,222 works shaped by community curation—and one !createbox left standing after 49 burns.',
     accent: '#61dce8',
     stats: [
       { value: '2,222', label: 'works in the collection' },
-      { value: '50 → 35', label: 'creation boxes, then burns' },
+      { value: '50 → 1', label: '!createboxes after 49 burns' },
       { value: '50+', label: 'artists and contributors' },
     ],
     sections: [
       {
         heading: 'Creation through decision',
         paragraphs: [
-          'MoBA #2: Curated Hearts began with 50 creation boxes. Thirty-five were burned, turning destruction into a way of making a final decision.',
+          'MoBA #2: Curated Hearts began with 50 !createboxes. Forty-nine were burned, leaving one sole surviving box—now owned by MonkeyDHashy—as a 1/1.',
           'More than 50 artists and community contributors became part of the collection. The heart from Yes / Yes multiplied into many styles, voices, and interpretations.',
         ],
       },
