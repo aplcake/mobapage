@@ -2,6 +2,8 @@ import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import {
   ATRIUM_DEFAULT_ARTWORKS,
+  ATRIUM_DEFAULT_RESIDENT_CURATION,
+  ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS,
   ATRIUM_RESIDENT_SLOTS,
   ATRIUM_WALL_ART_FRAME_DEPTH,
   ATRIUM_WALL_ART_MOUNT_X,
@@ -11,11 +13,11 @@ import {
   atriumArtworkFrameLayout,
   atriumResidentColliders,
   buildAtriumWallInstallation,
+  selectedResidentAssets,
 } from '../src/museum/formal-room/atriumRegistryPlan'
 import { MUSEUM_ATRIUM_COLUMN_ZS, museumGalleryWallOpenings } from '../src/museum/formal-room/museumGalleryDesign'
 import { MUSEUM_ATRIUM_PORTALS, MUSEUM_GALLERY_BY_ID } from '../src/museum/formal-room/museumPlan'
-import { MUSEUM_ATRIUM_TREE_SPECS } from '../src/museum/formal-room/museumTreeDesign'
-import { FORMAL_WALK_COLLIDERS, resolveFormalWalkPosition } from '../src/museum/formal-room/walkMath'
+import { FORMAL_WALK_COLLIDERS, MUSEUM_ATRIUM_COLLIDERS, resolveFormalWalkPosition } from '../src/museum/formal-room/walkMath'
 import { MUSEUM_COLLECTION_BY_ID } from '../src/museum/collection-registry/museumCollections'
 import {
   GLOWBUD_MUSEUM_PERFORMANCE_CYCLE_SECONDS,
@@ -34,17 +36,20 @@ function expectWalkableSegment(from: { x: number; z: number }, to: { x: number; 
   }
 }
 
-function pointToSightlineDistance(
-  point: { x: number; z: number },
-  from: { x: number; z: number },
-  to: { x: number; z: number },
-) {
-  const dx = to.x - from.x
-  const dz = to.z - from.z
-  return Math.abs(dx * (from.z - point.z) - (from.x - point.x) * dz) / Math.hypot(dx, dz)
-}
-
 describe('personal atrium geometry and default installation', () => {
+  it('fills all ten resident slots with one rare Glowbud from each leading holder', () => {
+    expect(ATRIUM_DEFAULT_RESIDENT_CURATION).toHaveLength(10)
+    expect(ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS).toHaveLength(ATRIUM_RESIDENT_SLOTS.length)
+    expect(new Set(ATRIUM_DEFAULT_RESIDENT_CURATION.map((resident) => resident.ownerAddress)).size).toBe(10)
+    expect(new Set(ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS).size).toBe(10)
+    expect(ATRIUM_DEFAULT_RESIDENT_CURATION.map((resident) => resident.holderRank)).toEqual(
+      Array.from({ length: 10 }, (_, index) => index + 1),
+    )
+    const residents = selectedResidentAssets(null, [])
+    expect(residents).toHaveLength(10)
+    expect(residents.every((resident) => resident.ownerHint?.address)).toBe(true)
+  })
+
   it('keeps ten resident slots clear of the main promenade and both cross axes', () => {
     expect(ATRIUM_RESIDENT_SLOTS).toHaveLength(10)
     expect(new Set(ATRIUM_RESIDENT_SLOTS.map((slot) => `${slot.position[0]}:${slot.position[2]}`)).size).toBe(10)
@@ -90,24 +95,11 @@ describe('personal atrium geometry and default installation', () => {
     expect(ATRIUM_WALL_BAYS.filter((bay) => bay.anchor)).toHaveLength(4)
   })
 
-  it('keeps the corner specimen trees out of the portal-to-art sightlines', () => {
-    for (const side of ['west', 'east'] as const) {
-      const x = side === 'west' ? -ATRIUM_WALL_ART_MOUNT_X : ATRIUM_WALL_ART_MOUNT_X
-      const southBay = ATRIUM_WALL_BAYS.find((bay) => bay.side === side && bay.id.endsWith('01'))!
-      const northBay = ATRIUM_WALL_BAYS.find((bay) => bay.side === side && bay.id.endsWith('06'))!
-      const southTree = MUSEUM_ATRIUM_TREE_SPECS.find((tree) => tree.id === `atrium-south-${side}`)!
-      const northTree = MUSEUM_ATRIUM_TREE_SPECS.find((tree) => tree.id === `atrium-north-${side}`)!
-      expect(pointToSightlineDistance(
-        { x: southTree.position[0], z: southTree.position[2] },
-        { x: 0, z: MUSEUM_ATRIUM_PORTALS.mobaOne.atrium.z },
-        { x, z: southBay.position[2] },
-      )).toBeGreaterThan(1.2)
-      expect(pointToSightlineDistance(
-        { x: northTree.position[0], z: northTree.position[2] },
-        { x: 0, z: MUSEUM_ATRIUM_PORTALS.mobaTwo.atrium.z },
-        { x, z: northBay.position[2] },
-      )).toBeGreaterThan(1.2)
-    }
+  it('keeps the Glowbud garden clear of decorative plant obstacles', () => {
+    expect(MUSEUM_ATRIUM_COLLIDERS.map((collider) => collider.id)).toEqual([
+      'atrium-west-bench',
+      'atrium-east-bench',
+    ])
   })
 
   it('hangs the east wall collection on solid piers instead of over Photography windows', () => {

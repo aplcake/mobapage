@@ -4,6 +4,7 @@ import { getFormalRoomArtworkTextureSize } from '../src/museum/formal-room/artwo
 import {
   MUSEUM_BASE_LIGHTING,
   MUSEUM_LIGHTING_BUDGET,
+  museumToneMappingExposure,
   OPENING_SALON_ARCHITECTURAL_LIGHTS,
   OPENING_SALON_ARTWORK_LIGHTS,
 } from '../src/museum/formal-room/museumLighting'
@@ -93,9 +94,10 @@ describe('Formal Museum Room MVP', () => {
     expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE = 1024')
   })
 
-  it('starts directly in exploration with a quiet three-area menu', () => {
+  it('opens with one clear welcome guide, then continues directly into exploration', () => {
     const room = source('../src/museum/formal-room/FormalMuseumRoom.tsx')
     const camera = source('../src/museum/formal-room/FormalRoomCameraRig.tsx')
+    const styles = source('../src/museum/formal-room/FormalMuseumRoom.module.css')
     const walkMath = source('../src/museum/formal-room/walkMath.ts')
     const salonLighting = room.slice(
       room.indexOf('function SalonLighting'),
@@ -108,6 +110,25 @@ describe('Formal Museum Room MVP', () => {
 
     expect(room).toContain("const mode: FormalRoomViewMode = 'explore'")
     expect(room).toContain("data-room-mode={mode}")
+    expect(room).toContain('const [welcomeOpen, setWelcomeOpen] = useState(() => !(')
+    expect(room).toContain("window.matchMedia('(hover: none) and (pointer: coarse)').matches")
+    expect(room).toContain('const sceneBlocked = welcomeOpen || modalOpen')
+    expect(room).toContain('const walkBlocked = sceneBlocked || museumMenuOpen')
+    expect(room).toContain('data-testid="museum-welcome"')
+    expect(room).toContain('role="dialog"')
+    expect(room).toContain('aria-modal="true"')
+    expect(room).toContain('<h1 id="museum-welcome-title">Welcome to MoBA</h1>')
+    expect(room).toContain('<p id="museum-welcome-copy">Explore at your own pace.</p>')
+    expect(room).toContain('<strong>Move</strong>')
+    expect(room).toContain('className={styles.desktopLookCopy}>Point to turn</span>')
+    expect(room).toContain('className={styles.mobileLookCopy}>Swipe to look</span>')
+    expect(room).toContain('<strong>Jump</strong>')
+    expect(room).toContain('<strong>Enter Museum</strong>')
+    expect(room).toContain('onClick={enterMuseum} autoFocus')
+    expect(room).toContain('Pointer steers · Centre stops')
+    expect(room).toContain("event.code !== 'Escape'")
+    expect(room).toContain('inert={sceneBlocked ? true : undefined}')
+    expect(room).toContain('if (walkBlocked) return')
     expect(room).not.toContain('<strong>Walk Museum</strong>')
     expect(room).not.toContain('Enter the museum galleries')
     expect(room).not.toContain('Museum Highlights')
@@ -120,6 +141,7 @@ describe('Formal Museum Room MVP', () => {
     expect(room).toContain('<strong>Main Museum</strong>')
     expect(room).toContain('<strong>Courtyard</strong>')
     expect(room).toContain('<strong>Burn Room</strong>')
+    expect(room).toContain('<strong>How to Move</strong>')
     expect(room).toContain('styles.walletButton')
     expect(room).toContain("'Connect Wallet'")
     expect(room).toContain("walletConnected ? 'My Atrium' : 'Connect Wallet'")
@@ -149,8 +171,13 @@ describe('Formal Museum Room MVP', () => {
     expect(pictureLamp).toContain('THREE.NormalBlending')
     expect(salonLighting.indexOf('{active ? (')).toBeLessThan(salonLighting.indexOf('OPENING_SALON_ARTWORK_LIGHTS.map'))
     expect(salonLighting.indexOf('<hemisphereLight')).toBeLessThan(salonLighting.indexOf('{active ? ('))
-    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeLessThanOrEqual(0.3)
-    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeLessThanOrEqual(0.5)
+    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeGreaterThanOrEqual(0.36)
+    expect(MUSEUM_BASE_LIGHTING.ambient.intensity).toBeLessThanOrEqual(0.42)
+    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeGreaterThanOrEqual(0.6)
+    expect(MUSEUM_BASE_LIGHTING.hemisphere.intensity).toBeLessThanOrEqual(0.68)
+    expect(museumToneMappingExposure(390)).toBeGreaterThan(museumToneMappingExposure(768))
+    expect(museumToneMappingExposure(768)).toBeGreaterThan(museumToneMappingExposure(1440))
+    expect(room).toContain('<MuseumRendererLighting />')
     expect(OPENING_SALON_ARTWORK_LIGHTS).toHaveLength(3)
     expect(OPENING_SALON_ARCHITECTURAL_LIGHTS).toHaveLength(1)
     expect(MUSEUM_LIGHTING_BUDGET.openingSalonActiveLights).toBe(4)
@@ -159,6 +186,23 @@ describe('Formal Museum Room MVP', () => {
     expect(camera).toContain('reviewPose?.yaw ?? Math.PI')
     expect(camera).toContain('capFormalWalkDelta')
     expect(camera).toContain('suppressArtworkClickUntil')
+    expect(camera).toContain("event.pointerType === 'mouse'")
+    expect(camera).toContain('resolveFormalCursorSteer')
+    expect(camera).toContain("document.addEventListener('mousemove', handleMouseMove)")
+    expect(camera).not.toContain('requestPointerLock')
+    expect(camera).not.toContain('pointerlockchange')
+    expect(camera).not.toContain('pointerlockerror')
+    expect(camera).not.toContain("canvas.addEventListener('pointerenter'")
+    expect(camera).toContain("if (mode !== 'explore' || captureEnabled || !controlsEnabled)")
+    expect(room).toContain('controlsEnabled={!walkBlocked}')
+    expect(camera).toContain("canvas.style.cursor = 'crosshair'")
+    expect(camera).toContain("mode !== 'explore' || captureEnabled")
+    expect(camera).toContain('if (touchPointerId !== null) return')
+    expect(camera).toContain('if (touchPointerId !== event.pointerId) return')
+    expect(camera).not.toContain('!event.isPrimary')
+    expect(styles).toContain('.walking .canvasWrap canvas')
+    expect(styles).toContain('cursor: crosshair')
+    expect(styles).not.toContain('cursor: grab')
     expect(camera).toContain('beginFormalJump')
     expect(camera).toContain('stepFormalJumpState')
     expect(camera).toContain('jumpStateRef.current.height')

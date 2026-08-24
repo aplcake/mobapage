@@ -28,6 +28,7 @@ export type AtriumWallArtwork = {
   id: string
   title: string
   collection: string
+  sourceUrl: string | null
   imageUrl: string
   animationUrl: string | null
   motionSheet: string | null
@@ -38,6 +39,7 @@ export type AtriumWallArtwork = {
   aspectRatio: number
   source: 'museum' | 'personal'
   identity?: MuseumAssetIdentity
+  ownerHint?: MuseumArtwork['collector']
 }
 
 export type AtriumArtworkFrameLayout = {
@@ -131,7 +133,24 @@ export const ATRIUM_WALL_BAYS: readonly AtriumWallBay[] = (['west', 'east'] as c
   }))
 ))
 
-export const ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS = ['1', '73', '412'] as const
+// Dated collector-survey baseline. Ownership was verified by a complete
+// Abstract ownerOf scan on 2026-08-24. Each entry is the highest inverse-trait-
+// frequency Glowbud held by one of the ten largest wallets at that snapshot.
+// The API still checks the current on-chain owner whenever a visitor opens it.
+export const ATRIUM_DEFAULT_RESIDENT_CURATION = [
+  { tokenId: '1731', holderRank: 1, balance: 180, rarityScore: 26.716, ownerAddress: '0x9a84196262fc763e01c2844609db47484e3661cd', ownerLabel: 'OliGlow' },
+  { tokenId: '2259', holderRank: 2, balance: 111, rarityScore: 22.813, ownerAddress: '0xae094a3ad3d3d4becb331d06395eec2c94e58b16', ownerLabel: 'shaneisgreat' },
+  { tokenId: '2701', holderRank: 3, balance: 101, rarityScore: 21.228, ownerAddress: '0x819744563479f70a63b255ca0369c0a12fd21559', ownerLabel: '0x8197…1559' },
+  { tokenId: '1594', holderRank: 4, balance: 73, rarityScore: 21.976, ownerAddress: '0x3ac53b9dbd2131092af4921ca25bbac1cf05b0a8', ownerLabel: 'cmmm1' },
+  { tokenId: '530', holderRank: 5, balance: 55, rarityScore: 20.575, ownerAddress: '0x0ab815e54f7be0400464eda9660c72b5e14e7780', ownerLabel: '0x0ab8…7780' },
+  { tokenId: '2013', holderRank: 6, balance: 55, rarityScore: 22.236, ownerAddress: '0x851bb652000ec3288dc18c40372a658069261a4d', ownerLabel: '0x851b…1a4d' },
+  { tokenId: '1201', holderRank: 7, balance: 50, rarityScore: 19.824, ownerAddress: '0x863d4a4ace0f95345a4c76585767190435a2b90e', ownerLabel: 'dfgsdfqwe21' },
+  { tokenId: '2542', holderRank: 8, balance: 44, rarityScore: 19.515, ownerAddress: '0x8740085f7f36925743bfb68715aadd626f452e82', ownerLabel: 'fairbanks' },
+  { tokenId: '1855', holderRank: 9, balance: 43, rarityScore: 20.288, ownerAddress: '0x57f28ca85588ceffcde266d6e5344a7fc894f639', ownerLabel: '0xkiaaa' },
+  { tokenId: '1621', holderRank: 10, balance: 42, rarityScore: 23.647, ownerAddress: '0x1640f920f370e5445ee32ac1a16b4e7ce9f28f42', ownerLabel: 'paulnty' },
+] as const
+
+export const ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS = ATRIUM_DEFAULT_RESIDENT_CURATION.map(({ tokenId }) => tokenId)
 
 const defaultWork = (work: MuseumArtwork, collection: string) => ({ work, collection })
 const mobaGalleryWork = (tokenId: string) => MOBA_GALLERY_WORKS.find((work) => work.tokenId === tokenId)!
@@ -162,6 +181,7 @@ export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GAL
   id: `museum-${work.id}`,
   title: work.title,
   collection,
+  sourceUrl: work.sourceUrl,
   imageUrl: work.poster,
   animationUrl: work.motion,
   motionSheet: work.motionSheet ?? null,
@@ -171,6 +191,7 @@ export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GAL
   frameCount: work.frameCount,
   aspectRatio: Math.max(0.45, Math.min(2, work.width / work.height)),
   source: 'museum',
+  ownerHint: work.collector,
 }))
 
 export function personalAtriumArtwork(asset: MuseumAssetSummary): AtriumWallArtwork | null {
@@ -179,6 +200,7 @@ export function personalAtriumArtwork(asset: MuseumAssetSummary): AtriumWallArtw
     id: `personal-${asset.key}`,
     title: asset.title,
     collection: asset.collection,
+    sourceUrl: null,
     imageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'room'),
     animationUrl: asset.animationUrl ? ownedNftMediaProxyUrl(asset.animationUrl, 'motion') : null,
     motionSheet: null,
@@ -243,18 +265,22 @@ export function selectedResidentAssets(
   installation: AppliedAtriumInstallation | null,
   assets: readonly MuseumAssetSummary[],
 ) {
-  if (!installation) return ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS.map((tokenId) => ({
+  if (!installation) return ATRIUM_DEFAULT_RESIDENT_CURATION.map((curated) => ({
     collectionId: 'glowbuds',
     chainId: 2741,
     contract: '0x40148d9aec2d0aed12ccf556cd7cd79c15197644' as const,
-    tokenId,
-    key: `glowbuds:2741:0x40148d9aec2d0aed12ccf556cd7cd79c15197644:${tokenId}`,
+    tokenId: curated.tokenId,
+    key: `glowbuds:2741:0x40148d9aec2d0aed12ccf556cd7cd79c15197644:${curated.tokenId}`,
     category: 'resident' as const,
-    title: `Museum Resident · Glowbud #${tokenId}`,
-    collection: 'Museum Residents',
+    title: `Glowbud #${curated.tokenId}`,
+    collection: 'Glowbuds · Collector Survey',
     imageUrl: null,
     animationUrl: null,
     attributes: [],
+    ownerHint: {
+      address: curated.ownerAddress,
+      label: curated.ownerLabel,
+    },
   }))
   const byKey = new Map(assets.map((asset) => [asset.key, asset]))
   return installation.glowbuds.flatMap((identity) => {

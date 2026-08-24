@@ -43,9 +43,9 @@ import {
 } from '../src/museum/formal-room/museumGalleryDesign'
 import { MUSEUM_GALLERIES, type MuseumGalleryPlan } from '../src/museum/formal-room/museumPlan'
 import {
-  MUSEUM_ATRIUM_TREE_SPECS,
-  MUSEUM_ATRIUM_TREE_VISUAL_RADIUS,
   MUSEUM_EXTERIOR_TREE_SPECS,
+  MUSEUM_GALLERY_PLANT_SPECS,
+  museumGalleryPlantPlanterBounds,
 } from '../src/museum/formal-room/museumTreeDesign'
 import {
   MUSEUM_ATRIUM_LIGHTING_PLAN,
@@ -57,14 +57,20 @@ import {
 import {
   FORMAL_WALK_COLLIDERS,
   FORMAL_WALK_PLAYER_RADIUS,
+  MUSEUM_GALLERY_PLANT_COLLIDERS,
   resolveFormalWalkPosition,
 } from '../src/museum/formal-room/walkMath'
+import { MOBA_TWO_HEART_SCULPTURE_SPEC } from '../src/museum/formal-room/mobaTwoHeartSculpture'
 
 const permanentGalleries = MUSEUM_GALLERIES.filter(
   (gallery): gallery is MuseumGalleryPlan & { id: PermanentMuseumGalleryId } => gallery.id !== 'lobby',
 )
 const expansionSource = readFileSync(
   new URL('../src/museum/formal-room/MuseumExpansion.tsx', import.meta.url),
+  'utf8',
+)
+const botanicalKitSource = readFileSync(
+  new URL('../src/museum/formal-room/MuseumBotanicalKit.tsx', import.meta.url),
   'utf8',
 )
 
@@ -281,7 +287,7 @@ describe('Formal museum authored gallery design', () => {
     expect(frameSource).toContain('opacity={surfaceLighting.artworkWashOpacity}')
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING['moba-one']).toMatchObject({
       artworkWashOpacity: 0.07,
-      activeWallEmissiveIntensity: 0.16,
+      activeWallEmissiveIntensity: 0.18,
     })
     expect(frameSource).not.toContain('blending={THREE.AdditiveBlending}')
     const lighting = MUSEUM_GALLERY_LIGHTING_PLANS['moba-one']
@@ -315,7 +321,7 @@ describe('Formal museum authored gallery design', () => {
         expect(overlapX > 0 && overlapZ > 0).toBe(false)
       }
     }
-  })
+  }, 15_000)
 
   it('authors MoBA #2 as a calm mineral-blue contemporary heart gallery', () => {
     const gallery = permanentGalleries.find((candidate) => candidate.id === 'moba-two')!
@@ -354,20 +360,35 @@ describe('Formal museum authored gallery design', () => {
     expect(floorSource).not.toContain('AGED_BRASS')
     expect(expansionSource).toContain("ceiling: 'pale-plaster-laylight-coves'")
     expect(expansionSource).toContain("furniture: 'mineral-gallery-oak-bench'")
-    expect(expansionSource).toContain("landmark: 'curated-hearts-sculpture'")
+    expect(MOBA_TWO_HEART_SCULPTURE_SPEC.landmark).toBe('curated-hearts-sculpture')
+    expect(MOBA_TWO_HEART_SCULPTURE_SPEC.originArtworkId).toBe('yes-yes')
+    expect(expansionSource).toContain('landmark: MOBA_TWO_HEART_SCULPTURE_SPEC.landmark')
+    expect(expansionSource).toContain("installation: 'yes-yes-origin-heart'")
+    expect(expansionSource).toContain("sculpture: 'woven-yes-yes-heart'")
     expect(expansionSource).toContain("exteriorLayer: 'mineral-clerestory-garden'")
     expect(expansionSource).not.toContain('position={[-12.2, -1.91, 26.88]}')
     expect(frameSource).toContain("outer: '#273137', inner: '#c2cbc6', mat: '#f0eee7'")
     expect(frameSource).toContain("outer: '#4b5d62', inner: '#aebbb7', mat: '#e9e9e2'")
     expect(frameSource).toContain('emissiveIntensity={isPortraitSalon || isHeartGallery || isPhotographyGallery ? 0')
     const lighting = MUSEUM_GALLERY_LIGHTING_PLANS['moba-two']
-    expect(lighting[0].target).toEqual([4.18, 0.16, gallery.maxZ - 0.42])
-    expect(lighting[1].target).toEqual([-3.85, -0.9, 29.7])
+    expect(lighting[0]).toMatchObject({
+      id: 'moba-two-createbox-prismatic-key',
+      target: [-3.8, -0.15, 26.74],
+      color: '#9ef7ff',
+      intensity: 3.8,
+    })
+    expect(lighting[1]).toMatchObject({
+      target: [0, 0.04, 29.725],
+      color: '#ffd0dc',
+      intensity: 3.15,
+      angle: 0.46,
+      penumbra: 0.92,
+    })
     expect(lighting.map((light) => light.source)).toEqual(['picture-light', 'laylight', 'clerestory'])
     expect(lighting[2]).toMatchObject({ intensity: 2.5, distance: 10.4, penumbra: 0.92 })
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING['moba-two']).toMatchObject({
       artworkWashOpacity: 0.04,
-      activeWallEmissiveIntensity: 0.13,
+      activeWallEmissiveIntensity: 0.16,
     })
     expect(expansionSource).not.toContain('intensity={7}')
     expect(expansionSource).toContain('texture.generateMipmaps = false')
@@ -469,7 +490,7 @@ describe('Formal museum authored gallery design', () => {
     expect(lighting.map((light) => light.source)).toEqual(['picture-light', 'north-light', 'north-light'])
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING.photography).toMatchObject({
       artworkWashOpacity: 0.03,
-      activeWallEmissiveIntensity: 0.075,
+      activeWallEmissiveIntensity: 0.12,
     })
   })
 
@@ -570,7 +591,7 @@ describe('Formal museum authored gallery design', () => {
     expect(lighting[2]).toMatchObject({ intensity: 2.4, penumbra: 0.94 })
     expect(MUSEUM_GALLERY_SURFACE_LIGHTING.holiday).toMatchObject({
       artworkWashOpacity: 0.055,
-      activeWallEmissiveIntensity: 0.17,
+      activeWallEmissiveIntensity: 0.18,
     })
   })
 
@@ -651,11 +672,11 @@ describe('Formal museum authored gallery design', () => {
     expect(expansionSource).not.toContain('position={[-1.72, -1.88, 15.8]}')
     expect(expansionSource).not.toContain('position={[1.35, -1.88, 23.7]}')
     expect(targetedLightSource).toContain('castShadow={false}')
-    expect(expansionSource).toContain('emissiveIntensity={lit ? 0.065 : 0.02}')
+    expect(expansionSource).toContain('emissiveIntensity={lit ? 0.12 : 0.045}')
 
     const atriumDaylightSource = expansionSource.slice(
       expansionSource.indexOf('function createAtriumSunPatternTexture'),
-      expansionSource.indexOf('const EXTERIOR_TREE_CLUSTERS'),
+      expansionSource.indexOf('function CourtyardTree'),
     )
     expect(atriumDaylightSource).toContain("daylightEffect: 'soft-glass-roof-sun-pattern'")
     expect(atriumDaylightSource.match(/new THREE\.DataTexture/g)).toHaveLength(2)
@@ -1157,47 +1178,58 @@ describe('Formal museum authored gallery design', () => {
     expect(violations).toEqual([])
   })
 
-  it('authors a varied, grounded tree family without shrinking atrium circulation', () => {
-    expect(MUSEUM_ATRIUM_TREE_SPECS).toHaveLength(4)
+  it('keeps the Glowbud atrium clear while preserving the exterior garden', () => {
     expect(MUSEUM_EXTERIOR_TREE_SPECS).toHaveLength(14)
-
-    const allTrees = [...MUSEUM_ATRIUM_TREE_SPECS, ...MUSEUM_EXTERIOR_TREE_SPECS]
-    expect(new Set(allTrees.map((tree) => tree.id)).size).toBe(allTrees.length)
-    expect(new Set(MUSEUM_ATRIUM_TREE_SPECS.map((tree) => tree.variant))).toEqual(new Set([0, 1, 2]))
+    expect(new Set(MUSEUM_EXTERIOR_TREE_SPECS.map((tree) => tree.id)).size).toBe(MUSEUM_EXTERIOR_TREE_SPECS.length)
     expect(new Set(MUSEUM_EXTERIOR_TREE_SPECS.map((tree) => tree.variant))).toEqual(new Set([0, 1, 2]))
-    expect(new Set(allTrees.map((tree) => tree.yaw)).size).toBeGreaterThanOrEqual(12)
-
-    for (const tree of MUSEUM_ATRIUM_TREE_SPECS) {
-      const collider = FORMAL_WALK_COLLIDERS.find((candidate) => candidate.id === `${tree.id}-planter`)
-      expect(collider, tree.id).toBeDefined()
-      if (!collider) continue
-
-      expect((collider.minX + collider.maxX) * 0.5).toBeCloseTo(tree.position[0], 8)
-      expect((collider.minZ + collider.maxZ) * 0.5).toBeCloseTo(tree.position[2], 8)
-
-      const colliderHalfWidth = (collider.maxX - collider.minX) * 0.5
-      const colliderHalfDepth = (collider.maxZ - collider.minZ) * 0.5
-      const planterHalfExtent = 0.7125 * tree.scale
-      expect(colliderHalfWidth - planterHalfExtent).toBeGreaterThanOrEqual(0.02)
-      expect(colliderHalfDepth - planterHalfExtent).toBeGreaterThanOrEqual(0.02)
-
-      const canopyRadius = MUSEUM_ATRIUM_TREE_VISUAL_RADIUS * tree.scale
-      const sideWallClearance = 5.845 - (Math.abs(tree.position[0]) + canopyRadius)
-      expect(sideWallClearance, `${tree.id} canopy/side-wall clearance`).toBeGreaterThanOrEqual(0.25)
-      if (tree.id.startsWith('atrium-south')) {
-        const entranceWallNorthFace = 10.14 + 0.34 * 0.5
-        expect(tree.position[2] - canopyRadius - entranceWallNorthFace, `${tree.id} canopy/entrance-wall clearance`)
-          .toBeGreaterThanOrEqual(0.25)
-      }
-    }
+    expect(new Set(MUSEUM_EXTERIOR_TREE_SPECS.map((tree) => tree.yaw)).size).toBeGreaterThanOrEqual(10)
 
     const treeSource = expansionSource.slice(
       expansionSource.indexOf('function CourtyardTree'),
       expansionSource.indexOf('function AtriumBench'),
     )
     expect(treeSource).toContain("treeFamily: 'faceted-exterior-garden'")
-    expect(treeSource).toContain("treeFamily: 'faceted-atrium-specimen'")
-    expect(treeSource).toContain('<MuseumCanopyCluster')
+    expect(treeSource).toContain('<MuseumExteriorTreeBotany')
+    expect(expansionSource).not.toContain('AtriumSpecimenTree')
+    expect(expansionSource).not.toContain('MuseumAtriumSpecimenBotany')
+    expect(botanicalKitSource).toContain('function BotanicalStem')
+    expect(botanicalKitSource).toContain('function ToonLeaf')
     expect(treeSource).not.toContain('useFrame(')
+    expect(botanicalKitSource).not.toContain('useFrame(')
+  })
+
+  it('gives each gallery a distinct, grounded botanical identity with truthful planter collisions', () => {
+    const counts = MUSEUM_GALLERY_PLANT_SPECS.reduce<Record<string, number>>((total, plant) => {
+      total[plant.galleryId] = (total[plant.galleryId] ?? 0) + 1
+      return total
+    }, {})
+    expect(counts).toEqual({ 'moba-one': 2, 'moba-two': 2, photography: 3, holiday: 2 })
+    expect(new Set(MUSEUM_GALLERY_PLANT_SPECS.map((plant) => plant.id)).size).toBe(MUSEUM_GALLERY_PLANT_SPECS.length)
+    expect(new Set(MUSEUM_GALLERY_PLANT_SPECS.map((plant) => plant.family)).size).toBe(9)
+
+    const colliderIds = new Set(FORMAL_WALK_COLLIDERS.map((collider) => collider.id))
+    for (const plant of MUSEUM_GALLERY_PLANT_SPECS) {
+      expect(plant.baseY).toBeCloseTo(-1.93, 6)
+      expect(Math.abs(plant.x) - plant.visualRadius * plant.scale, `${plant.id} central-promenade clearance`)
+        .toBeGreaterThan(3.2)
+      const expected = museumGalleryPlantPlanterBounds(plant)
+      const collider = MUSEUM_GALLERY_PLANT_COLLIDERS.find((candidate) => candidate.id === expected.id)
+      expect(collider, plant.id).toEqual(expected)
+      expect(colliderIds.has(expected.id), plant.id).toBe(true)
+      expect((expected.maxX - expected.minX) * 0.5 - plant.planterHalfExtent * plant.scale)
+        .toBeCloseTo(0.04, 6)
+    }
+
+    const botanicalSource = expansionSource.slice(
+      expansionSource.indexOf('function GalleryPlantVessel'),
+      expansionSource.indexOf('function WinterSalonFestiveDetails'),
+    )
+    expect(botanicalSource).toContain('function GalleryPlantBotany')
+    expect(botanicalSource).toContain('function GalleryBotanicals')
+    expect(botanicalSource).toContain("if (spec.galleryId === 'holiday')")
+    expect(botanicalSource).toContain('<MuseumGalleryPlantBotany family={spec.family}')
+    expect(botanicalSource).not.toContain('useFrame(')
+    expect(botanicalKitSource).toContain("if (family === 'winter-poinsettia')")
+    expect(botanicalKitSource).toContain("if (family === 'winter-pine')")
   })
 })

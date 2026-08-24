@@ -19,13 +19,24 @@ import {
   type MuseumTravelPose,
 } from './museumPlan'
 import {
+  FORMAL_LOOK_PITCH_MAX,
+  FORMAL_LOOK_PITCH_MIN,
+  FORMAL_MOUSE_CURSOR_YAW_SPEED,
+  FORMAL_TOUCH_LOOK_SENSITIVITY,
+  resolveFormalCursorSteer,
+  stepFormalLookOrientation,
+} from './museumLookMath'
+import {
   capFormalWalkDelta,
   FORMAL_WALK_COLLIDERS,
   FORMAL_WALK_START,
   getFormalWalkVector,
   resolveFormalWalkPosition,
+  stepFormalWalkVelocity,
   type FormalWalkCollider,
 } from './walkMath'
+import { MONKEYDHASHY_CREATEBOX_SPEC } from './monkeydhashyCreatebox'
+import { PERSONAL_GALLERY_DOOR_SPEC } from './personalGalleryDoor'
 
 export type FormalRoomViewMode = 'curated' | 'explore'
 
@@ -47,6 +58,26 @@ function formalRoomReviewPose(): MuseumTravelPose | null {
   if (review === 'courtyard-door') return { x: -9.2, z: 6.5, yaw: 0 }
   if (review === 'burn-room-door') return { x: 9.2, z: 6.5, yaw: 0 }
   if (review === 'atrium-hang') return { x: 0, z: 19.55, yaw: Math.PI / 2 }
+  if (review === 'plants-lobby') return { x: 0, z: 1.4, yaw: Math.PI }
+  if (review === 'plants-atrium') return { x: 0, z: 14.1, yaw: Math.PI }
+  if (review === 'artwork-placard') return { x: -14.8, z: 8.25, yaw: Math.PI / 2 }
+  if (review === 'moba-one-curation') return { x: -12.2, z: 9.2, yaw: Math.PI }
+  if (review === 'plants-moba-one-palm') return { x: -10, z: 10.37, yaw: -Math.PI / 2 }
+  if (review === 'plants-moba-one-fern') return { x: -10, z: 14.83, yaw: -Math.PI / 2 }
+  if (review === 'moba-one-left-wall') return { x: -12.2, z: 13.4, yaw: Math.PI / 2 }
+  if (review === 'moba-one-right-wall') return { x: -12.2, z: 13.4, yaw: -Math.PI / 2 }
+  if (review === 'moba-two-curation') return { x: -12.2, z: 22.35, yaw: Math.PI }
+  if (review === 'plants-moba-two-hoya') return { x: -10, z: 23.27, yaw: -Math.PI / 2 }
+  if (review === 'plants-moba-two-caladium') return { x: -10.5, z: 27.55, yaw: -Math.PI / 2 }
+  if (review === 'moba-two-createbox') return MONKEYDHASHY_CREATEBOX_SPEC.reviewPose
+  if (review === 'personal-galleries') return PERSONAL_GALLERY_DOOR_SPEC.reviewPose
+  if (review === 'personal-galleries-left') return PERSONAL_GALLERY_DOOR_SPEC.reviewPoseLeft
+  if (review === 'personal-galleries-right') return PERSONAL_GALLERY_DOOR_SPEC.reviewPoseRight
+  if (review === 'moba-two-left-wall') return { x: -12.2, z: 26.5, yaw: Math.PI / 2 }
+  if (review === 'moba-two-right-wall') return { x: -12.2, z: 26.5, yaw: -Math.PI / 2 }
+  if (review === 'plants-photography') return { x: 12.35, z: 25.4, yaw: -Math.PI / 2 }
+  if (review === 'plants-holiday-pine') return { x: 10.7, z: 11.05, yaw: Math.PI / 2 }
+  if (review === 'plants-holiday-poinsettia') return { x: 10.7, z: 16.01, yaw: Math.PI / 2 }
   return null
 }
 export type FormalRoomFocusIndex = number | null
@@ -98,16 +129,16 @@ export function clearFormalWalkInputState(input: FormalWalkInputState) {
   input.jumpRequested = false
   input.analogX = 0
   input.analogY = 0
+  input.resetRequested = false
   input.travelRequested = null
   input.draggingLook = false
 }
 
 const WALK_EYE_HEIGHT = -0.1
-const WALK_SPEED = 2.55
-const WALK_QUICK_SPEED = 3.45
-const WALK_TURN_SPEED = 1.52
-const WALK_PITCH_MIN = -0.58
-const WALK_PITCH_MAX = 0.58
+const WALK_SPEED = 3.05
+const WALK_QUICK_SPEED = 4.55
+const WALK_TURN_SPEED = 2.05
+const MOUSE_CURSOR_PITCH_RESPONSE = 10
 
 function damp(current: number, target: number, strength: number, delta: number) {
   return THREE.MathUtils.lerp(current, target, 1 - Math.exp(-strength * delta))
@@ -119,26 +150,30 @@ export function FormalRoomCameraRig({
   mode,
   inputRef,
   reducedMotion,
+  controlsEnabled = true,
   extraColliders = [],
   onGalleryChange,
   onMuseumAreaChange,
+  onTouchLook,
 }: {
   artworks: readonly FormalRoomArtwork[]
   focusIndex: FormalRoomFocusIndex
   mode: FormalRoomViewMode
   inputRef: MutableRefObject<FormalWalkInputState>
   reducedMotion: boolean
+  controlsEnabled?: boolean
   extraColliders?: readonly FormalWalkCollider[]
   onGalleryChange?: (galleryId: MuseumGalleryId) => void
   onMuseumAreaChange?: (areaId: MuseumAreaId) => void
+  onTouchLook?: () => void
 }) {
   const { camera, gl, pointer, size } = useThree()
   const initializedRef = useRef(false)
   const hasExplorePoseRef = useRef(false)
-  const exploreBlendRef = useRef(1)
   const walkYawRef = useRef(0)
   const walkPitchRef = useRef(-0.04)
   const walkBobRef = useRef(0)
+  const mouseCursorSteerRef = useRef({ x: 0, y: 0, active: false })
   const jumpStateRef = useRef(createFormalJumpState())
   const walkPositionRef = useRef(new THREE.Vector3(FORMAL_WALK_START.x, WALK_EYE_HEIGHT, FORMAL_WALK_START.z))
   const walkVelocityRef = useRef(new THREE.Vector3())
@@ -164,9 +199,8 @@ export function FormalRoomCameraRig({
     walkVelocityRef.current.set(0, 0, 0)
     resetFormalJumpState(jumpStateRef.current)
     walkYawRef.current = yaw
-    walkPitchRef.current = THREE.MathUtils.clamp(pitch, WALK_PITCH_MIN, WALK_PITCH_MAX)
+    walkPitchRef.current = THREE.MathUtils.clamp(pitch, FORMAL_LOOK_PITCH_MIN, FORMAL_LOOK_PITCH_MAX)
     walkBobRef.current = 0
-    exploreBlendRef.current = 1
     camera.position.set(x, WALK_EYE_HEIGHT, z)
     targetEuler.set(walkPitchRef.current, yaw, 0, 'YXZ')
     camera.quaternion.setFromEuler(targetEuler)
@@ -188,11 +222,10 @@ export function FormalRoomCameraRig({
         resetFormalJumpState(jumpStateRef.current)
         hasExplorePoseRef.current = true
       }
-      exploreBlendRef.current = reducedMotion ? 1 : 0
     } else {
       resetFormalJumpState(jumpStateRef.current)
     }
-  }, [inputRef, mode, reducedMotion])
+  }, [inputRef, mode])
 
   useEffect(() => {
     if (mode !== 'explore' || !captureEnabled || typeof window === 'undefined') return
@@ -208,73 +241,130 @@ export function FormalRoomCameraRig({
   }, [captureEnabled, mode, setCapturePose])
 
   useEffect(() => {
-    if (mode !== 'explore') {
+    if (mode !== 'explore' || captureEnabled || !controlsEnabled) {
+      mouseCursorSteerRef.current.x = 0
+      mouseCursorSteerRef.current.y = 0
+      mouseCursorSteerRef.current.active = false
       gl.domElement.style.cursor = 'default'
       return
     }
 
     const canvas = gl.domElement
     const input = inputRef.current
-    let pointerId: number | null = null
+    let touchPointerId: number | null = null
     let lastX = 0
     let lastY = 0
     let totalMovement = 0
 
-    const finishDrag = (event?: PointerEvent) => {
-      if (event && pointerId !== null && event.pointerId !== pointerId) return
+    const clearCursorSteer = () => {
+      mouseCursorSteerRef.current.x = 0
+      mouseCursorSteerRef.current.y = 0
+      mouseCursorSteerRef.current.active = false
+    }
+
+    const applyLookDelta = (
+      deltaX: number,
+      deltaY: number,
+      sensitivity: Readonly<{ yaw: number; pitch: number }>,
+    ) => {
+      const nextLook = stepFormalLookOrientation({
+        yaw: walkYawRef.current,
+        pitch: walkPitchRef.current,
+        deltaX,
+        deltaY,
+        sensitivity,
+      })
+      walkYawRef.current = nextLook.yaw
+      walkPitchRef.current = nextLook.pitch
+    }
+
+    const finishTouchLook = (event?: PointerEvent) => {
+      if (event?.pointerType === 'mouse') return
+      if (event && touchPointerId !== null && event.pointerId !== touchPointerId) return
       if (totalMovement > 7) {
         input.suppressArtworkClickUntil = performance.now() + 180
       }
       input.draggingLook = false
-      pointerId = null
+      touchPointerId = null
       totalMovement = 0
-      canvas.style.cursor = 'grab'
     }
 
     const handlePointerDown = (event: PointerEvent) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return
-      pointerId = event.pointerId
+      if (event.pointerType === 'mouse') return
+      if (touchPointerId !== null) return
+      touchPointerId = event.pointerId
       lastX = event.clientX
       lastY = event.clientY
       totalMovement = 0
       input.draggingLook = true
-      canvas.style.cursor = 'grabbing'
       canvas.setPointerCapture?.(event.pointerId)
     }
 
-    const handlePointerMove = (event: PointerEvent) => {
-      if (pointerId !== event.pointerId) return
+    const handleMouseMove = (event: MouseEvent) => {
+      const interactiveTarget = event.target instanceof Element
+        && Boolean(event.target.closest('button, a, input, textarea, select, [role="dialog"]'))
+      if (interactiveTarget) {
+        clearCursorSteer()
+        return
+      }
+      const bounds = canvas.getBoundingClientRect()
+      const insideCanvas = event.clientX >= bounds.left
+        && event.clientX <= bounds.right
+        && event.clientY >= bounds.top
+        && event.clientY <= bounds.bottom
+      if (!insideCanvas) {
+        clearCursorSteer()
+        return
+      }
+      mouseCursorSteerRef.current.x = resolveFormalCursorSteer(event.clientX - bounds.left, bounds.width)
+      mouseCursorSteerRef.current.y = resolveFormalCursorSteer(event.clientY - bounds.top, bounds.height, 0.14)
+      mouseCursorSteerRef.current.active = true
+    }
+
+    const handleTouchPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse') return
+      if (touchPointerId !== event.pointerId) return
       const deltaX = event.clientX - lastX
       const deltaY = event.clientY - lastY
       lastX = event.clientX
       lastY = event.clientY
+      const previousMovement = totalMovement
       totalMovement += Math.hypot(deltaX, deltaY)
-      walkYawRef.current -= deltaX * 0.0032
-      walkPitchRef.current = THREE.MathUtils.clamp(
-        walkPitchRef.current - deltaY * 0.0026,
-        WALK_PITCH_MIN,
-        WALK_PITCH_MAX,
-      )
+      applyLookDelta(deltaX, deltaY, FORMAL_TOUCH_LOOK_SENSITIVITY)
+      if (previousMovement <= 10 && totalMovement > 10) onTouchLook?.()
       event.preventDefault()
     }
 
-    canvas.style.cursor = 'grab'
+    const handlePointerLeave = (event: PointerEvent) => {
+      if (event.pointerType === 'mouse') clearCursorSteer()
+    }
+
+    const suspendMouseLook = () => clearCursorSteer()
+
+    canvas.style.cursor = 'crosshair'
     canvas.addEventListener('pointerdown', handlePointerDown)
-    canvas.addEventListener('pointermove', handlePointerMove, { passive: false })
-    canvas.addEventListener('pointerup', finishDrag)
-    canvas.addEventListener('pointercancel', finishDrag)
-    canvas.addEventListener('lostpointercapture', finishDrag)
+    canvas.addEventListener('pointerleave', handlePointerLeave)
+    canvas.addEventListener('lostpointercapture', finishTouchLook)
+    document.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('pointermove', handleTouchPointerMove, { passive: false })
+    window.addEventListener('pointerup', finishTouchLook)
+    window.addEventListener('pointercancel', finishTouchLook)
+    window.addEventListener('blur', suspendMouseLook)
 
     return () => {
       canvas.removeEventListener('pointerdown', handlePointerDown)
-      canvas.removeEventListener('pointermove', handlePointerMove)
-      canvas.removeEventListener('pointerup', finishDrag)
-      canvas.removeEventListener('pointercancel', finishDrag)
-      canvas.removeEventListener('lostpointercapture', finishDrag)
+      canvas.removeEventListener('pointerleave', handlePointerLeave)
+      canvas.removeEventListener('lostpointercapture', finishTouchLook)
+      document.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('pointermove', handleTouchPointerMove)
+      window.removeEventListener('pointerup', finishTouchLook)
+      window.removeEventListener('pointercancel', finishTouchLook)
+      window.removeEventListener('blur', suspendMouseLook)
+      clearCursorSteer()
       canvas.style.cursor = 'default'
       input.draggingLook = false
     }
-  }, [gl, inputRef, mode])
+  }, [captureEnabled, controlsEnabled, gl, inputRef, mode, onTouchLook])
 
   useFrame(({ clock }, rawDelta) => {
     if (mode === 'explore' && captureEnabled && typeof window !== 'undefined') {
@@ -295,7 +385,6 @@ export function FormalRoomCameraRig({
         resetFormalJumpState(jumpStateRef.current)
         walkYawRef.current = destination.yaw
         walkPitchRef.current = -0.04
-        exploreBlendRef.current = reducedMotion ? 1 : 0
       }
       if (input.resetRequested) {
         input.resetRequested = false
@@ -305,11 +394,48 @@ export function FormalRoomCameraRig({
         resetFormalJumpState(jumpStateRef.current)
         walkYawRef.current = Math.PI
         walkPitchRef.current = -0.04
-        exploreBlendRef.current = reducedMotion ? 1 : 0
+      }
+
+      if (!controlsEnabled) {
+        clearFormalWalkInputState(input)
+        walkVelocityRef.current.set(0, 0, 0)
+        resetFormalJumpState(jumpStateRef.current)
+        walkBobRef.current = 0
+        targetPosition.set(
+          walkPositionRef.current.x,
+          WALK_EYE_HEIGHT,
+          walkPositionRef.current.z,
+        )
+        camera.position.copy(targetPosition)
+        targetEuler.set(walkPitchRef.current, walkYawRef.current, 0, 'YXZ')
+        targetQuaternion.setFromEuler(targetEuler)
+        camera.quaternion.copy(targetQuaternion)
+        if (perspective.isPerspectiveCamera) {
+          perspective.fov = damp(perspective.fov, exploreFov, reducedMotion ? 30 : 12, delta)
+          perspective.updateProjectionMatrix()
+        }
+        return
       }
 
       const turnAxis = Number(input.turnLeft) - Number(input.turnRight)
-      walkYawRef.current += turnAxis * WALK_TURN_SPEED * delta
+      const mouseCursorSteer = mouseCursorSteerRef.current
+      walkYawRef.current += (
+        turnAxis * WALK_TURN_SPEED
+        - mouseCursorSteer.x * FORMAL_MOUSE_CURSOR_YAW_SPEED
+      ) * delta
+      if (mouseCursorSteer.active) {
+        const cursorPitchTarget = THREE.MathUtils.lerp(
+          FORMAL_LOOK_PITCH_MAX,
+          FORMAL_LOOK_PITCH_MIN,
+          (mouseCursorSteer.y + 1) / 2,
+        )
+        walkPitchRef.current = damp(
+          walkPitchRef.current,
+          cursorPitchTarget,
+          MOUSE_CURSOR_PITCH_RESPONSE,
+          delta,
+        )
+      }
 
       if (input.jumpRequested) {
         input.jumpRequested = false
@@ -323,10 +449,10 @@ export function FormalRoomCameraRig({
       const targetSpeed = input.sprint ? WALK_QUICK_SPEED : WALK_SPEED
       const desiredX = walkVector.x * targetSpeed
       const desiredZ = walkVector.z * targetSpeed
-      const velocityStrength = walkVector.magnitude > 0 ? 11 : 9
       const velocity = walkVelocityRef.current
-      velocity.x = damp(velocity.x, desiredX, velocityStrength, delta)
-      velocity.z = damp(velocity.z, desiredZ, velocityStrength, delta)
+      const hasWalkInput = walkVector.magnitude > 0
+      velocity.x = stepFormalWalkVelocity(velocity.x, desiredX, delta, hasWalkInput)
+      velocity.z = stepFormalWalkVelocity(velocity.z, desiredZ, delta, hasWalkInput)
 
       const walkPosition = walkPositionRef.current
       const resolved = resolveFormalWalkPosition(
@@ -360,13 +486,11 @@ export function FormalRoomCameraRig({
         walkPosition.z,
       )
 
-      exploreBlendRef.current = reducedMotion ? 1 : damp(exploreBlendRef.current, 1, 5.8, delta)
-      const positionStrength = exploreBlendRef.current < 0.92 ? 6.5 : 24
-      camera.position.lerp(targetPosition, 1 - Math.exp(-positionStrength * delta))
+      camera.position.copy(targetPosition)
 
       targetEuler.set(walkPitchRef.current, walkYawRef.current, 0, 'YXZ')
       targetQuaternion.setFromEuler(targetEuler)
-      camera.quaternion.slerp(targetQuaternion, 1 - Math.exp(-(reducedMotion ? 30 : 20) * delta))
+      camera.quaternion.copy(targetQuaternion)
 
       if (perspective.isPerspectiveCamera) {
         perspective.fov = damp(perspective.fov, exploreFov, reducedMotion ? 30 : 8, delta)
