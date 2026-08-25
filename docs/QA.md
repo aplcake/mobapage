@@ -36,6 +36,39 @@ Verify:
 - No console errors appear after route transitions.
 - Scene remains readable at desktop and common mobile widths.
 
+## Museum Performance Gate
+
+Run the production build on port `3005`, then verify both browser behavior and
+real hardware frame pacing:
+
+```bash
+npm run museum:browser:smoke
+MUSEUM_PERF_BROWSER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" npm run museum:performance:smoke
+```
+
+The August 25, 2026 baseline mounted the same full workload everywhere: 91
+images, 41 active animation pipelines, and 132 observed resources on both a
+1440×900 desktop and a 390×844 phone. Desktop frame pacing fell to 15.65 FPS
+with a 99 ms p95 frame and 65.82% long frames.
+
+The optimized production build passed the strict hardware-rendered gate on an
+Apple M4 using Chrome/Metal:
+
+| Profile | Average FPS | p95 frame | Long frames | Requests | Known payload |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Desktop 1440×900 | 57.30 | 18.6 ms | 0 | 77 | 11.54 MB |
+| Phone 390×844 | 59.98 | 18.1 ms | 0 | 47 | 5.71 MB |
+
+Chrome, Firefox, and WebKit also pass the full desktop and phone interaction
+suite with no page, console, request, HTTP, or runaway-camera failures. The
+MoBA Gallery motion assets were reduced from 8,645,574 bytes of GIFs to 757,388
+bytes of frame sheets (91.24% smaller) without dropping frames.
+
+Machine-readable evidence lives in:
+
+- `docs/validation/museum-browser-smoke.json`
+- `docs/validation/museum-performance-smoke.json`
+
 ## Included Validation Screens
 
 The package includes proof screenshots from the source pass:
@@ -57,4 +90,3 @@ Do not deploy to the public production domain until:
 - burn transaction logic is wired or explicitly disabled/demo-labeled
 - dev/debug routes are either removed or intentionally protected
 - mobile performance is accepted
-

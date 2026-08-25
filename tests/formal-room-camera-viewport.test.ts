@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import {
   FORMAL_ROOM_EXPLORE_FOV,
+  FORMAL_ROOM_FOV_PROJECTION_EPSILON,
   isFormalRoomCompactViewport,
   selectFormalRoomExploreFov,
+  stepFormalRoomFovProjection,
 } from '../src/museum/formal-room/cameraViewport'
 
 describe('Formal Room camera viewport selection', () => {
@@ -41,5 +43,37 @@ describe('Formal Room camera viewport selection', () => {
     expect(selectFormalRoomExploreFov(0, 844)).toBe(FORMAL_ROOM_EXPLORE_FOV.desktop)
     expect(selectFormalRoomExploreFov(Number.NaN, 844)).toBe(FORMAL_ROOM_EXPLORE_FOV.desktop)
     expect(selectFormalRoomExploreFov(390, Number.POSITIVE_INFINITY)).toBe(FORMAL_ROOM_EXPLORE_FOV.desktop)
+  })
+
+  it('only requests projection work after FOV movement accumulates past the visual threshold', () => {
+    const quietFrame = stepFormalRoomFovProjection(43, 52, 43, 0.02, 1 / 120)
+    expect(Math.abs(quietFrame.fov - 43)).toBeLessThan(FORMAL_ROOM_FOV_PROJECTION_EPSILON)
+    expect(quietFrame.shouldUpdateProjection).toBe(false)
+
+    const accumulatedFrame = stepFormalRoomFovProjection(43.02, 52, 43, 8, 1 / 60)
+    expect(accumulatedFrame.shouldUpdateProjection).toBe(true)
+  })
+
+  it('snaps the final tiny FOV remainder once, then stops projection updates at rest', () => {
+    const finalFrame = stepFormalRoomFovProjection(51.995, 52, 51.994, 8, 1 / 60)
+    expect(finalFrame.fov).toBe(52)
+    expect(finalFrame.shouldUpdateProjection).toBe(true)
+
+    const restingFrame = stepFormalRoomFovProjection(
+      finalFrame.fov,
+      52,
+      finalFrame.fov,
+      8,
+      1 / 60,
+    )
+    expect(restingFrame.fov).toBe(52)
+    expect(restingFrame.shouldUpdateProjection).toBe(false)
+  })
+
+  it('fails closed instead of corrupting the projection with invalid frame measurements', () => {
+    expect(stepFormalRoomFovProjection(52, 43, 52, 8, Number.NaN)).toEqual({
+      fov: 52,
+      shouldUpdateProjection: false,
+    })
   })
 })

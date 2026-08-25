@@ -30,6 +30,8 @@ export type AtriumWallArtwork = {
   collection: string
   sourceUrl: string | null
   imageUrl: string
+  lodImageUrl?: string | null
+  posterAtlasIndex?: number | null
   animationUrl: string | null
   motionSheet: string | null
   motionSheetColumns: number | null
@@ -183,6 +185,8 @@ export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GAL
   collection,
   sourceUrl: work.sourceUrl,
   imageUrl: work.poster,
+  lodImageUrl: null,
+  posterAtlasIndex: work.posterAtlasIndex,
   animationUrl: work.motion,
   motionSheet: work.motionSheet ?? null,
   motionSheetColumns: work.motionSheetColumns ?? null,
@@ -202,6 +206,8 @@ export function personalAtriumArtwork(asset: MuseumAssetSummary): AtriumWallArtw
     collection: asset.collection,
     sourceUrl: null,
     imageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'room'),
+    lodImageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'lod'),
+    posterAtlasIndex: null,
     animationUrl: asset.animationUrl ? ownedNftMediaProxyUrl(asset.animationUrl, 'motion') : null,
     motionSheet: null,
     motionSheetColumns: null,

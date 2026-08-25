@@ -64,6 +64,31 @@ describe('GET /api/opensea/media', () => {
     expect(new Uint8Array(await response.arrayBuffer())).toEqual(bytes)
   })
 
+  it('prepares a compact pixel-art LOD for distant personal Glowbuds', async () => {
+    const source = await sharp({
+      create: {
+        width: 640,
+        height: 320,
+        channels: 4,
+        background: { r: 122, g: 74, b: 191, alpha: 1 },
+      },
+    }).png().toBuffer()
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(Uint8Array.from(source), {
+      status: 200,
+      headers: { 'Content-Type': 'image/png', 'Content-Length': String(source.byteLength) },
+    })))
+
+    const response = await GET(request('https://i2c.seadn.io/ethereum/glowbud.png', { variant: 'lod' }))
+    const body = Buffer.from(await response.arrayBuffer())
+    const metadata = await sharp(body).metadata()
+
+    expect(response.status).toBe(200)
+    expect(response.headers.get('Content-Type')).toBe('image/webp')
+    expect(response.headers.get('X-Museum-Media-Variant')).toBe('lod')
+    expect(metadata.width).toBe(256)
+    expect(metadata.height).toBe(128)
+  })
+
   it('falls back from a tired IPFS gateway without exposing the remote host', async () => {
     const bytes = new Uint8Array([137, 80, 78, 71])
     const calls: string[] = []

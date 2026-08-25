@@ -45,6 +45,9 @@ describe('Glowbud pixel-to-3D study', () => {
       'utf8',
     )
     expect(expansion).toContain("interaction: 'open-pixel-to-3d-study'")
+    expect(expansion).toContain("renderer: 'canonical-pixel-far-lod'")
+    expect(expansion).toContain("ownedNftMediaProxyUrl(resident.imageUrl, 'lod')")
+    expect(expansion).toContain('<GlowbudPixelLodCard')
     expect(expansion).toContain('onSelect?.(resident)')
     expect(expansion).toContain('event.stopPropagation()')
     expect(room).toContain('setSelectedGlowbud(resident)')

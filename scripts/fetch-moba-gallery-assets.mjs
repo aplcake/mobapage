@@ -1,6 +1,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import sharp from 'sharp'
+import {
+  averageFrameDuration,
+  createMuseumMotionSheet,
+} from './museum-motion-sheet.mjs'
 
 const CONTRACT = '0x04619852f38ebec22bb94ef36b99351db9900194'
 const OUTPUT_ROOT = new URL('../public/museum/formal-room/galleries/', import.meta.url)
@@ -80,10 +84,20 @@ async function main() {
       .toFile(join(collectionDir, posterName))
 
     let motion = null
+    let motionSheet = null
+    let motionSheetColumns = null
+    let motionSheetRows = null
+    let motionFrameDurationMs = null
     if (frameCount > 1) {
       const motionName = `motion-${assetNumber}.gif`
       writeFileSync(join(collectionDir, motionName), input)
       motion = `/museum/formal-room/galleries/moba-gallery/${motionName}`
+      const sheetName = `motion-${assetNumber}-sheet.webp`
+      const sheet = await createMuseumMotionSheet(input, join(collectionDir, sheetName), frameCount)
+      motionSheet = `/museum/formal-room/galleries/moba-gallery/${sheetName}`
+      motionSheetColumns = sheet.columns
+      motionSheetRows = sheet.rows
+      motionFrameDurationMs = averageFrameDuration(metadata)
     }
 
     works.push({
@@ -93,10 +107,10 @@ async function main() {
       artist: work.artist,
       poster: `/museum/formal-room/galleries/moba-gallery/${posterName}`,
       motion,
-      motionSheet: null,
-      motionSheetColumns: null,
-      motionSheetRows: null,
-      motionFrameDurationMs: null,
+      motionSheet,
+      motionSheetColumns,
+      motionSheetRows,
+      motionFrameDurationMs,
       frameCount,
       featured: work.tokenId === '3',
       width,

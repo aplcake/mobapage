@@ -3,8 +3,10 @@ import type { OwnedNftAnimationKind } from './ownedNfts'
 export type FormalRoomMotionAttempt = 'image' | 'video'
 
 export const FORMAL_ROOM_ANIMATED_IMAGE_MAX_FPS = 15
-export const FORMAL_ROOM_ANIMATED_IMAGE_MOBILE_LONG_EDGE = 768
-export const FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE = 1024
+export const FORMAL_ROOM_ANIMATED_IMAGE_MOBILE_LONG_EDGE = 512
+export const FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE = 768
+export const FORMAL_ROOM_POSTER_MOBILE_LONG_EDGE = 768
+export const FORMAL_ROOM_POSTER_DESKTOP_LONG_EDGE = 1024
 
 export function formalRoomMotionAttemptOrder(
   hint: OwnedNftAnimationKind | undefined,
@@ -18,6 +20,12 @@ export function formalRoomAnimatedImageLongEdge(viewportWidth: number): number {
   return viewportWidth <= 700
     ? FORMAL_ROOM_ANIMATED_IMAGE_MOBILE_LONG_EDGE
     : FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE
+}
+
+export function formalRoomPosterLongEdge(viewportWidth: number): number {
+  return viewportWidth <= 700
+    ? FORMAL_ROOM_POSTER_MOBILE_LONG_EDGE
+    : FORMAL_ROOM_POSTER_DESKTOP_LONG_EDGE
 }
 
 export function shouldPaintFormalRoomAnimationFrame(

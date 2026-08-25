@@ -44,6 +44,7 @@ const ALLOWED_MOTION_VIDEO_TYPES = new Set([
 ])
 
 const MEDIA_VARIANTS: Record<OwnedNftMediaVariant, { longEdge: number }> = {
+  lod: { longEdge: 256 },
   thumb: { longEdge: 768 },
   room: { longEdge: 2_048 },
   motion: { longEdge: 2_048 },
@@ -277,7 +278,7 @@ function svgLimitError(error: unknown) {
 }
 
 function readMediaVariant(value: string | null): OwnedNftMediaVariant | null {
-  return value === 'thumb' || value === 'room' || value === 'motion' ? value : null
+  return value === 'lod' || value === 'thumb' || value === 'room' || value === 'motion' ? value : null
 }
 
 function readSafeInteger(value: string): number | null {
@@ -613,6 +614,38 @@ export async function GET(request: Request) {
           : 'That SVG artwork could not be safely prepared for display.',
         svgLimitError(error) ? 413 : 415,
       )
+    } finally {
+      releaseFetch()
+    }
+  }
+
+  if (variant === 'lod' && ALLOWED_RASTER_IMAGE_TYPES.has(mediaType)) {
+    try {
+      const sourceBytes = await readBodyWithinLimit(upstream.body, MAX_MEDIA_BYTES)
+      if (!sourceBytes) return errorResponse('That Glowbud image is too large for the garden.', 413)
+      const sourceBuffer = Buffer.from(sourceBytes.buffer, sourceBytes.byteOffset, sourceBytes.byteLength)
+      const { data: webp, info } = await sharp(sourceBuffer, {
+        failOn: 'error',
+        limitInputPixels: MAX_SVG_LOGICAL_PIXELS,
+        sequentialRead: true,
+        animated: false,
+      })
+        .resize({
+          width: MEDIA_VARIANTS.lod.longEdge,
+          height: MEDIA_VARIANTS.lod.longEdge,
+          fit: 'inside',
+          withoutEnlargement: true,
+          kernel: 'nearest',
+        })
+        .webp({ quality: 86, effort: 4, smartSubsample: false })
+        .toBuffer({ resolveWithObject: true })
+      const body = Uint8Array.from(webp)
+      return new Response(body, {
+        status: 200,
+        headers: safeMediaHeaders('image/webp', variant, webp.byteLength, [info.width, info.height]),
+      })
+    } catch {
+      return errorResponse('That Glowbud image could not be prepared for the garden.', 415)
     } finally {
       releaseFetch()
     }

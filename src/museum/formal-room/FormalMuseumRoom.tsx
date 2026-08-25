@@ -1,7 +1,9 @@
 'use client'
 
 import { Canvas, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
+import { PerformanceMonitor } from '@react-three/drei'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import {
   type KeyboardEvent as ReactKeyboardEvent,
@@ -26,7 +28,6 @@ import {
   type FormalRoomArtwork,
 } from './artworks'
 import {
-  CollectionDesk,
   verifyOwnedSelection,
   type CollectionAddressSource,
 } from './CollectionDesk'
@@ -41,23 +42,26 @@ import {
   containFormalRoomMotion,
   FORMAL_ROOM_ANIMATED_IMAGE_MAX_FPS,
   formalRoomAnimatedImageLongEdge,
+  formalRoomPosterLongEdge,
   formalRoomMotionAttemptOrder,
   shouldPaintFormalRoomAnimationFrame,
 } from './mediaPlayback'
 import { MuseumExpansion } from './MuseumExpansion'
+import {
+  readMuseumPerformanceSignals,
+  resolveMuseumPerformanceProfile,
+  type MuseumPerformanceProfile,
+} from './museumPerformanceProfile'
 import { MuseumAtriumSpecimenBotany } from './MuseumBotanicalKit'
 import { MobileMovementJoystick } from './MobileMovementJoystick'
 import { ArtworkApproachTracker } from './ArtworkApproachTracker'
 import { ArtworkProvenanceHud } from './ArtworkProvenanceHud'
-import { GlowbudComparisonPanel } from './GlowbudComparisonPanel'
-import { MuseumLorePanel } from './MuseumLorePanel'
 import type { MuseumLoreId } from './museumLore'
 import {
   createMuseumArtworkProvenance,
   MUSEUM_ARTWORK_USER_DATA_KEY,
   type MuseumArtworkProvenance,
 } from './artworkProvenance'
-import { AtriumRegistryPanel } from './AtriumRegistryPanel'
 import {
   ATRIUM_DEFAULT_RESIDENT_TOKEN_IDS,
   atriumResidentColliders,
@@ -84,6 +88,23 @@ import type {
   MuseumAssetSummary,
 } from '../collection-registry/museumAssetTypes'
 
+const CollectionDesk = dynamic(
+  () => import('./CollectionDesk').then((module) => module.CollectionDesk),
+  { ssr: false },
+)
+const AtriumRegistryPanel = dynamic(
+  () => import('./AtriumRegistryPanel').then((module) => module.AtriumRegistryPanel),
+  { ssr: false },
+)
+const GlowbudComparisonPanel = dynamic(
+  () => import('./GlowbudComparisonPanel').then((module) => module.GlowbudComparisonPanel),
+  { ssr: false },
+)
+const MuseumLorePanel = dynamic(
+  () => import('./MuseumLorePanel').then((module) => module.MuseumLorePanel),
+  { ssr: false },
+)
+
 const INK = '#17131d'
 const SOFT_INK = '#28202f'
 const CREAM = '#f6e7bf'
@@ -98,6 +119,16 @@ const TEAL_DARK = '#214844'
 const CORAL = '#ed876e'
 const TOON_RAMP = getToonRampTexture()
 const ARTWORK_IMAGE_LOAD_TIMEOUT_MS = 15_000
+
+function closeImageDecoderSafely(decoder: ImageDecoder | null | undefined) {
+  if (!decoder) return
+  try {
+    decoder.close()
+  } catch {
+    // Firefox can report an already-closed decoder while an in-flight frame
+    // settles. Teardown is complete either way.
+  }
+}
 
 type Vec3 = readonly [number, number, number]
 type FocusIndex = number | null
@@ -706,8 +737,9 @@ function FramedArtwork({
   const [videoTexture, setVideoTexture] = useState<THREE.VideoTexture | null>(null)
   const [videoSize, setVideoSize] = useState<readonly [number, number]>([1, 1])
   const { gl, size } = useThree()
-  const textureLongEdge = size.width <= 700 ? 1024 : 2048
+  const textureLongEdge = formalRoomPosterLongEdge(size.width)
   const animatedTextureLongEdge = formalRoomAnimatedImageLongEdge(size.width)
+  const animatedTextureAnisotropy = size.width <= 700 ? 2 : 4
   const texture = useMemo(
     () => createFormalRoomArtworkTexture(artwork, textureLongEdge),
     [artwork, textureLongEdge],
@@ -718,9 +750,9 @@ function FramedArtwork({
     nextTexture.generateMipmaps = false
     nextTexture.minFilter = THREE.LinearFilter
     nextTexture.magFilter = THREE.LinearFilter
-    nextTexture.anisotropy = 4
+    nextTexture.anisotropy = animatedTextureAnisotropy
     return nextTexture
-  }, [animatedTextureLongEdge, artwork])
+  }, [animatedTextureAnisotropy, animatedTextureLongEdge, artwork])
   const [width, height] = artwork.frameSize
   const motionAllowed = pageVisible && !reducedMotion && !motionPaused
   const containedVideoSize = containFormalRoomMotion(artwork.frameSize, videoSize)
@@ -883,8 +915,9 @@ function FramedArtwork({
     const cleanDecoder = () => {
       decoderController?.abort()
       decoderController = null
-      imageDecoderRef.current?.close()
+      const decoder = imageDecoderRef.current
       imageDecoderRef.current = null
+      closeImageDecoderSafely(decoder)
       decodedFrameCountRef.current = 0
       decodedFrameIndexRef.current = 0
       decodedFrameDueAtRef.current = 0
@@ -982,17 +1015,21 @@ function FramedArtwork({
           data: await response.arrayBuffer(),
           type: mediaType,
         })
+        // Firefox rejects this separate lifecycle promise when a decoder is
+        // intentionally closed during gallery teardown. Observe it up front so
+        // that expected cancellation never becomes an uncaught page error.
+        void nextDecoder.completed.catch(() => undefined)
         await nextDecoder.tracks.ready
         const frameCount = nextDecoder.tracks.selectedTrack?.frameCount ?? 0
         if (cancelled || frameCount < 2) {
-          nextDecoder.close()
+          closeImageDecoderSafely(nextDecoder)
           throw new Error('animation_frames_unavailable')
         }
 
         const firstFrame = await nextDecoder.decode({ frameIndex: 0, completeFramesOnly: true })
         if (cancelled) {
           firstFrame.image.close()
-          nextDecoder.close()
+          closeImageDecoderSafely(nextDecoder)
           return
         }
         clearLoadTimer()
@@ -1161,8 +1198,8 @@ function FramedArtwork({
         })
         .catch(() => {
           if (imageDecoderRef.current !== decoder) return
-          decoder.close()
           imageDecoderRef.current = null
+          closeImageDecoderSafely(decoder)
           setMotionSurface(null)
           publishMotionStatus('unavailable')
         })
@@ -1301,6 +1338,7 @@ function FormalRoomScene({
   onOpenCourtyard,
   onOpenBurnRoom,
   onApproachedArtworkChange,
+  performanceProfile,
 }: {
   artworks: readonly FormalRoomArtwork[]
   focusIndex: FocusIndex
@@ -1328,6 +1366,7 @@ function FormalRoomScene({
   onOpenCourtyard: () => void
   onOpenBurnRoom: () => void
   onApproachedArtworkChange: (artwork: MuseumArtworkProvenance | null) => void
+  performanceProfile: MuseumPerformanceProfile
 }) {
   const residentColliders = useMemo(
     () => atriumResidentColliders(
@@ -1337,6 +1376,7 @@ function FormalRoomScene({
   )
   return (
     <>
+      <MuseumAdaptiveDpr profile={performanceProfile} />
       <MuseumRendererLighting />
       <color attach="background" args={['#a8c0b5']} />
       <fog attach="fog" args={['#a8c0b5', 30, 72]} />
@@ -1363,9 +1403,11 @@ function FormalRoomScene({
         activeGalleryId={activeGalleryId}
         activeMuseumArea={activeMuseumArea}
         reducedMotion={reducedMotion}
+        performanceProfile={performanceProfile}
+        motionPaused={motionPaused}
         atriumInstallation={atriumInstallation}
         atriumInstallationAssets={atriumInstallationAssets}
-        atriumInstallationPaused={atriumRegistryOpen || glowbudComparisonOpen || museumLoreOpen}
+        atriumInstallationPaused={motionPaused || atriumRegistryOpen || glowbudComparisonOpen || museumLoreOpen}
         onOpenAtriumRegistry={onOpenAtriumRegistry}
         onSelectAtriumResident={onSelectAtriumResident}
         onOpenMuseumLore={onOpenMuseumLore}
@@ -1388,6 +1430,28 @@ function FormalRoomScene({
       ))}
       <DustMotes reducedMotion={reducedMotion} />
     </>
+  )
+}
+
+function MuseumAdaptiveDpr({ profile }: { profile: MuseumPerformanceProfile }) {
+  const setDpr = useThree((state) => state.setDpr)
+
+  useEffect(() => {
+    setDpr(profile.dpr[1])
+  }, [profile, setDpr])
+
+  return (
+    <PerformanceMonitor
+      flipflops={3}
+      bounds={(refreshRate) => [
+        Math.min(45, refreshRate * 0.7),
+        Math.min(58, refreshRate * 0.92),
+      ]}
+      onChange={({ factor }) => {
+        setDpr(THREE.MathUtils.lerp(profile.dpr[0], profile.dpr[1], factor))
+      }}
+      onFallback={() => setDpr(profile.dpr[0])}
+    />
   )
 }
 
@@ -1482,15 +1546,12 @@ export function createFormalRoomWalletExhibition(
 export function FormalMuseumRoom() {
   const router = useRouter()
   const reducedMotion = useReducedMotion()
+  const [performanceProfile, setPerformanceProfile] = useState(() => (
+    resolveMuseumPerformanceProfile(readMuseumPerformanceSignals())
+  ))
   const [focusIndex, setFocusIndex] = useState<FocusIndex>(null)
-  const [welcomeOpen, setWelcomeOpen] = useState(() => !(
-    typeof window !== 'undefined'
-    && (window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 700)
-  ))
-  const [mobileCoachVisible, setMobileCoachVisible] = useState(() => (
-    typeof window !== 'undefined'
-    && (window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 700)
-  ))
+  const [welcomeOpen, setWelcomeOpen] = useState(false)
+  const [mobileCoachVisible, setMobileCoachVisible] = useState(false)
   const mode: FormalRoomViewMode = 'explore'
   const [activeGalleryId, setActiveGalleryId] = useState<MuseumGalleryId>('lobby')
   const [activeMuseumArea, setActiveMuseumArea] = useState<MuseumAreaId>('lobby')
@@ -1527,6 +1588,32 @@ export function FormalMuseumRoom() {
   const modalOpen = collectionDeskOpen || atriumRegistryOpen || glowbudComparisonOpen || museumLoreOpen
   const sceneBlocked = welcomeOpen || modalOpen
   const walkBlocked = sceneBlocked || museumMenuOpen
+
+  useEffect(() => {
+    // Firefox can briefly expose a zero/narrow viewport while hydrating. Make
+    // the one-time desktop/mobile welcome decision after the real viewport and
+    // pointer capabilities are available so it cannot get stuck in the wrong UI.
+    const frame = window.requestAnimationFrame(() => {
+      const compactControls = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+        || window.innerWidth <= 700
+      setWelcomeOpen(!compactControls)
+      setMobileCoachVisible(compactControls)
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
+
+  useEffect(() => {
+    const updateProfile = () => {
+      setPerformanceProfile(resolveMuseumPerformanceProfile(readMuseumPerformanceSignals()))
+    }
+    const coarsePointerQuery = window.matchMedia('(hover: none) and (pointer: coarse)')
+    window.addEventListener('resize', updateProfile, { passive: true })
+    coarsePointerQuery.addEventListener('change', updateProfile)
+    return () => {
+      window.removeEventListener('resize', updateProfile)
+      coarsePointerQuery.removeEventListener('change', updateProfile)
+    }
+  }, [])
 
   const handleArtworkMediaStatus = useCallback((artworkId: string, status: ArtworkMediaStatus) => {
     setArtworkMediaStatus((current) => current[artworkId] === status
@@ -1906,6 +1993,7 @@ export function FormalMuseumRoom() {
       aria-label="Museum of Based Art Main Museum"
       data-testid="formal-museum-room"
       data-room-mode={mode}
+      data-performance-tier={performanceProfile.tier}
     >
       <div inert={sceneBlocked ? true : undefined} aria-hidden={sceneBlocked ? true : undefined}>
       <div
@@ -1914,8 +2002,14 @@ export function FormalMuseumRoom() {
       >
         <Canvas
           camera={{ position: [0, 0.7, 10], fov: 43, near: 0.1, far: 90 }}
-          dpr={[0.9, 1.35]}
-          gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
+          dpr={performanceProfile.dpr}
+          frameloop={sceneBlocked ? 'demand' : 'always'}
+          gl={{
+            antialias: performanceProfile.antialias,
+            alpha: false,
+            stencil: false,
+            powerPreference: 'high-performance',
+          }}
           performance={{ min: 0.6 }}
           onPointerMissed={() => {
             if (!walkBlocked) setFocusIndex(null)
@@ -1929,7 +2023,7 @@ export function FormalMuseumRoom() {
             onSelect={selectArtwork}
             onMediaStatus={handleArtworkMediaStatus}
             onMotionStatus={handleArtworkMotionStatus}
-            motionPaused={modalOpen}
+            motionPaused={sceneBlocked}
             controlsEnabled={!walkBlocked}
             reducedMotion={reducedMotion}
             activeGalleryId={activeGalleryId}
@@ -1948,6 +2042,7 @@ export function FormalMuseumRoom() {
             onOpenCourtyard={openCourtyard}
             onOpenBurnRoom={openBurnRoom}
             onApproachedArtworkChange={setApproachedArtwork}
+            performanceProfile={performanceProfile}
           />
         </Canvas>
       </div>
@@ -2153,30 +2248,38 @@ export function FormalMuseumRoom() {
         </div>
       ) : null}
 
-      <CollectionDesk
-        open={collectionDeskOpen}
-        onClose={closeCollectionDesk}
-        onPreview={previewWalletExhibition}
-        onAddressChange={handleCollectionAddressChange}
-      />
-      <AtriumRegistryPanel
-        open={atriumRegistryOpen}
-        onClose={closeAtriumRegistry}
-        onInstall={applyAtriumInstallation}
-        onAddressChange={handleAtriumRegistryAddressChange}
-      />
-      <GlowbudComparisonPanel
-        key={selectedGlowbud?.key ?? 'closed-glowbud-study'}
-        resident={selectedGlowbud}
-        ownerAddress={atriumInstallation?.address ?? null}
-        reducedMotion={reducedMotion}
-        onClose={closeGlowbudComparison}
-      />
-      <MuseumLorePanel
-        chapterId={selectedLoreId}
-        onClose={closeMuseumLore}
-        onNavigate={setSelectedLoreId}
-      />
+      {collectionDeskOpen ? (
+        <CollectionDesk
+          open
+          onClose={closeCollectionDesk}
+          onPreview={previewWalletExhibition}
+          onAddressChange={handleCollectionAddressChange}
+        />
+      ) : null}
+      {atriumRegistryOpen ? (
+        <AtriumRegistryPanel
+          open
+          onClose={closeAtriumRegistry}
+          onInstall={applyAtriumInstallation}
+          onAddressChange={handleAtriumRegistryAddressChange}
+        />
+      ) : null}
+      {selectedGlowbud ? (
+        <GlowbudComparisonPanel
+          key={selectedGlowbud.key}
+          resident={selectedGlowbud}
+          ownerAddress={atriumInstallation?.address ?? null}
+          reducedMotion={reducedMotion}
+          onClose={closeGlowbudComparison}
+        />
+      ) : null}
+      {selectedLoreId ? (
+        <MuseumLorePanel
+          chapterId={selectedLoreId}
+          onClose={closeMuseumLore}
+          onNavigate={setSelectedLoreId}
+        />
+      ) : null}
     </main>
   )
 }

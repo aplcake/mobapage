@@ -19,6 +19,11 @@
     "lab:active": "node scripts/experiment-active-proof.mjs",
     "lab:smoke": "node scripts/lab-split-smoke.mjs",
     "lab:boundaries": "node scripts/lab-boundary-check.mjs",
+    "museum:gallery:motion-sheets": "node scripts/generate-moba-gallery-motion-sheets.mjs",
+    "museum:poster:atlas": "node scripts/generate-museum-poster-atlas.mjs",
+    "museum:glowbuds:lod": "node scripts/generate-glowbud-lod-assets.mjs",
+    "museum:browser:smoke": "node scripts/museum-browser-smoke.mjs",
+    "museum:performance:smoke": "node scripts/museum-performance-smoke.mjs",
     "performance:smoke": "node scripts/performance-smoke.mjs",
     "visual-smoke": "node scripts/visual-smoke.mjs"
   },

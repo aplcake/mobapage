@@ -208,6 +208,7 @@ describe('personal atrium geometry and default installation', () => {
     expect(installed[0]?.source).toBe('personal')
     expect(installed[0]?.imageUrl).toContain('/api/opensea/media?')
     expect(installed[0]?.imageUrl).toContain('variant=room')
+    expect(installed[0]?.lodImageUrl).toContain('variant=lod')
     expect(installed[0]?.animationUrl).toContain('variant=motion')
     expect(installed.slice(1).every((artwork) => artwork.source === 'museum')).toBe(true)
   })

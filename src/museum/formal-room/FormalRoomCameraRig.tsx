@@ -4,7 +4,11 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { type MutableRefObject, useCallback, useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import type { FormalRoomArtwork } from './artworks'
-import { isFormalRoomCompactViewport, selectFormalRoomExploreFov } from './cameraViewport'
+import {
+  isFormalRoomCompactViewport,
+  selectFormalRoomExploreFov,
+  stepFormalRoomFovProjection,
+} from './cameraViewport'
 import {
   beginFormalJump,
   createFormalJumpState,
@@ -144,6 +148,28 @@ function damp(current: number, target: number, strength: number, delta: number) 
   return THREE.MathUtils.lerp(current, target, 1 - Math.exp(-strength * delta))
 }
 
+function updatePerspectiveFov(
+  camera: THREE.PerspectiveCamera,
+  targetFov: number,
+  strength: number,
+  delta: number,
+  lastProjectedFovRef: MutableRefObject<number | null>,
+) {
+  const lastProjectedFov = lastProjectedFovRef.current ?? camera.fov
+  lastProjectedFovRef.current ??= lastProjectedFov
+  const frame = stepFormalRoomFovProjection(
+    camera.fov,
+    targetFov,
+    lastProjectedFov,
+    strength,
+    delta,
+  )
+  camera.fov = frame.fov
+  if (!frame.shouldUpdateProjection) return
+  camera.updateProjectionMatrix()
+  lastProjectedFovRef.current = frame.fov
+}
+
 export function FormalRoomCameraRig({
   artworks,
   focusIndex,
@@ -174,6 +200,8 @@ export function FormalRoomCameraRig({
   const walkPitchRef = useRef(-0.04)
   const walkBobRef = useRef(0)
   const mouseCursorSteerRef = useRef({ x: 0, y: 0, active: false })
+  const lastProjectedFovRef = useRef<number | null>(null)
+  const lastPublishedPoseRef = useRef({ yaw: Number.NaN, pitch: Number.NaN, at: Number.NEGATIVE_INFINITY })
   const jumpStateRef = useRef(createFormalJumpState())
   const walkPositionRef = useRef(new THREE.Vector3(FORMAL_WALK_START.x, WALK_EYE_HEIGHT, FORMAL_WALK_START.z))
   const walkVelocityRef = useRef(new THREE.Vector3())
@@ -251,10 +279,18 @@ export function FormalRoomCameraRig({
 
     const canvas = gl.domElement
     const input = inputRef.current
+    const cursorSteeringEnabled = typeof window.matchMedia === 'function'
+      && window.matchMedia('(hover: hover) and (pointer: fine)').matches
     let touchPointerId: number | null = null
     let lastX = 0
     let lastY = 0
     let totalMovement = 0
+    let suppressMouseSteerUntil = 0
+    let canvasBounds: DOMRectReadOnly | null = null
+
+    const refreshCanvasBounds = () => {
+      canvasBounds = canvas.getBoundingClientRect()
+    }
 
     const clearCursorSteer = () => {
       mouseCursorSteerRef.current.x = 0
@@ -281,6 +317,8 @@ export function FormalRoomCameraRig({
     const finishTouchLook = (event?: PointerEvent) => {
       if (event?.pointerType === 'mouse') return
       if (event && touchPointerId !== null && event.pointerId !== touchPointerId) return
+      clearCursorSteer()
+      suppressMouseSteerUntil = performance.now() + 800
       if (totalMovement > 7) {
         input.suppressArtworkClickUntil = performance.now() + 180
       }
@@ -291,23 +329,42 @@ export function FormalRoomCameraRig({
 
     const handlePointerDown = (event: PointerEvent) => {
       if (event.pointerType === 'mouse') return
+      clearCursorSteer()
+      suppressMouseSteerUntil = performance.now() + 800
       if (touchPointerId !== null) return
       touchPointerId = event.pointerId
       lastX = event.clientX
       lastY = event.clientY
       totalMovement = 0
       input.draggingLook = true
-      canvas.setPointerCapture?.(event.pointerId)
+      try {
+        canvas.setPointerCapture?.(event.pointerId)
+      } catch {
+        // Synthetic/accessibility pointer events may not own a native capture.
+        // Window-level release listeners still guarantee a clean reset.
+      }
     }
 
     const handleMouseMove = (event: MouseEvent) => {
-      const interactiveTarget = event.target instanceof Element
-        && Boolean(event.target.closest('button, a, input, textarea, select, [role="dialog"]'))
-      if (interactiveTarget) {
+      if (!cursorSteeringEnabled) {
         clearCursorSteer()
         return
       }
-      const bounds = canvas.getBoundingClientRect()
+      // Keep the document listener so entering HUD controls or dialogs immediately
+      // stops an existing edge turn, but only canvas-targeted movement steers.
+      if (event.target !== canvas) {
+        clearCursorSteer()
+        return
+      }
+      if (performance.now() < suppressMouseSteerUntil) {
+        clearCursorSteer()
+        return
+      }
+      const bounds = canvasBounds
+      if (!bounds) {
+        clearCursorSteer()
+        return
+      }
       const insideCanvas = event.clientX >= bounds.left
         && event.clientX <= bounds.right
         && event.clientY >= bounds.top
@@ -328,6 +385,8 @@ export function FormalRoomCameraRig({
       const deltaY = event.clientY - lastY
       lastX = event.clientX
       lastY = event.clientY
+      suppressMouseSteerUntil = performance.now() + 800
+      clearCursorSteer()
       const previousMovement = totalMovement
       totalMovement += Math.hypot(deltaX, deltaY)
       applyLookDelta(deltaX, deltaY, FORMAL_TOUCH_LOOK_SENSITIVITY)
@@ -341,11 +400,22 @@ export function FormalRoomCameraRig({
 
     const suspendMouseLook = () => clearCursorSteer()
 
-    canvas.style.cursor = 'crosshair'
+    const resizeObserver = cursorSteeringEnabled && typeof ResizeObserver === 'function'
+      ? new ResizeObserver(refreshCanvasBounds)
+      : null
+
+    canvas.style.cursor = cursorSteeringEnabled ? 'crosshair' : 'default'
     canvas.addEventListener('pointerdown', handlePointerDown)
     canvas.addEventListener('pointerleave', handlePointerLeave)
     canvas.addEventListener('lostpointercapture', finishTouchLook)
-    document.addEventListener('mousemove', handleMouseMove)
+    if (cursorSteeringEnabled) {
+      refreshCanvasBounds()
+      resizeObserver?.observe(canvas)
+      canvas.addEventListener('mouseenter', refreshCanvasBounds)
+      document.addEventListener('mousemove', handleMouseMove)
+      window.addEventListener('resize', refreshCanvasBounds, { passive: true })
+      window.addEventListener('scroll', refreshCanvasBounds, { capture: true, passive: true })
+    }
     window.addEventListener('pointermove', handleTouchPointerMove, { passive: false })
     window.addEventListener('pointerup', finishTouchLook)
     window.addEventListener('pointercancel', finishTouchLook)
@@ -355,7 +425,13 @@ export function FormalRoomCameraRig({
       canvas.removeEventListener('pointerdown', handlePointerDown)
       canvas.removeEventListener('pointerleave', handlePointerLeave)
       canvas.removeEventListener('lostpointercapture', finishTouchLook)
-      document.removeEventListener('mousemove', handleMouseMove)
+      resizeObserver?.disconnect()
+      if (cursorSteeringEnabled) {
+        canvas.removeEventListener('mouseenter', refreshCanvasBounds)
+        document.removeEventListener('mousemove', handleMouseMove)
+        window.removeEventListener('resize', refreshCanvasBounds)
+        window.removeEventListener('scroll', refreshCanvasBounds, true)
+      }
       window.removeEventListener('pointermove', handleTouchPointerMove)
       window.removeEventListener('pointerup', finishTouchLook)
       window.removeEventListener('pointercancel', finishTouchLook)
@@ -374,6 +450,20 @@ export function FormalRoomCameraRig({
     }
     const delta = capFormalWalkDelta(rawDelta)
     const perspective = camera as THREE.PerspectiveCamera
+    const publishWalkPose = () => {
+      const previous = lastPublishedPoseRef.current
+      if (clock.elapsedTime - previous.at < 0.2) return
+      if (
+        Number.isFinite(previous.yaw)
+        && Math.abs(previous.yaw - walkYawRef.current) < 0.0005
+        && Math.abs(previous.pitch - walkPitchRef.current) < 0.0005
+      ) return
+      gl.domElement.dataset.museumCameraYaw = walkYawRef.current.toFixed(5)
+      gl.domElement.dataset.museumCameraPitch = walkPitchRef.current.toFixed(5)
+      previous.yaw = walkYawRef.current
+      previous.pitch = walkPitchRef.current
+      previous.at = clock.elapsedTime
+    }
 
     if (mode === 'explore') {
       const input = inputRef.current
@@ -410,18 +500,25 @@ export function FormalRoomCameraRig({
         targetEuler.set(walkPitchRef.current, walkYawRef.current, 0, 'YXZ')
         targetQuaternion.setFromEuler(targetEuler)
         camera.quaternion.copy(targetQuaternion)
+        publishWalkPose()
         if (perspective.isPerspectiveCamera) {
-          perspective.fov = damp(perspective.fov, exploreFov, reducedMotion ? 30 : 12, delta)
-          perspective.updateProjectionMatrix()
+          updatePerspectiveFov(
+            perspective,
+            exploreFov,
+            reducedMotion ? 30 : 12,
+            delta,
+            lastProjectedFovRef,
+          )
         }
         return
       }
 
       const turnAxis = Number(input.turnLeft) - Number(input.turnRight)
       const mouseCursorSteer = mouseCursorSteerRef.current
+      const cursorTurnIntent = mouseCursorSteer.active ? mouseCursorSteer.x : 0
       walkYawRef.current += (
         turnAxis * WALK_TURN_SPEED
-        - mouseCursorSteer.x * FORMAL_MOUSE_CURSOR_YAW_SPEED
+        - cursorTurnIntent * FORMAL_MOUSE_CURSOR_YAW_SPEED
       ) * delta
       if (mouseCursorSteer.active) {
         const cursorPitchTarget = THREE.MathUtils.lerp(
@@ -491,10 +588,16 @@ export function FormalRoomCameraRig({
       targetEuler.set(walkPitchRef.current, walkYawRef.current, 0, 'YXZ')
       targetQuaternion.setFromEuler(targetEuler)
       camera.quaternion.copy(targetQuaternion)
+      publishWalkPose()
 
       if (perspective.isPerspectiveCamera) {
-        perspective.fov = damp(perspective.fov, exploreFov, reducedMotion ? 30 : 8, delta)
-        perspective.updateProjectionMatrix()
+        updatePerspectiveFov(
+          perspective,
+          exploreFov,
+          reducedMotion ? 30 : 8,
+          delta,
+          lastProjectedFovRef,
+        )
       }
       return
     }
@@ -532,8 +635,13 @@ export function FormalRoomCameraRig({
 
     if (perspective.isPerspectiveCamera) {
       const targetFov = compactViewport ? (focusedArtwork ? 47 : 58) : focusedArtwork ? 38 : 43
-      perspective.fov = damp(perspective.fov, targetFov, reducedMotion ? 24 : 6, delta)
-      perspective.updateProjectionMatrix()
+      updatePerspectiveFov(
+        perspective,
+        targetFov,
+        reducedMotion ? 24 : 6,
+        delta,
+        lastProjectedFovRef,
+      )
     }
   })
 

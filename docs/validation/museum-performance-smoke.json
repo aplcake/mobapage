@@ -1,0 +1,668 @@
+{
+  "pass": true,
+  "target": "http://localhost:3005/",
+  "timestamp": "2026-08-25T14:37:01.641Z",
+  "browser": "Chromium 151.0.7922.174",
+  "browserExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "sampleMs": 5000,
+  "warmupMs": 3000,
+  "navigationTimeoutMs": 120000,
+  "readyTimeoutMs": 60000,
+  "sampleTimeoutMs": 30000,
+  "thresholds": {
+    "minAverageFps": 45,
+    "maxP95FrameMs": 40,
+    "maxLongFrameRatio": 0.1,
+    "maxSevereLongFrames": 2,
+    "maxResourceRequests": 100,
+    "maxKnownPayloadBytes": 16777216
+  },
+  "results": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "deviceScaleFactor": 1,
+      "pass": true,
+      "failures": [],
+      "frameTimingMode": "enforced-hardware-renderer",
+      "metrics": {
+        "environment": {
+          "innerWidth": 1440,
+          "innerHeight": 900,
+          "devicePixelRatio": 1,
+          "hardwareConcurrency": 10,
+          "performanceTier": "showcase",
+          "webgl": {
+            "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+            "vendor": "Google Inc. (Apple)"
+          },
+          "canvasCount": 1,
+          "motionPipelineCount": 0,
+          "playingMotionPipelineCount": 0,
+          "canvasBounds": {
+            "x": 0,
+            "y": 0,
+            "width": 1440,
+            "height": 900
+          }
+        },
+        "navigation": {
+          "domContentLoadedMs": 139.4,
+          "loadEventMs": 171.3,
+          "responseEndMs": 38.4,
+          "durationMs": 171.3
+        },
+        "framePacing": {
+          "sampleMs": 5009,
+          "frames": 287,
+          "averageFps": 57.3,
+          "averageFrameMs": 17.34,
+          "p50FrameMs": 16.7,
+          "p95FrameMs": 18.6,
+          "p99FrameMs": 34.5,
+          "maxFrameMs": 50,
+          "over25msFrameCount": 12,
+          "longFrameCount": 0,
+          "longFrameRatio": 0,
+          "severeLongFrameCount": 0,
+          "observedLongTasks": []
+        },
+        "resources": {
+          "count": 77,
+          "knownTransferBytes": 11541444,
+          "zeroSizeCount": 0,
+          "byType": {
+            "document": {
+              "count": 1,
+              "knownTransferBytes": 2613
+            },
+            "link": {
+              "count": 3,
+              "knownTransferBytes": 40677
+            },
+            "script": {
+              "count": 15,
+              "knownTransferBytes": 717775
+            },
+            "other": {
+              "count": 1,
+              "knownTransferBytes": 687
+            },
+            "img": {
+              "count": 46,
+              "knownTransferBytes": 6391164
+            },
+            "fetch": {
+              "count": 11,
+              "knownTransferBytes": 4388528
+            }
+          },
+          "slowest": [
+            {
+              "name": "http://localhost:3005/",
+              "initiatorType": "document",
+              "duration": 171.3,
+              "transferSize": 2613,
+              "encodedBodySize": 2313,
+              "decodedBodySize": 8078
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
+              "initiatorType": "script",
+              "duration": 49.7,
+              "transferSize": 64376,
+              "encodedBodySize": 64076,
+              "decodedBodySize": 203384
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/00i1e9_.d5i8f.js",
+              "initiatorType": "script",
+              "duration": 48.1,
+              "transferSize": 1938,
+              "encodedBodySize": 1638,
+              "decodedBodySize": 3798
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0d3shmwh5_nmn.js",
+              "initiatorType": "script",
+              "duration": 46.2,
+              "transferSize": 13163,
+              "encodedBodySize": 12863,
+              "decodedBodySize": 54646
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/07uz2g0_38qia.js",
+              "initiatorType": "script",
+              "duration": 45.8,
+              "transferSize": 9468,
+              "encodedBodySize": 9168,
+              "decodedBodySize": 43946
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/01xlw8hd842-c.js",
+              "initiatorType": "script",
+              "duration": 44.8,
+              "transferSize": 1756,
+              "encodedBodySize": 1456,
+              "decodedBodySize": 3377
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/turbopack-13gb~rhpm0e6r.js",
+              "initiatorType": "script",
+              "duration": 44.5,
+              "transferSize": 4486,
+              "encodedBodySize": 4186,
+              "decodedBodySize": 10646
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0n1bpogj.il~n.js",
+              "initiatorType": "script",
+              "duration": 44,
+              "transferSize": 37682,
+              "encodedBodySize": 37382,
+              "decodedBodySize": 137449
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
+              "initiatorType": "script",
+              "duration": 41.4,
+              "transferSize": 235831,
+              "encodedBodySize": 235531,
+              "decodedBodySize": 899943
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0i3l05cypoj83.js",
+              "initiatorType": "script",
+              "duration": 37.7,
+              "transferSize": 186608,
+              "encodedBodySize": 186308,
+              "decodedBodySize": 820092
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0pc7f~w-4ehn9.js",
+              "initiatorType": "script",
+              "duration": 32.6,
+              "transferSize": 9269,
+              "encodedBodySize": 8969,
+              "decodedBodySize": 31864
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0we~jb05-5g-7.css",
+              "initiatorType": "link",
+              "duration": 32.5,
+              "transferSize": 21017,
+              "encodedBodySize": 20717,
+              "decodedBodySize": 103015
+            }
+          ],
+          "largestKnown": [
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
+              "initiatorType": "img",
+              "duration": 13.3,
+              "transferSize": 846500,
+              "encodedBodySize": 846200,
+              "decodedBodySize": 846200
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
+              "initiatorType": "fetch",
+              "duration": 2.3,
+              "transferSize": 0,
+              "encodedBodySize": 846200,
+              "decodedBodySize": 846200
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-394-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 12.6,
+              "transferSize": 744690,
+              "encodedBodySize": 744390,
+              "decodedBodySize": 744390
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-279-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 7.9,
+              "transferSize": 540266,
+              "encodedBodySize": 539966,
+              "decodedBodySize": 539966
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-226-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 10.8,
+              "transferSize": 530332,
+              "encodedBodySize": 530032,
+              "decodedBodySize": 530032
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-427-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 10.4,
+              "transferSize": 520418,
+              "encodedBodySize": 520118,
+              "decodedBodySize": 520118
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-376-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 3,
+              "transferSize": 488044,
+              "encodedBodySize": 487744,
+              "decodedBodySize": 487744
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-sheet.webp",
+              "initiatorType": "img",
+              "duration": 4.2,
+              "transferSize": 423592,
+              "encodedBodySize": 423292,
+              "decodedBodySize": 423292
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2173-sheet.webp",
+              "initiatorType": "img",
+              "duration": 5.7,
+              "transferSize": 406410,
+              "encodedBodySize": 406110,
+              "decodedBodySize": 406110
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2139-sheet.webp",
+              "initiatorType": "img",
+              "duration": 7.5,
+              "transferSize": 361950,
+              "encodedBodySize": 361650,
+              "decodedBodySize": 361650
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-532-sheet.webp",
+              "initiatorType": "img",
+              "duration": 21.9,
+              "transferSize": 360966,
+              "encodedBodySize": 360666,
+              "decodedBodySize": 360666
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-sheet.webp",
+              "initiatorType": "img",
+              "duration": 10.8,
+              "transferSize": 345242,
+              "encodedBodySize": 344942,
+              "decodedBodySize": 344942
+            }
+          ]
+        }
+      },
+      "network": {
+        "responseCount": 77,
+        "contentLengthKnownCount": 57,
+        "contentLengthUnknownCount": 20,
+        "knownContentLengthBytes": 10763492,
+        "httpErrorCount": 0,
+        "httpErrors": [],
+        "byType": {
+          "document": {
+            "count": 1,
+            "knownContentLengthBytes": 0
+          },
+          "stylesheet": {
+            "count": 2,
+            "knownContentLengthBytes": 0
+          },
+          "script": {
+            "count": 16,
+            "knownContentLengthBytes": 0
+          },
+          "other": {
+            "count": 1,
+            "knownContentLengthBytes": 0
+          },
+          "image": {
+            "count": 46,
+            "knownContentLengthBytes": 6377364
+          },
+          "fetch": {
+            "count": 11,
+            "knownContentLengthBytes": 4386128
+          }
+        },
+        "failedRequestCount": 0,
+        "failedRequests": [],
+        "effectiveResourceRequestCount": 77,
+        "effectiveKnownPayloadBytes": 11541444
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    },
+    {
+      "name": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 2,
+      "pass": true,
+      "failures": [],
+      "frameTimingMode": "enforced-hardware-renderer",
+      "metrics": {
+        "environment": {
+          "innerWidth": 390,
+          "innerHeight": 844,
+          "devicePixelRatio": 2,
+          "hardwareConcurrency": 10,
+          "performanceTier": "compact",
+          "webgl": {
+            "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
+            "vendor": "Google Inc. (Apple)"
+          },
+          "canvasCount": 1,
+          "motionPipelineCount": 0,
+          "playingMotionPipelineCount": 0,
+          "canvasBounds": {
+            "x": 0,
+            "y": 0,
+            "width": 390,
+            "height": 844
+          }
+        },
+        "navigation": {
+          "domContentLoadedMs": 66.4,
+          "loadEventMs": 105.1,
+          "responseEndMs": 10.7,
+          "durationMs": 105.1
+        },
+        "framePacing": {
+          "sampleMs": 5001.7,
+          "frames": 300,
+          "averageFps": 59.98,
+          "averageFrameMs": 16.63,
+          "p50FrameMs": 16.7,
+          "p95FrameMs": 18.1,
+          "p99FrameMs": 18.6,
+          "maxFrameMs": 18.7,
+          "over25msFrameCount": 0,
+          "longFrameCount": 0,
+          "longFrameRatio": 0,
+          "severeLongFrameCount": 0,
+          "observedLongTasks": []
+        },
+        "resources": {
+          "count": 47,
+          "knownTransferBytes": 5714108,
+          "zeroSizeCount": 0,
+          "byType": {
+            "document": {
+              "count": 1,
+              "knownTransferBytes": 2613
+            },
+            "link": {
+              "count": 3,
+              "knownTransferBytes": 40677
+            },
+            "script": {
+              "count": 15,
+              "knownTransferBytes": 717775
+            },
+            "other": {
+              "count": 1,
+              "knownTransferBytes": 687
+            },
+            "img": {
+              "count": 22,
+              "knownTransferBytes": 3691034
+            },
+            "fetch": {
+              "count": 5,
+              "knownTransferBytes": 1261322
+            }
+          },
+          "slowest": [
+            {
+              "name": "http://localhost:3005/",
+              "initiatorType": "document",
+              "duration": 105.1,
+              "transferSize": 2613,
+              "encodedBodySize": 2313,
+              "decodedBodySize": 8078
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
+              "initiatorType": "script",
+              "duration": 32.6,
+              "transferSize": 235831,
+              "encodedBodySize": 235531,
+              "decodedBodySize": 899943
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0i3l05cypoj83.js",
+              "initiatorType": "script",
+              "duration": 27.7,
+              "transferSize": 186608,
+              "encodedBodySize": 186308,
+              "decodedBodySize": 820092
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
+              "initiatorType": "script",
+              "duration": 19.5,
+              "transferSize": 64376,
+              "encodedBodySize": 64076,
+              "decodedBodySize": 203384
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0d3shmwh5_nmn.js",
+              "initiatorType": "script",
+              "duration": 16.7,
+              "transferSize": 13163,
+              "encodedBodySize": 12863,
+              "decodedBodySize": 54646
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0n1bpogj.il~n.js",
+              "initiatorType": "script",
+              "duration": 15.9,
+              "transferSize": 37682,
+              "encodedBodySize": 37382,
+              "decodedBodySize": 137449
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/082yrcm6bcrgq.js",
+              "initiatorType": "script",
+              "duration": 14.6,
+              "transferSize": 44950,
+              "encodedBodySize": 44650,
+              "decodedBodySize": 503564
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/137xd6t5wdabf.js",
+              "initiatorType": "script",
+              "duration": 13.8,
+              "transferSize": 75295,
+              "encodedBodySize": 74995,
+              "decodedBodySize": 284166
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/00i1e9_.d5i8f.js",
+              "initiatorType": "script",
+              "duration": 13.3,
+              "transferSize": 1938,
+              "encodedBodySize": 1638,
+              "decodedBodySize": 3798
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/01xlw8hd842-c.js",
+              "initiatorType": "script",
+              "duration": 12.5,
+              "transferSize": 1756,
+              "encodedBodySize": 1456,
+              "decodedBodySize": 3377
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/07uz2g0_38qia.js",
+              "initiatorType": "script",
+              "duration": 12.1,
+              "transferSize": 9468,
+              "encodedBodySize": 9168,
+              "decodedBodySize": 43946
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/turbopack-13gb~rhpm0e6r.js",
+              "initiatorType": "script",
+              "duration": 11.1,
+              "transferSize": 4486,
+              "encodedBodySize": 4186,
+              "decodedBodySize": 10646
+            }
+          ],
+          "largestKnown": [
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
+              "initiatorType": "img",
+              "duration": 7.7,
+              "transferSize": 846500,
+              "encodedBodySize": 846200,
+              "decodedBodySize": 846200
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
+              "initiatorType": "fetch",
+              "duration": 1,
+              "transferSize": 0,
+              "encodedBodySize": 846200,
+              "decodedBodySize": 846200
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-sheet.webp",
+              "initiatorType": "img",
+              "duration": 7.9,
+              "transferSize": 423592,
+              "encodedBodySize": 423292,
+              "decodedBodySize": 423292
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2173-sheet.webp",
+              "initiatorType": "img",
+              "duration": 7.8,
+              "transferSize": 406410,
+              "encodedBodySize": 406110,
+              "decodedBodySize": 406110
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-sheet.webp",
+              "initiatorType": "img",
+              "duration": 5.5,
+              "transferSize": 345242,
+              "encodedBodySize": 344942,
+              "decodedBodySize": 344942
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2097-sheet.webp",
+              "initiatorType": "img",
+              "duration": 4.8,
+              "transferSize": 318564,
+              "encodedBodySize": 318264,
+              "decodedBodySize": 318264
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2204-sheet.webp",
+              "initiatorType": "img",
+              "duration": 5.3,
+              "transferSize": 310742,
+              "encodedBodySize": 310442,
+              "decodedBodySize": 310442
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-170-sheet.webp",
+              "initiatorType": "img",
+              "duration": 7.7,
+              "transferSize": 310294,
+              "encodedBodySize": 309994,
+              "decodedBodySize": 309994
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/installations/createbox-6/createbox-6-sheet.webp",
+              "initiatorType": "img",
+              "duration": 9.3,
+              "transferSize": 288128,
+              "encodedBodySize": 287828,
+              "decodedBodySize": 287828
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
+              "initiatorType": "script",
+              "duration": 32.6,
+              "transferSize": 235831,
+              "encodedBodySize": 235531,
+              "decodedBodySize": 899943
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/enjoyables-official.gif",
+              "initiatorType": "img",
+              "duration": 6.1,
+              "transferSize": 190906,
+              "encodedBodySize": 190606,
+              "decodedBodySize": 190606
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/enjoyables-official.gif",
+              "initiatorType": "fetch",
+              "duration": 0.7,
+              "transferSize": 0,
+              "encodedBodySize": 190606,
+              "decodedBodySize": 190606
+            }
+          ]
+        }
+      },
+      "network": {
+        "responseCount": 47,
+        "contentLengthKnownCount": 27,
+        "contentLengthUnknownCount": 20,
+        "knownContentLengthBytes": 4945156,
+        "httpErrorCount": 0,
+        "httpErrors": [],
+        "byType": {
+          "document": {
+            "count": 1,
+            "knownContentLengthBytes": 0
+          },
+          "script": {
+            "count": 16,
+            "knownContentLengthBytes": 0
+          },
+          "stylesheet": {
+            "count": 2,
+            "knownContentLengthBytes": 0
+          },
+          "other": {
+            "count": 1,
+            "knownContentLengthBytes": 0
+          },
+          "image": {
+            "count": 22,
+            "knownContentLengthBytes": 3684434
+          },
+          "fetch": {
+            "count": 5,
+            "knownContentLengthBytes": 1260722
+          }
+        },
+        "failedRequestCount": 0,
+        "failedRequests": [],
+        "effectiveResourceRequestCount": 47,
+        "effectiveKnownPayloadBytes": 5714108
+      },
+      "diagnostics": {
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    }
+  ]
+}
