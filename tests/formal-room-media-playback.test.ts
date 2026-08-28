@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   containFormalRoomMotion,
   formalRoomAnimatedImageLongEdge,
+  formalRoomPosterLongEdge,
   formalRoomMotionAttemptOrder,
   FORMAL_ROOM_ANIMATED_IMAGE_MAX_FPS,
   shouldPaintFormalRoomAnimationFrame,
@@ -16,10 +17,12 @@ describe('Formal Room animated artwork playback policy', () => {
   })
 
   it('keeps animated image canvases bounded on phones and desktops', () => {
-    expect(formalRoomAnimatedImageLongEdge(390)).toBe(768)
-    expect(formalRoomAnimatedImageLongEdge(700)).toBe(768)
-    expect(formalRoomAnimatedImageLongEdge(701)).toBe(1024)
-    expect(formalRoomAnimatedImageLongEdge(1440)).toBe(1024)
+    expect(formalRoomAnimatedImageLongEdge(390)).toBe(512)
+    expect(formalRoomAnimatedImageLongEdge(700)).toBe(512)
+    expect(formalRoomAnimatedImageLongEdge(701)).toBe(768)
+    expect(formalRoomAnimatedImageLongEdge(1440)).toBe(768)
+    expect(formalRoomPosterLongEdge(390)).toBe(768)
+    expect(formalRoomPosterLongEdge(1440)).toBe(1024)
   })
 
   it('never repaints animated image textures above fifteen frames per second', () => {

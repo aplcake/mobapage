@@ -52,7 +52,7 @@ describe('Formal Museum Room MVP', () => {
     expect(artworks).toContain("context.imageSmoothingQuality = 'high'")
     expect(artworks).toContain('texture.colorSpace = THREE.SRGBColorSpace')
     expect(artworks).toContain('texture.minFilter = THREE.LinearMipmapLinearFilter')
-    expect(room).toContain('size.width <= 700 ? 1024 : 2048')
+    expect(room).toContain('formalRoomPosterLongEdge(size.width)')
     expect(room).toContain("formalRoomArtworkMediaUrl(sources[sourceIndex], 'room')")
     expect(room).toContain("mediaUrl.startsWith(BUNDLED_FORMAL_ROOM_MEDIA_PREFIX)")
     expect(room).toContain('artwork.thumbnailUrl')
@@ -67,6 +67,7 @@ describe('Formal Museum Room MVP', () => {
 
   it('keeps a crisp poster while safely playing optional animated NFT media', () => {
     const room = source('../src/museum/formal-room/FormalMuseumRoom.tsx')
+    const expansion = source('../src/museum/formal-room/MuseumExpansion.tsx')
     const playback = source('../src/museum/formal-room/mediaPlayback.ts')
 
     expect(room).toContain("formalRoomArtworkMediaUrl(motionUrl, 'motion')")
@@ -84,14 +85,17 @@ describe('Formal Museum Room MVP', () => {
     expect(room).toContain('image.remove()')
     expect(room).toContain("motionSurface === 'image' || motionSurface === 'decoded-image'")
     expect(room).toContain('new ImageDecoder')
+    expect(room).toContain('void nextDecoder.completed.catch(() => undefined)')
+    expect(expansion).toContain('void nextDecoder.completed.catch(() => undefined)')
     expect(room).toContain('decodedFrameIndexRef')
     expect(room).toContain("motionSurface === 'video' && videoTexture && !reducedMotion")
     expect(room).toContain('shouldPaintFormalRoomAnimationFrame')
     expect(room).toContain("publishMotionStatus('unavailable')")
     expect(room).toContain('posterStatus === \'ready\' || optionalMotionStatus === \'ready\'')
     expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_MAX_FPS = 15')
-    expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_MOBILE_LONG_EDGE = 768')
-    expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE = 1024')
+    expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_MOBILE_LONG_EDGE = 512')
+    expect(playback).toContain('FORMAL_ROOM_ANIMATED_IMAGE_DESKTOP_LONG_EDGE = 768')
+    expect(playback).toContain('FORMAL_ROOM_POSTER_DESKTOP_LONG_EDGE = 1024')
   })
 
   it('opens with one clear welcome guide, then continues directly into exploration', () => {
@@ -110,7 +114,10 @@ describe('Formal Museum Room MVP', () => {
 
     expect(room).toContain("const mode: FormalRoomViewMode = 'explore'")
     expect(room).toContain("data-room-mode={mode}")
-    expect(room).toContain('const [welcomeOpen, setWelcomeOpen] = useState(() => !(')
+    expect(room).toContain('const [welcomeOpen, setWelcomeOpen] = useState(false)')
+    expect(room).toContain('const [mobileCoachVisible, setMobileCoachVisible] = useState(false)')
+    expect(room).toContain('setWelcomeOpen(!compactControls)')
+    expect(room).toContain('setMobileCoachVisible(compactControls)')
     expect(room).toContain("window.matchMedia('(hover: none) and (pointer: coarse)').matches")
     expect(room).toContain('const sceneBlocked = welcomeOpen || modalOpen')
     expect(room).toContain('const walkBlocked = sceneBlocked || museumMenuOpen')
@@ -195,7 +202,8 @@ describe('Formal Museum Room MVP', () => {
     expect(camera).not.toContain("canvas.addEventListener('pointerenter'")
     expect(camera).toContain("if (mode !== 'explore' || captureEnabled || !controlsEnabled)")
     expect(room).toContain('controlsEnabled={!walkBlocked}')
-    expect(camera).toContain("canvas.style.cursor = 'crosshair'")
+    expect(camera).toContain("window.matchMedia('(hover: hover) and (pointer: fine)').matches")
+    expect(camera).toContain("canvas.style.cursor = cursorSteeringEnabled ? 'crosshair' : 'default'")
     expect(camera).toContain("mode !== 'explore' || captureEnabled")
     expect(camera).toContain('if (touchPointerId !== null) return')
     expect(camera).toContain('if (touchPointerId !== event.pointerId) return')

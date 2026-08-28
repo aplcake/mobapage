@@ -27,9 +27,12 @@ export type AtriumWallBay = {
 export type AtriumWallArtwork = {
   id: string
   title: string
+  artist: string | null
   collection: string
   sourceUrl: string | null
   imageUrl: string
+  lodImageUrl?: string | null
+  posterAtlasIndex?: number | null
   animationUrl: string | null
   motionSheet: string | null
   motionSheetColumns: number | null
@@ -180,9 +183,12 @@ const DEFAULT_GALLERY_WORKS = [
 export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GALLERY_WORKS.map(({ work, collection }) => ({
   id: `museum-${work.id}`,
   title: work.title,
+  artist: work.artist ?? null,
   collection,
   sourceUrl: work.sourceUrl,
   imageUrl: work.poster,
+  lodImageUrl: null,
+  posterAtlasIndex: work.posterAtlasIndex,
   animationUrl: work.motion,
   motionSheet: work.motionSheet ?? null,
   motionSheetColumns: work.motionSheetColumns ?? null,
@@ -196,12 +202,16 @@ export const ATRIUM_DEFAULT_ARTWORKS: readonly AtriumWallArtwork[] = DEFAULT_GAL
 
 export function personalAtriumArtwork(asset: MuseumAssetSummary): AtriumWallArtwork | null {
   if (!asset.imageUrl) return null
+  const artist = asset.attributes.find(({ trait_type }) => trait_type.trim().toLowerCase() === 'artist')?.value.trim() || null
   return {
     id: `personal-${asset.key}`,
     title: asset.title,
+    artist,
     collection: asset.collection,
     sourceUrl: null,
     imageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'room'),
+    lodImageUrl: ownedNftMediaProxyUrl(asset.imageUrl, 'lod'),
+    posterAtlasIndex: null,
     animationUrl: asset.animationUrl ? ownedNftMediaProxyUrl(asset.animationUrl, 'motion') : null,
     motionSheet: null,
     motionSheetColumns: null,

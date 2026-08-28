@@ -84,7 +84,12 @@ export function MobileMovementJoystick({
     heldKeyboardKeysRef.current.clear()
     activePointerRef.current = event.pointerId
     clusterRef.current?.setAttribute('data-active', 'true')
-    event.currentTarget.setPointerCapture(event.pointerId)
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId)
+    } catch {
+      // Keyboard, assistive, and synthetic pointer input can lack native
+      // capture ownership; the explicit release handlers still reset state.
+    }
     updateFromPointer(event)
   }
 

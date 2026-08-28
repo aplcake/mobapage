@@ -186,6 +186,12 @@ function ArtworkProvenanceCard({
       </div>
       <div className={styles.artworkProvenanceEyebrow}>Now viewing</div>
       <strong className={styles.artworkProvenanceTitle}>{artwork.title}</strong>
+      {artwork.artist ? (
+        <div className={styles.artworkProvenanceArtist}>
+          <span>Artist</span>
+          <b>{artwork.artist}</b>
+        </div>
+      ) : null}
       <div className={styles.artworkProvenanceOwner}>
         <span className={styles.artworkProvenanceSeal} aria-hidden="true">◇</span>
         <span className={styles.artworkProvenanceOwnerCopy}>

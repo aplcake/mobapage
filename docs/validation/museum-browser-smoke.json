@@ -1,0 +1,108 @@
+{
+  "pass": true,
+  "target": "http://localhost:3005/",
+  "timestamp": "2026-08-25T14:36:05.330Z",
+  "versions": {
+    "chromium": "148.0.7778.96",
+    "firefox": "150.0.2",
+    "webkit": "26.4"
+  },
+  "results": [
+    {
+      "engine": "chromium",
+      "profile": "desktop",
+      "pass": true,
+      "performanceTier": "showcase",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 685.3
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "engine": "chromium",
+      "profile": "phone",
+      "pass": true,
+      "performanceTier": "compact",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 150.4
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "engine": "firefox",
+      "profile": "desktop",
+      "pass": true,
+      "performanceTier": "showcase",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 121
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "engine": "firefox",
+      "profile": "phone",
+      "pass": true,
+      "performanceTier": "compact",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 42
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "engine": "webkit",
+      "profile": "desktop",
+      "pass": true,
+      "performanceTier": "balanced",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 99
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "engine": "webkit",
+      "profile": "phone",
+      "pass": true,
+      "performanceTier": "compact",
+      "liveFrames": {
+        "frames": 3,
+        "elapsedMs": 33
+      },
+      "diagnostics": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "httpErrors": []
+      }
+    }
+  ]
+}

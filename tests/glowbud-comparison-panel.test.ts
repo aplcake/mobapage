@@ -45,6 +45,10 @@ describe('Glowbud pixel-to-3D study', () => {
       'utf8',
     )
     expect(expansion).toContain("interaction: 'open-pixel-to-3d-study'")
+    expect(expansion).toContain('<GlowbudMuseumAvatar')
+    expect(expansion).toContain('motionFps={glowbudMotionFps}')
+    expect(expansion).not.toContain("renderer: 'canonical-pixel-far-lod'")
+    expect(expansion).not.toContain('<GlowbudPixelLodCard')
     expect(expansion).toContain('onSelect?.(resident)')
     expect(expansion).toContain('event.stopPropagation()')
     expect(room).toContain('setSelectedGlowbud(resident)')

@@ -26,7 +26,7 @@ const MAX_MEDIA_URL_LENGTH = 8192
 
 export type OwnedNftAnimationKind = 'image' | 'video' | 'unknown'
 
-export type OwnedNftMediaVariant = 'thumb' | 'room' | 'motion'
+export type OwnedNftMediaVariant = 'thumb' | 'room' | 'motion' | 'lod'
 
 export const OWNED_NFT_MEDIA_CACHE_VERSION = '5'
 

@@ -91,6 +91,75 @@ type GlowbudTraitAvatarAssetProps = {
   assetSelection?: GlowbudAssetSelectionControls
 }
 
+type GlowbudFrameBudgetValue = {
+  targetFps: number
+  phase: number
+}
+
+const GlowbudFrameBudgetContext = createContext<GlowbudFrameBudgetValue>({
+  targetFps: 60,
+  phase: 0,
+})
+
+/**
+ * Keeps a canonical 3D Glowbud mounted while spreading its many small trait
+ * animation callbacks across a lower, stable cadence. The museum can use this
+ * without changing the character's geometry, traits, scale, or identity.
+ */
+export function GlowbudFrameBudget({
+  targetFps,
+  phase = 0,
+  children,
+}: {
+  targetFps: number
+  phase?: number
+  children: ReactNode
+}) {
+  const value = useMemo(() => ({ targetFps, phase }), [phase, targetFps])
+  return (
+    <GlowbudFrameBudgetContext.Provider value={value}>
+      {children}
+    </GlowbudFrameBudgetContext.Provider>
+  )
+}
+
+function useGlowbudFrame(
+  callback: Parameters<typeof useFrame>[0],
+  renderPriority?: number,
+) {
+  const budget = useContext(GlowbudFrameBudgetContext)
+  const callbackRef = useRef(callback)
+  const lastBucketRef = useRef<number | null>(null)
+  const lastUpdateAtRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    callbackRef.current = callback
+  }, [callback])
+
+  useFrame((state, delta, frame) => {
+    if (budget.targetFps <= 0) return
+    if (budget.targetFps >= 55) {
+      callbackRef.current(state, delta, frame)
+      return
+    }
+
+    const interval = 1 / Math.max(1, budget.targetFps)
+    const normalizedPhase = ((budget.phase % 1) + 1) % 1
+    const now = state.clock.elapsedTime
+    const bucket = Math.floor((now + normalizedPhase * interval) / interval)
+    if (lastBucketRef.current === bucket) return
+
+    const lastUpdateAt = lastUpdateAtRef.current
+    lastBucketRef.current = bucket
+    lastUpdateAtRef.current = now
+    callbackRef.current(
+      state,
+      lastUpdateAt === null ? delta : Math.min(0.2, now - lastUpdateAt),
+      frame,
+    )
+  }, renderPriority)
+}
+
 export type RedShellIdleCritterAssetMode = 'dressed' | 'character' | 'shell'
 export type RedShellCritterAnimation =
   | 'idle'
@@ -2347,7 +2416,7 @@ function HeadAmanitaMuscariaPotAccessory({
     { position: [0.04, 0.14, -0.304], rotation: -0.12, scale: [0.016, 0.005, 0.003], color: POT_MATTE_DUST, opacity: 0.26 },
   ]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const puff = idlePulse(t, 5.6, 0.58, 0.07) * motion
@@ -2550,7 +2619,7 @@ function HibiscusFlower({
     { position: [0.002, 0.33, -0.306], scale: [0.023, 0.02, 0.014], rotation: 0.04 },
   ]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const bloomBreath = Math.sin(t * 1.32 + rotation * 1.7) * 0.014 * motion
@@ -2751,7 +2820,7 @@ function HeadHibiscusPotAccessory({
     { position: [0.004, -0.128, -0.276], rotation: -0.1, scale: [0.013, 0.004, 0.003], color: POT_BLUE_DARK, opacity: 0.24 },
   ]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const happySnug = idlePulse(t, 6.2, 0.71, 0.055) * motion
@@ -3496,7 +3565,7 @@ function SunflowerHead({ activity = 1 }: { activity?: number }) {
     }
   })
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!flowerHead.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -3621,7 +3690,7 @@ function HeadSunflowerPotAccessory({
   const sunflowerCluster = useRef<THREE.Group>(null)
   const potGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const breeze = Math.sin(t * 1.08 + 0.4) * 0.028 * motion
@@ -3791,7 +3860,7 @@ function HeadCactusPotAccessory({
   const potBaseBandGeometry = useMemo(() => createHeadPotBaseBandGeometry(), [])
   const potGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!potGroup.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -3868,7 +3937,7 @@ function HeadSnakePlantPotAccessory({
   const potBaseBandGeometry = useMemo(() => createHeadPotBaseBandGeometry(), [])
   const potGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!potGroup.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -3945,7 +4014,7 @@ function HeadLotusPotAccessory({
   const potBaseBandGeometry = useMemo(() => createHeadPotBaseBandGeometry(), [])
   const potGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!potGroup.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -4021,7 +4090,7 @@ function AmbientPlantMotionRig({
   const animation = useContext(GlowbudAnimationContext)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!plantGroup.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -4064,7 +4133,7 @@ function HeadReferencePlantPotAccessory({
   const potBaseBandGeometry = useMemo(() => createHeadPotBaseBandGeometry(), [])
   const potGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!potGroup.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -4389,7 +4458,7 @@ function CanaryBirbCompanion({
   const farWingGroup = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -4710,7 +4779,7 @@ function CardinalBirbCompanion({
   const farWingGroup = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -5030,7 +5099,7 @@ function ToadCompanion({
   const throatGroup = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -5303,7 +5372,7 @@ function CartoonGrassSnailCompanion({
   const rightEyeFront = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -6687,7 +6756,7 @@ function VenusFlytrapHead({
     [wideAmount, wildAmount],
   )
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const roleMotion = getFlytrapRoleMotion(t, actionTime(t), motionRole, animation, motion)
@@ -6995,7 +7064,7 @@ function FlytrapAnimatedBranch({
     headPosition[2] - root[2],
   ]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!branch.current) return
     const t = clock.elapsedTime
     const roleMotion = getFlytrapRoleMotion(
@@ -7069,7 +7138,7 @@ function HeadVenusFlytrapPotAccessory({
     { position: [-0.214, -0.052, -0.276], rotation: -0.36, scale: [0.014, 0.004, 0.003], color: POT_BLUE_LIGHT, opacity: 0.26 },
   ]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const pulse = idlePulse(t, 5.2, 0.62, 0.062) * motion
@@ -8396,7 +8465,7 @@ function GroundContactPolish({
   const contactLight = isMossContact ? MOSS_SHELL_GLOW : GRASS_LIGHT
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const snugPulse = idlePulse(t, 6.2, 0.71, 0.075) * motion
@@ -8554,7 +8623,7 @@ function GrassySeat({
     [isMossSeat],
   )
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const t = clock.elapsedTime
     const motion = clampIdleActivity(activity)
     const breeze = Math.sin(t * 0.84) * 0.5 + Math.sin(t * 1.37 + 1.1) * 0.5
@@ -9268,7 +9337,7 @@ function Eye({
               ? 0.098
             : 0.115
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -9348,7 +9417,7 @@ function Eye({
   if (isRigidEyewear && side === 1) return null
 
   return (
-    <group ref={eyeGroup} position={[eyeX, eyeY, eyeZ]}>
+    <group ref={eyeGroup} name={`glowbud-eye-${side}`} position={[eyeX, eyeY, eyeZ]}>
       {isPurp ? (
         <PurpEyeShape side={side} pupilRef={pupilGroup} pupilOffset={pupilOffset} pupilZ={pupilZ} />
       ) : isVr ? (
@@ -9889,7 +9958,7 @@ function WazzzzzzzzupMouth({
   const lowerLipZ = mouthZ - 0.047
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!tongueMotion.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -10196,7 +10265,7 @@ function CiggySmoke({
   const smokeTrail = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!smokeTrail.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -10290,7 +10359,7 @@ function CiggyMouth({
   const coalEnd: CigarettePoint = [0.151, centerY - 0.062, mouthZ - 0.241]
   const tip: CigarettePoint = [0.163, centerY - 0.067, mouthZ - 0.263]
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!ember.current) return
     const motion = clampIdleActivity(activity)
     const pulse = 1 + (Math.sin(clock.elapsedTime * 8.4) * 0.5 + 0.5) * 0.17 * motion
@@ -10475,7 +10544,7 @@ function GlowbudNose({
   const noseZ = fitted ? -0.786 : -0.756
 
   return (
-    <group position={[0.01, -0.006, noseZ]}>
+    <group name="glowbud-nose" position={[0.01, -0.006, noseZ]}>
       <mesh position={[0, -0.008, 0.031]} scale={[0.058, 0.046, 0.012]}>
         <sphereGeometry args={[1, 10, 6]} />
         <meshBasicMaterial color="#4b1520" transparent opacity={0.4} depthWrite={false} />
@@ -10604,7 +10673,7 @@ function RedFace({
           : []
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -10713,7 +10782,7 @@ function RedFace({
         </>
       )}
       {bodyOnly ? null : (
-        <group ref={mouthGroup}>
+        <group ref={mouthGroup} name="glowbud-mouth">
           {isVampire ? (
             <VampireMouth fitted={fitted} mouthZ={mouthZ} />
           ) : isSad ? (
@@ -10820,7 +10889,7 @@ function UnibrowOverlay({
   const baseScale = fitted ? 1 : 0.92
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!brow.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -10890,7 +10959,7 @@ function FittedFaceAssembly({
     [],
   )
 
-  useFrame(({ camera, clock }) => {
+  useGlowbudFrame(({ camera, clock }) => {
     if (!featureGroup.current) return
 
     const ambient = getAmbientLifeMotion(clock.elapsedTime, clampIdleActivity(activity))
@@ -11759,7 +11828,7 @@ function ShellOpeningOcclusionLip({ variant = 'seed' }: { variant?: 'seed' | 'so
             ? AMETHYST_LAVENDER
             : SHELL_EDGE_LIGHT
 
-  useFrame(() => {
+  useGlowbudFrame(() => {
     if (lipGroup.current) {
       lipGroup.current.visible = true
       lipGroup.current.position.set(0, 0, 0)
@@ -12776,7 +12845,7 @@ function AmethystGeodeGlint({
   const shimmerPhase = position[0] * 11.7 + position[1] * 17.3 + position[2] * 23.1 + scale * 5.9
   const glintOpacity = Math.min(1, opacity * 1.5)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!glintRef.current) return
 
     const shimmer = Math.max(0, Math.sin(clock.elapsedTime * 2.8 + shimmerPhase))
@@ -12856,7 +12925,7 @@ function AmethystDancingFacetFlash({
   const flashRef = useRef<THREE.Group>(null)
   const embeddedPosition = getAmethystEmbeddedSurfacePosition(position, -0.095)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!flashRef.current) return
 
     const shimmer = Math.max(0, Math.sin(clock.elapsedTime * 2.4 + phase))
@@ -18772,7 +18841,7 @@ function MossShellOpeningOcclusionLip() {
   const lipGroup = useRef<THREE.Group>(null)
   const cowlGeometry = useMemo(() => createOrganicShellOpeningCowlGeometry(), [])
 
-  useFrame(() => {
+  useGlowbudFrame(() => {
     if (lipGroup.current) {
       lipGroup.current.visible = true
       lipGroup.current.position.set(0, 0, 0)
@@ -19110,7 +19179,7 @@ function SideKnob({
           ? []
           : []
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -19259,7 +19328,7 @@ function SideKnob({
 function IdleSnuggleMarks({ activity = 1 }: { activity?: number }) {
   const markGroup = useRef<THREE.Group>(null)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const pulse = idlePulse(t, 6.2, 0.71, 0.052) * motion
@@ -19475,7 +19544,7 @@ function WizardFace({
   const facePlugGeometry = useMemo(() => createWizardFacePlugGeometry(), [])
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -19700,7 +19769,7 @@ function WizardStaff({
   const hookGeometry = useMemo(() => createWizardStaffHookGeometry(), [])
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -19936,7 +20005,7 @@ function HeldItemMotion({
   const root = useRef<THREE.Group>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!root.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -20117,7 +20186,7 @@ function FireHeldItem({
   const lickGeometry = useMemo(() => createFireLickGeometry(), [])
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     if (!flame.current) return
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
@@ -20421,7 +20490,7 @@ function WizardHand({
   const handCenterX = side * handOffset
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -20723,7 +20792,7 @@ export function GlowbudTraitAvatarAsset({
     event.stopPropagation()
   }
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -21124,7 +21193,7 @@ export function GlowbudWizardCritterAsset({
   const shadow = useRef<THREE.Mesh>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const actionT = actionTime(t)
@@ -21193,7 +21262,7 @@ function HopMotionPolish({
   const rightArc = useRef<THREE.Mesh>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const t = clock.elapsedTime
     const motion = clampIdleActivity(activity)
     const hop = getHopMotion(actionTime(t), animation === 'hop' ? motion : 0)
@@ -21272,7 +21341,7 @@ export function RedShellIdleCritterAsset({
   const shadow = useRef<THREE.Mesh>(null)
   const actionTime = useAnimationActionTimer(animation)
 
-  useFrame(({ clock }) => {
+  useGlowbudFrame(({ clock }) => {
     const motion = clampIdleActivity(activity)
     const t = clock.elapsedTime
     const canHop = animation === 'hop' && mode !== 'shell'

@@ -25,7 +25,8 @@
             "holderRank": 1,
             "address": "0x0cb27e883e207905ad2a94f9b6ef0c7a99223c37",
             "label": "seanwbren.eth"
-          }
+          },
+          "posterAtlasIndex": 26
         },
         {
           "id": "moba-one-226",
@@ -46,7 +47,8 @@
             "holderRank": 2,
             "address": "0x9c45f3cf0958c5a8b5b1f4477441b77c0fa68151",
             "label": "chromospace.eth"
-          }
+          },
+          "posterAtlasIndex": 21
         },
         {
           "id": "moba-one-161",
@@ -67,7 +69,8 @@
             "holderRank": 3,
             "address": "0x978bdbecb54c54800d01055df5a8f6af600bface",
             "label": "blue-onchain.eth"
-          }
+          },
+          "posterAtlasIndex": 20
         },
         {
           "id": "moba-one-114",
@@ -88,7 +91,8 @@
             "holderRank": 4,
             "address": "0xe5a76db577299caf1cc922f1be816db2a911253b",
             "label": "0xe5a7…253b"
-          }
+          },
+          "posterAtlasIndex": 19
         },
         {
           "id": "moba-one-261",
@@ -109,7 +113,8 @@
             "holderRank": 5,
             "address": "0x381e0aa5965dd44ca0920577506bd1cc5677badb",
             "label": "base-builders.base.eth"
-          }
+          },
+          "posterAtlasIndex": 22
         },
         {
           "id": "moba-one-461",
@@ -130,7 +135,8 @@
             "holderRank": 6,
             "address": "0x3e9bd3b8318b60b631a10c663705abc5164416c1",
             "label": "BleedBlu_Vault"
-          }
+          },
+          "posterAtlasIndex": 28
         },
         {
           "id": "moba-one-341",
@@ -151,7 +157,8 @@
             "holderRank": 7,
             "address": "0x4b3dcc15a8ab43128210fe3327bc830c36a15541",
             "label": "leadwithlove.eth"
-          }
+          },
+          "posterAtlasIndex": 24
         },
         {
           "id": "moba-one-279",
@@ -172,7 +179,8 @@
             "holderRank": 8,
             "address": "0x94cdbf69ad672ed4eab377cdbffb75c3893bebfb",
             "label": "xenmas.eth"
-          }
+          },
+          "posterAtlasIndex": 23
         },
         {
           "id": "moba-one-471",
@@ -193,7 +201,8 @@
             "holderRank": 14,
             "address": "0xdc5c992de8b93d5cf1368c331eab067cdb0ca532",
             "label": "0xdc5c…a532"
-          }
+          },
+          "posterAtlasIndex": 29
         },
         {
           "id": "moba-one-376",
@@ -214,7 +223,8 @@
             "holderRank": 16,
             "address": "0x07f40f373b66495aab0eefd2b5050fa72725e05f",
             "label": "0x07f4…e05f"
-          }
+          },
+          "posterAtlasIndex": 25
         },
         {
           "id": "moba-one-584",
@@ -235,7 +245,8 @@
             "holderRank": 18,
             "address": "0x4ce1c49d6dc93f7c3b31b6716bb86cdd994260e6",
             "label": "8675309.base.eth"
-          }
+          },
+          "posterAtlasIndex": 30
         },
         {
           "id": "moba-one-427",
@@ -256,7 +267,8 @@
             "holderRank": 22,
             "address": "0xf1e1de48af7ad5e2b7157dc1d5d6e21499934116",
             "label": "0xf1e1…4116"
-          }
+          },
+          "posterAtlasIndex": 27
         }
       ]
     },
@@ -284,7 +296,8 @@
             "holderRank": 2,
             "address": "0x9c45f3cf0958c5a8b5b1f4477441b77c0fa68151",
             "label": "chromospace.eth"
-          }
+          },
+          "posterAtlasIndex": 37
         },
         {
           "id": "moba-two-170",
@@ -305,7 +318,8 @@
             "holderRank": 9,
             "address": "0x36a64b3e3e0a77228449f98aa16eadfa9bad51ad",
             "label": "dad.base.eth"
-          }
+          },
+          "posterAtlasIndex": 31
         },
         {
           "id": "moba-two-2142",
@@ -326,7 +340,8 @@
             "holderRank": 10,
             "address": "0x7d406de3d4b2970da41414f2024ac0fc87d41ca5",
             "label": "shaneisgreat.base.eth"
-          }
+          },
+          "posterAtlasIndex": 34
         },
         {
           "id": "moba-two-586",
@@ -347,7 +362,8 @@
             "holderRank": 11,
             "address": "0x7ea0ccda3930abca0e6cb57f98e30ebcb708dd60",
             "label": "mobaonchain.base.eth"
-          }
+          },
+          "posterAtlasIndex": 42
         },
         {
           "id": "moba-two-532",
@@ -368,7 +384,8 @@
             "holderRank": 12,
             "address": "0x93953f26c713627b6d6f413954a3994a22b69e4c",
             "label": "kdust.eth"
-          }
+          },
+          "posterAtlasIndex": 41
         },
         {
           "id": "moba-two-473",
@@ -389,7 +406,8 @@
             "holderRank": 13,
             "address": "0xd8f08986df7120a7ae34d6d0159ef43aa55d8be3",
             "label": "0xd8f0…8be3"
-          }
+          },
+          "posterAtlasIndex": 40
         },
         {
           "id": "moba-two-2210",
@@ -410,7 +428,8 @@
             "holderRank": 15,
             "address": "0x087cafad3e67ce555e2d5ed71e7d8b246b9bdad7",
             "label": "ibidmo.base.eth"
-          }
+          },
+          "posterAtlasIndex": 39
         },
         {
           "id": "moba-two-2139",
@@ -431,7 +450,8 @@
             "holderRank": 17,
             "address": "0x2625b4da309819cb8b5eb8aee13c86ad0e097ef6",
             "label": "0x2625…7ef6"
-          }
+          },
+          "posterAtlasIndex": 33
         },
         {
           "id": "moba-two-2173",
@@ -452,7 +472,8 @@
             "holderRank": 19,
             "address": "0x4da73f16ea68796cf8cd5dd26f90b090280f4517",
             "label": "*🔵️🔵️🔵️🔵️🔵️🔵️🔵️🔵️.base.eth"
-          }
+          },
+          "posterAtlasIndex": 36
         },
         {
           "id": "moba-two-2097",
@@ -473,7 +494,8 @@
             "holderRank": 20,
             "address": "0x6d128898bb1ebc5b1bd953854905afbb9a9bdc53",
             "label": "0x6d12…dc53"
-          }
+          },
+          "posterAtlasIndex": 32
         },
         {
           "id": "moba-two-2204",
@@ -494,7 +516,8 @@
             "holderRank": 21,
             "address": "0xaed3d37b761bf61767208da1dbb3a971b9f13fb5",
             "label": "projectshift.base.eth"
-          }
+          },
+          "posterAtlasIndex": 38
         },
         {
           "id": "moba-two-2149",
@@ -515,7 +538,8 @@
             "holderRank": 23,
             "address": "0xfbf8ae69b25542ac6833e2de631e7b082ffab1f5",
             "label": "dabber.base.eth"
-          }
+          },
+          "posterAtlasIndex": 35
         }
       ]
     },
@@ -534,7 +558,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2669"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2669",
+          "posterAtlasIndex": 50
         },
         {
           "id": "photography-2668",
@@ -546,7 +571,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2668"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2668",
+          "posterAtlasIndex": 49
         },
         {
           "id": "photography-2667",
@@ -558,7 +584,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2667"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2667",
+          "posterAtlasIndex": 48
         },
         {
           "id": "photography-2666",
@@ -570,7 +597,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2666"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2666",
+          "posterAtlasIndex": 47
         },
         {
           "id": "photography-2665",
@@ -582,7 +610,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2665"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2665",
+          "posterAtlasIndex": 46
         },
         {
           "id": "photography-2664",
@@ -594,7 +623,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2664"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2664",
+          "posterAtlasIndex": 45
         },
         {
           "id": "photography-2663",
@@ -606,7 +636,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2663"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2663",
+          "posterAtlasIndex": 44
         },
         {
           "id": "photography-2662",
@@ -618,7 +649,8 @@
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2662"
+          "sourceUrl": "https://opensea.io/assets/base/0x769a5525a285c042b5daf8d56adcd7bcab380a81/2662",
+          "posterAtlasIndex": 43
         }
       ]
     },
@@ -631,133 +663,155 @@
           "id": "holiday-11",
           "tokenId": "11",
           "title": "Wandering at Anterne Lake",
+          "artist": "Lapom (@0xLapom)",
           "poster": "/museum/formal-room/galleries/holiday/art-01.webp",
           "motion": null,
           "frameCount": 1,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/11"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/11",
+          "posterAtlasIndex": 2
         },
         {
           "id": "holiday-10",
           "tokenId": "10",
           "title": "Tweak World",
+          "artist": "Veny (@VenyWonderland)",
           "poster": "/museum/formal-room/galleries/holiday/art-02.webp",
           "motion": null,
           "frameCount": 1,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/10"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/10",
+          "posterAtlasIndex": 1
         },
         {
           "id": "holiday-9",
           "tokenId": "9",
           "title": "Angel",
+          "artist": "KUGUTSU (@KugutsuNFT)",
           "poster": "/museum/formal-room/galleries/holiday/art-03.webp",
           "motion": null,
           "frameCount": 1,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/9"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/9",
+          "posterAtlasIndex": 10
         },
         {
           "id": "holiday-8",
           "tokenId": "8",
           "title": "PARAT-ZIT v1.0",
+          "artist": "Xeries Jame (@xeriesjame_art)",
           "poster": "/museum/formal-room/galleries/holiday/art-04.webp",
           "motion": "/museum/formal-room/galleries/holiday/motion-04.webp",
           "frameCount": 44,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/8"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/8",
+          "posterAtlasIndex": 9
         },
         {
           "id": "holiday-7",
           "tokenId": "7",
           "title": "Zombie Santa",
+          "artist": "Ed (@0xEDDB)",
           "poster": "/museum/formal-room/galleries/holiday/art-05.webp",
           "motion": "/museum/formal-room/galleries/holiday/motion-05.webp",
           "frameCount": 6,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/7"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/7",
+          "posterAtlasIndex": 8
         },
         {
           "id": "holiday-6",
           "tokenId": "6",
           "title": "Cyborg Sisters Holiday Special Edition",
+          "artist": "Siku (@SIKUofficial)",
           "poster": "/museum/formal-room/galleries/holiday/art-06.webp",
           "motion": null,
           "frameCount": 1,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/6"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/6",
+          "posterAtlasIndex": 7
         },
         {
           "id": "holiday-5",
           "tokenId": "5",
           "title": "Frosty the TweakBot",
+          "artist": "Eyebots (@Eyebots)",
           "poster": "/museum/formal-room/galleries/holiday/art-07.webp",
           "motion": null,
           "frameCount": 1,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/5"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/5",
+          "posterAtlasIndex": 6
         },
         {
           "id": "holiday-4",
           "tokenId": "4",
           "title": "Maning's Unwrapped Gift",
+          "artist": "Maning (@Maniinng)",
           "poster": "/museum/formal-room/galleries/holiday/art-08.webp",
           "motion": "/museum/formal-room/galleries/holiday/motion-08.webp",
           "frameCount": 15,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/4"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/4",
+          "posterAtlasIndex": 5
         },
         {
           "id": "holiday-3",
           "tokenId": "3",
           "title": "Leetmas",
+          "artist": "Maning",
           "poster": "/museum/formal-room/galleries/holiday/art-09.webp",
           "motion": "/museum/formal-room/galleries/holiday/motion-09.webp",
           "frameCount": 12,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/3"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/3",
+          "posterAtlasIndex": 4
         },
         {
           "id": "holiday-2",
           "tokenId": "2",
           "title": "Joe Plays With Snowman",
+          "artist": "Hitch (@hitchest)",
           "poster": "/museum/formal-room/galleries/holiday/art-10.webp",
           "motion": "/museum/formal-room/galleries/holiday/motion-10.webp",
           "frameCount": 87,
           "featured": false,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/2"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/2",
+          "posterAtlasIndex": 3
         },
         {
           "id": "holiday-1",
           "tokenId": "1",
           "title": "A Based Gift",
+          "artist": "Joseph Pixler",
           "poster": "/museum/formal-room/galleries/holiday/art-11.webp",
           "motion": "/museum/formal-room/galleries/holiday/hero.webp",
           "frameCount": 20,
           "featured": true,
           "width": 500,
           "height": 500,
-          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/1"
+          "sourceUrl": "https://opensea.io/assets/base/0xc34a7ec25dd65cc7e750769b0dce63b66af838fc/1",
+          "posterAtlasIndex": 0
         }
       ]
     },
@@ -775,15 +829,16 @@
           "artist": "joseph_pixler",
           "poster": "/museum/formal-room/galleries/moba-gallery/art-01.webp",
           "motion": "/museum/formal-room/galleries/moba-gallery/motion-01.gif",
-          "motionSheet": null,
-          "motionSheetColumns": null,
-          "motionSheetRows": null,
-          "motionFrameDurationMs": null,
+          "motionSheet": "/museum/formal-room/galleries/moba-gallery/motion-01-sheet.webp",
+          "motionSheetColumns": 8,
+          "motionSheetRows": 8,
+          "motionFrameDurationMs": 100,
           "frameCount": 64,
           "featured": false,
           "width": 810,
           "height": 510,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/1"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/1",
+          "posterAtlasIndex": 11
         },
         {
           "id": "moba-gallery-2",
@@ -792,15 +847,16 @@
           "artist": "Joseph Pixler",
           "poster": "/museum/formal-room/galleries/moba-gallery/art-02.webp",
           "motion": "/museum/formal-room/galleries/moba-gallery/motion-02.gif",
-          "motionSheet": null,
-          "motionSheetColumns": null,
-          "motionSheetRows": null,
-          "motionFrameDurationMs": null,
+          "motionSheet": "/museum/formal-room/galleries/moba-gallery/motion-02-sheet.webp",
+          "motionSheetColumns": 8,
+          "motionSheetRows": 8,
+          "motionFrameDurationMs": 100,
           "frameCount": 64,
           "featured": false,
           "width": 810,
           "height": 510,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/2"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/2",
+          "posterAtlasIndex": 12
         },
         {
           "id": "moba-gallery-3",
@@ -809,15 +865,16 @@
           "artist": "Joseph Pixler",
           "poster": "/museum/formal-room/galleries/moba-gallery/art-03.webp",
           "motion": "/museum/formal-room/galleries/moba-gallery/motion-03.gif",
-          "motionSheet": null,
-          "motionSheetColumns": null,
-          "motionSheetRows": null,
-          "motionFrameDurationMs": null,
+          "motionSheet": "/museum/formal-room/galleries/moba-gallery/motion-03-sheet.webp",
+          "motionSheetColumns": 5,
+          "motionSheetRows": 4,
+          "motionFrameDurationMs": 100,
           "frameCount": 20,
           "featured": true,
           "width": 1125,
           "height": 1125,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/3"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/3",
+          "posterAtlasIndex": 13
         },
         {
           "id": "moba-gallery-4",
@@ -834,7 +891,8 @@
           "featured": false,
           "width": 638,
           "height": 538,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/4"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/4",
+          "posterAtlasIndex": 14
         },
         {
           "id": "moba-gallery-5",
@@ -851,7 +909,8 @@
           "featured": false,
           "width": 2150,
           "height": 1466,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/5"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/5",
+          "posterAtlasIndex": 15
         },
         {
           "id": "moba-gallery-6",
@@ -860,15 +919,16 @@
           "artist": "Joseph Pixler",
           "poster": "/museum/formal-room/galleries/moba-gallery/art-06.webp",
           "motion": "/museum/formal-room/galleries/moba-gallery/motion-06.gif",
-          "motionSheet": null,
-          "motionSheetColumns": null,
-          "motionSheetRows": null,
-          "motionFrameDurationMs": null,
+          "motionSheet": "/museum/formal-room/galleries/moba-gallery/motion-06-sheet.webp",
+          "motionSheetColumns": 5,
+          "motionSheetRows": 4,
+          "motionFrameDurationMs": 100,
           "frameCount": 20,
           "featured": false,
           "width": 1125,
           "height": 1125,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/6"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/6",
+          "posterAtlasIndex": 16
         },
         {
           "id": "moba-gallery-7",
@@ -877,15 +937,16 @@
           "artist": "Joseph Pixler",
           "poster": "/museum/formal-room/galleries/moba-gallery/art-07.webp",
           "motion": "/museum/formal-room/galleries/moba-gallery/motion-07.gif",
-          "motionSheet": null,
-          "motionSheetColumns": null,
-          "motionSheetRows": null,
-          "motionFrameDurationMs": null,
+          "motionSheet": "/museum/formal-room/galleries/moba-gallery/motion-07-sheet.webp",
+          "motionSheetColumns": 5,
+          "motionSheetRows": 4,
+          "motionFrameDurationMs": 100,
           "frameCount": 20,
           "featured": false,
           "width": 1125,
           "height": 1125,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/7"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/7",
+          "posterAtlasIndex": 17
         },
         {
           "id": "moba-gallery-9",
@@ -902,7 +963,8 @@
           "featured": false,
           "width": 1280,
           "height": 720,
-          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/9"
+          "sourceUrl": "https://opensea.io/item/base/0x04619852f38ebec22bb94ef36b99351db9900194/9",
+          "posterAtlasIndex": 18
         }
       ]
     }
@@ -922,5 +984,17 @@
       "moba-one": "Twelve portraits: one each for ranks 1-8 and the four additional eligible holders without MoBA #2 works at ranks 14, 16, 18, and 22.",
       "moba-two": "Twelve hearts: one each for the eleven eligible holders not shown in MoBA #1, plus the featured rank-2 heart."
     }
+  },
+  "posterAtlas": {
+    "version": 1,
+    "src": "/museum/formal-room/galleries/poster-atlas.webp",
+    "columns": 8,
+    "rows": 7,
+    "cellSize": 128,
+    "width": 1024,
+    "height": 896,
+    "workCount": 51,
+    "indexOrder": "collection-id/work-id-ascii-v1",
+    "sha256": "9fd5f4d3e123d5da9f87803b2fc29617257bc10c593a7b4e9cd840c38529eb6f"
   }
 }

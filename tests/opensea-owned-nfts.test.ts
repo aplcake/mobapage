@@ -81,6 +81,7 @@ describe('OpenSea owned NFT normalization', () => {
     const thumbnail = new URL(ownedNftMediaProxyUrl(sourceUrl), 'http://localhost')
     const room = new URL(ownedNftMediaProxyUrl(sourceUrl, 'room'), 'http://localhost')
     const motion = new URL(ownedNftMediaProxyUrl(sourceUrl, 'motion'), 'http://localhost')
+    const lod = new URL(ownedNftMediaProxyUrl(sourceUrl, 'lod'), 'http://localhost')
 
     expect(thumbnail.pathname).toBe('/api/opensea/media')
     expect(thumbnail.searchParams.get('url')).toBe(sourceUrl)
@@ -92,6 +93,8 @@ describe('OpenSea owned NFT normalization', () => {
     expect(motion.searchParams.get('url')).toBe(sourceUrl)
     expect(motion.searchParams.get('variant')).toBe('motion')
     expect(motion.searchParams.get('v')).toBe(OWNED_NFT_MEDIA_CACHE_VERSION)
+    expect(lod.searchParams.get('variant')).toBe('lod')
+    expect(lod.searchParams.get('v')).toBe(OWNED_NFT_MEDIA_CACHE_VERSION)
   })
 
   it('keeps trusted OpenSea animation media, classifies it, and retains animation-only NFTs', () => {

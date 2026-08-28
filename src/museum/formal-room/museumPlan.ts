@@ -48,7 +48,9 @@ export type MuseumArtwork = {
   id: string
   tokenId: string
   title: string
+  artist?: string
   poster: string
+  posterAtlasIndex: number
   motion: string | null
   motionSheet?: string | null
   motionSheetColumns?: number | null
@@ -64,6 +66,19 @@ export type MuseumArtwork = {
     address: `0x${string}`
     label: string
   }
+}
+
+export type MuseumPosterAtlas = {
+  version: number
+  src: string
+  columns: number
+  rows: number
+  cellSize: number
+  width: number
+  height: number
+  workCount: number
+  indexOrder: string
+  sha256: string
 }
 
 export type MuseumGalleryPlan = {
@@ -93,6 +108,24 @@ type ManifestCollection = {
 }
 
 const collections = galleryManifest.collections as Record<string, ManifestCollection>
+
+export const MUSEUM_POSTER_ATLAS = galleryManifest.posterAtlas as MuseumPosterAtlas
+
+export function museumPosterAtlasUvBounds(posterAtlasIndex: number) {
+  if (!Number.isInteger(posterAtlasIndex) || posterAtlasIndex < 0 || posterAtlasIndex >= MUSEUM_POSTER_ATLAS.workCount) {
+    throw new RangeError(`Invalid museum poster atlas index: ${posterAtlasIndex}`)
+  }
+  const column = posterAtlasIndex % MUSEUM_POSTER_ATLAS.columns
+  const row = Math.floor(posterAtlasIndex / MUSEUM_POSTER_ATLAS.columns)
+  const insetU = 0.5 / MUSEUM_POSTER_ATLAS.width
+  const insetV = 0.5 / MUSEUM_POSTER_ATLAS.height
+  return {
+    u0: column / MUSEUM_POSTER_ATLAS.columns + insetU,
+    u1: (column + 1) / MUSEUM_POSTER_ATLAS.columns - insetU,
+    v0: 1 - (row + 1) / MUSEUM_POSTER_ATLAS.rows + insetV,
+    v1: 1 - row / MUSEUM_POSTER_ATLAS.rows - insetV,
+  }
+}
 
 export const MOBA_GALLERY_WORKS: readonly MuseumArtwork[] = collections['moba-gallery'].works
 

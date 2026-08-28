@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import {
   FORMAL_LOOK_PITCH_MAX,
@@ -7,6 +8,11 @@ import {
   resolveFormalCursorSteer,
   stepFormalLookOrientation,
 } from '../src/museum/formal-room/museumLookMath'
+
+const cameraRigSource = readFileSync(
+  new URL('../src/museum/formal-room/FormalRoomCameraRig.tsx', import.meta.url),
+  'utf8',
+)
 
 describe('formal museum pointer look', () => {
   it('turns toward ordinary mouse movement without requiring a button state', () => {
@@ -110,5 +116,69 @@ describe('formal museum pointer look', () => {
     expect(resolveFormalCursorSteer(Number.NaN, 1_000)).toBe(0)
     expect(resolveFormalCursorSteer(500, Number.POSITIVE_INFINITY)).toBe(0)
     expect(resolveFormalCursorSteer(500, 0)).toBe(0)
+  })
+
+  it('clears stale mouse edge-turn intent when touch look starts and ends', () => {
+    const touchFinishLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('const finishTouchLook'),
+      cameraRigSource.indexOf('const handlePointerDown'),
+    )
+    const touchStartLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('const handlePointerDown'),
+      cameraRigSource.indexOf('const handleMouseMove'),
+    )
+
+    expect(touchStartLifecycle).toContain('clearCursorSteer()')
+    expect(touchFinishLifecycle).toContain('clearCursorSteer()')
+  })
+
+  it('keeps touch compatibility events from arming continuous desktop steering', () => {
+    const mouseMoveLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('const handleMouseMove'),
+      cameraRigSource.indexOf('const handleTouchPointerMove'),
+    )
+    const frameSteering = cameraRigSource.slice(
+      cameraRigSource.indexOf('const turnAxis'),
+      cameraRigSource.indexOf('if (input.jumpRequested)'),
+    )
+
+    expect(cameraRigSource).toContain("window.matchMedia('(hover: hover) and (pointer: fine)').matches")
+    expect(mouseMoveLifecycle).toContain('!cursorSteeringEnabled')
+    expect(mouseMoveLifecycle).toContain('performance.now() < suppressMouseSteerUntil')
+    expect(frameSteering).toContain('mouseCursorSteer.active ? mouseCursorSteer.x : 0')
+  })
+
+  it('uses cached canvas bounds instead of forcing layout on every mouse sample', () => {
+    const boundsLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('let canvasBounds'),
+      cameraRigSource.indexOf('const clearCursorSteer'),
+    )
+    const mouseMoveLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('const handleMouseMove'),
+      cameraRigSource.indexOf('const handleTouchPointerMove'),
+    )
+
+    expect(boundsLifecycle).toContain('canvas.getBoundingClientRect()')
+    expect(mouseMoveLifecycle).toContain('const bounds = canvasBounds')
+    expect(mouseMoveLifecycle).not.toContain('getBoundingClientRect()')
+    expect(cameraRigSource).toContain('new ResizeObserver(refreshCanvasBounds)')
+    expect(cameraRigSource).toContain("canvas.addEventListener('mouseenter', refreshCanvasBounds)")
+  })
+
+  it('keeps document-level clearing for overlays while steering only canvas-targeted moves', () => {
+    const mouseMoveLifecycle = cameraRigSource.slice(
+      cameraRigSource.indexOf('const handleMouseMove'),
+      cameraRigSource.indexOf('const handleTouchPointerMove'),
+    )
+    const eventSetupStart = cameraRigSource.indexOf("canvas.style.cursor = cursorSteeringEnabled")
+    const eventSetup = cameraRigSource.slice(
+      eventSetupStart,
+      cameraRigSource.indexOf('return () =>', eventSetupStart),
+    )
+
+    expect(mouseMoveLifecycle).toContain('if (event.target !== canvas)')
+    expect(mouseMoveLifecycle).not.toContain('.closest(')
+    expect(eventSetup).toContain('if (cursorSteeringEnabled)')
+    expect(eventSetup).toContain("document.addEventListener('mousemove', handleMouseMove)")
   })
 })
