@@ -7,6 +7,8 @@ import galleryManifest from '../public/museum/formal-room/galleries/manifest.jso
 
 type ManifestWork = {
   id: string
+  tokenId: string
+  artist?: string
   motion: string | null
   motionSheet?: string | null
   motionSheetColumns?: number | null
@@ -75,6 +77,23 @@ describe('Formal museum animated artwork assets', () => {
       'holiday-6',
       'holiday-9',
     ])
+  })
+
+  it('credits every Holiday Potluck work from its Artist trait', () => {
+    const works = galleryManifest.collections.holiday.works as ManifestWork[]
+    expect(Object.fromEntries(works.map((work) => [work.tokenId, work.artist]))).toEqual({
+      '1': 'Joseph Pixler',
+      '2': 'Hitch (@hitchest)',
+      '3': 'Maning',
+      '4': 'Maning (@Maniinng)',
+      '5': 'Eyebots (@Eyebots)',
+      '6': 'Siku (@SIKUofficial)',
+      '7': 'Ed (@0xEDDB)',
+      '8': 'Xeries Jame (@xeriesjame_art)',
+      '9': 'KUGUTSU (@KugutsuNFT)',
+      '10': 'Veny (@VenyWonderland)',
+      '11': 'Lapom (@0xLapom)',
+    })
   })
 
   it('points every motion entry at a genuine multi-frame file', async () => {
@@ -179,16 +198,19 @@ describe('Formal museum animated artwork assets', () => {
     expect(expansionSource).toContain("probe.dataset.renderer = 'sprite-sheet'")
   })
 
-  it('keeps animated NFTs alive across sightlines without decoding hidden rooms', () => {
-    expect(expansionSource).toContain('animate={!reducedMotion && !motionPaused}')
+  it('keeps every artwork base mounted while budgeting nearby detail and motion layers', () => {
+    expect(expansionSource).toContain('animate={!reducedMotion}')
     expect(expansionSource).toContain('? performanceProfile.activeMotionFps')
     expect(expansionSource).toContain(': performanceProfile.distantMotionFps')
     expect(expansionSource).toContain('frameIndex = (frameIndex + frameAdvance) % frameCount')
-    expect(expansionSource).toContain('function useMuseumDetailVisibility')
-    expect(expansionSource).toContain('const motionVisible = useMuseumDetailVisibility')
-    expect(expansionSource).toContain('const motionDetailed = motionVisible')
-    expect(expansionSource).toContain('maxDistance: 48')
-    expect(expansionSource).toContain('enabled: true')
+    expect(expansionSource).toContain('const stableBaseSurface = atlasBoundary')
+    expect(expansionSource).toContain('const detailedPoster = surfaceDetailed ? posterBoundary : null')
+    expect(expansionSource).toContain('function useMuseumMotionVisibility')
+    expect(expansionSource).toContain('const motionVisible = useMuseumMotionVisibility')
+    expect(expansionSource).toContain('const motionDetailed = motionVisible && animate && Boolean(work.motion || work.motionSheet)')
+    expect(expansionSource).not.toContain('function useMuseumDetailVisibility')
+    expect(expansionSource).not.toContain('const motionVisible = useMuseumDetailVisibility')
+    expect(expansionSource).not.toContain('surfaceDetailed ? posterBoundary : atlasBoundary')
     expect(expansionSource).not.toContain('active={activeGalleryId === gallery.id && !reducedMotion}')
 
     const exhibitionSource = expansionSource.slice(
@@ -223,17 +245,18 @@ describe('Formal museum animated artwork assets', () => {
     expect(posterPlaneSource).toContain('usePosterTexture(poster)')
     const posterTextureHookSource = expansionSource.slice(
       expansionSource.indexOf('function usePosterTexture'),
-      expansionSource.indexOf('function useGlowbudPixelLodTexture'),
+      expansionSource.indexOf('function MuseumPosterAtlasPlane'),
     )
     expect(posterTextureHookSource).toContain('texture.dispose()')
     expect(posterTextureHookSource).not.toContain('loadedTexture.dispose()')
     expect(posterTextureHookSource).not.toContain('useLoader.clear')
     expect(frameSource).toContain('function GalleryPosterBoundary')
     expect(expansionSource).toContain('function MuseumPosterAtlasPlane')
+    expect(frameSource).toContain('<Suspense fallback={fallback}>')
+    expect(frameSource).toContain('fallback={atlasBoundary}')
+    expect(frameSource).toContain('const stableBaseSurface = atlasBoundary')
+    expect(frameSource).toContain('const detailedPoster = surfaceDetailed ? posterBoundary : null')
     expect(frameSource).toContain('<Suspense fallback={null}>')
-    expect(frameSource).toContain(': atlasBoundary')
-    expect(frameSource).toContain('fallback={surfaceDetailed ? posterBoundary : atlasBoundary}')
-    expect(frameSource).not.toContain('fallback={posterBoundary}')
     expect(frameSource).toContain('<GalleryMotionSheetPlane')
     const artworkFrameSource = frameSource.slice(
       frameSource.indexOf('function GalleryArtworkFrame'),

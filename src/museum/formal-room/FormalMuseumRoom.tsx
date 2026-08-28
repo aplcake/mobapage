@@ -1,7 +1,6 @@
 'use client'
 
 import { Canvas, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
-import { PerformanceMonitor } from '@react-three/drei'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
@@ -1376,7 +1375,6 @@ function FormalRoomScene({
   )
   return (
     <>
-      <MuseumAdaptiveDpr profile={performanceProfile} />
       <MuseumRendererLighting />
       <color attach="background" args={['#a8c0b5']} />
       <fog attach="fog" args={['#a8c0b5', 30, 72]} />
@@ -1430,28 +1428,6 @@ function FormalRoomScene({
       ))}
       <DustMotes reducedMotion={reducedMotion} />
     </>
-  )
-}
-
-function MuseumAdaptiveDpr({ profile }: { profile: MuseumPerformanceProfile }) {
-  const setDpr = useThree((state) => state.setDpr)
-
-  useEffect(() => {
-    setDpr(profile.dpr[1])
-  }, [profile, setDpr])
-
-  return (
-    <PerformanceMonitor
-      flipflops={3}
-      bounds={(refreshRate) => [
-        Math.min(45, refreshRate * 0.7),
-        Math.min(58, refreshRate * 0.92),
-      ]}
-      onChange={({ factor }) => {
-        setDpr(THREE.MathUtils.lerp(profile.dpr[0], profile.dpr[1], factor))
-      }}
-      onFallback={() => setDpr(profile.dpr[0])}
-    />
   )
 }
 

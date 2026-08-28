@@ -23,6 +23,7 @@ export type MuseumArtworkTokenIdentity = {
 export type MuseumArtworkProvenance = {
   id: string
   title: string
+  artist: string | null
   collection: string
   sourceUrl: string | null
   identity: MuseumArtworkTokenIdentity | null
@@ -110,6 +111,7 @@ export function museumArtworkIdentityFromAsset(identity: {
 export function createMuseumArtworkProvenance({
   id,
   title,
+  artist = null,
   collection,
   sourceUrl = null,
   identity,
@@ -117,6 +119,7 @@ export function createMuseumArtworkProvenance({
 }: {
   id: string
   title: string
+  artist?: string | null
   collection: string
   sourceUrl?: string | null
   identity?: MuseumArtworkTokenIdentity | null
@@ -125,6 +128,7 @@ export function createMuseumArtworkProvenance({
   return {
     id,
     title,
+    artist: artist?.trim() || null,
     collection,
     sourceUrl,
     identity: identity ?? museumArtworkIdentityFromSourceUrl(sourceUrl),
@@ -137,6 +141,7 @@ export function isMuseumArtworkProvenance(value: unknown): value is MuseumArtwor
   const candidate = value as Record<string, unknown>
   return typeof candidate.id === 'string'
     && typeof candidate.title === 'string'
+    && (candidate.artist === undefined || candidate.artist === null || typeof candidate.artist === 'string')
     && typeof candidate.collection === 'string'
     && (candidate.sourceUrl === null || typeof candidate.sourceUrl === 'string')
     && (candidate.ownerHint === undefined || candidate.ownerHint === null || (

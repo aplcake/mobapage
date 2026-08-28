@@ -62,10 +62,12 @@ describe('museum artwork provenance', () => {
     const artwork = createMuseumArtworkProvenance({
       id: 'portrait-599',
       title: 'Portrait of an Enjoyer',
+      artist: 'Joseph Pixler',
       collection: 'MoBA #1',
       sourceUrl: `https://opensea.io/item/base/${BASE_CONTRACT}/599`,
     })
     expect(artwork.identity).not.toBeNull()
+    expect(artwork.artist).toBe('Joseph Pixler')
     const requestUrl = new URL(museumArtworkOwnerRequestUrl(artwork.identity!), 'http://localhost')
     expect(requestUrl.searchParams.get('chain')).toBe('base')
     expect(requestUrl.searchParams.get('contract')).toBe(BASE_CONTRACT)

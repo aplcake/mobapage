@@ -1497,6 +1497,32 @@
   -webkit-line-clamp: 2;
 }
 
+.artworkProvenanceArtist {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  color: #684f35;
+  text-align: center;
+}
+
+.artworkProvenanceArtist span {
+  flex: 0 0 auto;
+  color: #8b6b44;
+  font: 800 7px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.artworkProvenanceArtist b {
+  overflow: hidden;
+  max-width: min(310px, 68vw);
+  font: 700 11px/1.2 Georgia, 'Times New Roman', serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .artworkProvenanceOwner {
   display: grid;
   min-width: 0;

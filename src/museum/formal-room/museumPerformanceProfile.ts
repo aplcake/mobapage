@@ -17,7 +17,8 @@ export type MuseumPerformanceProfile = {
   featuredMotionEdge: number
   standardMotionEdge: number
   artworkMotionDistance: number
-  glowbudDetailDistance: number
+  glowbudMotionFps: number
+  distantGlowbudMotionFps: number
 }
 
 export type MuseumDetailVisibilitySignals = {
@@ -49,36 +50,39 @@ export function resolveMuseumDetailVisibility({
 const MUSEUM_PERFORMANCE_PROFILES: Record<MuseumPerformanceTier, MuseumPerformanceProfile> = {
   compact: {
     tier: 'compact',
-    dpr: [0.72, 0.95],
+    dpr: [0.86, 0.86],
     antialias: false,
     activeMotionFps: 8,
     distantMotionFps: 2,
     featuredMotionEdge: 384,
     standardMotionEdge: 256,
     artworkMotionDistance: 16,
-    glowbudDetailDistance: 12,
+    glowbudMotionFps: 12,
+    distantGlowbudMotionFps: 6,
   },
   balanced: {
     tier: 'balanced',
-    dpr: [0.76, 0.95],
+    dpr: [0.82, 0.82],
     antialias: true,
     activeMotionFps: 10,
     distantMotionFps: 2,
     featuredMotionEdge: 448,
     standardMotionEdge: 288,
     artworkMotionDistance: 16,
-    glowbudDetailDistance: 13,
+    glowbudMotionFps: 15,
+    distantGlowbudMotionFps: 8,
   },
   showcase: {
     tier: 'showcase',
-    dpr: [0.8, 1],
+    dpr: [0.9, 0.9],
     antialias: true,
     activeMotionFps: 10,
     distantMotionFps: 2,
     featuredMotionEdge: 512,
     standardMotionEdge: 320,
     artworkMotionDistance: 18,
-    glowbudDetailDistance: 14,
+    glowbudMotionFps: 18,
+    distantGlowbudMotionFps: 8,
   },
 }
 

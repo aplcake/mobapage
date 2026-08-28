@@ -16,8 +16,11 @@ describe('museum performance profile', () => {
 
     expect(profile.tier).toBe('compact')
     expect(profile.antialias).toBe(false)
-    expect(profile.dpr[1]).toBeLessThanOrEqual(1)
+    expect(profile.dpr[0]).toBe(profile.dpr[1])
+    expect(profile.dpr[1]).toBe(0.86)
     expect(profile.activeMotionFps).toBeLessThan(12)
+    expect(profile.glowbudMotionFps).toBe(12)
+    expect(profile.distantGlowbudMotionFps).toBe(6)
   })
 
   it('honors reduced-data and constrained hardware signals', () => {
@@ -46,10 +49,11 @@ describe('museum performance profile', () => {
     })
 
     expect(profile.tier).toBe('showcase')
-    expect(profile.dpr[1]).toBe(1)
+    expect(profile.dpr[1]).toBe(0.9)
     expect(profile.activeMotionFps).toBe(10)
+    expect(profile.glowbudMotionFps).toBe(18)
+    expect(profile.distantGlowbudMotionFps).toBe(8)
     expect(profile.artworkMotionDistance).toBeLessThanOrEqual(18)
-    expect(profile.glowbudDetailDistance).toBe(14)
   })
 
   it('keeps nearby visible detail while dropping work behind or far outside the camera', () => {

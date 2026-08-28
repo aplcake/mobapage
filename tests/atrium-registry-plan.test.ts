@@ -127,8 +127,12 @@ describe('personal atrium geometry and default installation', () => {
     expect(source).toContain("renderer: 'canonical-wardrobe-avatar'")
     expect(source).toContain('glowbudMuseumPerformanceAtTime(tokenId, time)')
     expect(source).toContain("performanceCycle: 'wave-boogie-showcase-hop'")
-    expect(source).toContain('activity={paused || reducedMotion ? 0 : 1.05}')
+    expect(source).toContain("quality === 'resident' ? 0.82 : 1.05")
+    expect(source).toContain('applyGlowbudMeshDetailQuality(canonical, quality, originalVisibility)')
     expect(source).not.toContain('SimpleGlowbud')
+    const expansion = readFileSync(new URL('../src/museum/formal-room/MuseumExpansion.tsx', import.meta.url), 'utf8')
+    expect(expansion).toContain('quality="resident"')
+    expect(expansion).not.toContain('useAtriumResidentQuality')
   })
 
   it('keeps every museum Glowbud in a varied repeating authored performance loop', () => {
@@ -202,7 +206,8 @@ describe('personal atrium geometry and default installation', () => {
     const installed = buildAtriumWallInstallation(installation, [{
       ...installation.artworks[0], key: `${collection.id}:${collection.chainId}:${collection.contract}:8`,
       category: 'artwork' as const, title: 'Personal portrait', collection: collection.title,
-      imageUrl: 'https://i.seadn.io/gae/personal.webp', animationUrl: 'https://i.seadn.io/gae/personal-motion.webp', attributes: [],
+      imageUrl: 'https://i.seadn.io/gae/personal.webp', animationUrl: 'https://i.seadn.io/gae/personal-motion.webp',
+      attributes: [{ trait_type: 'Artist', value: 'Atrium Artist' }],
     }])
     expect(installed).toHaveLength(12)
     expect(installed[0]?.source).toBe('personal')
@@ -210,6 +215,13 @@ describe('personal atrium geometry and default installation', () => {
     expect(installed[0]?.imageUrl).toContain('variant=room')
     expect(installed[0]?.lodImageUrl).toContain('variant=lod')
     expect(installed[0]?.animationUrl).toContain('variant=motion')
+    expect(installed[0]?.artist).toBe('Atrium Artist')
     expect(installed.slice(1).every((artwork) => artwork.source === 'museum')).toBe(true)
+  })
+
+  it('carries Holiday Potluck artist credits into the default atrium hang', () => {
+    const holiday = ATRIUM_DEFAULT_ARTWORKS.filter((artwork) => artwork.collection === 'Holiday Potluck')
+    expect(holiday).toHaveLength(2)
+    expect(holiday.every((artwork) => Boolean(artwork.artist))).toBe(true)
   })
 })

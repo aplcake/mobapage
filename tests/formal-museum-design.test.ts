@@ -303,6 +303,7 @@ describe('Formal museum authored gallery design', () => {
     expect(shellSource).toContain('MUSEUM_GALLERY_LIGHTING_PLANS')
     expect(expansionSource).toContain("exteriorLayer: 'portrait-clerestory-garden'")
     expect(expansionSource).toContain('active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id}')
+    expect(expansionSource).toContain("surfaceActive={activeMuseumArea === 'atrium' || (activeGalleryId === gallery.id && activeMuseumArea === gallery.id)}")
     expect(expansionSource).toContain('isPortraitLaylight ? -1.892 : -1.9')
     expect(expansionSource).toContain('(isPortraitGallery || isHeartGallery || isPhotographyGallery ? -1.892 : -1.905) - spec.y')
 

@@ -48,6 +48,7 @@ export type MuseumArtwork = {
   id: string
   tokenId: string
   title: string
+  artist?: string
   poster: string
   posterAtlasIndex: number
   motion: string | null

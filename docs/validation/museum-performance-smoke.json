@@ -1,21 +1,32 @@
 {
   "pass": true,
   "target": "http://localhost:3005/",
-  "timestamp": "2026-08-25T14:37:01.641Z",
-  "browser": "Chromium 151.0.7922.174",
-  "browserExecutable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "benchmarkTarget": "http://localhost:3005/?capture=1",
+  "timestamp": "2026-08-28T15:56:01.723Z",
+  "browser": "Chromium 148.0.7778.96",
+  "browserExecutable": "playwright-bundled",
   "sampleMs": 5000,
   "warmupMs": 3000,
+  "traversalSegmentMs": 2200,
+  "traversalSettleMs": 300,
+  "traversalSegments": [
+    "opening-salon-to-atrium",
+    "atrium-glowbud-garden",
+    "moba-one-portrait-salon",
+    "moba-two-heart-gallery",
+    "photography-north-light-room",
+    "holiday-potluck-winter-gallery"
+  ],
   "navigationTimeoutMs": 120000,
   "readyTimeoutMs": 60000,
   "sampleTimeoutMs": 30000,
   "thresholds": {
-    "minAverageFps": 45,
-    "maxP95FrameMs": 40,
-    "maxLongFrameRatio": 0.1,
-    "maxSevereLongFrames": 2,
-    "maxResourceRequests": 100,
-    "maxKnownPayloadBytes": 16777216
+    "minAverageFps": 30,
+    "maxP95FrameMs": 100,
+    "maxLongFrameRatio": 0.2,
+    "maxSevereLongFrames": 6,
+    "maxResourceRequests": 160,
+    "maxKnownPayloadBytes": 33554432
   },
   "results": [
     {
@@ -27,7 +38,7 @@
       "deviceScaleFactor": 1,
       "pass": true,
       "failures": [],
-      "frameTimingMode": "enforced-hardware-renderer",
+      "frameTimingMode": "advisory-software-renderer",
       "metrics": {
         "environment": {
           "innerWidth": 1440,
@@ -36,8 +47,8 @@
           "hardwareConcurrency": 10,
           "performanceTier": "showcase",
           "webgl": {
-            "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
-            "vendor": "Google Inc. (Apple)"
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)"
           },
           "canvasCount": 1,
           "motionPipelineCount": 0,
@@ -50,29 +61,149 @@
           }
         },
         "navigation": {
-          "domContentLoadedMs": 139.4,
-          "loadEventMs": 171.3,
-          "responseEndMs": 38.4,
-          "durationMs": 171.3
+          "domContentLoadedMs": 55.5,
+          "loadEventMs": 100,
+          "responseEndMs": 17.3,
+          "durationMs": 100
         },
         "framePacing": {
-          "sampleMs": 5009,
-          "frames": 287,
-          "averageFps": 57.3,
-          "averageFrameMs": 17.34,
-          "p50FrameMs": 16.7,
-          "p95FrameMs": 18.6,
-          "p99FrameMs": 34.5,
-          "maxFrameMs": 50,
-          "over25msFrameCount": 12,
-          "longFrameCount": 0,
-          "longFrameRatio": 0,
-          "severeLongFrameCount": 0,
-          "observedLongTasks": []
+          "sampleMs": 5170.6,
+          "frames": 25,
+          "averageFps": 4.84,
+          "averageFrameMs": 206.82,
+          "p50FrameMs": 216.7,
+          "p95FrameMs": 233.4,
+          "p99FrameMs": 233.4,
+          "maxFrameMs": 233.4,
+          "over25msFrameCount": 24,
+          "longFrameCount": 24,
+          "longFrameRatio": 0.96,
+          "severeLongFrameCount": 24,
+          "observedLongTasks": [
+            {
+              "startTime": 15063.9,
+              "duration": 212
+            },
+            {
+              "startTime": 15279.6,
+              "duration": 211
+            },
+            {
+              "startTime": 15499.8,
+              "duration": 208
+            },
+            {
+              "startTime": 15716.1,
+              "duration": 210
+            },
+            {
+              "startTime": 15930.7,
+              "duration": 208
+            },
+            {
+              "startTime": 16142,
+              "duration": 205
+            },
+            {
+              "startTime": 16350.9,
+              "duration": 213
+            },
+            {
+              "startTime": 16566.5,
+              "duration": 208
+            },
+            {
+              "startTime": 16781.3,
+              "duration": 206
+            },
+            {
+              "startTime": 16992.9,
+              "duration": 205
+            },
+            {
+              "startTime": 17204.3,
+              "duration": 206
+            },
+            {
+              "startTime": 17414,
+              "duration": 226
+            },
+            {
+              "startTime": 17645.1,
+              "duration": 210
+            },
+            {
+              "startTime": 17858.4,
+              "duration": 208
+            },
+            {
+              "startTime": 18076.4,
+              "duration": 205
+            },
+            {
+              "startTime": 18285.8,
+              "duration": 207
+            },
+            {
+              "startTime": 18501,
+              "duration": 206
+            },
+            {
+              "startTime": 18709.9,
+              "duration": 206
+            },
+            {
+              "startTime": 18922.3,
+              "duration": 210
+            },
+            {
+              "startTime": 19137.2,
+              "duration": 218
+            },
+            {
+              "startTime": 19358.5,
+              "duration": 208
+            },
+            {
+              "startTime": 19572.5,
+              "duration": 220
+            },
+            {
+              "startTime": 19795.9,
+              "duration": 215
+            },
+            {
+              "startTime": 20014.2,
+              "duration": 217
+            }
+          ]
+        },
+        "webglDrawCalls": {
+          "available": true,
+          "totalCalls": 58992,
+          "callsPerFrame": 2359.68,
+          "callsPerSecond": 11409.12,
+          "byMethod": {
+            "drawArrays": 4623,
+            "drawElements": 54144,
+            "drawArraysInstanced": 50,
+            "drawElementsInstanced": 175,
+            "drawArraysInstancedANGLE": 0,
+            "drawElementsInstancedANGLE": 0
+          },
+          "instrumentedMethods": [
+            "WebGLRenderingContext.drawArrays",
+            "WebGLRenderingContext.drawElements",
+            "WebGL2RenderingContext.drawArrays",
+            "WebGL2RenderingContext.drawElements",
+            "WebGL2RenderingContext.drawArraysInstanced",
+            "WebGL2RenderingContext.drawElementsInstanced"
+          ],
+          "instrumentationErrors": []
         },
         "resources": {
-          "count": 77,
-          "knownTransferBytes": 11541444,
+          "count": 58,
+          "knownTransferBytes": 8196123,
           "zeroSizeCount": 0,
           "byType": {
             "document": {
@@ -81,128 +212,124 @@
             },
             "link": {
               "count": 3,
-              "knownTransferBytes": 40677
+              "knownTransferBytes": 40760
             },
             "script": {
               "count": 15,
-              "knownTransferBytes": 717775
-            },
-            "other": {
-              "count": 1,
-              "knownTransferBytes": 687
+              "knownTransferBytes": 718418
             },
             "img": {
-              "count": 46,
-              "knownTransferBytes": 6391164
+              "count": 30,
+              "knownTransferBytes": 3210916
             },
             "fetch": {
-              "count": 11,
-              "knownTransferBytes": 4388528
+              "count": 9,
+              "knownTransferBytes": 4223416
             }
           },
           "slowest": [
             {
-              "name": "http://localhost:3005/",
+              "name": "http://localhost:3005/?capture=1",
               "initiatorType": "document",
-              "duration": 171.3,
+              "duration": 100,
               "transferSize": 2613,
               "encodedBodySize": 2313,
               "decodedBodySize": 8078
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
-              "initiatorType": "script",
-              "duration": 49.7,
-              "transferSize": 64376,
-              "encodedBodySize": 64076,
-              "decodedBodySize": 203384
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/00i1e9_.d5i8f.js",
-              "initiatorType": "script",
-              "duration": 48.1,
-              "transferSize": 1938,
-              "encodedBodySize": 1638,
-              "decodedBodySize": 3798
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/0d3shmwh5_nmn.js",
-              "initiatorType": "script",
-              "duration": 46.2,
-              "transferSize": 13163,
-              "encodedBodySize": 12863,
-              "decodedBodySize": 54646
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/07uz2g0_38qia.js",
-              "initiatorType": "script",
-              "duration": 45.8,
-              "transferSize": 9468,
-              "encodedBodySize": 9168,
-              "decodedBodySize": 43946
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/01xlw8hd842-c.js",
-              "initiatorType": "script",
-              "duration": 44.8,
-              "transferSize": 1756,
-              "encodedBodySize": 1456,
-              "decodedBodySize": 3377
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/turbopack-13gb~rhpm0e6r.js",
-              "initiatorType": "script",
-              "duration": 44.5,
-              "transferSize": 4486,
-              "encodedBodySize": 4186,
-              "decodedBodySize": 10646
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/0n1bpogj.il~n.js",
-              "initiatorType": "script",
-              "duration": 44,
-              "transferSize": 37682,
-              "encodedBodySize": 37382,
-              "decodedBodySize": 137449
-            },
-            {
               "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
               "initiatorType": "script",
-              "duration": 41.4,
+              "duration": 26.2,
               "transferSize": 235831,
               "encodedBodySize": 235531,
               "decodedBodySize": 899943
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/0i3l05cypoj83.js",
+              "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
               "initiatorType": "script",
-              "duration": 37.7,
-              "transferSize": 186608,
-              "encodedBodySize": 186308,
-              "decodedBodySize": 820092
+              "duration": 25.9,
+              "transferSize": 64376,
+              "encodedBodySize": 64076,
+              "decodedBodySize": 203384
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/0pc7f~w-4ehn9.js",
+              "name": "http://localhost:3005/_next/static/chunks/0n1bpogj.il~n.js",
               "initiatorType": "script",
-              "duration": 32.6,
-              "transferSize": 9269,
-              "encodedBodySize": 8969,
-              "decodedBodySize": 31864
+              "duration": 23.4,
+              "transferSize": 37682,
+              "encodedBodySize": 37382,
+              "decodedBodySize": 137449
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/0we~jb05-5g-7.css",
-              "initiatorType": "link",
-              "duration": 32.5,
-              "transferSize": 21017,
-              "encodedBodySize": 20717,
-              "decodedBodySize": 103015
+              "name": "http://localhost:3005/_next/static/chunks/0lg.3dv38.o58.js",
+              "initiatorType": "script",
+              "duration": 23.1,
+              "transferSize": 186970,
+              "encodedBodySize": 186670,
+              "decodedBodySize": 820399
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0d3shmwh5_nmn.js",
+              "initiatorType": "script",
+              "duration": 22,
+              "transferSize": 13163,
+              "encodedBodySize": 12863,
+              "decodedBodySize": 54646
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0kmnbn674py0h.js",
+              "initiatorType": "script",
+              "duration": 21.5,
+              "transferSize": 1938,
+              "encodedBodySize": 1638,
+              "decodedBodySize": 3798
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/01xlw8hd842-c.js",
+              "initiatorType": "script",
+              "duration": 21,
+              "transferSize": 1756,
+              "encodedBodySize": 1456,
+              "decodedBodySize": 3377
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/07uz2g0_38qia.js",
+              "initiatorType": "script",
+              "duration": 20.7,
+              "transferSize": 9468,
+              "encodedBodySize": 9168,
+              "decodedBodySize": 43946
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/turbopack-13gb~rhpm0e6r.js",
+              "initiatorType": "script",
+              "duration": 20.3,
+              "transferSize": 4486,
+              "encodedBodySize": 4186,
+              "decodedBodySize": 10646
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/photography/art-08.webp",
+              "initiatorType": "img",
+              "duration": 16.3,
+              "transferSize": 75082,
+              "encodedBodySize": 74782,
+              "decodedBodySize": 74782
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-07.webp",
+              "initiatorType": "img",
+              "duration": 16.1,
+              "transferSize": 36178,
+              "encodedBodySize": 35878,
+              "decodedBodySize": 35878
             }
           ],
           "largestKnown": [
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
               "initiatorType": "img",
-              "duration": 13.3,
+              "duration": 5.1,
               "transferSize": 846500,
               "encodedBodySize": 846200,
               "decodedBodySize": 846200
@@ -210,7 +337,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
               "initiatorType": "fetch",
-              "duration": 2.3,
+              "duration": 1.5,
               "transferSize": 0,
               "encodedBodySize": 846200,
               "decodedBodySize": 846200
@@ -218,7 +345,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-394-motion.webp",
               "initiatorType": "fetch",
-              "duration": 12.6,
+              "duration": 3,
               "transferSize": 744690,
               "encodedBodySize": 744390,
               "decodedBodySize": 744390
@@ -226,7 +353,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-279-motion.webp",
               "initiatorType": "fetch",
-              "duration": 7.9,
+              "duration": 6.9,
               "transferSize": 540266,
               "encodedBodySize": 539966,
               "decodedBodySize": 539966
@@ -234,7 +361,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-226-motion.webp",
               "initiatorType": "fetch",
-              "duration": 10.8,
+              "duration": 6.9,
               "transferSize": 530332,
               "encodedBodySize": 530032,
               "decodedBodySize": 530032
@@ -242,7 +369,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-427-motion.webp",
               "initiatorType": "fetch",
-              "duration": 10.4,
+              "duration": 3.7,
               "transferSize": 520418,
               "encodedBodySize": 520118,
               "decodedBodySize": 520118
@@ -250,59 +377,1162 @@
             {
               "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-376-motion.webp",
               "initiatorType": "fetch",
-              "duration": 3,
+              "duration": 6.9,
               "transferSize": 488044,
               "encodedBodySize": 487744,
               "decodedBodySize": 487744
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-sheet.webp",
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-gallery/motion-01-sheet.webp",
               "initiatorType": "img",
-              "duration": 4.2,
-              "transferSize": 423592,
-              "encodedBodySize": 423292,
-              "decodedBodySize": 423292
+              "duration": 2.9,
+              "transferSize": 319742,
+              "encodedBodySize": 319442,
+              "decodedBodySize": 319442
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2173-sheet.webp",
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-170-sheet.webp",
               "initiatorType": "img",
-              "duration": 5.7,
-              "transferSize": 406410,
-              "encodedBodySize": 406110,
-              "decodedBodySize": 406110
+              "duration": 13.7,
+              "transferSize": 310294,
+              "encodedBodySize": 309994,
+              "decodedBodySize": 309994
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2139-sheet.webp",
-              "initiatorType": "img",
-              "duration": 7.5,
-              "transferSize": 361950,
-              "encodedBodySize": 361650,
-              "decodedBodySize": 361650
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-584-motion.webp",
+              "initiatorType": "fetch",
+              "duration": 6.2,
+              "transferSize": 303456,
+              "encodedBodySize": 303156,
+              "decodedBodySize": 303156
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-532-sheet.webp",
+              "name": "http://localhost:3005/museum/formal-room/installations/createbox-6/createbox-6-sheet.webp",
               "initiatorType": "img",
-              "duration": 21.9,
-              "transferSize": 360966,
-              "encodedBodySize": 360666,
-              "decodedBodySize": 360666
+              "duration": 2.5,
+              "transferSize": 288128,
+              "encodedBodySize": 287828,
+              "decodedBodySize": 287828
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-sheet.webp",
+              "name": "http://localhost:3005/museum/formal-room/galleries/moba-gallery/motion-02-sheet.webp",
               "initiatorType": "img",
-              "duration": 10.8,
-              "transferSize": 345242,
-              "encodedBodySize": 344942,
-              "decodedBodySize": 344942
+              "duration": 6.6,
+              "transferSize": 251332,
+              "encodedBodySize": 251032,
+              "decodedBodySize": 251032
             }
           ]
         }
       },
+      "traversal": [
+        {
+          "name": "opening-salon-to-atrium",
+          "expectedAnnouncement": "Central Atrium",
+          "from": {
+            "x": 0,
+            "z": 5.2,
+            "yaw": 3.141592653589793,
+            "pitch": -0.04
+          },
+          "to": {
+            "x": 0,
+            "z": 10.4,
+            "yaw": 3.141592653589793,
+            "pitch": -0.02
+          },
+          "framePacing": {
+            "sampleMs": 2384.8,
+            "frames": 12,
+            "averageFps": 5.03,
+            "averageFrameMs": 198.73,
+            "p50FrameMs": 216.6,
+            "p95FrameMs": 250.9,
+            "p99FrameMs": 250.9,
+            "maxFrameMs": 250.9,
+            "longFrameCount": 11,
+            "longFrameRatio": 0.9167,
+            "severeLongFrameCount": 11,
+            "observedLongTasks": [
+              {
+                "startTime": 21133.1,
+                "duration": 211
+              },
+              {
+                "startTime": 21349.2,
+                "duration": 217
+              },
+              {
+                "startTime": 21569.7,
+                "duration": 211
+              },
+              {
+                "startTime": 21786.5,
+                "duration": 215
+              },
+              {
+                "startTime": 22005.6,
+                "duration": 216
+              },
+              {
+                "startTime": 22227.9,
+                "duration": 229
+              },
+              {
+                "startTime": 22462.9,
+                "duration": 211
+              },
+              {
+                "startTime": 22686.1,
+                "duration": 241
+              },
+              {
+                "startTime": 22931.8,
+                "duration": 199
+              },
+              {
+                "startTime": 23135.5,
+                "duration": 187
+              },
+              {
+                "startTime": 23327.9,
+                "duration": 204
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 8,
+            "knownTransferBytes": 1704832,
+            "knownDecodedBytes": 1702432,
+            "byType": {
+              "img": {
+                "count": 8,
+                "knownTransferBytes": 1704832,
+                "knownDecodedBytes": 1702432
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2210-poster.webp",
+                "initiatorType": "img",
+                "duration": 12.7,
+                "transferSize": 61194,
+                "encodedBodySize": 60894,
+                "decodedBodySize": 60894
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2210-sheet.webp",
+                "initiatorType": "img",
+                "duration": 13.3,
+                "transferSize": 311494,
+                "encodedBodySize": 311194,
+                "decodedBodySize": 311194
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-poster.webp",
+                "initiatorType": "img",
+                "duration": 2.9,
+                "transferSize": 58404,
+                "encodedBodySize": 58104,
+                "decodedBodySize": 58104
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-sheet.webp",
+                "initiatorType": "img",
+                "duration": 4.1,
+                "transferSize": 345242,
+                "encodedBodySize": 344942,
+                "decodedBodySize": 344942
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-poster.webp",
+                "initiatorType": "img",
+                "duration": 3.5,
+                "transferSize": 80200,
+                "encodedBodySize": 79900,
+                "decodedBodySize": 79900
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-sheet.webp",
+                "initiatorType": "img",
+                "duration": 4.2,
+                "transferSize": 423592,
+                "encodedBodySize": 423292,
+                "decodedBodySize": 423292
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2139-poster.webp",
+                "initiatorType": "img",
+                "duration": 2.9,
+                "transferSize": 62756,
+                "encodedBodySize": 62456,
+                "decodedBodySize": 62456
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2139-sheet.webp",
+                "initiatorType": "img",
+                "duration": 4.3,
+                "transferSize": 361950,
+                "encodedBodySize": 361650,
+                "decodedBodySize": 361650
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 25062,
+            "callsPerFrame": 2088.5,
+            "callsPerSecond": 10509.06,
+            "byMethod": {
+              "drawArrays": 1813,
+              "drawElements": 23143,
+              "drawArraysInstanced": 24,
+              "drawElementsInstanced": 82,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in the Central Atrium.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "atrium-glowbud-garden",
+          "expectedAnnouncement": "Central Atrium",
+          "from": {
+            "x": 0,
+            "z": 15.2,
+            "yaw": 3.141592653589793,
+            "pitch": -0.08
+          },
+          "to": {
+            "x": 0.15,
+            "z": 21.2,
+            "yaw": 2.961592653589793,
+            "pitch": -0.06
+          },
+          "framePacing": {
+            "sampleMs": 4405.6,
+            "frames": 7,
+            "averageFps": 1.59,
+            "averageFrameMs": 629.37,
+            "p50FrameMs": 199.9,
+            "p95FrameMs": 3016.7,
+            "p99FrameMs": 3016.7,
+            "maxFrameMs": 3016.7,
+            "longFrameCount": 6,
+            "longFrameRatio": 0.8571,
+            "severeLongFrameCount": 6,
+            "observedLongTasks": [
+              {
+                "startTime": 27680.1,
+                "duration": 193
+              },
+              {
+                "startTime": 27879.1,
+                "duration": 194
+              },
+              {
+                "startTime": 28077.2,
+                "duration": 369
+              },
+              {
+                "startTime": 28450.3,
+                "duration": 471
+              },
+              {
+                "startTime": 28928.3,
+                "duration": 183
+              },
+              {
+                "startTime": 29118.6,
+                "duration": 153
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 2,
+            "knownTransferBytes": 165112,
+            "knownDecodedBytes": 164512,
+            "byType": {
+              "fetch": {
+                "count": 2,
+                "knownTransferBytes": 165112,
+                "knownDecodedBytes": 164512
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-04.webp",
+                "initiatorType": "fetch",
+                "duration": 1.8,
+                "transferSize": 83328,
+                "encodedBodySize": 83028,
+                "decodedBodySize": 83028
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-05.webp",
+                "initiatorType": "fetch",
+                "duration": 2.9,
+                "transferSize": 81784,
+                "encodedBodySize": 81484,
+                "decodedBodySize": 81484
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 7362,
+            "callsPerFrame": 1051.71,
+            "callsPerSecond": 1671.06,
+            "byMethod": {
+              "drawArrays": 623,
+              "drawElements": 6683,
+              "drawArraysInstanced": 14,
+              "drawElementsInstanced": 42,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in the Central Atrium.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "moba-one-portrait-salon",
+          "expectedAnnouncement": "Portraits of an Enjoyer",
+          "from": {
+            "x": -12.2,
+            "z": 8.5,
+            "yaw": 3.141592653589793,
+            "pitch": 0.02
+          },
+          "to": {
+            "x": -12.2,
+            "z": 13.2,
+            "yaw": 3.021592653589793,
+            "pitch": 0.03
+          },
+          "framePacing": {
+            "sampleMs": 2500.1,
+            "frames": 3,
+            "averageFps": 1.2,
+            "averageFrameMs": 833.37,
+            "p50FrameMs": 233.4,
+            "p95FrameMs": 2283.4,
+            "p99FrameMs": 2283.4,
+            "maxFrameMs": 2283.4,
+            "longFrameCount": 2,
+            "longFrameRatio": 0.6667,
+            "severeLongFrameCount": 2,
+            "observedLongTasks": [
+              {
+                "startTime": 33634.7,
+                "duration": 227
+              },
+              {
+                "startTime": 33865.6,
+                "duration": 73
+              },
+              {
+                "startTime": 33942.2,
+                "duration": 2201
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 2,
+            "knownTransferBytes": 17528,
+            "knownDecodedBytes": 16928,
+            "byType": {
+              "img": {
+                "count": 2,
+                "knownTransferBytes": 17528,
+                "knownDecodedBytes": 16928
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-114-poster.webp",
+                "initiatorType": "img",
+                "duration": 53.1,
+                "transferSize": 8736,
+                "encodedBodySize": 8436,
+                "decodedBodySize": 8436
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-261-poster.webp",
+                "initiatorType": "img",
+                "duration": 53.4,
+                "transferSize": 8792,
+                "encodedBodySize": 8492,
+                "decodedBodySize": 8492
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 4067,
+            "callsPerFrame": 1355.67,
+            "callsPerSecond": 1626.73,
+            "byMethod": {
+              "drawArrays": 401,
+              "drawElements": 3639,
+              "drawArraysInstanced": 6,
+              "drawElementsInstanced": 21,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in Portraits of an Enjoyer.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "moba-two-heart-gallery",
+          "expectedAnnouncement": "Curated Hearts",
+          "from": {
+            "x": -12.2,
+            "z": 21.4,
+            "yaw": 3.141592653589793,
+            "pitch": -0.06
+          },
+          "to": {
+            "x": -12.2,
+            "z": 25.5,
+            "yaw": 3.001592653589793,
+            "pitch": -0.03
+          },
+          "framePacing": {
+            "sampleMs": 2319.9,
+            "frames": 15,
+            "averageFps": 6.47,
+            "averageFrameMs": 146.34,
+            "p50FrameMs": 116.7,
+            "p95FrameMs": 349,
+            "p99FrameMs": 349,
+            "maxFrameMs": 349,
+            "longFrameCount": 14,
+            "longFrameRatio": 0.9333,
+            "severeLongFrameCount": 13,
+            "observedLongTasks": [
+              {
+                "startTime": 36794.3,
+                "duration": 251
+              },
+              {
+                "startTime": 37056.2,
+                "duration": 189
+              },
+              {
+                "startTime": 37256.4,
+                "duration": 100
+              },
+              {
+                "startTime": 37362.5,
+                "duration": 98
+              },
+              {
+                "startTime": 37464.2,
+                "duration": 225
+              },
+              {
+                "startTime": 37693.3,
+                "duration": 357
+              },
+              {
+                "startTime": 38058,
+                "duration": 122
+              },
+              {
+                "startTime": 38187.2,
+                "duration": 107
+              },
+              {
+                "startTime": 38297.9,
+                "duration": 102
+              },
+              {
+                "startTime": 38404.2,
+                "duration": 112
+              },
+              {
+                "startTime": 38519.4,
+                "duration": 108
+              },
+              {
+                "startTime": 38630.2,
+                "duration": 113
+              },
+              {
+                "startTime": 38747,
+                "duration": 113
+              },
+              {
+                "startTime": 38863.5,
+                "duration": 137
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 9,
+            "knownTransferBytes": 1519452,
+            "knownDecodedBytes": 1517052,
+            "byType": {
+              "img": {
+                "count": 8,
+                "knownTransferBytes": 1436424,
+                "knownDecodedBytes": 1434024
+              },
+              "fetch": {
+                "count": 1,
+                "knownTransferBytes": 83028,
+                "knownDecodedBytes": 83028
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-586-poster.webp",
+                "initiatorType": "img",
+                "duration": 3.7,
+                "transferSize": 51392,
+                "encodedBodySize": 51092,
+                "decodedBodySize": 51092
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-586-sheet.webp",
+                "initiatorType": "img",
+                "duration": 5.6,
+                "transferSize": 273276,
+                "encodedBodySize": 272976,
+                "decodedBodySize": 272976
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-532-poster.webp",
+                "initiatorType": "img",
+                "duration": 4.8,
+                "transferSize": 71708,
+                "encodedBodySize": 71408,
+                "decodedBodySize": 71408
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-532-sheet.webp",
+                "initiatorType": "img",
+                "duration": 6.9,
+                "transferSize": 360966,
+                "encodedBodySize": 360666,
+                "decodedBodySize": 360666
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-473-poster.webp",
+                "initiatorType": "img",
+                "duration": 4.6,
+                "transferSize": 51828,
+                "encodedBodySize": 51528,
+                "decodedBodySize": 51528
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-473-sheet.webp",
+                "initiatorType": "img",
+                "duration": 6.9,
+                "transferSize": 288264,
+                "encodedBodySize": 287964,
+                "decodedBodySize": 287964
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2149-poster.webp",
+                "initiatorType": "img",
+                "duration": 7.2,
+                "transferSize": 49826,
+                "encodedBodySize": 49526,
+                "decodedBodySize": 49526
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2149-sheet.webp",
+                "initiatorType": "img",
+                "duration": 7.7,
+                "transferSize": 289164,
+                "encodedBodySize": 288864,
+                "decodedBodySize": 288864
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-04.webp",
+                "initiatorType": "fetch",
+                "duration": 0.9,
+                "transferSize": 0,
+                "encodedBodySize": 83028,
+                "decodedBodySize": 83028
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 5682,
+            "callsPerFrame": 378.8,
+            "callsPerSecond": 2449.24,
+            "byMethod": {
+              "drawArrays": 468,
+              "drawElements": 5094,
+              "drawArraysInstanced": 30,
+              "drawElementsInstanced": 90,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in Curated Hearts.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "photography-north-light-room",
+          "expectedAnnouncement": "One Final Album",
+          "from": {
+            "x": 12.2,
+            "z": 31,
+            "yaw": 0,
+            "pitch": 0.08
+          },
+          "to": {
+            "x": 12.35,
+            "z": 27.5,
+            "yaw": 0.12,
+            "pitch": 0.1
+          },
+          "framePacing": {
+            "sampleMs": 2356.9,
+            "frames": 11,
+            "averageFps": 4.67,
+            "averageFrameMs": 214.26,
+            "p50FrameMs": 201,
+            "p95FrameMs": 351.1,
+            "p99FrameMs": 351.1,
+            "maxFrameMs": 351.1,
+            "longFrameCount": 10,
+            "longFrameRatio": 0.9091,
+            "severeLongFrameCount": 10,
+            "observedLongTasks": [
+              {
+                "startTime": 39219.8,
+                "duration": 2432
+              },
+              {
+                "startTime": 41694.6,
+                "duration": 197
+              },
+              {
+                "startTime": 41892,
+                "duration": 71
+              },
+              {
+                "startTime": 41966.7,
+                "duration": 265
+              },
+              {
+                "startTime": 42238.1,
+                "duration": 187
+              },
+              {
+                "startTime": 42435,
+                "duration": 193
+              },
+              {
+                "startTime": 42631.8,
+                "duration": 213
+              },
+              {
+                "startTime": 42854.6,
+                "duration": 252
+              },
+              {
+                "startTime": 43112.1,
+                "duration": 206
+              },
+              {
+                "startTime": 43324.7,
+                "duration": 339
+              },
+              {
+                "startTime": 43668.3,
+                "duration": 198
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 7,
+            "knownTransferBytes": 766514,
+            "knownDecodedBytes": 764714,
+            "byType": {
+              "img": {
+                "count": 6,
+                "knownTransferBytes": 236482,
+                "knownDecodedBytes": 234682
+              },
+              "fetch": {
+                "count": 1,
+                "knownTransferBytes": 530032,
+                "knownDecodedBytes": 530032
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/photography/art-03.webp",
+                "initiatorType": "img",
+                "duration": 10.3,
+                "transferSize": 16936,
+                "encodedBodySize": 16636,
+                "decodedBodySize": 16636
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/photography/art-07.webp",
+                "initiatorType": "img",
+                "duration": 11.5,
+                "transferSize": 83868,
+                "encodedBodySize": 83568,
+                "decodedBodySize": 83568
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-02.webp",
+                "initiatorType": "img",
+                "duration": 10.6,
+                "transferSize": 36652,
+                "encodedBodySize": 36352,
+                "decodedBodySize": 36352
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-01.webp",
+                "initiatorType": "img",
+                "duration": 10.8,
+                "transferSize": 51404,
+                "encodedBodySize": 51104,
+                "decodedBodySize": 51104
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-one/top-holders-balanced-20260823-token-226-motion.webp",
+                "initiatorType": "fetch",
+                "duration": 0.8,
+                "transferSize": 0,
+                "encodedBodySize": 530032,
+                "decodedBodySize": 530032
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-03.webp",
+                "initiatorType": "img",
+                "duration": 2.7,
+                "transferSize": 33398,
+                "encodedBodySize": 33098,
+                "decodedBodySize": 33098
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-08.webp",
+                "initiatorType": "img",
+                "duration": 2.7,
+                "transferSize": 14224,
+                "encodedBodySize": 13924,
+                "decodedBodySize": 13924
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 22291,
+            "callsPerFrame": 2026.45,
+            "callsPerSecond": 9457.76,
+            "byMethod": {
+              "drawArrays": 2768,
+              "drawElements": 19468,
+              "drawArraysInstanced": 22,
+              "drawElementsInstanced": 33,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in One Final Album.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "holiday-potluck-winter-gallery",
+          "expectedAnnouncement": "MoBA × Tweaks",
+          "from": {
+            "x": 12.2,
+            "z": 17.9,
+            "yaw": 0,
+            "pitch": 0.02
+          },
+          "to": {
+            "x": 12.25,
+            "z": 11.5,
+            "yaw": 0.1,
+            "pitch": 0.04
+          },
+          "framePacing": {
+            "sampleMs": 2265.3,
+            "frames": 18,
+            "averageFps": 7.95,
+            "averageFrameMs": 125.85,
+            "p50FrameMs": 115.7,
+            "p95FrameMs": 401.1,
+            "p99FrameMs": 401.1,
+            "maxFrameMs": 401.1,
+            "longFrameCount": 17,
+            "longFrameRatio": 0.9444,
+            "severeLongFrameCount": 12,
+            "observedLongTasks": [
+              {
+                "startTime": 45225.9,
+                "duration": 57
+              },
+              {
+                "startTime": 45286.3,
+                "duration": 145
+              },
+              {
+                "startTime": 45435.5,
+                "duration": 123
+              },
+              {
+                "startTime": 45561.3,
+                "duration": 122
+              },
+              {
+                "startTime": 45687.9,
+                "duration": 120
+              },
+              {
+                "startTime": 45815.8,
+                "duration": 147
+              },
+              {
+                "startTime": 45966.7,
+                "duration": 118
+              },
+              {
+                "startTime": 46091.1,
+                "duration": 391
+              },
+              {
+                "startTime": 46491.2,
+                "duration": 130
+              },
+              {
+                "startTime": 46632.5,
+                "duration": 122
+              },
+              {
+                "startTime": 46757.7,
+                "duration": 98
+              },
+              {
+                "startTime": 46859.6,
+                "duration": 99
+              },
+              {
+                "startTime": 46963.4,
+                "duration": 101
+              },
+              {
+                "startTime": 47069.4,
+                "duration": 95
+              },
+              {
+                "startTime": 47168.6,
+                "duration": 98
+              },
+              {
+                "startTime": 47271.3,
+                "duration": 97
+              },
+              {
+                "startTime": 47372.8,
+                "duration": 98
+              },
+              {
+                "startTime": 47473.5,
+                "duration": 93
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 5,
+            "knownTransferBytes": 1312518,
+            "knownDecodedBytes": 1311318,
+            "byType": {
+              "img": {
+                "count": 1,
+                "knownTransferBytes": 25296,
+                "knownDecodedBytes": 24996
+              },
+              "fetch": {
+                "count": 4,
+                "knownTransferBytes": 1287222,
+                "knownDecodedBytes": 1286322
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-10.webp",
+                "initiatorType": "img",
+                "duration": 8.5,
+                "transferSize": 25296,
+                "encodedBodySize": 24996,
+                "decodedBodySize": 24996
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-05.webp",
+                "initiatorType": "fetch",
+                "duration": 0.5,
+                "transferSize": 0,
+                "encodedBodySize": 81484,
+                "decodedBodySize": 81484
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-09.webp",
+                "initiatorType": "fetch",
+                "duration": 1.7,
+                "transferSize": 132984,
+                "encodedBodySize": 132684,
+                "decodedBodySize": 132684
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/hero.webp",
+                "initiatorType": "fetch",
+                "duration": 7.8,
+                "transferSize": 152210,
+                "encodedBodySize": 151910,
+                "decodedBodySize": 151910
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/motion-10.webp",
+                "initiatorType": "fetch",
+                "duration": 10,
+                "transferSize": 920544,
+                "encodedBodySize": 920244,
+                "decodedBodySize": 920244
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 13521,
+            "callsPerFrame": 751.17,
+            "callsPerSecond": 5968.75,
+            "byMethod": {
+              "drawArrays": 1065,
+              "drawElements": 12384,
+              "drawArraysInstanced": 36,
+              "drawElementsInstanced": 36,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "showcase",
+            "galleryAnnouncement": "Museum walk. You are in MoBA × Tweaks.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 1296,
+              "height": 810
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        }
+      ],
       "network": {
-        "responseCount": 77,
-        "contentLengthKnownCount": 57,
-        "contentLengthUnknownCount": 20,
-        "knownContentLengthBytes": 10763492,
+        "responseCount": 115,
+        "contentLengthKnownCount": 96,
+        "contentLengthUnknownCount": 19,
+        "knownContentLengthBytes": 18952980,
         "httpErrorCount": 0,
         "httpErrors": [],
         "byType": {
@@ -318,23 +1548,19 @@
             "count": 16,
             "knownContentLengthBytes": 0
           },
-          "other": {
-            "count": 1,
-            "knownContentLengthBytes": 0
-          },
           "image": {
-            "count": 46,
-            "knownContentLengthBytes": 6377364
+            "count": 69,
+            "knownContentLengthBytes": 8068306
           },
           "fetch": {
-            "count": 11,
-            "knownContentLengthBytes": 4386128
+            "count": 27,
+            "knownContentLengthBytes": 10884674
           }
         },
         "failedRequestCount": 0,
         "failedRequests": [],
-        "effectiveResourceRequestCount": 77,
-        "effectiveKnownPayloadBytes": 11541444
+        "effectiveResourceRequestCount": 115,
+        "effectiveKnownPayloadBytes": 18952980
       },
       "diagnostics": {
         "consoleErrors": [],
@@ -350,7 +1576,7 @@
       "deviceScaleFactor": 2,
       "pass": true,
       "failures": [],
-      "frameTimingMode": "enforced-hardware-renderer",
+      "frameTimingMode": "advisory-software-renderer",
       "metrics": {
         "environment": {
           "innerWidth": 390,
@@ -359,8 +1585,8 @@
           "hardwareConcurrency": 10,
           "performanceTier": "compact",
           "webgl": {
-            "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)",
-            "vendor": "Google Inc. (Apple)"
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)",
+            "vendor": "Google Inc. (Google)"
           },
           "canvasCount": 1,
           "motionPipelineCount": 0,
@@ -373,29 +1599,309 @@
           }
         },
         "navigation": {
-          "domContentLoadedMs": 66.4,
-          "loadEventMs": 105.1,
-          "responseEndMs": 10.7,
-          "durationMs": 105.1
+          "domContentLoadedMs": 18.4,
+          "loadEventMs": 49,
+          "responseEndMs": 6.2,
+          "durationMs": 49
         },
         "framePacing": {
-          "sampleMs": 5001.7,
-          "frames": 300,
-          "averageFps": 59.98,
-          "averageFrameMs": 16.63,
-          "p50FrameMs": 16.7,
-          "p95FrameMs": 18.1,
-          "p99FrameMs": 18.6,
-          "maxFrameMs": 18.7,
-          "over25msFrameCount": 0,
-          "longFrameCount": 0,
-          "longFrameRatio": 0,
-          "severeLongFrameCount": 0,
-          "observedLongTasks": []
+          "sampleMs": 5047.3,
+          "frames": 87,
+          "averageFps": 17.24,
+          "averageFrameMs": 58.01,
+          "p50FrameMs": 50.6,
+          "p95FrameMs": 67.7,
+          "p99FrameMs": 316.8,
+          "maxFrameMs": 316.8,
+          "over25msFrameCount": 86,
+          "longFrameCount": 52,
+          "longFrameRatio": 0.5977,
+          "severeLongFrameCount": 1,
+          "observedLongTasks": [
+            {
+              "startTime": 7922.3,
+              "duration": 59
+            },
+            {
+              "startTime": 7983.1,
+              "duration": 54
+            },
+            {
+              "startTime": 8037.9,
+              "duration": 55
+            },
+            {
+              "startTime": 8100.4,
+              "duration": 63
+            },
+            {
+              "startTime": 8163.7,
+              "duration": 57
+            },
+            {
+              "startTime": 8222.8,
+              "duration": 52
+            },
+            {
+              "startTime": 8275.6,
+              "duration": 52
+            },
+            {
+              "startTime": 8336.3,
+              "duration": 51
+            },
+            {
+              "startTime": 8387.5,
+              "duration": 51
+            },
+            {
+              "startTime": 8440.7,
+              "duration": 56
+            },
+            {
+              "startTime": 8497,
+              "duration": 53
+            },
+            {
+              "startTime": 8552.1,
+              "duration": 53
+            },
+            {
+              "startTime": 8605.4,
+              "duration": 51
+            },
+            {
+              "startTime": 8657.9,
+              "duration": 52
+            },
+            {
+              "startTime": 8710,
+              "duration": 55
+            },
+            {
+              "startTime": 8816.8,
+              "duration": 50
+            },
+            {
+              "startTime": 8869,
+              "duration": 50
+            },
+            {
+              "startTime": 9174,
+              "duration": 50
+            },
+            {
+              "startTime": 9474.2,
+              "duration": 50
+            },
+            {
+              "startTime": 9524.5,
+              "duration": 52
+            },
+            {
+              "startTime": 9680.5,
+              "duration": 51
+            },
+            {
+              "startTime": 9731.6,
+              "duration": 56
+            },
+            {
+              "startTime": 9789.2,
+              "duration": 51
+            },
+            {
+              "startTime": 9840.8,
+              "duration": 50
+            },
+            {
+              "startTime": 9941.3,
+              "duration": 50
+            },
+            {
+              "startTime": 10042.9,
+              "duration": 51
+            },
+            {
+              "startTime": 10095.9,
+              "duration": 50
+            },
+            {
+              "startTime": 10146.6,
+              "duration": 51
+            },
+            {
+              "startTime": 10201,
+              "duration": 50
+            },
+            {
+              "startTime": 10251.3,
+              "duration": 51
+            },
+            {
+              "startTime": 10507,
+              "duration": 53
+            },
+            {
+              "startTime": 10560.5,
+              "duration": 50
+            },
+            {
+              "startTime": 10613.2,
+              "duration": 96
+            },
+            {
+              "startTime": 10710.2,
+              "duration": 99
+            },
+            {
+              "startTime": 10811.1,
+              "duration": 311
+            },
+            {
+              "startTime": 11125.4,
+              "duration": 55
+            },
+            {
+              "startTime": 11238.4,
+              "duration": 50
+            },
+            {
+              "startTime": 11392.3,
+              "duration": 50
+            },
+            {
+              "startTime": 11443.1,
+              "duration": 51
+            },
+            {
+              "startTime": 11496.2,
+              "duration": 51
+            },
+            {
+              "startTime": 11547.3,
+              "duration": 53
+            },
+            {
+              "startTime": 11602.5,
+              "duration": 61
+            },
+            {
+              "startTime": 11663.8,
+              "duration": 66
+            },
+            {
+              "startTime": 11731.8,
+              "duration": 70
+            },
+            {
+              "startTime": 11803.6,
+              "duration": 52
+            },
+            {
+              "startTime": 11860.4,
+              "duration": 73
+            },
+            {
+              "startTime": 11934.1,
+              "duration": 63
+            },
+            {
+              "startTime": 11998.7,
+              "duration": 52
+            },
+            {
+              "startTime": 12050.7,
+              "duration": 61
+            },
+            {
+              "startTime": 12114.2,
+              "duration": 54
+            },
+            {
+              "startTime": 12171,
+              "duration": 74
+            },
+            {
+              "startTime": 12246.6,
+              "duration": 64
+            },
+            {
+              "startTime": 12312.3,
+              "duration": 51
+            },
+            {
+              "startTime": 12364.1,
+              "duration": 50
+            },
+            {
+              "startTime": 12417.5,
+              "duration": 52
+            },
+            {
+              "startTime": 12470.1,
+              "duration": 51
+            },
+            {
+              "startTime": 12522.2,
+              "duration": 52
+            },
+            {
+              "startTime": 12575,
+              "duration": 56
+            },
+            {
+              "startTime": 12632.6,
+              "duration": 53
+            },
+            {
+              "startTime": 12687.1,
+              "duration": 60
+            },
+            {
+              "startTime": 12748.3,
+              "duration": 59
+            },
+            {
+              "startTime": 12811.2,
+              "duration": 55
+            },
+            {
+              "startTime": 12867.9,
+              "duration": 51
+            },
+            {
+              "startTime": 12920,
+              "duration": 54
+            }
+          ]
+        },
+        "webglDrawCalls": {
+          "available": true,
+          "totalCalls": 112495,
+          "callsPerFrame": 1293.05,
+          "callsPerSecond": 22288.15,
+          "byMethod": {
+            "drawArrays": 9303,
+            "drawElements": 102496,
+            "drawArraysInstanced": 174,
+            "drawElementsInstanced": 522,
+            "drawArraysInstancedANGLE": 0,
+            "drawElementsInstancedANGLE": 0
+          },
+          "instrumentedMethods": [
+            "WebGLRenderingContext.drawArrays",
+            "WebGLRenderingContext.drawElements",
+            "WebGL2RenderingContext.drawArrays",
+            "WebGL2RenderingContext.drawElements",
+            "WebGL2RenderingContext.drawArraysInstanced",
+            "WebGL2RenderingContext.drawElementsInstanced"
+          ],
+          "instrumentationErrors": []
         },
         "resources": {
-          "count": 47,
-          "knownTransferBytes": 5714108,
+          "count": 28,
+          "knownTransferBytes": 3426093,
           "zeroSizeCount": 0,
           "byType": {
             "document": {
@@ -404,30 +1910,26 @@
             },
             "link": {
               "count": 3,
-              "knownTransferBytes": 40677
+              "knownTransferBytes": 40760
             },
             "script": {
               "count": 15,
-              "knownTransferBytes": 717775
-            },
-            "other": {
-              "count": 1,
-              "knownTransferBytes": 687
+              "knownTransferBytes": 718418
             },
             "img": {
-              "count": 22,
-              "knownTransferBytes": 3691034
+              "count": 6,
+              "knownTransferBytes": 1568092
             },
             "fetch": {
-              "count": 5,
-              "knownTransferBytes": 1261322
+              "count": 3,
+              "knownTransferBytes": 1096210
             }
           },
           "slowest": [
             {
-              "name": "http://localhost:3005/",
+              "name": "http://localhost:3005/?capture=1",
               "initiatorType": "document",
-              "duration": 105.1,
+              "duration": 49,
               "transferSize": 2613,
               "encodedBodySize": 2313,
               "decodedBodySize": 8078
@@ -435,23 +1937,23 @@
             {
               "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
               "initiatorType": "script",
-              "duration": 32.6,
+              "duration": 26.8,
               "transferSize": 235831,
               "encodedBodySize": 235531,
               "decodedBodySize": 899943
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/0i3l05cypoj83.js",
+              "name": "http://localhost:3005/_next/static/chunks/0lg.3dv38.o58.js",
               "initiatorType": "script",
-              "duration": 27.7,
-              "transferSize": 186608,
-              "encodedBodySize": 186308,
-              "decodedBodySize": 820092
+              "duration": 24,
+              "transferSize": 186970,
+              "encodedBodySize": 186670,
+              "decodedBodySize": 820399
             },
             {
               "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
               "initiatorType": "script",
-              "duration": 19.5,
+              "duration": 15.8,
               "transferSize": 64376,
               "encodedBodySize": 64076,
               "decodedBodySize": 203384
@@ -459,7 +1961,7 @@
             {
               "name": "http://localhost:3005/_next/static/chunks/0d3shmwh5_nmn.js",
               "initiatorType": "script",
-              "duration": 16.7,
+              "duration": 12.3,
               "transferSize": 13163,
               "encodedBodySize": 12863,
               "decodedBodySize": 54646
@@ -467,65 +1969,65 @@
             {
               "name": "http://localhost:3005/_next/static/chunks/0n1bpogj.il~n.js",
               "initiatorType": "script",
-              "duration": 15.9,
+              "duration": 11.4,
               "transferSize": 37682,
               "encodedBodySize": 37382,
               "decodedBodySize": 137449
             },
             {
-              "name": "http://localhost:3005/_next/static/chunks/082yrcm6bcrgq.js",
+              "name": "http://localhost:3005/_next/static/chunks/0kmnbn674py0h.js",
               "initiatorType": "script",
-              "duration": 14.6,
-              "transferSize": 44950,
-              "encodedBodySize": 44650,
-              "decodedBodySize": 503564
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/137xd6t5wdabf.js",
-              "initiatorType": "script",
-              "duration": 13.8,
-              "transferSize": 75295,
-              "encodedBodySize": 74995,
-              "decodedBodySize": 284166
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/00i1e9_.d5i8f.js",
-              "initiatorType": "script",
-              "duration": 13.3,
+              "duration": 11,
               "transferSize": 1938,
               "encodedBodySize": 1638,
               "decodedBodySize": 3798
             },
             {
+              "name": "http://localhost:3005/_next/static/chunks/0shlgu.z~fy~u.js",
+              "initiatorType": "script",
+              "duration": 10.9,
+              "transferSize": 74583,
+              "encodedBodySize": 74283,
+              "decodedBodySize": 282037
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/082yrcm6bcrgq.js",
+              "initiatorType": "script",
+              "duration": 10.2,
+              "transferSize": 44950,
+              "encodedBodySize": 44650,
+              "decodedBodySize": 503564
+            },
+            {
               "name": "http://localhost:3005/_next/static/chunks/01xlw8hd842-c.js",
               "initiatorType": "script",
-              "duration": 12.5,
+              "duration": 8.9,
               "transferSize": 1756,
               "encodedBodySize": 1456,
               "decodedBodySize": 3377
             },
             {
+              "name": "http://localhost:3005/_next/static/chunks/0ldtp3hpi1kjp.css",
+              "initiatorType": "link",
+              "duration": 8.4,
+              "transferSize": 17437,
+              "encodedBodySize": 17137,
+              "decodedBodySize": 107876
+            },
+            {
               "name": "http://localhost:3005/_next/static/chunks/07uz2g0_38qia.js",
               "initiatorType": "script",
-              "duration": 12.1,
+              "duration": 7.6,
               "transferSize": 9468,
               "encodedBodySize": 9168,
               "decodedBodySize": 43946
-            },
-            {
-              "name": "http://localhost:3005/_next/static/chunks/turbopack-13gb~rhpm0e6r.js",
-              "initiatorType": "script",
-              "duration": 11.1,
-              "transferSize": 4486,
-              "encodedBodySize": 4186,
-              "decodedBodySize": 10646
             }
           ],
           "largestKnown": [
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
               "initiatorType": "img",
-              "duration": 7.7,
+              "duration": 5,
               "transferSize": 846500,
               "encodedBodySize": 846200,
               "decodedBodySize": 846200
@@ -533,63 +2035,15 @@
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/yes-yes.webp",
               "initiatorType": "fetch",
-              "duration": 1,
+              "duration": 1.7,
               "transferSize": 0,
               "encodedBodySize": 846200,
               "decodedBodySize": 846200
             },
             {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2142-sheet.webp",
-              "initiatorType": "img",
-              "duration": 7.9,
-              "transferSize": 423592,
-              "encodedBodySize": 423292,
-              "decodedBodySize": 423292
-            },
-            {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2173-sheet.webp",
-              "initiatorType": "img",
-              "duration": 7.8,
-              "transferSize": 406410,
-              "encodedBodySize": 406110,
-              "decodedBodySize": 406110
-            },
-            {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-220-sheet.webp",
-              "initiatorType": "img",
-              "duration": 5.5,
-              "transferSize": 345242,
-              "encodedBodySize": 344942,
-              "decodedBodySize": 344942
-            },
-            {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2097-sheet.webp",
-              "initiatorType": "img",
-              "duration": 4.8,
-              "transferSize": 318564,
-              "encodedBodySize": 318264,
-              "decodedBodySize": 318264
-            },
-            {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-2204-sheet.webp",
-              "initiatorType": "img",
-              "duration": 5.3,
-              "transferSize": 310742,
-              "encodedBodySize": 310442,
-              "decodedBodySize": 310442
-            },
-            {
-              "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-170-sheet.webp",
-              "initiatorType": "img",
-              "duration": 7.7,
-              "transferSize": 310294,
-              "encodedBodySize": 309994,
-              "decodedBodySize": 309994
-            },
-            {
               "name": "http://localhost:3005/museum/formal-room/installations/createbox-6/createbox-6-sheet.webp",
               "initiatorType": "img",
-              "duration": 9.3,
+              "duration": 2.2,
               "transferSize": 288128,
               "encodedBodySize": 287828,
               "decodedBodySize": 287828
@@ -597,7 +2051,7 @@
             {
               "name": "http://localhost:3005/_next/static/chunks/11kn~pqnvftmi.js",
               "initiatorType": "script",
-              "duration": 32.6,
+              "duration": 26.8,
               "transferSize": 235831,
               "encodedBodySize": 235531,
               "decodedBodySize": 899943
@@ -605,7 +2059,7 @@
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/enjoyables-official.gif",
               "initiatorType": "img",
-              "duration": 6.1,
+              "duration": 4,
               "transferSize": 190906,
               "encodedBodySize": 190606,
               "decodedBodySize": 190606
@@ -613,19 +2067,871 @@
             {
               "name": "http://localhost:3005/museum/formal-room/placeholders/enjoyables-official.gif",
               "initiatorType": "fetch",
-              "duration": 0.7,
+              "duration": 1.3,
               "transferSize": 0,
               "encodedBodySize": 190606,
               "decodedBodySize": 190606
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0lg.3dv38.o58.js",
+              "initiatorType": "script",
+              "duration": 24,
+              "transferSize": 186970,
+              "encodedBodySize": 186670,
+              "decodedBodySize": 820399
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/galleries/poster-atlas.webp",
+              "initiatorType": "img",
+              "duration": 2,
+              "transferSize": 163316,
+              "encodedBodySize": 163016,
+              "decodedBodySize": 163016
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/0shlgu.z~fy~u.js",
+              "initiatorType": "script",
+              "duration": 10.9,
+              "transferSize": 74583,
+              "encodedBodySize": 74283,
+              "decodedBodySize": 282037
+            },
+            {
+              "name": "http://localhost:3005/_next/static/chunks/110q6k5sdl4es.js",
+              "initiatorType": "script",
+              "duration": 15.8,
+              "transferSize": 64376,
+              "encodedBodySize": 64076,
+              "decodedBodySize": 203384
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/curated-hearts.webp",
+              "initiatorType": "img",
+              "duration": 3.6,
+              "transferSize": 59704,
+              "encodedBodySize": 59404,
+              "decodedBodySize": 59404
+            },
+            {
+              "name": "http://localhost:3005/museum/formal-room/placeholders/curated-hearts.webp",
+              "initiatorType": "fetch",
+              "duration": 1,
+              "transferSize": 0,
+              "encodedBodySize": 59404,
+              "decodedBodySize": 59404
             }
           ]
         }
       },
+      "traversal": [
+        {
+          "name": "opening-salon-to-atrium",
+          "expectedAnnouncement": "Central Atrium",
+          "from": {
+            "x": 0,
+            "z": 5.2,
+            "yaw": 3.141592653589793,
+            "pitch": -0.04
+          },
+          "to": {
+            "x": 0,
+            "z": 10.4,
+            "yaw": 3.141592653589793,
+            "pitch": -0.02
+          },
+          "framePacing": {
+            "sampleMs": 4698.3,
+            "frames": 33,
+            "averageFps": 7.02,
+            "averageFrameMs": 142.37,
+            "p50FrameMs": 50,
+            "p95FrameMs": 183.5,
+            "p99FrameMs": 2900.4,
+            "maxFrameMs": 2900.4,
+            "longFrameCount": 16,
+            "longFrameRatio": 0.4848,
+            "severeLongFrameCount": 2,
+            "observedLongTasks": [
+              {
+                "startTime": 13315,
+                "duration": 55
+              },
+              {
+                "startTime": 13371.3,
+                "duration": 59
+              },
+              {
+                "startTime": 13432.4,
+                "duration": 62
+              },
+              {
+                "startTime": 13501.7,
+                "duration": 54
+              },
+              {
+                "startTime": 13557.5,
+                "duration": 54
+              },
+              {
+                "startTime": 13612.6,
+                "duration": 53
+              },
+              {
+                "startTime": 13667.7,
+                "duration": 54
+              },
+              {
+                "startTime": 13729.3,
+                "duration": 59
+              },
+              {
+                "startTime": 13789.9,
+                "duration": 56
+              },
+              {
+                "startTime": 13846.9,
+                "duration": 54
+              },
+              {
+                "startTime": 13902.3,
+                "duration": 51
+              },
+              {
+                "startTime": 13954.3,
+                "duration": 52
+              },
+              {
+                "startTime": 14007.3,
+                "duration": 52
+              },
+              {
+                "startTime": 14060,
+                "duration": 51
+              },
+              {
+                "startTime": 14112.7,
+                "duration": 50
+              },
+              {
+                "startTime": 14163.4,
+                "duration": 51
+              },
+              {
+                "startTime": 14265.3,
+                "duration": 51
+              },
+              {
+                "startTime": 14317.5,
+                "duration": 51
+              },
+              {
+                "startTime": 14375.2,
+                "duration": 54
+              },
+              {
+                "startTime": 14430.4,
+                "duration": 54
+              },
+              {
+                "startTime": 14485.7,
+                "duration": 52
+              },
+              {
+                "startTime": 14539.6,
+                "duration": 50
+              },
+              {
+                "startTime": 14593.9,
+                "duration": 51
+              },
+              {
+                "startTime": 14696.7,
+                "duration": 52
+              },
+              {
+                "startTime": 14750.6,
+                "duration": 50
+              },
+              {
+                "startTime": 14801.8,
+                "duration": 172
+              },
+              {
+                "startTime": 14975.8,
+                "duration": 50
+              },
+              {
+                "startTime": 15182.5,
+                "duration": 57
+              },
+              {
+                "startTime": 15239.9,
+                "duration": 2845
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 0,
+            "knownTransferBytes": 0,
+            "knownDecodedBytes": 0,
+            "byType": {},
+            "resources": []
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 38126,
+            "callsPerFrame": 1155.33,
+            "callsPerSecond": 8114.85,
+            "byMethod": {
+              "drawArrays": 3088,
+              "drawElements": 34774,
+              "drawArraysInstanced": 66,
+              "drawElementsInstanced": 198,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in the Central Atrium.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "atrium-glowbud-garden",
+          "expectedAnnouncement": "Central Atrium",
+          "from": {
+            "x": 0,
+            "z": 15.2,
+            "yaw": 3.141592653589793,
+            "pitch": -0.08
+          },
+          "to": {
+            "x": 0.15,
+            "z": 21.2,
+            "yaw": 2.961592653589793,
+            "pitch": -0.06
+          },
+          "framePacing": {
+            "sampleMs": 2213.3,
+            "frames": 31,
+            "averageFps": 14.01,
+            "averageFrameMs": 71.4,
+            "p50FrameMs": 49,
+            "p95FrameMs": 234.3,
+            "p99FrameMs": 699.1,
+            "maxFrameMs": 699.1,
+            "longFrameCount": 9,
+            "longFrameRatio": 0.2903,
+            "severeLongFrameCount": 2,
+            "observedLongTasks": [
+              {
+                "startTime": 18937.8,
+                "duration": 55
+              },
+              {
+                "startTime": 19145.2,
+                "duration": 50
+              },
+              {
+                "startTime": 19316.8,
+                "duration": 57
+              },
+              {
+                "startTime": 19416,
+                "duration": 52
+              },
+              {
+                "startTime": 19511.9,
+                "duration": 104
+              },
+              {
+                "startTime": 19617.3,
+                "duration": 52
+              },
+              {
+                "startTime": 19672.1,
+                "duration": 240
+              },
+              {
+                "startTime": 19912.5,
+                "duration": 703
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 0,
+            "knownTransferBytes": 0,
+            "knownDecodedBytes": 0,
+            "byType": {},
+            "resources": []
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 11895,
+            "callsPerFrame": 383.71,
+            "callsPerSecond": 5374.33,
+            "byMethod": {
+              "drawArrays": 1070,
+              "drawElements": 10701,
+              "drawArraysInstanced": 62,
+              "drawElementsInstanced": 62,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in the Central Atrium.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "moba-one-portrait-salon",
+          "expectedAnnouncement": "Portraits of an Enjoyer",
+          "from": {
+            "x": -12.2,
+            "z": 8.5,
+            "yaw": 3.141592653589793,
+            "pitch": 0.02
+          },
+          "to": {
+            "x": -12.2,
+            "z": 13.2,
+            "yaw": 3.021592653589793,
+            "pitch": 0.03
+          },
+          "framePacing": {
+            "sampleMs": 2235.5,
+            "frames": 34,
+            "averageFps": 15.21,
+            "averageFrameMs": 65.75,
+            "p50FrameMs": 33.4,
+            "p95FrameMs": 83.4,
+            "p99FrameMs": 966.7,
+            "maxFrameMs": 966.7,
+            "longFrameCount": 7,
+            "longFrameRatio": 0.2059,
+            "severeLongFrameCount": 1,
+            "observedLongTasks": [
+              {
+                "startTime": 20773.4,
+                "duration": 1141
+              },
+              {
+                "startTime": 21917.5,
+                "duration": 54
+              },
+              {
+                "startTime": 21971.8,
+                "duration": 77
+              },
+              {
+                "startTime": 22051.8,
+                "duration": 890
+              },
+              {
+                "startTime": 23822.5,
+                "duration": 76
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 2,
+            "knownTransferBytes": 324668,
+            "knownDecodedBytes": 324068,
+            "byType": {
+              "img": {
+                "count": 2,
+                "knownTransferBytes": 324668,
+                "knownDecodedBytes": 324068
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-586-sheet.webp",
+                "initiatorType": "img",
+                "duration": 6.9,
+                "transferSize": 273276,
+                "encodedBodySize": 272976,
+                "decodedBodySize": 272976
+              },
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/moba-two/top-holders-balanced-20260823-token-586-poster.webp",
+                "initiatorType": "img",
+                "duration": 5.7,
+                "transferSize": 51392,
+                "encodedBodySize": 51092,
+                "decodedBodySize": 51092
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 16557,
+            "callsPerFrame": 486.97,
+            "callsPerSecond": 7406.4,
+            "byMethod": {
+              "drawArrays": 1019,
+              "drawElements": 15232,
+              "drawArraysInstanced": 68,
+              "drawElementsInstanced": 238,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in Portraits of an Enjoyer.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "moba-two-heart-gallery",
+          "expectedAnnouncement": "Curated Hearts",
+          "from": {
+            "x": -12.2,
+            "z": 21.4,
+            "yaw": 3.141592653589793,
+            "pitch": -0.06
+          },
+          "to": {
+            "x": -12.2,
+            "z": 25.5,
+            "yaw": 3.001592653589793,
+            "pitch": -0.03
+          },
+          "framePacing": {
+            "sampleMs": 2231.6,
+            "frames": 62,
+            "averageFps": 27.78,
+            "averageFrameMs": 35.33,
+            "p50FrameMs": 33.3,
+            "p95FrameMs": 50.7,
+            "p99FrameMs": 133.3,
+            "maxFrameMs": 133.3,
+            "longFrameCount": 5,
+            "longFrameRatio": 0.0806,
+            "severeLongFrameCount": 2,
+            "observedLongTasks": [
+              {
+                "startTime": 24513.2,
+                "duration": 264
+              },
+              {
+                "startTime": 24779.2,
+                "duration": 125
+              },
+              {
+                "startTime": 24937.4,
+                "duration": 101
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 0,
+            "knownTransferBytes": 0,
+            "knownDecodedBytes": 0,
+            "byType": {},
+            "resources": []
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 13690,
+            "callsPerFrame": 220.81,
+            "callsPerSecond": 6134.61,
+            "byMethod": {
+              "drawArrays": 778,
+              "drawElements": 12416,
+              "drawArraysInstanced": 124,
+              "drawElementsInstanced": 372,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in Curated Hearts.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "photography-north-light-room",
+          "expectedAnnouncement": "One Final Album",
+          "from": {
+            "x": 12.2,
+            "z": 31,
+            "yaw": 0,
+            "pitch": 0.08
+          },
+          "to": {
+            "x": 12.35,
+            "z": 27.5,
+            "yaw": 0.12,
+            "pitch": 0.1
+          },
+          "framePacing": {
+            "sampleMs": 2212,
+            "frames": 43,
+            "averageFps": 19.44,
+            "averageFrameMs": 51.44,
+            "p50FrameMs": 50,
+            "p95FrameMs": 100.9,
+            "p99FrameMs": 166.7,
+            "maxFrameMs": 166.7,
+            "longFrameCount": 17,
+            "longFrameRatio": 0.3953,
+            "severeLongFrameCount": 3,
+            "observedLongTasks": [
+              {
+                "startTime": 27051.2,
+                "duration": 1116
+              },
+              {
+                "startTime": 28174.5,
+                "duration": 74
+              },
+              {
+                "startTime": 28248.8,
+                "duration": 87
+              },
+              {
+                "startTime": 28338.1,
+                "duration": 71
+              },
+              {
+                "startTime": 28716.7,
+                "duration": 95
+              },
+              {
+                "startTime": 28812.5,
+                "duration": 52
+              },
+              {
+                "startTime": 28918.3,
+                "duration": 115
+              },
+              {
+                "startTime": 29085.5,
+                "duration": 69
+              },
+              {
+                "startTime": 29200.7,
+                "duration": 62
+              },
+              {
+                "startTime": 29564,
+                "duration": 52
+              },
+              {
+                "startTime": 29750.4,
+                "duration": 50
+              },
+              {
+                "startTime": 29907.6,
+                "duration": 52
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 1,
+            "knownTransferBytes": 36178,
+            "knownDecodedBytes": 35878,
+            "byType": {
+              "img": {
+                "count": 1,
+                "knownTransferBytes": 36178,
+                "knownDecodedBytes": 35878
+              }
+            },
+            "resources": [
+              {
+                "name": "http://localhost:3005/museum/formal-room/galleries/holiday/art-07.webp",
+                "initiatorType": "img",
+                "duration": 14.2,
+                "transferSize": 36178,
+                "encodedBodySize": 35878,
+                "decodedBodySize": 35878
+              }
+            ]
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 44798,
+            "callsPerFrame": 1041.81,
+            "callsPerSecond": 20252.26,
+            "byMethod": {
+              "drawArrays": 5371,
+              "drawElements": 39255,
+              "drawArraysInstanced": 86,
+              "drawElementsInstanced": 86,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in One Final Album.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        },
+        {
+          "name": "holiday-potluck-winter-gallery",
+          "expectedAnnouncement": "MoBA × Tweaks",
+          "from": {
+            "x": 12.2,
+            "z": 17.9,
+            "yaw": 0,
+            "pitch": 0.02
+          },
+          "to": {
+            "x": 12.25,
+            "z": 11.5,
+            "yaw": 0.1,
+            "pitch": 0.04
+          },
+          "framePacing": {
+            "sampleMs": 2217.3,
+            "frames": 65,
+            "averageFps": 29.31,
+            "averageFrameMs": 34.11,
+            "p50FrameMs": 33.3,
+            "p95FrameMs": 50,
+            "p99FrameMs": 150,
+            "maxFrameMs": 150,
+            "longFrameCount": 3,
+            "longFrameRatio": 0.0462,
+            "severeLongFrameCount": 1,
+            "observedLongTasks": [
+              {
+                "startTime": 31741.6,
+                "duration": 65
+              },
+              {
+                "startTime": 32630.1,
+                "duration": 153
+              }
+            ]
+          },
+          "resourceChurn": {
+            "count": 0,
+            "knownTransferBytes": 0,
+            "knownDecodedBytes": 0,
+            "byType": {},
+            "resources": []
+          },
+          "decodeChurn": {
+            "imageDecodeCalls": 0,
+            "imageDecodeResolved": 0,
+            "imageDecodeRejected": 0,
+            "imageBitmapCalls": 0,
+            "imageBitmapResolved": 0,
+            "imageBitmapRejected": 0
+          },
+          "webglDrawCalls": {
+            "available": true,
+            "totalCalls": 22817,
+            "callsPerFrame": 351.03,
+            "callsPerSecond": 10290.44,
+            "byMethod": {
+              "drawArrays": 1586,
+              "drawElements": 20971,
+              "drawArraysInstanced": 130,
+              "drawElementsInstanced": 130,
+              "drawArraysInstancedANGLE": 0,
+              "drawElementsInstancedANGLE": 0
+            },
+            "instrumentedMethods": [
+              "WebGLRenderingContext.drawArrays",
+              "WebGLRenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArrays",
+              "WebGL2RenderingContext.drawElements",
+              "WebGL2RenderingContext.drawArraysInstanced",
+              "WebGL2RenderingContext.drawElementsInstanced"
+            ],
+            "instrumentationErrors": []
+          },
+          "visual": {
+            "captureReady": true,
+            "performanceTier": "compact",
+            "galleryAnnouncement": "Museum walk. You are in MoBA × Tweaks.",
+            "canvasCount": 1,
+            "canvasBuffer": {
+              "width": 335,
+              "height": 725
+            },
+            "motionPipelineCount": 0,
+            "playingMotionPipelineCount": 0,
+            "imageElementCount": 0,
+            "completeImageElementCount": 0,
+            "videoElementCount": 0,
+            "playingVideoElementCount": 0
+          },
+          "pass": true,
+          "failures": [],
+          "frameTimingMode": "advisory-software-renderer"
+        }
+      ],
       "network": {
-        "responseCount": 47,
-        "contentLengthKnownCount": 27,
-        "contentLengthUnknownCount": 20,
-        "knownContentLengthBytes": 4945156,
+        "responseCount": 33,
+        "contentLengthKnownCount": 14,
+        "contentLengthUnknownCount": 19,
+        "knownContentLengthBytes": 3382898,
         "httpErrorCount": 0,
         "httpErrors": [],
         "byType": {
@@ -641,23 +2947,19 @@
             "count": 2,
             "knownContentLengthBytes": 0
           },
-          "other": {
-            "count": 1,
-            "knownContentLengthBytes": 0
-          },
           "image": {
-            "count": 22,
-            "knownContentLengthBytes": 3684434
+            "count": 11,
+            "knownContentLengthBytes": 2286688
           },
           "fetch": {
-            "count": 5,
-            "knownContentLengthBytes": 1260722
+            "count": 3,
+            "knownContentLengthBytes": 1096210
           }
         },
         "failedRequestCount": 0,
         "failedRequests": [],
-        "effectiveResourceRequestCount": 47,
-        "effectiveKnownPayloadBytes": 5714108
+        "effectiveResourceRequestCount": 33,
+        "effectiveKnownPayloadBytes": 3426093
       },
       "diagnostics": {
         "consoleErrors": [],

@@ -1,7 +1,16 @@
 'use client'
 
 import { useFrame, useLoader } from '@react-three/fiber'
-import { Suspense, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react'
+import {
+  Suspense,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from 'react'
 import * as THREE from 'three'
 import { OutlineMesh } from '../../render/OutlineMesh'
 import { getToonRampTexture } from '../../shaders/toonRamp'
@@ -82,7 +91,6 @@ import type {
   AppliedAtriumInstallation,
   MuseumAssetSummary,
 } from '../collection-registry/museumAssetTypes'
-import { ownedNftMediaProxyUrl } from './ownedNfts'
 import {
   resolveMuseumDetailVisibility,
   type MuseumPerformanceProfile,
@@ -776,7 +784,7 @@ function AtriumArtworkMedia({
   artwork,
   layout,
   animationIndex,
-  visible,
+  detailed,
   animate,
   motionFps,
   performanceProfile,
@@ -785,7 +793,7 @@ function AtriumArtworkMedia({
   artwork: AtriumWallArtwork
   layout: ReturnType<typeof atriumArtworkFrameLayout>
   animationIndex: number
-  visible: boolean
+  detailed: boolean
   animate: boolean
   motionFps: number
   performanceProfile: MuseumPerformanceProfile
@@ -805,18 +813,25 @@ function AtriumArtworkMedia({
       width={layout.mediaWidth}
       height={layout.mediaHeight}
       onAspectRatio={onAspectRatio}
+      surfaceZ={0.135}
     />
   ) : null
   const lowDetailPoster = atlasPoster ?? personalLodPoster
-  const poster = (
+  const highDetailPoster = (
     <AtriumPosterBoundary
       poster={artwork.imageUrl}
       width={layout.mediaWidth}
       height={layout.mediaHeight}
       onAspectRatio={onAspectRatio}
+      fallback={lowDetailPoster}
+      surfaceZ={0.145}
     />
   )
-  const basePoster = visible ? poster : lowDetailPoster
+  // The lightweight atlas/LOD surface never leaves. Nearby works add their
+  // crisp source above it, so crossing a distance band cannot produce a blank
+  // frame while far rooms stay within the browser's graphics-memory budget.
+  const basePoster = lowDetailPoster ?? highDetailPoster
+  const detailedPoster = detailed && lowDetailPoster ? highDetailPoster : null
   if (animate
     && (
     artwork.motionSheet
@@ -826,26 +841,31 @@ function AtriumArtworkMedia({
     && artwork.frameCount > 1)
   ) {
     return (
-      <Suspense fallback={basePoster}>
-        <GalleryMotionSheetPlane
-          artworkId={`atrium-${artwork.id}`}
-          source={artwork.motionSheet}
-          width={layout.mediaWidth}
-          height={layout.mediaHeight}
-          frameCount={artwork.frameCount}
-          columns={artwork.motionSheetColumns}
-          rows={artwork.motionSheetRows}
-          frameDurationMs={artwork.motionFrameDurationMs}
-          phaseFrames={animationIndex * 3}
-          targetFps={motionFps}
-          surfaceZ={0.145}
-        />
-      </Suspense>
+      <>
+        {basePoster}
+        {detailedPoster}
+        <Suspense fallback={null}>
+          <GalleryMotionSheetPlane
+            artworkId={`atrium-${artwork.id}`}
+            source={artwork.motionSheet}
+            width={layout.mediaWidth}
+            height={layout.mediaHeight}
+            frameCount={artwork.frameCount}
+            columns={artwork.motionSheetColumns}
+            rows={artwork.motionSheetRows}
+            frameDurationMs={artwork.motionFrameDurationMs}
+            phaseFrames={animationIndex * 3}
+            targetFps={motionFps}
+            surfaceZ={0.15}
+          />
+        </Suspense>
+      </>
     )
   }
   return (
     <>
       {basePoster}
+      {detailedPoster}
       {animate && artwork.animationUrl ? (
         <GalleryMotionPlane
           artworkId={`atrium-${artwork.id}`}
@@ -870,11 +890,13 @@ function AtriumPosterPlane({
   width,
   height,
   onAspectRatio,
+  surfaceZ = 0.145,
 }: {
   poster: string
   width: number
   height: number
   onAspectRatio: (aspectRatio: number) => void
+  surfaceZ?: number
 }) {
   const texture = usePosterTexture(poster)
   useEffect(() => {
@@ -882,16 +904,19 @@ function AtriumPosterPlane({
     if (image.width && image.height) onAspectRatio(image.width / image.height)
   }, [onAspectRatio, texture])
   return (
-    <mesh position={[0, 0.04, 0.145]} scale={[width, height, 1]} renderOrder={5}>
+    <mesh position={[0, 0.04, surfaceZ]} scale={[width, height, 1]} renderOrder={5}>
       <planeGeometry args={[1, 1]} />
       <meshBasicMaterial map={texture} toneMapped={false} />
     </mesh>
   )
 }
 
-function AtriumPosterBoundary(props: Parameters<typeof AtriumPosterPlane>[0]) {
+function AtriumPosterBoundary({
+  fallback,
+  ...props
+}: Parameters<typeof AtriumPosterPlane>[0] & { fallback?: ReactNode }) {
   return (
-    <Suspense fallback={(
+    <Suspense fallback={fallback ?? (
       <MuseumBox
         position={[0, 0.04, 0.13]}
         scale={[props.width, props.height, 0.028]}
@@ -908,7 +933,7 @@ function AtriumArtworkLabel({ artwork, layout }: { artwork: AtriumWallArtwork; l
   const texture = useMuseumSignTexture({
     kicker: artwork.source === 'personal' ? 'Your collection' : 'Museum collection',
     title: artwork.title.slice(0, 26),
-    subtitle: artwork.collection.slice(0, 34),
+    subtitle: (artwork.artist ? `Artist · ${artwork.artist}` : artwork.collection).slice(0, 34),
   }, artwork.source === 'personal' ? '#83d2c3' : AGED_BRASS, '#293934')
   return (
     <group position={[0, layout.labelY, 0.1]}>
@@ -943,6 +968,7 @@ function AtriumWallFrame({
   const provenance = createMuseumArtworkProvenance({
     id: artwork.id,
     title: artwork.title,
+    artist: artwork.artist,
     collection: artwork.collection,
     sourceUrl: artwork.sourceUrl,
     identity: artwork.identity ? museumArtworkIdentityFromAsset(artwork.identity) : undefined,
@@ -950,17 +976,17 @@ function AtriumWallFrame({
       ? { address: artwork.ownerHint.address, label: artwork.ownerHint.label }
       : null,
   })
-  const surfaceDetailed = useMuseumDetailVisibility({
+  const motionVisible = useMuseumMotionVisibility({
     rootRef: frameRef,
-    enabled: true,
+    enabled: motionEnabled && Boolean(artwork.animationUrl || artwork.motionSheet),
     maxDistance: performanceProfile.artworkMotionDistance,
     checkOffset: animationIndex,
   })
-  const motionVisible = useMuseumDetailVisibility({
+  const surfaceDetailed = useMuseumMotionVisibility({
     rootRef: frameRef,
-    enabled: motionEnabled && Boolean(artwork.animationUrl || artwork.motionSheet),
-    maxDistance: 48,
-    checkOffset: animationIndex + 101,
+    enabled: true,
+    maxDistance: performanceProfile.artworkMotionDistance,
+    checkOffset: animationIndex + 53,
   })
   const motionDetailed = motionVisible
     && motionEnabled
@@ -990,7 +1016,7 @@ function AtriumWallFrame({
         artwork={artwork}
         layout={layout}
         animationIndex={animationIndex}
-        visible={surfaceDetailed}
+        detailed={surfaceDetailed}
         animate={motionDetailed}
         motionFps={motionFps}
         performanceProfile={performanceProfile}
@@ -1019,6 +1045,7 @@ function OpeningSalonMobaGalleryHang({
         const artwork: AtriumWallArtwork = {
           id: `opening-salon-${work.id}`,
           title: work.title,
+          artist: work.artist ?? null,
           collection: 'MoBA Gallery',
           sourceUrl: work.sourceUrl,
           imageUrl: work.poster,
@@ -1072,7 +1099,13 @@ function AtriumGlowbudGardenBeds() {
   )
 }
 
-function useMuseumDetailVisibility({
+/**
+ * Keeps every frame and poster mounted, but runs expensive motion decoders only
+ * for artwork that is close enough to be appreciated. The small hysteresis
+ * buffer prevents rapid on/off changes at a doorway, while staggered checks
+ * avoid waking every animation on the same render frame.
+ */
+function useMuseumMotionVisibility({
   rootRef,
   enabled,
   maxDistance,
@@ -1083,49 +1116,46 @@ function useMuseumDetailVisibility({
   maxDistance: number
   checkOffset: number
 }) {
-  const [detailed, setDetailed] = useState(false)
-  const detailedRef = useRef(false)
-  // Spread the work across one short visibility cycle. Large global indices
-  // must never turn into a one-second blank frame on first approach.
-  const nextCheckAtRef = useRef((Math.abs(checkOffset) % 11) * 0.03)
+  const [visible, setVisible] = useState(false)
+  const visibleRef = useRef(false)
+  const nextCheckAtRef = useRef((Math.abs(checkOffset) % 13) * 0.035)
   const scratch = useMemo(() => ({
     world: new THREE.Vector3(),
     projected: new THREE.Vector3(),
   }), [])
 
   useEffect(() => {
-    if (enabled || !detailedRef.current) return
-    detailedRef.current = false
-    setDetailed(false)
+    if (enabled || !visibleRef.current) return
+    visibleRef.current = false
+    setVisible(false)
   }, [enabled])
 
   useFrame(({ camera, clock }) => {
     if (!enabled) return
     const now = clock.elapsedTime
     if (now < nextCheckAtRef.current) return
-    nextCheckAtRef.current = now + 0.36
+    nextCheckAtRef.current = now + 0.42
     const root = rootRef.current
     if (!root) return
 
     root.getWorldPosition(scratch.world)
-    const wasDetailed = detailedRef.current
+    const wasVisible = visibleRef.current
     const distance = camera.position.distanceTo(scratch.world)
     scratch.projected.copy(scratch.world).project(camera)
-    const shouldShowDetail = resolveMuseumDetailVisibility({
+    const shouldShow = resolveMuseumDetailVisibility({
       distance,
       projectedX: scratch.projected.x,
       projectedY: scratch.projected.y,
       projectedZ: scratch.projected.z,
       maxDistance,
-      wasDetailed,
+      wasDetailed: wasVisible,
     })
-
-    if (shouldShowDetail === wasDetailed) return
-    detailedRef.current = shouldShowDetail
-    setDetailed(shouldShowDetail)
+    if (shouldShow === wasVisible) return
+    visibleRef.current = shouldShow
+    setVisible(shouldShow)
   })
 
-  return detailed
+  return visible
 }
 
 function AtriumResidentGlowbud({
@@ -1134,7 +1164,7 @@ function AtriumResidentGlowbud({
   paused,
   reducedMotion,
   museumResident,
-  performanceProfile,
+  motionFps,
   onSelect,
 }: {
   resident: MuseumAssetSummary
@@ -1142,24 +1172,13 @@ function AtriumResidentGlowbud({
   paused: boolean
   reducedMotion: boolean
   museumResident: boolean
-  performanceProfile: MuseumPerformanceProfile
+  motionFps: number
   onSelect?: (resident: MuseumAssetSummary) => void
 }) {
-  const residentRef = useRef<THREE.Group>(null)
+  const residentRoot = useRef<THREE.Group>(null)
   const [hovered, setHovered] = useState(false)
   const slot = ATRIUM_RESIDENT_SLOTS[index]
   const attributes = resident.attributes.length ? resident.attributes : glowbudAttributesForToken(resident.tokenId)
-  const pixelLodSource = museumResident
-    ? `/museum/formal-room/glowbuds/lod/${resident.tokenId}.webp`
-    : resident.imageUrl
-      ? ownedNftMediaProxyUrl(resident.imageUrl, 'lod')
-      : null
-  const avatarDetailed = useMuseumDetailVisibility({
-    rootRef: residentRef,
-    enabled: true,
-    maxDistance: performanceProfile.glowbudDetailDistance,
-    checkOffset: index,
-  })
 
   useEffect(() => {
     if (!hovered) return
@@ -1172,7 +1191,7 @@ function AtriumResidentGlowbud({
   if (!slot) return null
   return (
     <group
-      ref={residentRef}
+      ref={residentRoot}
       position={[slot.position[0], slot.position[1], slot.position[2]]}
       rotation={[0, slot.yaw, 0]}
       onPointerOver={(event) => {
@@ -1209,51 +1228,15 @@ function AtriumResidentGlowbud({
           side={THREE.DoubleSide}
         />
       </mesh>
-      {avatarDetailed ? (
-        <GlowbudMuseumAvatar
-          tokenId={resident.tokenId}
-          attributes={attributes}
-          phase={index * 0.72}
-          paused={paused}
-          reducedMotion={reducedMotion}
-        />
-      ) : pixelLodSource ? (
-        <Suspense fallback={(
-          <mesh position={[0, 0.62, 0]} scale={[0.7, 0.78, 0.04]}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshToonMaterial color="#263b35" gradientMap={TOON_RAMP} />
-          </mesh>
-        )}>
-          <GlowbudPixelLodCard tokenId={resident.tokenId} source={pixelLodSource} />
-        </Suspense>
-      ) : null}
-    </group>
-  )
-}
-
-function GlowbudPixelLodCard({ tokenId, source }: { tokenId: string; source: string }) {
-  const texture = useGlowbudPixelLodTexture(source)
-  return (
-    <group
-      position={[0, 0.62, 0]}
-      userData={{
-        glowbud: tokenId,
-        renderer: 'canonical-pixel-far-lod',
-        transition: 'approach-for-canonical-3d',
-      }}
-    >
-      <mesh position={[0, 0.04, -0.025]} scale={[0.74, 0.82, 0.05]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color="#263b35" gradientMap={TOON_RAMP} />
-      </mesh>
-      <mesh position={[0, 0.04, 0.012]} scale={[0.67, 0.67, 1]} renderOrder={4}>
-        <planeGeometry args={[1, 1]} />
-        <meshBasicMaterial map={texture} toneMapped={false} />
-      </mesh>
-      <mesh position={[0, -0.39, -0.025]} scale={[0.38, 0.055, 0.18]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshToonMaterial color={AGED_BRASS} gradientMap={TOON_RAMP} />
-      </mesh>
+      <GlowbudMuseumAvatar
+        tokenId={resident.tokenId}
+        attributes={attributes}
+        phase={index * 0.72}
+        paused={paused}
+        reducedMotion={reducedMotion}
+        motionFps={motionFps}
+        quality="resident"
+      />
     </group>
   )
 }
@@ -1264,6 +1247,7 @@ function AtriumPersonalInstallation({
   paused,
   reducedMotion,
   performanceProfile,
+  glowbudMotionFps,
   motionEnabled,
   motionFps,
   onSelectResident,
@@ -1273,6 +1257,7 @@ function AtriumPersonalInstallation({
   paused: boolean
   reducedMotion: boolean
   performanceProfile: MuseumPerformanceProfile
+  glowbudMotionFps: number
   motionEnabled: boolean
   motionFps: number
   onSelectResident?: (resident: MuseumAssetSummary) => void
@@ -1304,7 +1289,7 @@ function AtriumPersonalInstallation({
           paused={paused}
           reducedMotion={reducedMotion}
           museumResident={!installation}
-          performanceProfile={performanceProfile}
+          motionFps={glowbudMotionFps}
           onSelect={onSelectResident}
         />
       ))}
@@ -1416,8 +1401,15 @@ function MuseumAtrium({
         reducedMotion={reducedMotion}
         paused={installationPaused}
         performanceProfile={performanceProfile}
-        motionEnabled={!reducedMotion && !installationPaused}
-        motionFps={active ? performanceProfile.activeMotionFps : performanceProfile.distantMotionFps}
+        glowbudMotionFps={active
+          ? performanceProfile.glowbudMotionFps
+          : performanceProfile.distantGlowbudMotionFps}
+        motionEnabled={!reducedMotion}
+        motionFps={installationPaused
+          ? 1
+          : active
+            ? performanceProfile.activeMotionFps
+            : performanceProfile.distantMotionFps}
         onSelectResident={onSelectResident}
       />
       <AtriumMobile active={active} reducedMotion={reducedMotion} />
@@ -4182,20 +4174,6 @@ function usePosterTexture(poster: string) {
   return texture
 }
 
-function useGlowbudPixelLodTexture(source: string) {
-  const loadedTexture = useLoader(THREE.TextureLoader, source)
-  const texture = useMemo(() => loadedTexture.clone(), [loadedTexture])
-  useEffect(() => {
-    texture.colorSpace = THREE.SRGBColorSpace
-    texture.generateMipmaps = false
-    texture.minFilter = THREE.NearestFilter
-    texture.magFilter = THREE.NearestFilter
-    texture.needsUpdate = true
-    return () => texture.dispose()
-  }, [texture])
-  return texture
-}
-
 function MuseumPosterAtlasPlane({
   posterAtlasIndex,
   width,
@@ -4263,13 +4241,15 @@ function GalleryPosterBoundary({
   poster,
   width,
   height,
+  fallback = null,
 }: {
   poster: string
   width: number
   height: number
+  fallback?: ReactNode
 }) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={fallback}>
       <GalleryPosterPlane poster={poster} width={width} height={height} />
     </Suspense>
   )
@@ -4332,12 +4312,12 @@ function GalleryMotionPlane({
     let fallbackTimer: number | null = null
     let fallbackImage: HTMLImageElement | null = null
     let decoder: ImageDecoder | null = null
-    const controller = new AbortController()
     const debugProbe = process.env.NODE_ENV === 'development'
+      && window.location.search.includes('capture=1')
       ? document.createElement('i')
       : null
     const debugCanvas = debugProbe ? document.createElement('canvas') : null
-    const debugContext = debugCanvas?.getContext('2d') ?? null
+    const debugContext = debugCanvas?.getContext('2d', { willReadFrequently: true }) ?? null
     let paintCount = 0
     const currentFrameDurationMs = () => 1000 / THREE.MathUtils.clamp(targetFpsRef.current, 1, 24)
 
@@ -4425,12 +4405,20 @@ function GalleryMotionPlane({
     const startDecoder = async () => {
       try {
         if (typeof ImageDecoder === 'undefined') throw new Error('image_decoder_unavailable')
-        const response = await fetch(source, { cache: 'force-cache', signal: controller.signal })
+        // Read the small local motion asset completely before handing it to
+        // ImageDecoder. Firefox reports a failed request when a streaming
+        // decoder is closed as a visitor crosses a detail boundary, even
+        // though the permanent poster underneath remains healthy. Letting the
+        // cacheable request finish keeps browser diagnostics clean and avoids
+        // needless cancel/reload churn when the visitor turns back.
+        const response = await fetch(source, { cache: 'force-cache' })
         if (!response.ok) throw new Error('motion_fetch_failed')
         const type = response.headers.get('content-type')?.split(';')[0]?.trim()
         if (!type || !await ImageDecoder.isTypeSupported(type)) throw new Error('motion_type_unsupported')
+        const data = await response.arrayBuffer()
+        if (cancelled) return
         const nextDecoder = new ImageDecoder({
-          data: response.body ?? await response.arrayBuffer(),
+          data,
           type,
           desiredWidth: canvas.width,
           desiredHeight: canvas.height,
@@ -4495,7 +4483,6 @@ function GalleryMotionPlane({
 
     return () => {
       cancelled = true
-      controller.abort()
       if (startTimer !== null) window.clearTimeout(startTimer)
       if (animationTimer !== null) window.clearTimeout(animationTimer)
       if (fallbackTimer !== null) window.clearTimeout(fallbackTimer)
@@ -4566,7 +4553,10 @@ function GalleryMotionSheetPlane({
   }, [columns, rows, texture])
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return
+    if (
+      process.env.NODE_ENV !== 'development'
+      || !window.location.search.includes('capture=1')
+    ) return
     const probe = document.createElement('i')
     probe.hidden = true
     probe.dataset.museumMotionArtwork = artworkId
@@ -4630,7 +4620,6 @@ function GalleryArtworkFrame({
   gallery,
   animate,
   animationIndex,
-  visibilityIndex,
   motionFps,
   performanceProfile,
 }: {
@@ -4638,7 +4627,6 @@ function GalleryArtworkFrame({
   gallery: MuseumGalleryPlan
   animate: boolean
   animationIndex: number
-  visibilityIndex: number
   motionFps: number
   performanceProfile: MuseumPerformanceProfile
 }) {
@@ -4666,21 +4654,19 @@ function GalleryArtworkFrame({
   const isPhotographyGallery = gallery.id === 'photography'
   const isHolidayGallery = gallery.id === 'holiday'
   const surfaceLighting = MUSEUM_GALLERY_SURFACE_LIGHTING[gallery.id as PermanentMuseumGalleryId]
-  const surfaceDetailed = useMuseumDetailVisibility({
+  const motionVisible = useMuseumMotionVisibility({
+    rootRef: frameRef,
+    enabled: animate && Boolean(work.motion || work.motionSheet),
+    maxDistance: performanceProfile.artworkMotionDistance,
+    checkOffset: animationIndex + 101,
+  })
+  const surfaceDetailed = useMuseumMotionVisibility({
     rootRef: frameRef,
     enabled: true,
     maxDistance: performanceProfile.artworkMotionDistance,
-    checkOffset: visibilityIndex,
+    checkOffset: animationIndex + 47,
   })
-  const motionVisible = useMuseumDetailVisibility({
-    rootRef: frameRef,
-    enabled: animate && Boolean(work.motion || work.motionSheet),
-    maxDistance: 48,
-    checkOffset: visibilityIndex + 151,
-  })
-  const motionDetailed = motionVisible
-    && animate
-    && Boolean(work.motion || work.motionSheet)
+  const motionDetailed = motionVisible && animate && Boolean(work.motion || work.motionSheet)
   const frameWidth = artWidth + matPad * 2
   const frameHeight = artHeight + matPad * 2
   const palette = isPortraitSalon
@@ -4704,13 +4690,6 @@ function GalleryArtworkFrame({
           ? { outer: '#6d7771', inner: '#c4b89f', mat: '#f6f1e7', plaque: '#c8bda9' }
           : galleryFramePalette(display.frameStyle, gallery)
       : galleryFramePalette(display.frameStyle, gallery)
-  const posterBoundary = (
-    <GalleryPosterBoundary
-      poster={work.poster}
-      width={artWidth}
-      height={artHeight}
-    />
-  )
   const atlasBoundary = (
     <MuseumPosterAtlasPlane
       posterAtlasIndex={work.posterAtlasIndex}
@@ -4718,9 +4697,22 @@ function GalleryArtworkFrame({
       height={artHeight}
     />
   )
+  const posterBoundary = (
+    <GalleryPosterBoundary
+      poster={work.poster}
+      width={artWidth}
+      height={artHeight}
+      fallback={atlasBoundary}
+    />
+  )
+  const stableBaseSurface = atlasBoundary
+  const detailedPoster = surfaceDetailed ? posterBoundary : null
   const artworkSurface = (
     motionDetailed && work.motionSheet ? (
-      <Suspense fallback={surfaceDetailed ? posterBoundary : atlasBoundary}>
+      <>
+        {stableBaseSurface}
+        {detailedPoster}
+        <Suspense fallback={null}>
           <GalleryMotionSheetPlane
             artworkId={work.id}
             source={work.motionSheet}
@@ -4733,10 +4725,12 @@ function GalleryArtworkFrame({
             phaseFrames={animationIndex * 2}
             targetFps={motionFps}
           />
-      </Suspense>
+        </Suspense>
+      </>
     ) : (
       <>
-        {surfaceDetailed ? posterBoundary : atlasBoundary}
+        {stableBaseSurface}
+        {detailedPoster}
         {motionDetailed && work.motion ? (
           <GalleryMotionPlane
             artworkId={work.id}
@@ -4767,6 +4761,7 @@ function GalleryArtworkFrame({
         [MUSEUM_ARTWORK_USER_DATA_KEY]: createMuseumArtworkProvenance({
           id: work.id,
           title: work.title,
+          artist: work.artist,
           collection: gallery.shortTitle,
           sourceUrl: work.sourceUrl,
           ownerHint: work.collector
@@ -4865,7 +4860,6 @@ function GalleryExhibition({
             gallery={gallery}
             animate={animate}
             animationIndex={animationIndex}
-            visibilityIndex={index}
             motionFps={motionFps}
             performanceProfile={performanceProfile}
           />
@@ -5251,10 +5245,12 @@ export function MuseumExpansion({
   return (
     <group>
       <OpeningSalonMobaGalleryHang
-        motionEnabled={!reducedMotion && !motionPaused}
-        motionFps={activeMuseumArea === 'lobby'
-          ? performanceProfile.activeMotionFps
-          : performanceProfile.distantMotionFps}
+        motionEnabled={!reducedMotion}
+        motionFps={motionPaused
+          ? 1
+          : activeMuseumArea === 'lobby'
+            ? performanceProfile.activeMotionFps
+            : performanceProfile.distantMotionFps}
         performanceProfile={performanceProfile}
       />
       <MuseumLoreStation
@@ -5311,10 +5307,12 @@ export function MuseumExpansion({
               />
               <GalleryExhibition
                 gallery={gallery}
-                animate={!reducedMotion && !motionPaused}
-                motionFps={activeGalleryId === gallery.id && activeMuseumArea === gallery.id
-                  ? performanceProfile.activeMotionFps
-                  : performanceProfile.distantMotionFps}
+                animate={!reducedMotion}
+                motionFps={motionPaused
+                  ? 1
+                  : activeGalleryId === gallery.id && activeMuseumArea === gallery.id
+                    ? performanceProfile.activeMotionFps
+                    : performanceProfile.distantMotionFps}
                 performanceProfile={performanceProfile}
               />
               <GalleryLandmark galleryId={gallery.id} reducedMotion={reducedMotion} active={activeGalleryId === gallery.id && activeMuseumArea === gallery.id} />
