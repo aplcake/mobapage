@@ -1,0 +1,81 @@
+.experience { position: fixed; inset: 0; overflow: hidden; color: #233f36; background: #c8d7dd; font-family: 'MoBA Grotesque', 'Trebuchet MS', Arial, sans-serif; font-size: 15px; line-height: 1.5; font-optical-sizing: auto; letter-spacing: 0; }
+.experience * { box-sizing: border-box; }
+.experience[data-live=true] { background: #103c34; }
+.scene { position: absolute; inset: 0; }
+.experience[data-live=true][data-running=false] .scene { right: 426px; }
+.experience[data-live=true][data-running=false] .controls { left: calc((100% - 426px) / 2); }
+.experience[data-live=true][data-departure=true] .controls { left: 20px; bottom: 24px; transform: none; }
+@media (max-width: 800px) { .experience[data-live=true][data-running=false] .scene { right: 0; top: 64px; bottom: 38%; } .experience[data-live=true][data-running=false] .controls { left: 50%; bottom: 62%; } }
+.experience[data-live=true][data-departure=true] .scene { right: 0; }
+@media (max-width: 800px) { .experience[data-live=true][data-departure=true] .scene { top: 60px; bottom: 226px; } .experience[data-live=true][data-departure=true] .controls { top: 70px; bottom: auto; left: 12px; transform: none; } }
+@media (max-width: 360px) { .experience[data-live=true][data-departure=true] .scene { bottom: 246px; } }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.header { position: absolute; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: max(24px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right)) 0 max(28px, env(safe-area-inset-left)); pointer-events: none; }
+.header a, .header button { pointer-events: auto; }
+.preview { color: #f4f3e4; background: #16392ff2; padding: 9px 13px; border: 1px solid #bacbaf80; border-radius: 4px; font-size: 12px; font-weight: 500; line-height: 18px; max-width: calc(100% - 144px); text-wrap: balance; }
+@media (min-width: 700px) { .preview { position: absolute; left: max(88px, calc(env(safe-area-inset-left) + 72px)); top: max(24px, env(safe-area-inset-top)); } }
+.experience button, .iconButton { cursor: pointer; font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.iconButton, .arrowButton, .checkButton { position: relative; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #25473d; background: #eff0d9; box-shadow: 0 3px 0 #25473d; transition: background 140ms, transform 140ms, box-shadow 140ms; }
+.iconButton { width: 44px; height: 44px; border-radius: 50%; flex: 0 0 44px; }
+.experience button:focus-visible, .experience a:focus-visible { outline: 3px solid #ffdf82; outline-offset: 5px; }
+.experience button:disabled { opacity: 0.55; cursor: wait; }
+.controls { position: absolute; bottom: max(30px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); max-width: calc(100% - 32px); }
+.loadout, .playback { display: flex; align-items: center; justify-content: center; animation: arrive 260ms ease-out both; }
+.loadout { gap: 26px; }
+.passenger { display: flex; align-items: center; gap: 4px; }
+.passenger .iconButton[data-tooltip]::after { left: auto; right: 0; transform: translateY(4px); }
+.passengerBadge { min-width: 76px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.passengerArt { position: relative; width: 48px; height: 48px; flex: 0 0 auto; display: grid; place-items: center; }
+.loadError { margin: 12px 0 0; text-align: center; font-size: 12px; font-weight: 700; }
+.clearanceBadge { position: absolute; right: -7px; bottom: -4px; padding: 3px; background: #bee291; color: #25473d; border: 1px solid #25473d; border-radius: 50%; }
+.passengerBadge img { width: 48px; height: 48px; image-rendering: pixelated; border: 2px solid #25473d; border-radius: 6px; box-shadow: 0 3px 0 #25473d; animation: select 200ms ease-out; }
+.passengerBadge span { font-family: 'MoBA Mono', monospace; font-size: 12px; line-height: 18px; font-weight: 500; font-variant-numeric: tabular-nums; color: #f6f4df; background: #25473d; border-radius: 3px; padding: 2px 7px; }
+.arrowButton { width: 44px; height: 44px; border-radius: 50%; }
+.actions { display: flex; align-items: center; gap: 12px; }
+.primary { position: relative; display: flex; align-items: center; justify-content: center; gap: 12px; width: 168px; height: 60px; border: 2px solid #25473d; border-radius: 8px; background: #efbd53; box-shadow: 0 5px 0 #25473d, inset 0 2px 0 #ffe4a6; font-size: 20px !important; line-height: 1 !important; font-weight: 800 !important; transition: background 140ms, transform 140ms, box-shadow 140ms; }
+.checkButton { height: 44px; padding: 0 13px; border-radius: 6px; gap: 7px; font-size: 14px !important; font-weight: 700 !important; background: #19e783; color: #05472a !important; border-color: #05472a; }
+.playback { gap: 16px; }
+.playback .iconButton { background: #eff0d9e6; }
+.experience [data-tooltip]::after { content: attr(data-tooltip); position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(4px); background: #193b32; color: #f5f3d8; padding: 8px 11px; border: 1px solid #8fae96; border-radius: 4px; font-size: 12px; font-weight: 500; line-height: 1.4; white-space: nowrap; pointer-events: none; opacity: 0; transition: opacity 140ms, transform 140ms; z-index: 3; }
+.header [data-tooltip]::after { bottom: auto; top: calc(100% + 12px); }
+.header [data-tooltip]:first-child::after { left: 0; transform: translateY(4px); }
+.header [data-tooltip]:last-child::after { left: auto; right: 0; transform: translateY(4px); }
+.experience [data-tooltip]:focus-visible::after { opacity: 1; }
+.loadingIcon { animation: spin 1s linear infinite; }
+.fallback { display: grid; place-content: center; height: 100%; padding: 30px; text-align: center; background: #dce5d9; }
+.fallback h2 { max-width: 440px; margin: 0 auto 12px; font-size: 30px; font-weight: 800; line-height: 1.15; text-wrap: balance; }.fallback p { max-width: 380px; margin: 0 auto 24px; font-size: 15px; line-height: 1.6; text-wrap: pretty; }.fallback button { min-height: 48px; padding: 12px; font-weight: 700; background: #f1c267; border: 2px solid #183e35; border-radius: 4px; }
+@media (hover: hover) {
+  .iconButton:hover, .arrowButton:hover, .checkButton:hover { background: #fff7db; transform: translateY(-2px); box-shadow: 0 5px 0 #25473d; }
+  .primary:hover:not(:disabled) { background: #ffd277; transform: translateY(-2px); box-shadow: 0 7px 0 #25473d, inset 0 2px 0 #ffe4a6; }
+  .experience [data-tooltip]:hover::after { opacity: 1; }
+}
+.experience button:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #25473d; }
+@keyframes arrive { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes select { from { transform: scale(0.9); } to { transform: scale(1); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 600px) {
+  .header { padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left)); }
+  .preview { font-size: 12px; padding: 7px 9px; max-width: calc(100% - 104px); text-align: center; }
+  .controls { bottom: max(24px, env(safe-area-inset-bottom)); }
+  .loadout { flex-direction: column; gap: 14px; }
+  .passengerBadge { flex-direction: row; gap: 9px; min-width: 114px; }
+  .passengerBadge img { width: 42px; height: 42px; }
+  .passengerArt { width: 42px; height: 42px; }
+  .passengerBadge span { min-width: 52px; text-align: center; }
+  .passenger { gap: 10px; }
+  .primary { height: 56px; width: 170px; }
+  .checkButton { height: 46px; }
+  .checkButton[data-tooltip]::after { left: auto; right: 0; transform: translateY(4px); }
+}
+@media (max-height: 480px) and (min-width: 601px) {
+  .experience[data-live=true][data-running=false] .scene { right: 334px; top: 0; bottom: 0; }
+  .experience[data-live=true][data-running=false] .controls { left: calc((100% - 334px) / 2); bottom: max(14px, env(safe-area-inset-bottom)); }
+  .header { padding-top: max(12px, env(safe-area-inset-top)); }
+  .controls { bottom: max(14px, env(safe-area-inset-bottom)); }
+  .loadout { gap: 18px; }
+  .passengerBadge { flex-direction: row; gap: 7px; }
+  .passengerBadge img { width: 40px; height: 40px; }
+  .passengerArt { width: 40px; height: 40px; }
+  .primary { height: 48px; width: 150px; font-size: 18px !important; }
+}
+@media (prefers-reduced-motion: reduce) { .experience *, .experience *::before, .experience *::after { transition: none !important; animation: none !important; } }

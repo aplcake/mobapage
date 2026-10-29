@@ -3,6 +3,7 @@
 import { Canvas, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { Ticket } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import {
   type KeyboardEvent as ReactKeyboardEvent,
@@ -2055,6 +2056,12 @@ export function FormalMuseumRoom() {
               <button type="button" onClick={openBurnRoom}>
                 <span aria-hidden="true">▲</span><strong>Burn Room</strong>
               </button>
+              <Link href="/deabstractor" prefetch={false} onClick={() => {
+                clearFormalWalkInputState(walkInputRef.current)
+                setMuseumMenuOpen(false)
+              }}>
+                <span aria-hidden="true"><Ticket size={16} /></span><strong>De-Abstractor</strong>
+              </Link>
               <button type="button" onClick={openWelcome}>
                 <span aria-hidden="true">?</span><strong>How to Move</strong>
               </button>
