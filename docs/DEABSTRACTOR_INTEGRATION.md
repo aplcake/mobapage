@@ -9,7 +9,7 @@ This is an additive import of the current Glowbuds De-Abstractor, not a replacem
 - Artwork and licensed local fonts live in `public/deabstractor/`; font declarations do not style other rooms.
 - Reuses the museum's existing, unchanged `eip1193Wallet` and `toonRamp` helpers.
 - No root layout, global styles, existing API, collection data, room geometry, wardrobe or lab changes. The entry link disables prefetch, and the Abstract wallet provider is loaded only in this room when needed.
-- Existing application dependency versions remain locked. Only the page's wallet and icon dependencies are added.
+- The initial import preserved the existing application dependency versions. The separately authorized security pass upgrades Next.js, Sharp and test/lint tooling; React, Three.js, existing scene libraries and the wallet SDK versions remain unchanged.
 
 ## Transfer behavior
 
@@ -29,9 +29,9 @@ This branch is for review. No main-branch merge or production deployment is part
 
 ### Dependency review (2026-10-28)
 
-The installed dependency audit reports 46 findings: 1 critical, 24 high, 18 moderate and 3 low. The critical finding belongs to the museum's existing Next.js 16.2.6; its existing Sharp 0.34.5 also has high advisories. The added Privy/Wagmi wallet dependency tree has inherited advisories too. These counts describe package advisories, not a demonstrated exploit of this page.
+The initial audit reported 46 findings: 1 critical, 24 high, 18 moderate and 3 low. After the authorized security pass it reports 30: **0 critical, 15 high, 13 moderate and 2 low**. Next.js is pinned to 16.4.3, Sharp to 0.35.5, matching Next lint tooling to 16.4.3, and Vitest to 4.1.12. Compatible transitive updates and a same-major WebSocket override remove the resolved advisories without upgrading the wallet SDKs or rendering libraries.
 
-Do not treat this as security-cleared for production. Keep the pull request in draft pending dependency remediation/review and controlled real-wallet testing. A broad framework upgrade or an automatic wallet-SDK downgrade is intentionally not bundled into this page-only change. The lockfile preserves all existing framework versions; npm updated one transitive utility (`hasown` 2.0.3 to 2.0.4) while resolving the added dependencies.
+The remaining findings cascade from four older dependencies in the wallet tree: Zod, UUID, decode-uri-component and Elliptic. They are unresolved, not suppressed or certified harmless. See [security review and controlled-test checklist](DEABSTRACTOR_RELEASE_REVIEW.md). Keep this pull request in draft pending that review and an owner-controlled real-wallet test. No production release has been performed.
 
 ## Checks
 
@@ -59,3 +59,12 @@ The browser scripts inject test wallets and mock receipts. Do not use a real wal
 - Three choreography suites passed with 11 screenshots and no errors: delayed approval/network holds, proof-only clearance, partial cancellation, phone/landscape and reduced motion.
 - The no-wallet demo passed its nine journey checks with 16 frames, including six natural completions, pause/replay, back navigation, portrait failure and WebGL recovery. No unexpected errors.
 - No real wallets were connected, no assets moved, and no metadata changed. Browser phone layouts are not physical-device wallet handoff tests.
+
+## Security-update verification (2026-10-28)
+
+- All 579 tests in 57 files, TypeScript, full lint, lab boundaries and the Next.js 16.4.3 production build passed again.
+- All 14 integration checks passed again on desktop and phone layouts, with no page errors or new-room asset failures. The menu, return navigation and other rooms remained intact; desktop and phone screenshots were inspected.
+- All 16 simulated transfer scenarios and 24 screenshots passed again with zero unexpected errors; three choreography suites and 11 screenshots also passed and exited normally.
+- The official Abstract login module loaded its sign-in button without a page error. Sign-in was not clicked; this is not proof of a completed login.
+- A read-only public RPC check returned Abstract chain 2741, block 88411589, and ERC-721 support at the configured collection contract. This is not a transfer test.
+- The new lint version requires a documented exception for the developer-only Reset Mode button's intentional full reload; the button's behavior is unchanged. The generated Next type-reference update is included.

@@ -339,6 +339,8 @@ export function ProductionDevPanel() {
           params.set('mode', mode.id)
           params.set('dev', '1')
           params.set('reset', String(Date.now()))
+          // Reset requires a fresh physics scene, not a client-side route update.
+          // eslint-disable-next-line @next/next/no-location-assign-relative-destination
           window.location.href = `${window.location.pathname}?${params.toString()}`
         }}
       >
