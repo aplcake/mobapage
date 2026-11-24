@@ -28,13 +28,17 @@
     "visual-smoke": "node scripts/visual-smoke.mjs"
   },
   "dependencies": {
+    "@abstract-foundation/agw-client": "1.12.3",
+    "@privy-io/cross-app-connect": "0.8.0",
     "@react-three/drei": "latest",
     "@react-three/fiber": "latest",
-    "next": "latest",
+    "lucide-react": "1.61.0",
+    "next": "16.4.6",
     "react": "latest",
     "react-dom": "latest",
-    "sharp": "0.34.5",
+    "sharp": "0.35.5",
     "three": "latest",
+    "viem": "2.57.10",
     "zustand": "latest"
   },
   "devDependencies": {
@@ -45,9 +49,12 @@
     "@types/react-dom": "latest",
     "@types/three": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "16.4.6",
     "pngjs": "^7.0.0",
     "typescript": "latest",
-    "vitest": "^4.1.6"
+    "vitest": "4.1.12"
+  },
+  "overrides": {
+    "ws@^8.0.0": "8.22.0"
   }
 }

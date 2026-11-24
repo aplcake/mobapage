@@ -1,0 +1,121 @@
+.desk { position: fixed; z-index: 20; right: 22px; top: 86px; bottom: 22px; width: 404px; display: flex; flex-direction: column; color: #123e31; border: 2px solid #153f33; border-radius: 8px; background: #f2f7ef; box-shadow: 0 6px 0 #153f33, 0 14px 32px #17382b24; font-family: 'MoBA Grotesque', 'Trebuchet MS', Arial, sans-serif; font-optical-sizing: auto; font-size: 14px; line-height: 1.5; letter-spacing: 0; }
+.desk * { box-sizing: border-box; }
+/* Keep fixed HTML text in its own layer when the live WebGL view resizes. */
+.desk[data-flight=true] { isolation: isolate; transform: translateZ(0); }
+.desk[data-cinematic=true]:not([data-flight=true]) { display: none; }
+.desk[data-flight=true] { top: auto; bottom: 22px; max-height: calc(100dvh - 106px); }
+.flight { padding: 14px; border-bottom: 1px solid #c7d8ca; }
+.flightHeading { display: flex; gap: 11px; align-items: flex-start; }
+.flightHeading strong { display: block; font-size: 17px; line-height: 1.25; }
+.flightHeading p { margin: 5px 0 12px; font-size: 13px; line-height: 1.4; }
+.flightIcon { display: grid; place-items: center; flex: 0 0 38px; height: 38px; background: #ffe39d; border: 1px solid #c3a458; border-radius: 50%; }
+.flight:not([data-phase=confirmed]) .flightIcon svg { animation: spin 3s linear infinite; }
+.flight[data-phase=confirmed] .flightIcon { background: #8ef5b7; border-color: #178953; }
+.flightManifest { display: flex; align-items: center; justify-content: space-between; gap: 9px; border-top: 1px solid #ccdcd0; padding-top: 10px; }
+.flightManifest > div { display: flex; align-items: center; gap: 4px; }
+.flightManifest span { position: relative; display: block; width: 34px; height: 34px; border: 2px solid #b8cabc; border-radius: 4px; }
+.flightManifest img { display: block; width: 30px; height: 30px; image-rendering: pixelated; border-radius: 2px; }
+.flightManifest span[data-arrived=true] { border-color: #158451; }
+.flightManifest svg { position: absolute; right: -3px; bottom: -3px; background: #126947; color: white; border-radius: 50%; }
+.flightManifest b { font: 500 12px 'MoBA Mono', monospace; }
+.flightManifest > strong { font: 500 18px 'MoBA Mono', monospace; white-space: nowrap; }
+.flightManifest small { font-size: 11px; }
+.desk[data-expanded=false] { bottom: auto; }
+.desk[data-flight=true][data-expanded=false] { top: auto; bottom: 22px; }
+.toggle { display: flex; flex-shrink: 0; justify-content: space-between; align-items: center; width: 100%; min-height: 56px; padding: 12px 14px; background: #123c32; color: #f7f1da !important; border: 0; border-radius: 5px 5px 0 0; font-weight: 800; font-size: 15px; line-height: 1.25; }
+.toggle span { display: flex; gap: 8px; align-items: center; }
+.toggle b { color: #ffe083; font: 500 12px 'MoBA Mono', monospace; border-left: 1px solid #9aab85; padding-left: 8px; }
+.body { padding: 18px; overflow: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+.body[hidden] { display: none; }
+.desk h2 { margin: 24px 0 12px; font-size: 32px; line-height: 1.08; font-weight: 800; outline: none; text-wrap: balance; }
+.desk h3 { font-size: 17px; line-height: 1.3; font-weight: 700; margin: 0; }
+.desk p { font-size: 15px; line-height: 1.55; margin: 12px 0 20px; text-wrap: pretty; }
+.desk button, .desk input { font-family: inherit; letter-spacing: 0; }
+.desk button { cursor: pointer; touch-action: manipulation; color: inherit; }
+.desk button:disabled { opacity: .45; cursor: not-allowed; }
+.desk button:focus-visible, .desk input:focus-visible, .desk a:focus-visible { outline: 3px solid #e58b21; outline-offset: 3px; }
+.desk svg { flex-shrink: 0; }
+.primary, .secondary, .wallets button, .abstract button { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 12px; width: 100%; font-size: 15px; line-height: 1.3; font-weight: 700; border: 2px solid #124b38; border-radius: 5px; margin: 12px 0; background: #fff; }
+.primary { background: #19e783 !important; box-shadow: 0 3px 0 #124b38; }
+.primary:hover:not(:disabled) { background: #6effb6 !important; }
+.secondary:hover:not(:disabled), .wallets button:hover:not(:disabled) { background: #def5e7; }
+.rail { display: flex; justify-content: space-between; gap: 5px; }
+.rail > span { display: flex; align-items: center; gap: 5px; font: 500 11px 'MoBA Mono', monospace; color: #506d60; border-bottom: 2px solid #d6e4db; padding-bottom: 10px; }
+.rail small { font: 600 12px 'MoBA Grotesque', sans-serif; }
+.rail > span[data-active=true] { color: #075137; border-color: #12b867; }
+.address { position: relative; margin: 16px 0; border-left: 3px solid #14aa6e; padding-left: 10px; }
+.address span { display: block; font-size: 12px; line-height: 1.4; font-weight: 700; margin-bottom: 8px; padding-right: 25px; }
+.address code { display: block; overflow-wrap: anywhere; font-family: 'MoBA Mono', monospace; font-size: 13px; line-height: 1.75; padding-right: 30px; }
+.address button, .row button { width: 44px !important; min-height: 44px !important; padding: 10px !important; border: 0 !important; background: transparent !important; margin: 0 !important; }
+.address button { position: absolute; right: -8px; top: -9px; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; }
+.buds { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 8px; max-height: 280px; overflow-y: auto; padding: 3px; margin: 6px -3px 16px; }
+.buds button { display: grid; position: relative; gap: 6px; justify-items: center; padding: 4px; border: 2px solid #b4cbbb; background: #e7eee5; border-radius: 5px; min-width: 0; font: 500 12px 'MoBA Mono', monospace; font-variant-numeric: tabular-nums; }
+.buds button[aria-pressed=true] { border-color: #044e31; background: #8ef5b7; }
+.buds img { aspect-ratio: 1; width: 100%; height: auto; object-fit: contain; image-rendering: pixelated; border-radius: 2px; }
+.buds svg { position: absolute; top: 6px; right: 6px; background: #064e32; color: white; border-radius: 50%; padding: 2px; }
+.field { display: grid; gap: 9px; font-size: 14px; line-height: 1.4; font-weight: 700; margin: 20px 0; }
+.field input { width: 100%; min-width: 0; min-height: 48px; border: 2px solid #7b9d8e; border-radius: 4px; padding: 11px; background: #fff; color: #173f32; font-size: 16px; }
+.warning { display: flex; gap: 9px; border-block: 1px solid #d6bc7b; background: #fff0c8; padding: 12px; margin: 16px -18px; }
+.warning p { margin: 0; font-size: 14px; line-height: 1.5; color: #543912; }
+.warning svg { color: #8c4b09; margin-top: 2px; }
+.note { font-size: 13px !important; color: #405e50; }
+.bulkActions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.approval { display: flex; align-items: center; gap: 9px; padding: 10px 0; color: #07543d; font-size: 14px; font-weight: 700; }
+.history summary { cursor: pointer; padding: 10px 0; min-height: 44px; font-size: 14px; font-weight: 700; }
+.consent { display: flex; align-items: flex-start; gap: 11px; font-size: 14px; line-height: 1.55; padding: 8px 0; cursor: pointer; }
+.consent input { width: 22px; height: 22px; flex: 0 0 22px; margin: 0; accent-color: #096f42; }
+.lineup { min-width: 0; border-block: 1px solid #c5d7cb; padding: 12px 0; margin: 16px 0; }
+.lineupHeading { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 24px; }
+.lineupHeading h3 { display: flex; align-items: center; gap: 7px; font-size: 15px; }
+.lineupHeading h3 span { font: 500 11px 'MoBA Mono', monospace; color: #4e6e61; }
+.screenLabel { display: flex; align-items: center; gap: 5px; color: #126344; font: 500 11px 'MoBA Mono', monospace; }
+.passengers { display: flex; gap: 10px; padding: 7px 3px 8px; margin: 8px -3px -6px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: #6c9b82 #dfebe2; list-style: none; scroll-snap-type: x proximity; }
+.passenger { flex: 0 0 96px; min-width: 0; border: 1px solid #96b7a5; border-radius: 5px; background: #fff; scroll-snap-align: start; animation: board 220ms ease-out both; }
+.passenger[data-focused=true] { border-color: #087447; box-shadow: 0 0 0 2px #087447; }
+.portraitButton { position: relative; display: block; width: 100%; height: 94px; border: 0; border-radius: 4px 4px 0 0; padding: 6px; background: #e1eadd; overflow: hidden; }
+.portraitButton img { display: block; width: 100%; height: 100%; image-rendering: pixelated; object-fit: contain; transition: transform 160ms ease-out; }
+.artUnavailable { display: flex; height: 100%; align-items: center; justify-content: center; flex-direction: column; gap: 4px; color: #536c5a; font-size: 10px; }
+.portraitButton:hover:not(:disabled) img { transform: translateY(-2px); }
+.seat { position: absolute; top: 5px; left: 5px; padding: 1px 4px; background: #f4f7ed; color: #355449; font: 500 10px 'MoBA Mono', monospace; border-radius: 2px; }
+.onScreen { position: absolute; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 20px; color: #fff; background: #07543d; font-size: 10px; font-weight: 700; }
+.passengerFoot { display: flex; justify-content: space-between; align-items: center; min-height: 34px; padding-left: 7px; border-top: 1px dashed #b5cabc; font: 500 12px 'MoBA Mono', monospace; }
+.passengerFoot button { display: grid; place-items: center; width: 44px; min-height: 44px; padding: 0; border: 0; background: transparent; }
+.passengerFoot button:hover:not(:disabled) { background: #ffe4d9; color: #8d3523; }
+.emptyLineup { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 72px; color: #546c5c; font-size: 13px; }
+.boardingPass { padding-top: 4px; }
+.passHeading { display: flex; align-items: center; gap: 7px; min-height: 38px; border-block: 1px solid #9db8a6; }
+.passHeading strong { font-size: 11px; }
+.passHeading > span { margin-left: auto; font: 500 10px 'MoBA Mono', monospace; color: #466757; }
+.route { padding-top: 8px; }
+.routeStop > span { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.routeStop small { margin-left: auto; min-width: 0; max-width: 46%; color: #506c60; font-size: 11px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.routeStop code { display: block; margin-top: 5px; padding: 6px 9px; border-left: 3px solid #16865c; background: #e4eee5; font: 500 13px/1.6 'MoBA Mono', monospace; overflow-wrap: anywhere; user-select: all; }
+.routeArrow { display: flex; align-items: center; gap: 8px; margin: 5px 0; color: #527266; font-size: 11px; }
+.boardingPass .lineup { margin-bottom: 0; border-bottom: 0; }
+.boardingPass .passenger { flex-basis: 80px; }
+.boardingPass .portraitButton { height: 78px; padding: 4px; }
+.boardingPass .passengerFoot { min-height: 28px; }
+.boardingPass > .textButton { margin-top: 4px; }
+@keyframes board { from { opacity: .2; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.textButton { display: flex; gap: 7px; align-items: center; min-height: 44px; background: none; border: 0; padding: 10px 0; font-size: 14px; line-height: 1.4; text-align: left; }
+.status { display: flex; align-items: center; gap: 8px; font-weight: 800; }
+.status svg { animation: spin 1.5s linear infinite; }
+.error { padding: 12px; background: #ffded4; border-left: 3px solid #b03f30; color: #742e25; overflow-wrap: anywhere; }
+.recovery { border-block: 1px solid #d5ba77; padding-block: 16px; }
+.history { padding-top: 14px; border-top: 1px solid #c7d8ca; margin-top: 18px; }
+.history a { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 44px; color: #13583c; font-size: 13px; border-bottom: 1px solid #dbe7dc; }
+.history a span { display: flex; gap: 8px; align-items: center; }
+.footer { display: grid; gap: 8px; padding-top: 20px; margin-top: 24px; border-top: 1px solid #ceded1; font-size: 12px; line-height: 1.5; color: #405e50; }
+.footer strong { color: #254f3d; }
+.footer a { display: inline-flex; align-items: center; gap: 6px; color: #37644e; min-height: 25px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (max-width: 800px) { .desk { top: auto; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); width: auto; max-height: 59dvh; } .desk[data-expanded=false] { bottom: max(12px, env(safe-area-inset-bottom)); } .body { padding: 16px; } .desk h2 { font-size: 28px; margin-top: 18px; } .buds { grid-template-columns: repeat(4,minmax(0,1fr)); } .warning { margin-inline: -16px; } }
+@media (max-width: 800px) { .desk[data-step=review] .rail, .passHeading { display: none; } .desk[data-step=review] h2 { margin-top: 0; } .routeStop small { max-width: 40%; } }
+@media (max-height: 480px) and (min-width: 601px) { .desk { left: auto; top: 12px; right: 12px; width: 310px; max-height: calc(100dvh - 24px); } }
+@media (max-width: 360px) { .rail small { font-size: 11px; } .rail > span { gap: 3px; } .lineupHeading h3 { font-size: 14px; } .passHeading { gap: 5px; } .passHeading strong { font-size: 10px; } .passHeading > span { font-size: 9px; } }
+@media (prefers-reduced-motion: reduce) { .status svg, .passenger { animation: none; } .portraitButton img { transition: none; } }
+@media (max-width: 800px) { .desk[data-flight=true] { bottom: max(12px, env(safe-area-inset-bottom)); max-height: 59dvh; } .flight { padding: 10px 12px; } .flightHeading strong { font-size: 15px; } .flightHeading p { margin-bottom: 8px; font-size: 12px; } .desk[data-flight=true] .toggle { min-height: 44px; padding-block: 8px; font-size: 12px; } }
+@media (max-height: 480px) and (min-width: 601px) { .desk[data-flight=true] { top: auto; max-height: calc(100dvh - 24px); } }
+@media (max-width: 360px) { .flightManifest { flex-wrap: wrap; row-gap: 6px; } .flightManifest > strong { margin-left: auto; } }
+@media (prefers-reduced-motion: reduce) { .flight .flightIcon svg { animation: none !important; } }

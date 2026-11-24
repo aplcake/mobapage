@@ -1,0 +1,14 @@
+.navigation { position: relative; display: flex; gap: 5px; pointer-events: auto; z-index: 30; font-family: Arial, Helvetica, sans-serif; letter-spacing: 0; }
+.back, .toggle { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border: 2px solid #292128; border-radius: 7px; color: #292128; background: #f8ebc9; box-shadow: 0 4px 0 #4b3930, inset 0 1px 0 #fff9e8; text-decoration: none; font-size: 13px; font-weight: 800; cursor: pointer; }
+.back { padding: 0 12px; white-space: nowrap; }
+.toggle { width: 44px; }
+.back:hover, .toggle:hover { background: #fff7de; }
+.navigation :is(a,button):focus-visible { outline: 3px solid #a5f5dd; outline-offset: 4px; }
+.panel { position: absolute; top: 57px; left: 0; width: 240px; max-width: calc(100vw - 32px); padding: 10px; border: 2px solid #c4a35e; outline: 2px solid #292128; border-radius: 7px; background: #2b242b; box-shadow: 0 7px 0 #292128; }
+.brand { display: flex; justify-content: space-between; padding: 6px 5px 12px; font: 700 20px Georgia, serif; color: #f8e6b4; }
+.brand span { align-self: center; font: 700 11px Arial, sans-serif; color: #b1dacd; }
+.panel a, .current { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 9px 12px; margin-top: 5px; border: 1px solid #cab584; border-radius: 4px; background: #f2e2bb; color: #292128; text-decoration: none; font-size: 14px; font-weight: 700; }
+.panel a:hover { background: #fff8dc; }
+.panel svg { flex-shrink: 0; }
+.current { background: #b5e1cf; border-color: #74b29a; }
+@media (max-width: 600px) { .back { padding-inline: 9px; font-size: 12px; } .navigation { gap: 4px; } }

@@ -3,6 +3,7 @@
 import { Canvas, type ThreeEvent, useFrame, useThree } from '@react-three/fiber'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { Ticket } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import {
   type KeyboardEvent as ReactKeyboardEvent,
@@ -46,6 +47,7 @@ import {
   shouldPaintFormalRoomAnimationFrame,
 } from './mediaPlayback'
 import { MuseumExpansion } from './MuseumExpansion'
+import { DeabstractorEntrance } from './DeabstractorEntrance'
 import {
   readMuseumPerformanceSignals,
   resolveMuseumPerformanceProfile,
@@ -397,7 +399,7 @@ function GalleryWallDisplay() {
 function MuseumTopiary({ side }: { side: -1 | 1 }) {
   const x = side * 4.25
   return (
-    <group position={[x, -1.42, 7.2]} rotation={[0, side * -0.08, 0]}>
+    <group position={[x, -1.42, side > 0 ? 2.4 : 7.2]} rotation={[0, side * -0.08, 0]}>
       <mesh position={[0, -0.72, 0.12]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.82, 0.46, 1]}>
         <circleGeometry args={[1, 42]} />
         <meshBasicMaterial color={INK} transparent opacity={0.16} depthWrite={false} />
@@ -1336,6 +1338,7 @@ function FormalRoomScene({
   onOpenMuseumLore,
   onOpenCourtyard,
   onOpenBurnRoom,
+  onOpenDeabstractor,
   onApproachedArtworkChange,
   performanceProfile,
 }: {
@@ -1364,6 +1367,7 @@ function FormalRoomScene({
   onOpenMuseumLore: (chapterId: MuseumLoreId) => void
   onOpenCourtyard: () => void
   onOpenBurnRoom: () => void
+  onOpenDeabstractor: () => void
   onApproachedArtworkChange: (artwork: MuseumArtworkProvenance | null) => void
   performanceProfile: MuseumPerformanceProfile
 }) {
@@ -1397,6 +1401,7 @@ function FormalRoomScene({
         onArtworkChange={onApproachedArtworkChange}
       />
       <SalonArchitecture mode={mode} />
+      <DeabstractorEntrance onEnter={onOpenDeabstractor} enabled={controlsEnabled && !motionPaused} />
       <MuseumExpansion
         activeGalleryId={activeGalleryId}
         activeMuseumArea={activeMuseumArea}
@@ -1756,6 +1761,13 @@ export function FormalMuseumRoom() {
     setMuseumMenuOpen(false)
   }, [])
 
+  const openDeabstractor = useCallback(() => {
+    if (walkInputRef.current.suppressArtworkClickUntil > performance.now()) return
+    clearFormalWalkInputState(walkInputRef.current)
+    setMuseumMenuOpen(false)
+    router.push('/deabstractor')
+  }, [router])
+
   const openWallet = useCallback(() => {
     setMuseumMenuOpen(false)
     openAtriumRegistry()
@@ -2017,6 +2029,7 @@ export function FormalMuseumRoom() {
             onOpenMuseumLore={openMuseumLore}
             onOpenCourtyard={openCourtyard}
             onOpenBurnRoom={openBurnRoom}
+            onOpenDeabstractor={openDeabstractor}
             onApproachedArtworkChange={setApproachedArtwork}
             performanceProfile={performanceProfile}
           />
@@ -2055,6 +2068,12 @@ export function FormalMuseumRoom() {
               <button type="button" onClick={openBurnRoom}>
                 <span aria-hidden="true">▲</span><strong>Burn Room</strong>
               </button>
+              <Link href="/deabstractor" prefetch={false} onClick={() => {
+                clearFormalWalkInputState(walkInputRef.current)
+                setMuseumMenuOpen(false)
+              }}>
+                <span aria-hidden="true"><Ticket size={16} /></span><strong>De-Abstractor</strong>
+              </Link>
               <button type="button" onClick={openWelcome}>
                 <span aria-hidden="true">?</span><strong>How to Move</strong>
               </button>

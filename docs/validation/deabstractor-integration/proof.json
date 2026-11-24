@@ -1,0 +1,91 @@
+{
+  "mode": "local-integration-no-wallets-no-transactions",
+  "checks": [
+    {
+      "name": "desktop-museum-menu",
+      "canvasColors": 379,
+      "url": "http://localhost:3017/"
+    },
+    {
+      "name": "desktop-live-room",
+      "canvasColors": 717,
+      "url": "http://localhost:3017/deabstractor"
+    },
+    {
+      "name": "desktop-room-navigation",
+      "canvasColors": 539,
+      "url": "http://localhost:3017/deabstractor"
+    },
+    {
+      "name": "desktop-museum-return",
+      "canvasColors": 369,
+      "url": "http://localhost:3017/"
+    },
+    {
+      "name": "desktop-escape-to-museum"
+    },
+    {
+      "name": "desktop-burn-room-preserved",
+      "destination": "https://burn.museumofbased.art/"
+    },
+    {
+      "name": "desktop-courtyard",
+      "canvasColors": 483,
+      "url": "http://localhost:3017/courtyard"
+    },
+    {
+      "name": "desktop-wardrobe",
+      "canvasColors": 364,
+      "url": "http://localhost:3017/wardrobe?token=1677&background=purple&shell=moss-shell&head=none&pot=blue-flower-pot&companion=none&held=none&eyes=mellow&mouth=huh&nose=none&skin=pixel-pink&face=soft&flytrap=friendly-bite"
+    },
+    {
+      "name": "desktop-formal-room",
+      "canvasColors": 179,
+      "url": "http://localhost:3017/"
+    },
+    {
+      "name": "phone-museum-menu",
+      "canvasColors": 337,
+      "url": "http://localhost:3017/"
+    },
+    {
+      "name": "phone-live-room",
+      "canvasColors": 402,
+      "url": "http://localhost:3017/deabstractor"
+    },
+    {
+      "name": "phone-room-navigation",
+      "canvasColors": 262,
+      "url": "http://localhost:3017/deabstractor"
+    },
+    {
+      "name": "phone-museum-return",
+      "canvasColors": 340,
+      "url": "http://localhost:3017/"
+    },
+    {
+      "name": "phone-escape-to-museum"
+    },
+    {
+      "name": "phone-burn-room-preserved",
+      "destination": "https://burn.museumofbased.art/"
+    },
+    {
+      "name": "phone-courtyard",
+      "canvasColors": 385,
+      "url": "http://localhost:3017/courtyard"
+    },
+    {
+      "name": "phone-wardrobe",
+      "canvasColors": 263,
+      "url": "http://localhost:3017/wardrobe?token=1677&background=purple&shell=moss-shell&head=none&pot=blue-flower-pot&companion=none&held=none&eyes=mellow&mouth=huh&nose=none&skin=pixel-pink&face=soft&flytrap=friendly-bite"
+    },
+    {
+      "name": "phone-formal-room",
+      "canvasColors": 383,
+      "url": "http://localhost:3017/"
+    }
+  ],
+  "pageErrors": [],
+  "newRoomErrors": []
+}

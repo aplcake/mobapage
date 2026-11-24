@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-11-24T19:26:40.137Z",
+  "base": "http://localhost:3017",
+  "checks": [
+    "Wallet screen rejects cross-origin framing; MIME and referrer headers present",
+    "cross-origin rejected without a transaction or cached wallet response",
+    "cross-site rejected without a transaction or cached wallet response",
+    "oversized body rejected without a transaction or cached wallet response",
+    "unsupported action rejected without a transaction or cached wallet response",
+    "invalid address rejected without a transaction or cached wallet response",
+    "oversized batch rejected without a transaction or cached wallet response",
+    "Invalid inventory address rejected before RPC reads",
+    "Room-only framing policy leaves the museum homepage unchanged"
+  ],
+  "serverTrace": [
+    {
+      "route": "check",
+      "maps": 100,
+      "sourceCount": 804,
+      "bundledMatches": [],
+      "externalMatches": []
+    },
+    {
+      "route": "inventory",
+      "maps": 100,
+      "sourceCount": 804,
+      "bundledMatches": [],
+      "externalMatches": []
+    },
+    {
+      "route": "portrait/[token]",
+      "maps": 96,
+      "sourceCount": 575,
+      "bundledMatches": [],
+      "externalMatches": []
+    }
+  ],
+  "scope": "Known dependency advisories and the listed HTTP checks; not an independent security certification.",
+  "dependencies": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "advisories": [],
+  "traceLimit": "API build membership only. Does not certify browser wallet bundles, SDK services, or exploitability.",
+  "knownDependencyFindings": 0
+}
