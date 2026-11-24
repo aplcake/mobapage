@@ -10,6 +10,8 @@ import { PassengerLineup } from './PassengerLineup'
 import { friendlyWalletError, GLOWBUD_CONTRACT, wasNotSubmitted, MAX_PASSENGERS, portraitUrl, readDeparture, readTransferHistory, recipientAddress, type Departure, type TransferRecord, type TransferSigner, type TransferTicket, type WalletInspection } from './transfer'
 import styles from './TransferDesk.module.css'
 import { EMPTY_JOURNEY, journeyCopy, type LiveJourney } from './liveJourney'
+import { Play } from 'lucide-react'
+import { usePortraitRoom } from './usePortraitRoom'
 
 const AbstractLogin = dynamic(() => import('./AbstractLogin'), { ssr: false, loading: () => <p>Opening the Abstract connection...</p> })
 const JOURNAL = 'glowbuds.deabstractor.transfers.v1'
@@ -27,9 +29,9 @@ async function check(body: object) {
   if (!response.ok || data.error) throw new Error(data.error || 'The network check could not finish.')
   return data
 }
-type Props = { focusedToken: number; onToken: (token: number) => void; onConfirmed: (ticket: TransferTicket) => void; onChecked: (inspection: WalletInspection) => void; onJourney: (journey: LiveJourney) => void; cinematic: boolean }
+type Props = { focusedToken: number; onToken: (token: number) => void; onConfirmed: (ticket: TransferTicket) => void; onChecked: (inspection: WalletInspection) => void; onJourney: (journey: LiveJourney) => void; cinematic: boolean; onHeight: (height: number) => void }
 
-export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, onJourney, cinematic }: Props) {
+export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, onJourney, cinematic, onHeight }: Props) {
   const [source, setSource] = useState<TransferSigner | null>(null)
   const sourceRef = useRef<TransferSigner | null>(null)
   const [useAbstract, setUseAbstract] = useState(false)
@@ -48,7 +50,18 @@ export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, on
   const recordsRef = useRef<TransferRecord[]>(records)
   const [unresolved, setUnresolved] = useState(() => { try { return Boolean(localStorage.getItem(INTENT)) } catch { return true } })
   const [groupApproval, setGroupApproval] = useState(false)
-  const [expanded, setExpanded] = useState(true)
+  const portrait = usePortraitRoom()
+  const [expanded, setExpanded] = useState<boolean | null>(null)
+  const desk = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const el = desk.current
+    if (!el || !portrait) { onHeight(0); return }
+    const measure = () => onHeight(Math.round(el.getBoundingClientRect().height))
+    measure()
+    const observer = new ResizeObserver(measure)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [portrait, onHeight])
   const lock = useRef(false)
   const epoch = useRef(0)
   const live = useRef(true)
@@ -352,10 +365,12 @@ export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, on
   const title = { connect: 'All buds aboard.', buds: 'Choose your passengers.', destination: 'Where are we heading?', review: 'Ready for departure?', result: 'Departure log.' }[step]
   const inFlight = Boolean(journey.id && step === 'result' && !['cancelled', 'partial'].includes(journey.phase))
   const flight = journeyCopy(journey)
-  const detailsOpen = inFlight ? flightDetails : expanded
+  const detailsOpen = inFlight ? flightDetails : expanded ?? (!portrait || step !== 'connect' || unresolved || Boolean(error || picker || busy))
+  const dock = portrait && !detailsOpen && !inFlight && step === 'connect' && !unresolved && !busy
 
-  return <aside className={styles.desk} data-step={step} data-expanded={detailsOpen} data-cinematic={cinematic} data-flight={inFlight} aria-label="Glowbud transfer desk">
-    <button className={styles.toggle} onClick={() => inFlight ? setFlightDetails(value => !value) : setExpanded(value => !value)} aria-expanded={detailsOpen} aria-label={detailsOpen ? 'Minimize transfer desk' : 'Open transfer desk'}><span><ShieldCheck size={18} />{inFlight ? 'DEPARTURE DETAILS' : <>DE-ABSTRACTOR <b>3000</b></>}</span>{detailsOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}</button>
+  return <aside ref={desk} className={styles.desk} data-dock={dock} data-step={step} data-expanded={detailsOpen} data-cinematic={cinematic} data-flight={inFlight} aria-label="Glowbud transfer desk">
+    <button className={styles.toggle} onClick={() => inFlight ? setFlightDetails(!detailsOpen) : setExpanded(!detailsOpen)} aria-controls="deabstractor-desk-body" aria-expanded={detailsOpen} aria-label={dock ? 'Board your buds' : detailsOpen ? 'Minimize transfer desk' : 'Open transfer desk'}><span>{dock ? <Ticket size={22} /> : <ShieldCheck size={18} />}{dock ? 'Board your buds' : inFlight ? 'DEPARTURE DETAILS' : <>DE-ABSTRACTOR <b>3000</b></>}</span>{detailsOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}</button>
+    {dock && <a className={styles.demoLink} href="/deabstractor?demo=1"><Play size={18} />Demo</a>}
     {inFlight && <section className={styles.flight} aria-label="Live departure" data-phase={journey.phase}>
       <div className={styles.flightHeading}><span className={styles.flightIcon}>{journey.phase === 'confirmed' ? <CheckCheck size={23} /> : <LoaderCircle size={23} />}</span><div role="status" aria-live="polite"><strong>{flight.title}</strong><p>{flight.detail}</p></div></div>
       <div className={styles.flightManifest} aria-label={`${journey.arrived.length} of ${journey.tokens.length} passengers confirmed`}>
@@ -365,7 +380,7 @@ export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, on
         </span>)}{journey.tokens.length > 5 && <b>+{journey.tokens.length - 5}</b>}</div><strong>{journey.arrived.length}<small> / {journey.tokens.length} arrived</small></strong>
       </div>
     </section>}
-    <section className={styles.body} ref={panel} hidden={!detailsOpen}>
+    <section className={styles.body} id="deabstractor-desk-body" ref={panel} hidden={!detailsOpen}>
       <div className={styles.rail} aria-label="Transfer progress">{['Wallet', 'Passengers', 'Address', 'Review'].map((label, index) => <span key={label} aria-current={index === ['connect', 'buds', 'destination', 'review'].indexOf(step) ? 'step' : undefined} data-active={index === ['connect', 'buds', 'destination', 'review'].indexOf(step)}>{index + 1}<small>{label}</small></span>)}</div>
       <h2 ref={heading} tabIndex={-1}>{title}</h2>
       {step === 'connect' && <p>Move your Glowbuds to a personal wallet you control.</p>}

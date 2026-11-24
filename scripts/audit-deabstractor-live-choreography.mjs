@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
 const base = process.env.SLURPER_BASE_URL || 'http://localhost:3005'
-const out = path.resolve('docs/validation/deabstractor-live-choreography')
+const out = path.resolve(process.env.DEABSTRACTOR_AUDIT_DIR || 'docs/validation/deabstractor-live-choreography')
 await mkdir(out, { recursive: true })
 const browser = await chromium.launch({ channel: 'chrome' })
 const from = `0x${'1'.repeat(40)}`, to = `0x${'2'.repeat(40)}`, hash = `0x${'a'.repeat(64)}`
@@ -44,6 +44,7 @@ async function fixture({ bulk = true, tokens = [968, 1677, 2000], viewport = { w
     throw new Error(`Unexpected check ${d.action}`)
   })
   await page.goto(`${base}/deabstractor?v=live-journey-audit`)
+  if (viewport.width <= 900 && viewport.height >= viewport.width) await page.getByRole('button', { name: 'Board your buds' }).click()
   await page.getByRole('button', { name: 'Use a browser wallet', exact: true }).click({ timeout: 60000 })
   await page.getByRole('button', { name: 'Choreography test wallet', exact: true }).click()
   await page.getByRole('button', { name: 'Select all', exact: true }).click()

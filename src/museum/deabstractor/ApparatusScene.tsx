@@ -15,6 +15,7 @@ import { GALLERY, MuseumGallery } from './MuseumGallery'
 import { TheatricalLighting } from './TheatricalLighting'
 import { journeyCopy, waitingMotion, type LiveJourney } from './liveJourney'
 import { BoardingRack } from './BoardingRack'
+import { usePortraitRoom } from './usePortraitRoom'
 
 export type SceneClock = { elapsed: number; running: boolean; paused: boolean; procedure: Procedure; reducedMotion: boolean; journey?: LiveJourney; ambient?: number; holding?: boolean; holdTime?: number; waitBlend?: number }
 type ClockRef = MutableRefObject<SceneClock>
@@ -527,23 +528,33 @@ function SetDressing({ clock }: { clock: ClockRef }) {
   </group>
 }
 
-function CameraDirector({ clock, receiptView }: { clock: ClockRef; receiptView: AttentionRef }) {
+function CameraDirector({ clock, receiptView, deskHeight }: { clock: ClockRef; receiptView: AttentionRef; deskHeight?: number }) {
   const { camera, scene, size, pointer } = useThree()
+  const portrait = usePortraitRoom()
   const target = useMemo(() => new THREE.Vector3(), [])
   const look = useMemo(() => new THREE.Vector3(0, 2.6, 0), [])
   const lookTarget = useMemo(() => new THREE.Vector3(), [])
-  const previousFrame = useRef({ width: 0, height: 0, reduced: false })
+  const previousFrame = useRef({ width: 0, height: 0, reduced: false, offset: 0 })
   const receiptFrame = useMemo(() => receiptViewFrame(size.width / size.height), [size.width, size.height])
   useFrame((_, delta) => {
     const state = clock.current
+    const hud = deskHeight ?? (state.running || receiptView.current ? 68 : 150)
+    const offset = portrait ? Math.round((hud - 56) / 2) : 0
     const reframing = size.width !== previousFrame.current.width || size.height !== previousFrame.current.height || state.reducedMotion !== previousFrame.current.reduced
+    const projectionChanged = reframing || previousFrame.current.offset !== offset
+    if (projectionChanged && camera instanceof THREE.PerspectiveCamera) {
+      // Shift the optical center above the sheet, never crop or resize the canvas.
+      if (offset) camera.setViewOffset(size.width, size.height, 0, offset, size.width, size.height)
+      else if (camera.view?.enabled) camera.clearViewOffset()
+      previousFrame.current.offset = offset
+    }
     if (state.paused && !reframing) return
     previousFrame.current.width = size.width
     previousFrame.current.height = size.height
     previousFrame.current.reduced = state.reducedMotion
     const aspect = size.width / size.height
     const small = aspect < 1.1 || (Boolean(state.journey) && size.width < 600)
-    const overviewDistance = small ? Math.max(16.5, (state.journey ? 13.4 : 12.2) / aspect) : 16.4
+    const overviewDistance = portrait ? Math.max(11.6 / aspect, 9.3 / Math.max(.32, 1 - (hud + 56) / size.height)) : small ? Math.max(16.5, (state.journey ? 13.4 : 12.2) / aspect) : 16.4
     // Portrait framing must not wash out the machine simply because its camera is farther away.
     if (scene.fog instanceof THREE.Fog) {
       scene.fog.near = Math.max(23, overviewDistance + 6)
@@ -576,7 +587,7 @@ function CameraDirector({ clock, receiptView }: { clock: ClockRef; receiptView: 
   return null
 }
 
-export function ApparatusScene({ clock, token, portrait, attention, receiptView, onActivate, onInspectReceipt, proof, journey }: { clock: ClockRef; token: number; portrait: HTMLImageElement | null; attention: AttentionRef; receiptView: AttentionRef; onActivate: () => void; onInspectReceipt: () => void; proof?: VerifiedArrival; journey?: LiveJourney }) {
+export function ApparatusScene({ clock, token, portrait, attention, receiptView, onActivate, onInspectReceipt, proof, journey, deskHeight }: { clock: ClockRef; token: number; portrait: HTMLImageElement | null; attention: AttentionRef; receiptView: AttentionRef; onActivate: () => void; onInspectReceipt: () => void; proof?: VerifiedArrival; journey?: LiveJourney; deskHeight?: number }) {
   return <>
     <color attach="background" args={[GALLERY.deepTeal]} />
     <fog attach="fog" args={[GALLERY.teal, 23, 48]} />
@@ -584,6 +595,6 @@ export function ApparatusScene({ clock, token, portrait, attention, receiptView,
     <SetDressing clock={clock} />
     <Machine clock={clock} token={token} portrait={portrait} attention={attention} onActivate={onActivate} onInspectReceipt={onInspectReceipt} proof={proof} journey={journey} />
     <BoardingRack journey={journey} clock={clock} />
-    <CameraDirector clock={clock} receiptView={receiptView} />
+    <CameraDirector clock={clock} receiptView={receiptView} deskHeight={deskHeight} />
   </>
 }

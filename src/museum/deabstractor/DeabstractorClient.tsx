@@ -18,5 +18,5 @@ export function DeabstractorClient({ demo = false }: { demo?: boolean }) {
       void import('@privy-io/cross-app-connect').then(sdk => sdk.completeCrossAppConnectRedirect())
     }
   }, [])
-  return demo ? <DeabstractorExperience /> : <Live />
+  return <div data-deabstractor-room="">{demo ? <DeabstractorExperience /> : <Live />}</div>
 }
