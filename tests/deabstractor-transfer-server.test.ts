@@ -151,6 +151,21 @@ describe('Read-only transfer verification server', () => {
     mocks.abstract.getLogs.mockResolvedValue([])
     await expect(inventory(from)).rejects.toThrow('incomplete inventory')
   })
+  it('bounds ownership reads for a large wallet and filters previous owners at the snapshot block', async () => {
+    const ids = Array.from({ length: 26 }, (_, i) => i + 1)
+    mocks.abstract.getLogs.mockResolvedValue(ids.map(id => ({ args: { tokenId: BigInt(id) } })))
+    let active = 0, peak = 0
+    mocks.abstract.readContract.mockImplementation(async ({ functionName, args, blockNumber }) => {
+      expect(blockNumber).toBe(BigInt(100))
+      if (functionName === 'balanceOf') return BigInt(25)
+      peak = Math.max(peak, ++active)
+      await Promise.resolve()
+      active--
+      return Number(args[0]) === 1 ? to : from
+    })
+    expect((await inventory(from)).tokenIds).toEqual(ids.slice(1))
+    expect(peak).toBe(10)
+  })
   it('does not turn a broken ownership RPC into zero buds', async () => {
     mocks.abstract.readContract.mockRejectedValue(new Error('RPC unavailable'))
     await expect(inventory(from)).rejects.toThrow('RPC unavailable')

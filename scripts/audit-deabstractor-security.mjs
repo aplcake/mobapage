@@ -5,7 +5,7 @@ import path from 'node:path'
 
 const base = process.env.SLURPER_BASE_URL || 'http://localhost:3017'
 const out = process.env.DEABSTRACTOR_AUDIT_DIR || 'docs/validation/deabstractor-security'
-const proof = { checkedAt: new Date().toISOString(), base, checks: [], serverTrace: [], securityCleared: false }
+const proof = { checkedAt: new Date().toISOString(), base, checks: [], serverTrace: [], scope: 'Known dependency advisories and the listed HTTP checks; not an independent security certification.' }
 const request = (route, options) => fetch(new URL(route, base), { ...options, signal: AbortSignal.timeout(15000) })
 let auditText
 try { auditText = execFileSync('npm', ['audit', '--omit=dev', '--json'], { encoding: 'utf8' }) }
@@ -64,9 +64,9 @@ const root = await request('/')
 assert.equal(root.status, 200)
 assert.equal(root.headers.get('x-frame-options'), null)
 proof.checks.push('Room-only framing policy leaves the museum homepage unchanged')
-proof.releaseGate = 'Owner review required: unresolved SDK advisories, physical-wallet handoff, deployment-wide abuse controls and RPC capacity.'
+proof.knownDependencyFindings = proof.dependencies.total
 mkdirSync(out, { recursive: true })
 writeFileSync(path.join(out, 'security-proof.json'), JSON.stringify(proof, null, 2) + '\n')
 console.log(JSON.stringify(proof, null, 2))
 // An audit artifact must not turn an unresolved release gate into a green check.
-process.exitCode = audit.metadata.vulnerabilities.high || audit.metadata.vulnerabilities.critical ? 1 : 0
+process.exitCode = proof.dependencies.total ? 1 : 0

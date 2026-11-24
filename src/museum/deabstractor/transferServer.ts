@@ -15,8 +15,11 @@ export async function inventory(address: Address) {
   const logs = await client.getLogs({ address: GLOWBUD_CONTRACT, event: GLOWBUD_ABI[4], args: { to: address }, fromBlock: BigInt(0), toBlock: blockNumber, strict: true })
   const candidates = [...new Set(logs.filter(log => !log.removed).map(log => Number(log.args.tokenId)))].filter(id => id >= 1 && id <= 3333)
   const tokenIds: number[] = []
-  for (const token of candidates) {
-    if ((await owner(token, blockNumber)).toLowerCase() === address.toLowerCase()) tokenIds.push(token)
+  // Small groups share one batched RPC round trip without flooding a public node.
+  for (let start = 0; start < candidates.length; start += 10) {
+    const group = candidates.slice(start, start + 10)
+    const owners = await Promise.all(group.map(token => owner(token, blockNumber)))
+    tokenIds.push(...group.filter((_, i) => owners[i].toLowerCase() === address.toLowerCase()))
   }
   if (BigInt(tokenIds.length) !== balance) throw new Error('The network returned an incomplete inventory. Refresh shortly; no buds are missing from your wallet.')
   return { tokenIds: tokenIds.sort((a, b) => a - b), address, block: String(blockNumber) }
