@@ -1,0 +1,7 @@
+.error { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; background: #214844; color: #fff0c7; font-family: Arial, Helvetica, sans-serif; text-align: center; overflow-y: auto; }
+.brand { color: #b7ded2; font-size: 13px; font-weight: 700; }
+.error h1 { max-width: 600px; margin: 24px 0 12px; font: 700 34px/1.2 Georgia, serif; text-wrap: balance; }
+.error p { max-width: 430px; font-size: 16px; line-height: 1.6; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 18px; }
+.actions a, .actions button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 12px 18px; border: 2px solid #28212a; border-radius: 6px; background: #f5e6bf; color: #28212a; box-shadow: 0 4px 0 #28212a; font: 700 14px Arial, sans-serif; text-decoration: none; cursor: pointer; }
+.actions :focus-visible { outline: 3px solid #a5f5dd; outline-offset: 4px; }

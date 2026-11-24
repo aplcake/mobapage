@@ -1,0 +1,364 @@
+{
+  "frames": [
+    {
+      "name": "keyboard-ready",
+      "colors": 1024,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 5.843000000000018,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "paused-resize-small-phone",
+      "colors": 401,
+      "state": {
+        "elapsed": 0.7498000000000015,
+        "running": true,
+        "paused": true,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 6.792900000000028,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "scan",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "paused-resize-landscape",
+      "colors": 630,
+      "state": {
+        "elapsed": 0.7498000000000015,
+        "running": true,
+        "paused": true,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 6.792900000000028,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "scan",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "paused-live-reduced-motion",
+      "colors": 621,
+      "state": {
+        "elapsed": 0.7498000000000015,
+        "running": true,
+        "paused": true,
+        "procedure": "evacuation",
+        "reducedMotion": true,
+        "ambient": 6.792900000000028,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "scan",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "968-evacuation-complete",
+      "colors": 1066,
+      "state": {
+        "elapsed": 18,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 20.58919999999981,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "968-inspection-complete",
+      "colors": 495,
+      "state": {
+        "elapsed": 6,
+        "running": false,
+        "paused": false,
+        "procedure": "inspection",
+        "reducedMotion": false,
+        "ambient": 8.113000000000035,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "1677-evacuation-complete",
+      "colors": 1034,
+      "state": {
+        "elapsed": 18,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 20.249103999999857,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 1677,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "1677-inspection-complete",
+      "colors": 468,
+      "state": {
+        "elapsed": 6,
+        "running": false,
+        "paused": false,
+        "procedure": "inspection",
+        "reducedMotion": false,
+        "ambient": 7.896400000000041,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 1677,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "2000-evacuation-complete",
+      "colors": 1056,
+      "state": {
+        "elapsed": 18,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 20.269367999999822,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 2000,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "2000-inspection-complete",
+      "colors": 485,
+      "state": {
+        "elapsed": 6,
+        "running": false,
+        "paused": false,
+        "procedure": "inspection",
+        "reducedMotion": false,
+        "ambient": 8.396200000000034,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "complete",
+        "artwork": "safe",
+        "token": 2000,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "portrait-failure",
+      "colors": 0,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 0.430072,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "portrait-recovered",
+      "colors": 486,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 1.3633719999999994,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "context-loss-recovery",
+      "colors": 0,
+      "state": {
+        "elapsed": 0.45,
+        "running": false,
+        "paused": true,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 1.9467719999999997,
+        "holding": false,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "scan",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "context-restored",
+      "colors": 486,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 1.2466,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "portrait-timeout",
+      "colors": 0,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 12.329599999999983,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 968,
+        "mode": "cinematic-preview"
+      }
+    },
+    {
+      "name": "late-image-new-passenger",
+      "colors": 999,
+      "state": {
+        "elapsed": 0,
+        "running": false,
+        "paused": false,
+        "procedure": "evacuation",
+        "reducedMotion": false,
+        "ambient": 13.839499999999964,
+        "holdTime": 0,
+        "waitBlend": 0,
+        "beat": "standby",
+        "artwork": "not-safe",
+        "token": 1677,
+        "mode": "cinematic-preview"
+      }
+    }
+  ],
+  "checks": [
+    "Keyboard order/focus; held key; pause/resize/preference; rapid selection and start; skip/replay focus",
+    {
+      "token": 968,
+      "procedure": "evacuation",
+      "touch": false,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    {
+      "token": 968,
+      "procedure": "inspection",
+      "touch": true,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    {
+      "token": 1677,
+      "procedure": "evacuation",
+      "touch": false,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    {
+      "token": 1677,
+      "procedure": "inspection",
+      "touch": true,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    {
+      "token": 2000,
+      "procedure": "evacuation",
+      "touch": false,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    {
+      "token": 2000,
+      "procedure": "inspection",
+      "touch": true,
+      "naturalCompletion": true,
+      "replay": true,
+      "backNavigation": true
+    },
+    "Invalid portrait retry; WEBGL_lose_context stops playback/audio; reload recovers",
+    "Delayed load stays disabled and times out to Retry; stale response cannot overwrite new passenger"
+  ],
+  "errors": [],
+  "existingMuseumWarnings": [],
+  "injectedFailureMessages": [],
+  "renderSample": {
+    "frames": 90,
+    "medianMs": 16.699999999999818,
+    "p95Ms": 16.800000000000182,
+    "scope": "Browser RAF pacing on this machine; not physical-phone or GPU frame-time certification"
+  }
+}

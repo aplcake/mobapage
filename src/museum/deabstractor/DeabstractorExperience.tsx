@@ -2,7 +2,6 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { ArrowLeft, ChevronLeft, ChevronRight, FileSearch, LoaderCircle, Pause, Play, RotateCcw, ShieldCheck, SkipForward, Volume2, VolumeX } from 'lucide-react'
-import Link from 'next/link'
 import { Component, useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { ApparatusScene, type SceneClock } from './ApparatusScene'
 import { ApparatusAudio } from './audio'
@@ -12,6 +11,7 @@ import { canInspectReceipt } from './receiptView'
 import { ApparatusLoading } from './ApparatusLoading'
 import { portraitUrl, type VerifiedArrival } from './transfer'
 import { advanceJourney, journeyCleared, journeyCopy, journeyGate, journeyStopped, type LiveJourney } from './liveJourney'
+import { MuseumRoomNav } from './MuseumRoomNav'
 
 declare global {
   interface Window {
@@ -345,7 +345,7 @@ export default function DeabstractorExperience({ live }: { live?: LiveScene }) {
     {loading && <ApparatusLoading live={Boolean(live)} phase={portrait.failed ? 'failed' : portrait.image ? 'scene' : 'portrait'} portraitSrc={portrait.src} token={token} leaving={ready} onRetry={portrait.retry} onChooseToken={live ? undefined : chooseToken} onContinue={live ? failScene : undefined} />}
 
     {!loading && <header className={styles.header}>
-      <Link href="/" className={styles.iconButton} aria-label="Return to museum" data-tooltip="Museum"><ArrowLeft size={20} /></Link>
+      <MuseumRoomNav journey={live?.journey} receiptOpen={inspectingReceipt} />
       <span className={styles.preview}>{live ? 'Abstract today. Ethereum airdrop later.' : 'Demo. No assets move.'}</span>
       <button className={styles.iconButton} onClick={toggleSound} aria-label={sound ? 'Mute sound' : 'Enable sound'} data-tooltip={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound}>{sound ? <Volume2 size={20} /> : <VolumeX size={20} />}</button>
     </header>}

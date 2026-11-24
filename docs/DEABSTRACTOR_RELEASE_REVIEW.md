@@ -2,6 +2,8 @@
 
 Status on 2026-10-28: **preview only; not security-cleared or approved for public launch**.
 
+2026-11-24 update: the complete museum-room integration is ready for hosted review, with Next.js and its matching lint tooling patched to **16.4.6**. The current production-dependency audit reports **31 package findings (0 critical, 21 high, 8 moderate, 2 low)**. These supersede the historical counts below; Hono is an additional reported transitive dependency and decode-uri-component now has a high-severity advisory. No findings are suppressed. The owner has reported a successful transfer since the initial review, but this integration pass does not independently certify a new real-wallet or physical-phone test. The remaining release checks below still apply.
+
 ## Dependency results
 
 `npm audit --json` before: 46 package findings (1 critical, 24 high, 18 moderate, 3 low).

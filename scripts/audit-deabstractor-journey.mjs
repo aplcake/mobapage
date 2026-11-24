@@ -75,7 +75,7 @@ try {
     requestAnimationFrame(sample)
   }))
   assert(await p.evaluate(() => window.__JOURNEY_AUDIO__.length) === 0, 'Cold load started audio')
-  for (const label of ['Return to museum', 'Mute sound', 'Previous Glowbud', 'Next Glowbud', 'Evacuate demo passenger', 'Check an already-safe bud']) {
+  for (const label of ['Return to museum', 'Open museum areas', 'Mute sound', 'Previous Glowbud', 'Next Glowbud', 'Evacuate demo passenger', 'Check an already-safe bud']) {
     await p.keyboard.press('Tab')
     assert(await p.evaluate(name => document.activeElement?.getAttribute('aria-label') === name, label), `Unexpected keyboard order: ${label}`)
     assert(await p.evaluate(() => getComputedStyle(document.activeElement).outlineStyle !== 'none'), 'Invisible keyboard focus')
@@ -103,6 +103,11 @@ try {
   await frame(p, 'paused-live-reduced-motion')
   await skip(p).click()
   assert(await p.getByRole('button', { name: 'Replay evacuation' }).evaluate(button => document.activeElement === button), 'Skip lost keyboard focus')
+  await p.getByRole('button', { name: 'Inspect printed clearance', exact: true }).click()
+  await p.getByRole('button', { name: 'Back to apparatus', exact: true }).waitFor()
+  await p.keyboard.press('Escape')
+  assert(new URL(p.url()).pathname === '/deabstractor', 'Receipt Escape navigated out of the room')
+  assert(await p.getByRole('button', { name: 'Inspect printed clearance', exact: true }).evaluate(button => document.activeElement === button), 'Receipt Escape lost focus')
   await p.setViewportSize({ width: 1440, height: 1000 })
   await p.emulateMedia({ reducedMotion: 'no-preference' })
   await p.getByRole('button', { name: 'Next Glowbud' }).click()

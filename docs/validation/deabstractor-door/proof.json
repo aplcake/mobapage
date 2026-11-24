@@ -1,0 +1,16 @@
+{
+  "checks": [
+    {
+      "name": "desktop",
+      "colors": 352,
+      "entered": "http://localhost:3017/deabstractor"
+    },
+    {
+      "name": "phone",
+      "colors": 218,
+      "entered": "http://localhost:3017/deabstractor"
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

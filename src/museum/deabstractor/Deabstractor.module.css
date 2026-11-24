@@ -13,7 +13,7 @@
 .header { position: absolute; inset: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: max(24px, env(safe-area-inset-top)) max(28px, env(safe-area-inset-right)) 0 max(28px, env(safe-area-inset-left)); pointer-events: none; }
 .header a, .header button { pointer-events: auto; }
 .preview { color: #f4f3e4; background: #16392ff2; padding: 9px 13px; border: 1px solid #bacbaf80; border-radius: 4px; font-size: 12px; font-weight: 500; line-height: 18px; max-width: calc(100% - 144px); text-wrap: balance; }
-@media (min-width: 700px) { .preview { position: absolute; left: max(88px, calc(env(safe-area-inset-left) + 72px)); top: max(24px, env(safe-area-inset-top)); } }
+@media (min-width: 700px) { .preview { margin-right: auto; margin-left: 16px; } }
 .experience button, .iconButton { cursor: pointer; font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 .iconButton, .arrowButton, .checkButton { position: relative; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: 2px solid #25473d; background: #eff0d9; box-shadow: 0 3px 0 #25473d; transition: background 140ms, transform 140ms, box-shadow 140ms; }
 .iconButton { width: 44px; height: 44px; border-radius: 50%; flex: 0 0 44px; }
@@ -55,7 +55,7 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 600px) {
   .header { padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left)); }
-  .preview { font-size: 12px; padding: 7px 9px; max-width: calc(100% - 104px); text-align: center; }
+  .preview { display: none; }
   .controls { bottom: max(24px, env(safe-area-inset-bottom)); }
   .loadout { flex-direction: column; gap: 14px; }
   .passengerBadge { flex-direction: row; gap: 9px; min-width: 114px; }
