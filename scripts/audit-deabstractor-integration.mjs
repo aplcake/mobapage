@@ -4,7 +4,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
 const base = process.env.SLURPER_BASE_URL || 'http://localhost:3017'
-const out = path.resolve('docs/validation/deabstractor-integration')
+const out = path.resolve(process.env.DEABSTRACTOR_AUDIT_DIR || 'docs/validation/deabstractor-integration')
 await mkdir(out, { recursive: true })
 const browser = await chromium.launch({ channel: 'chrome' })
 const proof = { mode: 'local-integration-no-wallets-no-transactions', checks: [], pageErrors: [], newRoomErrors: [] }
@@ -50,6 +50,18 @@ try {
     await screenshot(page, `${name}-museum-menu`)
     await link.click()
     await page.waitForURL('**/deabstractor')
+    if (name === 'phone') {
+      const board = page.getByRole('button', { name: 'Board your buds', exact: true })
+      await board.waitFor({ timeout: 60000 })
+      const fullFrame = async () => {
+        const rect = await page.locator('canvas').first().boundingBox()
+        assert(rect && rect.x === 0 && rect.y === 0 && rect.width === viewport.width && rect.height === viewport.height, 'Portrait canvas does not fill the screen')
+      }
+      await fullFrame()
+      await screenshot(page, 'phone-fullscreen-dock')
+      await board.click()
+      await fullFrame()
+    }
     await page.getByRole('button', { name: 'Use a browser wallet', exact: true }).waitFor({ timeout: 60000 })
     await screenshot(page, `${name}-live-room`)
     await page.getByRole('button', { name: 'Open museum areas' }).click()
@@ -66,7 +78,7 @@ try {
     assert(JSON.stringify(beforeStyle) === JSON.stringify(afterStyle), 'New room styles leaked into the museum')
     await screenshot(page, `${name}-museum-return`)
     await page.getByRole('link', { name: 'De-Abstractor', exact: true }).click()
-    await page.getByRole('button', { name: 'Use a browser wallet', exact: true }).waitFor()
+    await page.getByRole('button', { name: name === 'phone' ? 'Board your buds' : 'Use a browser wallet', exact: true }).waitFor()
     await page.keyboard.press('Escape')
     await page.waitForURL(`${base}/`)
     proof.checks.push({ name: `${name}-escape-to-museum` })

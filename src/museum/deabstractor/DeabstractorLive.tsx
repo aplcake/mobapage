@@ -12,6 +12,7 @@ export default function DeabstractorLive() {
   const [confirmed, setConfirmed] = useState<VerifiedArrival | null>(null)
   const [cinematic, setCinematic] = useState(false)
   const [ready, setReady] = useState(false)
+  const [deskHeight, setDeskHeight] = useState(0)
   const [journey, setJourney] = useState<LiveJourney>(EMPTY_JOURNEY)
   const progress = useCallback((next: LiveJourney) => {
     setJourney(next)
@@ -29,7 +30,7 @@ export default function DeabstractorLive() {
   const inspect = useCallback((inspection: WalletInspection) => { setToken(inspection.token); setConfirmed(inspection) }, [])
   const started = useCallback(() => setCinematic(true), [])
   return <>
-    <Experience live={{ token, confirmed, journey, onReady: sceneReady, onStarted: started, onFinished: finish }} />
-    {ready && <TransferDesk focusedToken={token} onToken={setToken} onConfirmed={confirm} onChecked={inspect} onJourney={progress} cinematic={cinematic} />}
+    <Experience live={{ token, confirmed, journey, deskHeight, onReady: sceneReady, onStarted: started, onFinished: finish }} />
+    {ready && <TransferDesk focusedToken={token} onToken={setToken} onConfirmed={confirm} onChecked={inspect} onJourney={progress} cinematic={cinematic} onHeight={setDeskHeight} />}
   </>
 }

@@ -33,7 +33,7 @@ try {
     await page.screenshot({ path: path.join(out, `${name}-entrance.png`) })
     await page.mouse.click(viewport.width / 2, viewport.height / 2)
     await page.waitForURL('**/deabstractor')
-    await page.getByRole('button', { name: 'Use a browser wallet', exact: true }).waitFor()
+    await page.getByRole('button', { name: name === 'phone' ? 'Board your buds' : 'Use a browser wallet', exact: true }).waitFor()
     proof.checks.push({ name, colors: colors.size, entered: page.url() })
     console.log(`${name}: physical door entered`)
     await context.close()

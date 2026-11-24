@@ -20,7 +20,7 @@ export function MuseumRoomNav({ journey, receiptOpen = false }: { journey?: Live
   }
   useEffect(() => {
     const escape = (event: KeyboardEvent) => {
-      if (event.defaultPrevented || event.key !== 'Escape' || receiptOpen) return
+      if (event.defaultPrevented || event.key !== 'Escape' || receiptOpen || document.fullscreenElement) return
       const target = event.target
       if (target instanceof HTMLElement && (target.isContentEditable || target.closest('input, textarea, select, [role="dialog"], dialog'))) return
       event.preventDefault()

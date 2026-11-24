@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { ArrowLeft, ChevronLeft, ChevronRight, FileSearch, LoaderCircle, Pause, Play, RotateCcw, ShieldCheck, SkipForward, Volume2, VolumeX } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, FileSearch, LoaderCircle, Maximize, Minimize, Pause, Play, RotateCcw, ShieldCheck, SkipForward, Volume2, VolumeX } from 'lucide-react'
 import { Component, useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { ApparatusScene, type SceneClock } from './ApparatusScene'
 import { ApparatusAudio } from './audio'
@@ -12,6 +12,25 @@ import { ApparatusLoading } from './ApparatusLoading'
 import { portraitUrl, type VerifiedArrival } from './transfer'
 import { advanceJourney, journeyCleared, journeyCopy, journeyGate, journeyStopped, type LiveJourney } from './liveJourney'
 import { MuseumRoomNav } from './MuseumRoomNav'
+import { usePortraitRoom } from './usePortraitRoom'
+
+const subscribeFullscreen = (notify: () => void) => {
+  document.addEventListener('fullscreenchange', notify)
+  return () => document.removeEventListener('fullscreenchange', notify)
+}
+function RoomFullscreen() {
+  const portrait = usePortraitRoom()
+  const active = useSyncExternalStore(subscribeFullscreen, () => Boolean(document.fullscreenElement), () => false)
+  const [unavailable, setUnavailable] = useState(false)
+  if (!active && (!portrait || !document.fullscreenEnabled || unavailable)) return null
+  const label = active ? 'Exit fullscreen' : 'Enter fullscreen'
+  return <button type="button" className={styles.iconButton} aria-label={label} title={label} aria-pressed={active} onClick={async event => {
+    try {
+      if (active) await document.exitFullscreen()
+      else await event.currentTarget.closest<HTMLElement>('[data-deabstractor-room]')?.requestFullscreen()
+    } catch { setUnavailable(true) }
+  }}>{active ? <Minimize size={19} /> : <Maximize size={19} />}</button>
+}
 
 declare global {
   interface Window {
@@ -78,7 +97,7 @@ function usePassengerPortrait(token: number, isLive = false) {
   return { image: current?.image ?? null, failed: current?.failed ?? false, src: `${isLive ? portraitUrl(token) : `/deabstractor/glowbud-${token}.png`}${attempt ? `?retry=${attempt}` : ''}`, retry: () => setAttempt(value => value + 1) }
 }
 
-type LiveScene = { token: number; confirmed: VerifiedArrival | null; journey: LiveJourney; onReady: () => void; onStarted: () => void; onFinished: () => void }
+type LiveScene = { token: number; confirmed: VerifiedArrival | null; journey: LiveJourney; deskHeight: number; onReady: () => void; onStarted: () => void; onFinished: () => void }
 export default function DeabstractorExperience({ live }: { live?: LiveScene }) {
   const [tokenIndex, setTokenIndex] = useState(0)
   const [beat, setBeat] = useState<Beat>('standby')
@@ -336,7 +355,7 @@ export default function DeabstractorExperience({ live }: { live?: LiveScene }) {
     <div className={styles.scene} inert={loading} aria-hidden={loading} aria-label="A mint-green cartoon evacuation machine with a pixel Glowbud on its screen">
       {sceneFailed ? <SceneUnavailable onFailure={failScene} /> : <SceneBoundary onFailure={failScene}>
         <Canvas onCreated={({ gl }) => setCanvas(gl.domElement)} shadows="percentage" dpr={[1, 1.6]} camera={{ position: [5.6, 4.7, 14.3], fov: 36 }} gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }} fallback={<div className={styles.fallback}>This experience needs WebGL. No wallets or assets have been changed.</div>}>
-          <ApparatusScene clock={clock} token={token} portrait={portrait.image} attention={attention} receiptView={receiptView} onInspectReceipt={inspectReceipt} proof={sceneProof} journey={live?.journey} onActivate={() => { if (!live) start() }} />
+          <ApparatusScene clock={clock} token={token} portrait={portrait.image} attention={attention} receiptView={receiptView} onInspectReceipt={inspectReceipt} proof={sceneProof} journey={live?.journey} deskHeight={live?.deskHeight} onActivate={() => { if (!live) start() }} />
           <FirstSceneFrame enabled={Boolean(portrait.image)} onReady={markFrameReady} />
         </Canvas>
       </SceneBoundary>}
@@ -347,7 +366,10 @@ export default function DeabstractorExperience({ live }: { live?: LiveScene }) {
     {!loading && <header className={styles.header}>
       <MuseumRoomNav journey={live?.journey} receiptOpen={inspectingReceipt} />
       <span className={styles.preview}>{live ? 'Abstract today. Ethereum airdrop later.' : 'Demo. No assets move.'}</span>
+      <div className={styles.screenTools}>
+      <RoomFullscreen />
       <button className={styles.iconButton} onClick={toggleSound} aria-label={sound ? 'Mute sound' : 'Enable sound'} data-tooltip={sound ? 'Mute sound' : 'Enable sound'} aria-pressed={sound}>{sound ? <Volume2 size={20} /> : <VolumeX size={20} />}</button>
+      </div>
     </header>}
 
     {!loading && <div className={styles.srOnly} role="status" aria-live="polite" aria-atomic="true">

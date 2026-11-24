@@ -1,5 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { DeabstractorClient } from '../../src/museum/deabstractor/DeabstractorClient'
+
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', interactiveWidget: 'resizes-content' }
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.museumofbased.art'),
