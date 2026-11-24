@@ -1,0 +1,136 @@
+{
+  "checkedAt": "2026-11-24T15:54:48.968Z",
+  "base": "http://localhost:3017",
+  "checks": [
+    "Wallet screen rejects cross-origin framing; MIME and referrer headers present",
+    "cross-origin rejected without a transaction or cached wallet response",
+    "cross-site rejected without a transaction or cached wallet response",
+    "oversized body rejected without a transaction or cached wallet response",
+    "unsupported action rejected without a transaction or cached wallet response",
+    "invalid address rejected without a transaction or cached wallet response",
+    "oversized batch rejected without a transaction or cached wallet response",
+    "Invalid inventory address rejected before RPC reads",
+    "Room-only framing policy leaves the museum homepage unchanged"
+  ],
+  "serverTrace": [
+    {
+      "route": "check",
+      "maps": 100,
+      "sourceCount": 799,
+      "bundledMatches": [],
+      "externalMatches": []
+    },
+    {
+      "route": "inventory",
+      "maps": 100,
+      "sourceCount": 799,
+      "bundledMatches": [],
+      "externalMatches": []
+    },
+    {
+      "route": "portrait/[token]",
+      "maps": 96,
+      "sourceCount": 575,
+      "bundledMatches": [],
+      "externalMatches": []
+    }
+  ],
+  "securityCleared": false,
+  "dependencies": {
+    "info": 0,
+    "low": 2,
+    "moderate": 7,
+    "high": 18,
+    "critical": 0,
+    "total": 27
+  },
+  "advisories": [
+    {
+      "source": 1147955,
+      "name": "decode-uri-component",
+      "dependency": "decode-uri-component",
+      "title": "decode-uri-component: Denial of service via exponential decoding of malformed percent-encoded input",
+      "url": "https://github.com/advisories/GHSA-vcc3-ghjq-m6fr",
+      "severity": "moderate",
+      "cwe": [
+        "CWE-400",
+        "CWE-405",
+        "CWE-407",
+        "CWE-1176"
+      ],
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "range": "<=0.4.2"
+    },
+    {
+      "source": 1243857,
+      "name": "decode-uri-component",
+      "dependency": "decode-uri-component",
+      "title": "decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs",
+      "url": "https://github.com/advisories/GHSA-qr28-fpjm-wq7f",
+      "severity": "high",
+      "cwe": [
+        "CWE-400",
+        "CWE-407"
+      ],
+      "cvss": {
+        "score": 0,
+        "vectorString": null
+      },
+      "range": "<=0.5.0"
+    },
+    {
+      "source": 1112030,
+      "name": "elliptic",
+      "dependency": "elliptic",
+      "title": "Elliptic Uses a Cryptographic Primitive with a Risky Implementation",
+      "url": "https://github.com/advisories/GHSA-848j-6mx2-7j84",
+      "severity": "low",
+      "cwe": [
+        "CWE-1240"
+      ],
+      "cvss": {
+        "score": 5.6,
+        "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L"
+      },
+      "range": "<=6.6.1"
+    },
+    {
+      "source": 1119441,
+      "name": "uuid",
+      "dependency": "uuid",
+      "title": "uuid: Missing buffer bounds check in v3/v5/v6 when buf is provided",
+      "url": "https://github.com/advisories/GHSA-w5hq-g745-h8pq",
+      "severity": "moderate",
+      "cwe": [
+        "CWE-787",
+        "CWE-1285"
+      ],
+      "cvss": {
+        "score": 7.5,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+      },
+      "range": "<11.1.1"
+    },
+    {
+      "source": 1243066,
+      "name": "zod",
+      "dependency": "zod",
+      "title": "Zod can exhaust memory while validating oversized constrained collections",
+      "url": "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5",
+      "severity": "high",
+      "cwe": [
+        "CWE-770"
+      ],
+      "cvss": {
+        "score": 7.5,
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+      },
+      "range": "<4.6.6"
+    }
+  ],
+  "traceLimit": "API build membership only. Does not certify browser wallet bundles, SDK services, or exploitability.",
+  "releaseGate": "Owner review required: unresolved SDK advisories, physical-wallet handoff, deployment-wide abuse controls and RPC capacity."
+}

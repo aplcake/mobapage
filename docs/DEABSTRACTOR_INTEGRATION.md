@@ -9,7 +9,7 @@ This is an additive integration of the Glowbuds De-Abstractor, not a replacement
 - Artwork and licensed local fonts live in `public/deabstractor/`; font declarations do not style other rooms.
 - Reuses the museum's existing, unchanged `eip1193Wallet` and `toonRamp` helpers.
 - No root layout, global styles, existing API, collection data, wardrobe or lab changes. The lightweight lobby doorway uses the existing toon materials; it does not load another machine or wallet provider. The menu entry disables prefetch, and the Abstract wallet provider is loaded only in this room when needed.
-- The initial import preserved the existing application dependency versions. The separately authorized security pass upgrades Next.js, Sharp and test/lint tooling; React, Three.js, existing scene libraries and the wallet SDK versions remain unchanged.
+- The initial import preserved existing dependency versions. Authorized security passes update Next.js, Sharp, test/lint tooling, Hono and Privy. React, Three.js, scene libraries, AGW, Wagmi and root Viem versions remain unchanged.
 
 ## Transfer behavior
 
@@ -38,7 +38,9 @@ This branch is for review. No main-branch merge or production deployment is part
 
 ### Current release caveats
 
-The 2026-11-24 production-dependency audit reports **31 findings: 0 critical, 21 high, 8 moderate and 2 low** after the Next.js patch. These cascade from wallet-tree Zod, UUID, decode-uri-component, Hono and Elliptic dependencies. Do not treat the older audit counts below as current or force major wallet-SDK replacements as part of room integration. The owner previously reported a successful real transfer; this pass performs simulated wallet checks only. Physical-phone wallet handoff, RPC capacity, distributed abuse protection and the unresolved dependency review remain release-owner checks. Apl's production Vercel team is not accessible through this connection, and this pass does not silently merge or promote the live museum.
+The follow-up production audit reports **27 findings: 0 critical, 18 high, 7 moderate and 2 low**, down from 31. Hono is patched to 4.13.21 and Privy to 3.52.1; remaining findings cascade from wallet-tree Zod, UUID, decode-uri-component and Elliptic. The new API build-trace review narrows server exposure but does not clear browser SDKs. Physical-phone wallet handoff, RPC capacity, distributed abuse protection and the unresolved dependency review remain release-owner checks. Apl's production Vercel team is not accessible through this connection; no live-museum merge or promotion was performed. See [current release review](DEABSTRACTOR_RELEASE_REVIEW.md).
+
+The same follow-up fixes complete EIP-5792 batch reverts, including previously saved hashes and reloads, and adds room-only anti-framing headers. All **604 tests**, production build and **17 simulated transfer scenarios** pass. The security probe intentionally stays nonzero while high dependency findings remain; it must not be described as an unconditional security pass.
 
 ### Dependency review (2026-10-28)
 
@@ -47,6 +49,8 @@ The initial audit reported 46 findings: 1 critical, 24 high, 18 moderate and 3 l
 The remaining findings cascade from four older dependencies in the wallet tree: Zod, UUID, decode-uri-component and Elliptic. They are unresolved, not suppressed or certified harmless. See [security review and controlled-test checklist](DEABSTRACTOR_RELEASE_REVIEW.md). Keep this pull request in draft pending that review and an owner-controlled real-wallet test. No production release has been performed.
 
 ## Checks
+
+The committed `.npmrc` matches the legacy peer-resolution mode used by the lockfile and existing build. Do not generate a different tree by silently overriding it; the remaining wallet peer-range limitations are documented in the release review.
 
 ```sh
 npm ci

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { decodeFunctionData, encodeEventTopics, getAddress, parseAbi, type Hex } from 'viem'
 import { getBatchTransactionObject } from '@abstract-foundation/agw-client/actions'
-import { ABSTRACT_CHAIN_ID, GLOWBUD_ABI, GLOWBUD_CONTRACT, isWalletRejection, passengerTokens, portraitUrl, readDeparture, readTicket, recipientAddress, tokenNumber, transferCalls, transferData, verifyTransferReceipt, wasNotSubmitted, type TransferTicket } from '../src/museum/deabstractor/transfer'
+import { ABSTRACT_CHAIN_ID, GLOWBUD_ABI, GLOWBUD_CONTRACT, isWalletRejection, passengerTokens, portraitUrl, readDeparture, readTicket, readTransferHistory, recipientAddress, tokenNumber, transferCalls, transferData, verifyTransferReceipt, wasNotSubmitted, type TransferTicket } from '../src/museum/deabstractor/transfer'
 import { browserSigner } from '../src/museum/deabstractor/browserSigner'
 
 const from = getAddress('0x1111111111111111111111111111111111111111')
@@ -49,6 +49,11 @@ describe('De-Abstractor asset boundaries', () => {
 })
 
 describe('Bulk departures', () => {
+  it('preserves terminal failures on reload but never trusts stored success', () => {
+    const record = { from, to, token: 968, hash }
+    expect(readTransferHistory(['bad', null, { ...record, status: 'reverted' }, { ...record, status: 'confirmed' }, { ...record, status: 'pending' }]).map(item => item.status)).toEqual(['reverted', 'pending', 'pending'])
+    expect(readTransferHistory({ status: 'reverted' })).toEqual([])
+  })
   it('allows 50 unique passengers and rejects duplicate or oversized groups', () => {
     expect(passengerTokens(Array.from({ length: 50 }, (_, i) => i + 1))).toHaveLength(50)
     for (const value of [[], [968, 968], [0], Array.from({ length: 51 }, (_, i) => i + 1)]) expect(() => passengerTokens(value)).toThrow()
@@ -113,6 +118,21 @@ describe('Bulk departures', () => {
   it('fails closed for an unrelated wallet batch response', async () => {
     const f = bulkWallet(); const signer = await browserSigner(f.wallet)
     await expect(signer.batchStatus!('another-trip')).rejects.toThrow('Waiting')
+  })
+  it.each([undefined, [{ transactionHash: hash }]])('recognizes a full batch revert independently of its outer receipt', async receipts => {
+    const f = bulkWallet(); const signer = await browserSigner(f.wallet)
+    f.request.mockResolvedValueOnce({ id: 'trip-a', chainId: '0xab5', atomic: true, status: 500, receipts } as never)
+    expect(await signer.batchStatus!('trip-a')).toEqual({ failed: true, reason: 'reverted', hash: receipts ? hash : undefined })
+  })
+  it.each([100, 200, 600, 501, undefined])('does not release an uncertain or partial batch with status %s', async status => {
+    const f = bulkWallet(); const signer = await browserSigner(f.wallet)
+    f.request.mockResolvedValueOnce({ id: 'trip-a', chainId: '0xab5', atomic: true, status, receipts: [{ transactionHash: hash }] } as never)
+    expect(await signer.batchStatus!('trip-a')).toEqual({ failed: false, hash })
+  })
+  it.each([{ chainId: '0x1' }, { id: 'other' }, { atomic: false }, { receipts: {} }])('rejects invalid failure evidence %j', async override => {
+    const f = bulkWallet(); const signer = await browserSigner(f.wallet)
+    f.request.mockResolvedValueOnce({ id: 'trip-a', chainId: '0xab5', atomic: true, status: 500, ...override } as never)
+    await expect(signer.batchStatus!('trip-a')).rejects.toThrow('Waiting')
   })
 })
 

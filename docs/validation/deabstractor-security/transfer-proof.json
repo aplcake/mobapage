@@ -1,0 +1,121 @@
+{
+  "mode": "simulated-wallets-and-receipts-no-assets-moved",
+  "checks": [
+    "Three passenger lineup; independent keyboard preview updates CRT; explicit removal/focus fallback; stable order; full-address manifest; mobile/landscape; consent reset on edits; empty/source-change reset; no signatures or transactions during boarding",
+    "50-passenger cap, select-all, clear limit feedback, horizontal lineup scroll, keyboard reachability and reduced motion",
+    "25 passengers sent in one zero-value atomic wallet call; all receipts kept; reload verifies automatically without any new submission",
+    "Unsupported wallet explicitly shows six separate approvals before consent and completes six serial transfers without an upgrade",
+    "Atomic batch rejected: correct recovery/consent boundaries, no silent serial fallback or duplicate sends",
+    "Atomic batch failed: correct recovery/consent boundaries, no silent serial fallback or duplicate sends",
+    "Atomic batch reverted: correct recovery/consent boundaries, no silent serial fallback or duplicate sends",
+    "Atomic batch interrupted: correct recovery/consent boundaries, no silent serial fallback or duplicate sends",
+    "Empty wallet has a clear non-actionable state",
+    "Pasted address, same-address rejection, mandatory consent/full address, single safeTransferFrom with zero ETH value, receipt-gated cinematic",
+    "Reload recovers saved hash through chain recheck, not a second signature or trusted local success flag",
+    "Two independently connected wallets preserve sender; rejected wallet request does not animate success",
+    "Network change immediately before signature stops without submitting",
+    "Pending hash survives reload, remains pending, cannot skip into clearance, and never auto-resends",
+    "Existing personal-wallet inspection starts only after fresh ownership checks and requests no transaction",
+    "Ambiguous wallet timeout retains unresolved intent across reload; automatic exact-event recovery verifies without asking for a hash or resubmitting",
+    "Unavailable artwork cannot trap wallet access or transaction recovery behind the cinematic loader"
+  ],
+  "screenshots": [
+    {
+      "name": "boarding-desktop-passengers",
+      "colors": 836
+    },
+    {
+      "name": "boarding-desktop-manifest",
+      "colors": 804
+    },
+    {
+      "name": "boarding-manifest-390x844",
+      "colors": 478
+    },
+    {
+      "name": "boarding-confirm-390x844",
+      "colors": 448
+    },
+    {
+      "name": "boarding-manifest-320x568",
+      "colors": 288
+    },
+    {
+      "name": "boarding-confirm-320x568",
+      "colors": 290
+    },
+    {
+      "name": "boarding-manifest-844x390",
+      "colors": 566
+    },
+    {
+      "name": "boarding-confirm-844x390",
+      "colors": 570
+    },
+    {
+      "name": "boarding-full-lineup-reduced-motion",
+      "colors": 456
+    },
+    {
+      "name": "bulk-25-review",
+      "colors": 814
+    },
+    {
+      "name": "bulk-25-arrived",
+      "colors": 830
+    },
+    {
+      "name": "interrupted-batch-phone",
+      "colors": 417
+    },
+    {
+      "name": "boarding-empty-wallet",
+      "colors": 697
+    },
+    {
+      "name": "desktop-arrival",
+      "colors": 699
+    },
+    {
+      "name": "arrival-390x844",
+      "colors": 416
+    },
+    {
+      "name": "arrival-320x568",
+      "colors": 286
+    },
+    {
+      "name": "arrival-844x390",
+      "colors": 523
+    },
+    {
+      "name": "desktop-review",
+      "colors": 788
+    },
+    {
+      "name": "phone-review",
+      "colors": 468
+    },
+    {
+      "name": "phone-review-confirmation",
+      "colors": 465
+    },
+    {
+      "name": "phone-confirmed-cinematic",
+      "colors": 536
+    },
+    {
+      "name": "rejected-transfer",
+      "colors": 797
+    },
+    {
+      "name": "pending-transfer",
+      "colors": 759
+    },
+    {
+      "name": "automatic-departure-tracking",
+      "colors": 783
+    }
+  ],
+  "errors": []
+}

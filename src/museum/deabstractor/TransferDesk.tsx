@@ -7,7 +7,7 @@ import { getAddress } from 'viem'
 import { discoverEvmWallets, requestWalletAccounts, type DiscoveredWallet } from '../wallet/eip1193Wallet'
 import { browserSigner } from './browserSigner'
 import { PassengerLineup } from './PassengerLineup'
-import { friendlyWalletError, GLOWBUD_CONTRACT, wasNotSubmitted, MAX_PASSENGERS, portraitUrl, readDeparture, readTicket, recipientAddress, type Departure, type TransferRecord, type TransferSigner, type TransferTicket, type WalletInspection } from './transfer'
+import { friendlyWalletError, GLOWBUD_CONTRACT, wasNotSubmitted, MAX_PASSENGERS, portraitUrl, readDeparture, readTransferHistory, recipientAddress, type Departure, type TransferRecord, type TransferSigner, type TransferTicket, type WalletInspection } from './transfer'
 import styles from './TransferDesk.module.css'
 import { EMPTY_JOURNEY, journeyCopy, type LiveJourney } from './liveJourney'
 
@@ -17,9 +17,7 @@ const INTENT = 'glowbuds.deabstractor.unresolved.v1'
 function readRecords(): TransferRecord[] {
   try {
     const saved: unknown = JSON.parse(localStorage.getItem(JOURNAL) || '[]')
-    return Array.isArray(saved) ? saved.slice(-100).flatMap(entry => {
-      try { return [{ ...readTicket(entry), status: 'pending' as const }] } catch { return [] }
-    }) : []
+    return readTransferHistory(saved)
   } catch { return [] }
 }
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -176,12 +174,18 @@ export function TransferDesk({ focusedToken, onToken, onConfirmed, onChecked, on
   }
   async function resolveDeparture(trip: Departure) {
     const signer = sourceRef.current
-    if (trip.callId && !trip.hash && signer?.batchStatus && signer.address.toLowerCase() === trip.from.toLowerCase()) {
+    if (trip.callId && signer?.batchStatus && signer.address.toLowerCase() === trip.from.toLowerCase()) {
       try {
         const state = await signer.batchStatus(trip.callId)
-        if (state.failed) {
+        if (state.failed && (state.reason === 'reverted' || !trip.hash)) {
+          const hash = state.hash ?? trip.hash
+          if (hash && state.reason === 'reverted') {
+            for (const token of trip.tokens) save({ token, from: trip.from, to: trip.to, hash, status: 'reverted' })
+          }
           localStorage.removeItem(INTENT); setUnresolved(false)
-          throw new Error('Your wallet did not submit this group. Refresh your buds to try again.')
+          throw new Error(state.reason === 'reverted'
+            ? 'Your wallet reports that this group reverted. No buds moved in this batch; network fees may still apply. Refresh your buds before trying again.'
+            : 'Your wallet did not submit this group. Refresh your buds to try again.')
         }
         if (state.hash) { trip = { ...trip, hash: state.hash }; localStorage.setItem(INTENT, JSON.stringify(trip)) }
       } catch (failure) {

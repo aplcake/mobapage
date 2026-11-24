@@ -25,7 +25,7 @@ export type TransferSigner = {
   send: (token: number, destination: Address) => Promise<Hex>
   supportsBatch?: () => Promise<boolean>
   sendBatch?: (tokens: number[], destination: Address, requestId: string) => Promise<{ hash?: Hex; callId?: string }>
-  batchStatus?: (id: string) => Promise<{ failed: boolean; hash?: Hex }>
+  batchStatus?: (id: string) => Promise<{ failed: false; hash?: Hex } | { failed: true; reason: 'not-submitted' | 'reverted'; hash?: Hex }>
 }
 
 export function passengerTokens(value: unknown): number[] {
@@ -117,6 +117,17 @@ export function readTicket(value: unknown): TransferTicket {
   const to = recipientAddress(String(entry.to ?? ''), from)
   if (typeof entry.hash !== 'string' || !/^0x[a-fA-F0-9]{64}$/.test(entry.hash)) throw new Error('Invalid transaction hash.')
   return { from, to, token: tokenNumber(entry.token), hash: entry.hash as Hex }
+}
+
+export function readTransferHistory(value: unknown): TransferRecord[] {
+  if (!Array.isArray(value)) return []
+  return value.slice(-100).flatMap(entry => {
+    try {
+      // A recorded failure never grants arrival. Successful arrivals are rechecked
+      // on chain; a separate unresolved intent still locks any unfinished send.
+      return [{ ...readTicket(entry), status: entry.status === 'reverted' ? 'reverted' as const : 'pending' as const }]
+    } catch { return [] }
+  })
 }
 
 export function friendlyWalletError(error: unknown) {

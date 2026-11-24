@@ -13,10 +13,10 @@ const hash = `0x${'a'.repeat(64)}`
 const proof = { mode: 'simulated-wallets-and-receipts-no-assets-moved', checks: [], screenshots: [], errors: [] }
 const assert = (condition, message) => { if (!condition) throw new Error(message) }
 
-async function fixture({ reject = false, ambiguous = false, chainChange = false, pending = false, bulk = false, batchFailed = false, portraitFailure = false, tokens = [968, 1677], liveRecipientCheck = false } = {}) {
+async function fixture({ reject = false, ambiguous = false, chainChange = false, pending = false, bulk = false, batchFailed = false, batchReverted = false, portraitFailure = false, tokens = [968, 1677], liveRecipientCheck = false } = {}) {
   let recoveryReady = !ambiguous
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } })
-  await context.addInitScript(({ from, to, hash, reject, ambiguous, chainChange, bulk, pending, batchFailed }) => {
+  await context.addInitScript(({ from, to, hash, reject, ambiguous, chainChange, bulk, pending, batchFailed, batchReverted }) => {
     window.__walletCalls = []
     let chainReads = 0
     const provider = address => ({ request: async ({ method, params }) => {
@@ -30,7 +30,7 @@ async function fixture({ reject = false, ambiguous = false, chainChange = false,
         if (ambiguous) throw new Error('Wallet connection timed out')
         return { id: params[0].id }
       }
-      if (method === 'wallet_getCallsStatus') return { id: params[0], chainId: '0xab5', atomic: true, status: batchFailed ? 400 : pending || ambiguous ? 100 : 200, receipts: pending || ambiguous || batchFailed ? [] : [{ transactionHash: hash }] }
+      if (method === 'wallet_getCallsStatus') return { id: params[0], chainId: '0xab5', atomic: true, status: batchReverted ? 500 : batchFailed ? 400 : pending || ambiguous ? 100 : 200, receipts: pending || ambiguous || batchFailed ? [] : [{ transactionHash: hash, status: '0x1' }] }
       if (method === 'eth_sendTransaction') {
         if (reject) throw Object.assign(new Error('User rejected the request'), { code: 4001 })
         if (ambiguous) throw new Error('Wallet connection timed out')
@@ -42,7 +42,7 @@ async function fixture({ reject = false, ambiguous = false, chainChange = false,
     window.addEventListener('eip6963:requestProvider', () => {
       for (const [name, p] of [['Sending test wallet', sending], ['Receiving test wallet', receiving]]) window.dispatchEvent(new CustomEvent('eip6963:announceProvider', { detail: { info: { uuid: name, name, rdns: 'test.invalid' }, provider: p } }))
     })
-  }, { from, to, hash, reject, ambiguous, chainChange, bulk, pending, batchFailed })
+  }, { from, to, hash, reject, ambiguous, chainChange, bulk, pending, batchFailed, batchReverted })
   const page = await context.newPage()
   if (portraitFailure) await page.route('**/deabstractor/glowbud-968.png', route => route.abort())
   page.on('pageerror', error => proof.errors.push(error.message))
@@ -251,8 +251,8 @@ try {
   proof.checks.push('Unsupported wallet explicitly shows six separate approvals before consent and completes six serial transfers without an upgrade')
   await serial.context.close()
 
-  for (const scenario of ['rejected', 'failed', 'interrupted']) {
-    const f = await fixture({ bulk: true, reject: scenario === 'rejected', batchFailed: scenario === 'failed', ambiguous: scenario === 'interrupted', tokens: [968, 1677, 2000] })
+  for (const scenario of ['rejected', 'failed', 'reverted', 'interrupted']) {
+    const f = await fixture({ bulk: true, reject: scenario === 'rejected', batchFailed: scenario === 'failed', batchReverted: scenario === 'reverted', ambiguous: scenario === 'interrupted', tokens: [968, 1677, 2000] })
     await f.page.getByRole('button', { name: 'Use a browser wallet', exact: true }).click()
     await f.page.getByRole('button', { name: 'Sending test wallet', exact: true }).click()
     await f.page.getByRole('button', { name: 'Select all', exact: true }).click()
@@ -275,10 +275,31 @@ try {
       await f.page.getByRole('button', { name: 'Skip scene', exact: true }).waitFor({ timeout: 30000 })
       assert(await f.page.evaluate(() => window.__walletCalls.every(call => !['eth_sendTransaction', 'wallet_sendCalls'].includes(call.method))), 'Interrupted batch was resubmitted')
     } else {
-      await f.page.getByRole('alert').filter({ hasText: scenario === 'rejected' ? 'cancelled' : 'did not submit' }).waitFor()
+      await f.page.getByRole('alert').filter({ hasText: scenario === 'rejected' ? 'cancelled' : scenario === 'reverted' ? 'group reverted' : 'did not submit' }).waitFor()
       assert(await f.page.getByRole('button', { name: 'Skip scene' }).count() === 0, 'Failed/rejected group animated success')
       assert(await f.page.evaluate(() => !localStorage.getItem('glowbuds.deabstractor.unresolved.v1')), 'Definitive non-submission was not released')
       assert(await f.page.evaluate(() => window.__walletCalls.filter(call => call.method === 'eth_sendTransaction').length) === 0, 'Batch failure silently fell back to serial sends')
+      if (scenario === 'reverted') {
+        assert(await f.page.evaluate(() => JSON.parse(localStorage.getItem('glowbuds.deabstractor.transfers.v1')).every(record => record.status === 'reverted')), 'Reverted batch kept pending receipts')
+        // Reproduce an older build that saved the bundler hash before learning
+        // that the inner call batch reverted. Reconnect, never resubmit.
+        await f.page.evaluate(({ from, to, hash }) => {
+          const callId = window.__walletCalls.find(call => call.method === 'wallet_sendCalls').params[0].id
+          localStorage.setItem('glowbuds.deabstractor.unresolved.v1', JSON.stringify({ from, to, hash, callId, fromBlock: '123', tokens: [968, 1677, 2000] }))
+          const history = JSON.parse(localStorage.getItem('glowbuds.deabstractor.transfers.v1'))
+          localStorage.setItem('glowbuds.deabstractor.transfers.v1', JSON.stringify(history.map(record => ({ ...record, status: 'pending' }))))
+        }, { from, to, hash })
+        await f.page.reload()
+        await openDetails(f.page)
+        await f.page.getByRole('button', { name: 'Use a browser wallet', exact: true }).click()
+        await f.page.getByRole('button', { name: 'Sending test wallet', exact: true }).click()
+        await f.page.getByRole('alert').filter({ hasText: 'group reverted' }).waitFor({ timeout: 15000 })
+        assert(await f.page.evaluate(() => !localStorage.getItem('glowbuds.deabstractor.unresolved.v1')), 'Saved-hash revert stayed locked after reconnect')
+        await f.page.reload()
+        await f.page.getByRole('button', { name: 'Use a browser wallet', exact: true }).waitFor()
+        assert(await f.page.evaluate(() => JSON.parse(localStorage.getItem('glowbuds.deabstractor.transfers.v1')).every(record => record.status === 'reverted')), 'Reload forgot the terminal failure')
+        assert(await f.page.evaluate(() => window.__walletCalls.every(call => !['eth_sendTransaction', 'wallet_sendCalls'].includes(call.method))), 'Reverted batch was resubmitted on reload')
+      }
     }
     proof.checks.push(`Atomic batch ${scenario}: correct recovery/consent boundaries, no silent serial fallback or duplicate sends`)
     await f.context.close()

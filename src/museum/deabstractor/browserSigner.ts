@@ -45,8 +45,13 @@ export async function browserSigner(wallet: DiscoveredWallet): Promise<TransferS
       const result = await wallet.provider.request({ method: 'wallet_getCallsStatus', params: [id] }) as { id?: string; chainId?: string; atomic?: boolean; status?: number; receipts?: { transactionHash?: string }[] }
       if (result?.id !== id || Number(result.chainId) !== ABSTRACT_CHAIN_ID || result.atomic !== true) throw new Error('Waiting for the sending wallet to confirm this departure.')
       const receipts = result.receipts ?? []
+      if (!Array.isArray(receipts)) throw new Error('Waiting for a valid departure receipt.')
       const hash = receipts.length === 1 && /^0x[0-9a-f]{64}$/i.test(receipts[0].transactionHash ?? '') ? receipts[0].transactionHash as Hex : undefined
-      return { failed: result.status === 400 && receipts.length === 0, hash }
+      if (result.status === 400 && receipts.length === 0) return { failed: true, reason: 'not-submitted' }
+      // EIP-5792 status 500 is a complete call-batch revert even if its bundler's
+      // outer receipt succeeded. Unknown/partial statuses are not proof of failure.
+      if (result.status === 500 && (receipts.length === 0 || hash)) return { failed: true, reason: 'reverted', hash }
+      return { failed: false, hash }
     },
     send: async (token, to) => {
       await assertSender()
